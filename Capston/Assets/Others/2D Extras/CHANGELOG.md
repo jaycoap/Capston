@@ -3,16 +3,38 @@ All notable changes to this package will be documented in this file.
 
 The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 
-## [1.6.0-preview.1] - 2021-02-19
+## [1.8.1-preview] - 2021-08-24
+### Changed
+- [GameObjectBrush] Add canChangePosition
+- [RuleOverrideTile] Create instance Tile on override
+- [RuleTile] Add scripting documentation
+- [RuleTileEditor] Add drag and drop rect for Sprites to create initial TilingRules
+- [RuleTileEditor] Add field to change number of TilingRules
+- [RuleTileEditor] Add blank space to the end of the Rule list
+- [TintBrush] Convert cell positions to world positions based on the Grid used
+- [TintBrush] Add k_ScaleFactor for better precision when painting on non-rectangular Tilemaps
+
+## [1.8.0-preview] - 2021-06-01
+### Changed
+- [RuleTileEditor] Add tooltips to fields
+- Add required package dependencies
+
+## [1.7.0-preview] - 2021-05-06
+### Changed
+- [RuleTile] Improve performance of RuleTile caching
+- [RuleTileEditor] Allow non-public fields with the SerializeField attribute as custom fields for RuleTile
+- Make U2DExtrasPlaceholder internal
+
+## [1.6.4-preview] - 2021-02-19
+### Changed
 - [HexagonalRuleTile] Fix issue with mirror rule
 - [RuleTile] Add min and max animation speedup
 - [RuleOverrideTile] Fix import issue when upgrading from a previous version of RuleOverrideTile
 - [RuleTileEditor] Add new rule below selected rule in RuleTileEditor
 - [RuleTileEditor] Add dropdown to duplicate Rule
 
-## [1.5.1-preview] - 2020-09-25
+## [1.6.3-preview] - 2020-11-26
 ### Changed
-- Update samples
 - Update documentation
 - Add contribution notice in README.md
 - Update Third Party Notices.md
@@ -20,6 +42,9 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 - [PrefabBush] Add tooltip for "Erase Any Objects" field
 - [PrefabBrush][GameObjectBrush] Account for Anchor when using GetObjectsInCell in PrefabBrush and GameObjectBrush
 - [CustomRuleTileScript] Allow Custom Rule Tile template script to be created regardless of where template script is installed (from a package or in the project)
+
+## [1.6.2-preview] - 2020-09-25
+### Changed
 - [RuleTile/RuleOverrideTile/AdvancedRuleOverrideTile] Renamed Game Object to GameObject
 - [RuleTile] Fix menu order for RuleOverrideTile
 - [RuleOverrideTile] Fix menu order for RuleOverrideTile
@@ -28,10 +53,19 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 - [GameObjectBrush] Update cells when size changes
 - [GameObjectBrush] Clear cell for Prefabs
 - [LineBrush] Clear previews from base.OnPaintSceneGUI
+- [PrefabBrush] Fix box erase
+
+## [1.6.1-preview] - 2020-08-11
+### Changed
+- Update samples
+
+## [1.6.0-preview] - 2020-05-27
+### Changed
+- Updated for Unity 2020.1
+- [GameObjectBrush] Allow painting, erasing and picking on Tile Palette
 - [GameObjectBrush] Add Paint on Scene view to GameObjectBrush
 - [PrefabBush] Add BoxFill to PrefabBrush
 - [PrefabBush] Add Rotation to PrefabBrush
-- [PrefabBrush] Fix box erase
 - Consolidated menu items
 
 ## [1.5.0-preview] - 2020-02-14

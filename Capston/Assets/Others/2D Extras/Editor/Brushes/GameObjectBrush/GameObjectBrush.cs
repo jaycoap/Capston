@@ -62,7 +62,13 @@ namespace UnityEditor.Tilemaps
         /// <summary>Number of brush cells based on size.</summary>
         public int sizeCount
         {
-            get { return m_Size.x * m_Size.y * m_Size.y; }
+            get { return m_Size.x * m_Size.y * m_Size.z; }
+        }
+        /// <summary>Whether the brush can change Z Position</summary>
+        public bool canChangeZPosition
+        {
+            get { return m_CanChangeZPosition; }
+            set { m_CanChangeZPosition = value; }
         }
         
         /// <summary>
@@ -126,9 +132,6 @@ namespace UnityEditor.Tilemaps
             
             if (brushTarget == hiddenGrid)
                 brushTarget = null;
-            // Do not allow editing palettes
-            else if (brushTarget.layer == 31)
-                return;
             BoxFill(gridLayout, brushTarget, bounds);
         }
 
@@ -158,9 +161,6 @@ namespace UnityEditor.Tilemaps
             
             if (brushTarget == hiddenGrid)
                 brushTarget = null;
-            // Do not allow editing palettes
-            else if (brushTarget.layer == 31)
-                return;
             BoxErase(gridLayout, brushTarget, bounds);
         }
 
@@ -180,10 +180,7 @@ namespace UnityEditor.Tilemaps
         {
             if (brushTarget == hiddenGrid)
                 brushTarget = null;
-            // Do not allow editing palettes
-            else if (brushTarget != null && brushTarget.layer == 31)
-                return;
-
+            
             foreach (Vector3Int location in position.allPositionsWithin)
             {
                 Vector3Int local = location - position.min;
@@ -203,10 +200,7 @@ namespace UnityEditor.Tilemaps
         {
             if (brushTarget == hiddenGrid)
                 brushTarget = null;
-            // Do not allow editing palettes
-            else if (brushTarget != null && brushTarget.layer == 31)
-                return;
-
+            
             foreach (Vector3Int location in position.allPositionsWithin)
             {
                 EraseCell(gridLayout, location, brushTarget != null ? brushTarget.transform : null);
@@ -284,10 +278,7 @@ namespace UnityEditor.Tilemaps
 
             if (brushTarget == hiddenGrid)
                 brushTarget = null;
-            // Do not allow editing palettes
-            else if (brushTarget.layer == 31)
-                return;
-
+            
             foreach (Vector3Int pos in position.allPositionsWithin)
             {
                 Vector3Int brushPosition = new Vector3Int(pos.x - position.x, pos.y - position.y, 0);
@@ -335,9 +326,6 @@ namespace UnityEditor.Tilemaps
 
             if (brushTarget == hiddenGrid)
                 brushTarget = null;
-            // Do not allow editing palettes
-            else if (brushTarget.layer == 31)
-                return;
 
             var targetTransform = brushTarget != null ? brushTarget.transform : null;
             foreach (Vector3Int pos in position.allPositionsWithin)
@@ -357,12 +345,6 @@ namespace UnityEditor.Tilemaps
         /// <param name="position">Position where the move operation has ended.</param>
         public override void MoveEnd(GridLayout gridLayout, GameObject brushTarget, BoundsInt position)
         {
-            if (brushTarget == hiddenGrid)
-                brushTarget = null;
-            // Do not allow editing palettes
-            else if (brushTarget.layer == 31)
-                return;
-
             Paint(gridLayout, brushTarget, position.min);
             Reset();
         }
@@ -705,6 +687,13 @@ namespace UnityEditor.Tilemaps
         /// </summary>
         public GameObjectBrush brush { get { return target as GameObjectBrush; } }
 
+        /// <summary> Whether the GridBrush can change Z Position. </summary>
+        public override bool canChangeZPosition
+        {
+            get { return brush.canChangeZPosition; }
+            set { brush.canChangeZPosition = value; }
+        }
+        
         /// <summary>
         /// Callback for painting the GUI for the GridBrush in the Scene View.
         /// The GameObjectBrush Editor overrides this to draw the preview of the brush when drawing lines.
