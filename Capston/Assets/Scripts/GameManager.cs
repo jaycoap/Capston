@@ -92,6 +92,11 @@ public class GameManager : MonoBehaviour
         return myname;
     }
 
+    public int SetExp() // 현재 경험치 불러오기
+    {
+        return EXP;
+    }
+
     public int SetMaxExp() // 최대 경험치 불러오기
     {
         return maxExp;
@@ -106,9 +111,17 @@ public class GameManager : MonoBehaviour
     {
         return HP;
     }
+    public int getmaxHp() //MAX HP불러오기
+    {
+        return maxHp;
+    }
     public int getMp() //MP 불러오기
     {
         return MP;
+    }
+    public int getmaxMp() //MAX MP 불러오기
+    {
+        return maxMp;
     }
 
     public int getSTR(int newSTR) // STR 증가값 불러오기
@@ -154,8 +167,7 @@ public class GameManager : MonoBehaviour
         {
             StartGame();
         }
-        
-
+       
     }
 }
 
