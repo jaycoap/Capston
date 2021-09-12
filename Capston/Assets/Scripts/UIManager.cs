@@ -3,33 +3,38 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class PlayerBar : MonoBehaviour
+public class UIManager : MonoBehaviour
 {
-    public Slider PlayerHealthSlider;
-    public Slider PlayerManaSlider;
-    public Slider PlayerExpSlider;
+    private static UIManager instance; 
 
-    [SerializeField]
-    private Text HpText;
+    public static UIManager Instance  
+    {
+        get
+        {
+            if (instance == null) instance = FindObjectOfType<UIManager>();  
+            return instance;
+        }
+    }
 
-    [SerializeField]
-    private Text MpText;
+    [SerializeField]  private Slider PlayerHealthSlider;
+    [SerializeField]  private Slider PlayerManaSlider;
+    [SerializeField]  private Slider PlayerExpSlider;
+    [SerializeField]  private Text HpText;
+    [SerializeField]  private Text MpText;
+    [SerializeField]  private Text ExpText;
 
-    [SerializeField]
-    private Text ExpText;
 
     private void Start()
     {
-
+        
     }
 
-    private void Update()
+    private void Update()//HP, MP, 경험치 바 세팅
     {
-        SetSlider();
+        UpdatePlayerState();
     }
 
-
-    private void SetSlider()//HP, MP, 경험치 바 세팅
+    private void UpdatePlayerState()
     {
         //HP바
         int MaxHp = GameManager.Instance.getmaxHp();
@@ -58,5 +63,4 @@ public class PlayerBar : MonoBehaviour
 
         ExpText.text = Exp + " / " + MaxExp;
     }
-
 }
