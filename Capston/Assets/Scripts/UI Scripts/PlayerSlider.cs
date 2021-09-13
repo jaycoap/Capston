@@ -3,18 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class UIManager : MonoBehaviour
+public class PlayerSlider : MonoBehaviour
 {
-    private static UIManager instance; 
-
-    public static UIManager Instance  
-    {
-        get
-        {
-            if (instance == null) instance = FindObjectOfType<UIManager>();  
-            return instance;
-        }
-    }
 
     [SerializeField]  private Slider PlayerHealthSlider;
     [SerializeField]  private Slider PlayerManaSlider;
