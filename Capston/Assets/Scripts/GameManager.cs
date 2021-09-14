@@ -126,17 +126,17 @@ public class GameManager : MonoBehaviour
 
     public int getSTR(int newSTR) // STR 증가값 불러오기
     {
-        STR = newSTR;
+        STR += newSTR;
         return STR;
     }
     public int getINT(int newINT) // INT 증가값 불러오기
     {
-        INT = newINT;
+        INT += newINT;
         return INT;
     }
     public int getFIT(int newFIT) // FIT 증가값 불러오기
     {
-        FIT = newFIT;
+        FIT += newFIT;
         return FIT;
     }
 
