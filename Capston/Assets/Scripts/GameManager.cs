@@ -30,7 +30,12 @@ public class GameManager : MonoBehaviour
     private int INT; //  지능( 주문력 마나 증가)
     private int FIT; // 체력( 이속 및 체력 마나 회복량 증가)
     private int EXP;  //경험치
-    
+
+    void start()
+    {
+        StartGame();
+        FIT = 2;
+    }
 
 
 
@@ -134,12 +139,15 @@ public class GameManager : MonoBehaviour
         INT = newINT;
         return INT;
     }
-    public int getFIT(int newFIT) // FIT 증가값 불러오기
+    public int getFIT() // FIT값 불러오기
+    {
+        return FIT;
+    }
+    public int setFIT(int newFIT) // FIT 증가값 설정하기
     {
         FIT = newFIT;
         return FIT;
     }
-
     private void Awake()
     {
         if (_instance != null && _instance != this)
@@ -158,17 +166,17 @@ public class GameManager : MonoBehaviour
         Screen.fullScreen = true;
     }
 
-    private void Update()
-    {
-        //전체화면 토글
-        if (Input.GetKeyDown(KeyCode.Escape))
-            Screen.fullScreen = !Screen.fullScreen;
-        if (Input.GetButtonDown("m"))// z키 입력시 게임 시작
-        {
-            StartGame();
-        }
+    //private void Update()
+    //{
+    //    //전체화면 토글
+    //    if (Input.GetKeyDown(KeyCode.Escape))
+    //        Screen.fullScreen = !Screen.fullScreen;
+    //    if (Input.GetButtonDown("z"))// z키 입력시 게임 시작
+    //    {
+    //        StartGame();
+    //    }
        
-    }
+    //}
 }
 
 public class GameContorl
