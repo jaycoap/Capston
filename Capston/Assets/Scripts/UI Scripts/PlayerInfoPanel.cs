@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerStatPanel : MonoBehaviour
+public class PlayerInfoPanel : MonoBehaviour
 {
     [SerializeField]
     private GameObject StatsPanel;
