@@ -1756,6 +1756,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 994364110, guid: 9ac2ab88ed16ff44f894a1fdce0875bd, type: 3}
+      propertyPath: m_BodyType
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 3819154915027437073, guid: 9ac2ab88ed16ff44f894a1fdce0875bd, type: 3}
       propertyPath: m_Name
       value: Floor (1)
