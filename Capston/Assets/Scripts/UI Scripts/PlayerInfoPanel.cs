@@ -47,4 +47,9 @@ public class PlayerInfoPanel : MonoBehaviour
         ExpText.text = GameManager.Instance.getExp() + " / " + GameManager.Instance.getmaxExp();
 
     }
+
+    public void InfoQuit()
+    {
+        StatsPanel.SetActive(false);
+    }
 }

@@ -20,4 +20,9 @@ public class PlayerSkillPanel : MonoBehaviour
             SkillPanel.SetActive(ActiveSkillPanel);
         }
     }
+
+    public void SkillQuit()
+    {
+        SkillPanel.SetActive(false);
+    }
 }

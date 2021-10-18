@@ -11,7 +11,7 @@ public class DragUI : MonoBehaviour, IDragHandler, IPointerDownHandler
 
     private void Awake()
     {
-        //Cursor.lockState = CursorLockMode.Confined; = 커서가 화면 밖으로 나가지 않게 해줌
+        //Cursor.lockState = CursorLockMode.Confined; // = 커서가 화면 밖으로 나가지 않게 해줌
 
         if (dragRectTransform == null)
         {

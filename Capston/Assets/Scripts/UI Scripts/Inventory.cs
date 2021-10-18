@@ -22,4 +22,9 @@ public class Inventory : MonoBehaviour
             }
         }
     }
+
+    public void InventoryQuit()
+    {
+        InventoryPanel.SetActive(false);
+    }
 }
