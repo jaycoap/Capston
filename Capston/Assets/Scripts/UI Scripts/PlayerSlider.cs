@@ -45,8 +45,8 @@ public class PlayerSlider : MonoBehaviour
         MpText.text = Mp + " / " + MaxMp;
 
         //EXP¹Ù
-        int MaxExp = GameManager.Instance.SetMaxExp();
-        int Exp = GameManager.Instance.SetExp();
+        int MaxExp = GameManager.Instance.getmaxExp();
+        int Exp = GameManager.Instance.getExp();
 
         PlayerExpSlider.maxValue = MaxExp;
         PlayerExpSlider.value = Exp;

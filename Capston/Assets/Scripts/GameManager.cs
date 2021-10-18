@@ -97,12 +97,12 @@ public class GameManager : MonoBehaviour
         return myname;
     }
 
-    public int SetExp() // 현재 경험치 불러오기
+    public int getExp() // 현재 경험치 불러오기
     {
         return EXP;
     }
 
-    public int SetMaxExp() // 최대 경험치 불러오기
+    public int getmaxExp() // 최대 경험치 불러오기
     {
         return maxExp;
     }
@@ -128,20 +128,27 @@ public class GameManager : MonoBehaviour
     {
         return maxMp;
     }
-
-    public int getSTR(int newSTR) // STR 증가값 불러오기
+    public int getSTR() // STR값 불러오기
     {
-        STR += newSTR;
         return STR;
     }
-    public int getINT(int newINT) // INT 증가값 불러오기
+    public int getINT() // INT값 불러오기
     {
-        INT += newINT;
         return INT;
     }
     public int getFIT() // FIT값 불러오기
     {
         return FIT;
+    }
+    public int setSTR(int newSTR) // STR 증가값 설정하기
+    {
+        STR += newSTR;
+        return STR;
+    }
+    public int setINT(int newINT) // INT 증가값 설정하기
+    {
+        INT += newINT;
+        return INT;
     }
     public int setFIT(int newFIT) // FIT 증가값 설정하기
     {

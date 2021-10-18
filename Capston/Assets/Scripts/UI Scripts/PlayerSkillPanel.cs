@@ -6,6 +6,7 @@ public class PlayerSkillPanel : MonoBehaviour
 {
     [SerializeField]
     private GameObject SkillPanel;
+    bool ActiveSkillPanel = false;
     void Start()
     {
         
@@ -15,14 +16,8 @@ public class PlayerSkillPanel : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.K))
         {
-            if (SkillPanel.activeSelf == false)
-            {
-                SkillPanel.SetActive(true);
-            }
-            else
-            {
-                SkillPanel.SetActive(false);
-            }
+            ActiveSkillPanel = !ActiveSkillPanel;
+            SkillPanel.SetActive(ActiveSkillPanel);
         }
     }
 }

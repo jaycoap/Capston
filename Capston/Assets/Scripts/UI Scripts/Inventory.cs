@@ -6,6 +6,7 @@ public class Inventory : MonoBehaviour
 {
     [SerializeField]
     private GameObject InventoryPanel;
+    bool ActiveInventory = false;
     void Start()
     {
 
@@ -15,13 +16,9 @@ public class Inventory : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.I))
         {
-            if (InventoryPanel.activeSelf == false)
             {
-                InventoryPanel.SetActive(true);
-            }
-            else
-            {
-                InventoryPanel.SetActive(false);
+                ActiveInventory = !ActiveInventory;
+                InventoryPanel.SetActive(ActiveInventory);
             }
         }
     }
