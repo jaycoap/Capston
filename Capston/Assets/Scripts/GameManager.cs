@@ -19,7 +19,8 @@ public class GameManager : MonoBehaviour
     private GameObject player;
     private SpriteRenderer playerRenderer;
 
-    private string activelevel; // 레벨설정
+    private int activelevel; // 레벨설정
+    private int beforelevel;
     private string myname; // 캐릭터 이름
     private int maxHp; // 최대 체력
     private int maxMp; // 최대 마나
@@ -30,6 +31,7 @@ public class GameManager : MonoBehaviour
     private int INT; //  지능( 주문력 마나 증가)
     private int FIT; // 체력( 이속 및 체력 마나 회복량 증가)
     private int EXP;  //경험치
+    private int APPoint = 0;
 
     void start()
     {
@@ -64,7 +66,7 @@ public class GameManager : MonoBehaviour
         }
         else if (newGameState == GameState.inGame) // 게임 진행시
         {
-            activelevel = "Level 1"; // 레벨 세팅
+            activelevel = 1; // 레벨 세팅
             myname = "Charater"; // 이름 세팅
             maxHp = 50; // 체력세팅
             maxMp = 200; // 마나 세팅
@@ -82,15 +84,58 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    public string getLevel() // 레벨불러오기
+    public int getLevel() // 레벨불러오기
     {
         return activelevel;
     }
 
-    public void setLevel(string newlevel) // 레벨업시 사용
+    public void setLevel() // 레벨업시 사용
     {
-        activelevel = newlevel;
+        if (EXP >= maxExp) //현재 경험치가 최대 보다 높을시(레벨업) 레벨 +1, 현재 경험치 0으로 초기화
+        {
+            activelevel += 1;
+            EXP = 0;
+            APPoint += 3; //레벨업 한 상태이기 때문에 스탯 포인트 3으로 설정.
+        }
     }
+
+    public void UpSTR()
+    {
+        if (APPoint <= 0)
+        {
+            return;
+        }
+        else
+        {
+            STR += 1;
+            APPoint -= 1;
+        }
+    }
+    public void UpINT()
+    {
+        if (APPoint <= 0)
+        {
+            return;
+        }
+        else
+        {
+            INT += 1;
+            APPoint -= 1;
+        }
+    }
+    public void UpFIT()
+    {
+        if (APPoint <= 0)
+        {
+            return;
+        }
+        else
+        {
+            FIT += 1;
+            APPoint -= 1;
+        }
+    }
+
 
     public string getName() // 이름 불러오기
     {

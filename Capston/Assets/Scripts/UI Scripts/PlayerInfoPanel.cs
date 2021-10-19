@@ -35,7 +35,7 @@ public class PlayerInfoPanel : MonoBehaviour
     private void UpdateInfoPanel()
     {
         NameText.text = GameManager.Instance.getName();
-        LevelText.text = GameManager.Instance.getLevel();
+        //LevelText.text = GameManager.Instance.getLevel();
 
         HpText.text = GameManager.Instance.getHp() + " / " + GameManager.Instance.getmaxHp();
         MpText.text = GameManager.Instance.getMp() + " / " + GameManager.Instance.getmaxMp();
