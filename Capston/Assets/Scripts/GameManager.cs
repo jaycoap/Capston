@@ -19,18 +19,18 @@ public class GameManager : MonoBehaviour
     private GameObject player;
     private SpriteRenderer playerRenderer;
 
-    private int activelevel; // 레벨설정
+    private int activelevel = 0; // 레벨설정
     private int beforelevel;
     private string myname; // 캐릭터 이름
-    private int maxHp; // 최대 체력
-    private int maxMp; // 최대 마나
-    private int maxExp; // 최대 경험치
-    private int HP; // 현재 체력
-    private int MP; // 현재 마나
-    private int STR;  // 힘( 공격력 체력증가)
-    private int INT; //  지능( 주문력 마나 증가)
-    private int FIT; // 체력( 이속 및 체력 마나 회복량 증가)
-    private int EXP;  //경험치
+    private int maxHp = 0; // 최대 체력
+    private int maxMp = 0; // 최대 마나
+    private int maxExp = 0; // 최대 경험치
+    private int HP = 0; // 현재 체력
+    private int MP = 0; // 현재 마나
+    private int STR = 0;  // 힘( 공격력 체력증가)
+    private int INT = 0; //  지능( 주문력 마나 증가)
+    private int FIT = 0; // 체력( 이속 및 체력 마나 회복량 증가)
+    private int EXP = 0;  //경험치
     private int APPoint = 0;
 
     void start()
@@ -55,7 +55,8 @@ public class GameManager : MonoBehaviour
     }
     void Start()
     {
-        currentGameState = GameState.menu;// 시작시 게임상태 변경
+        //currentGameState = GameState.menu;// 시작시 게임상태 변경
+        StartGame();
     }
 
     void SetGameState(GameState newGameState)// 게임 상태
@@ -68,15 +69,15 @@ public class GameManager : MonoBehaviour
         {
             activelevel = 1; // 레벨 세팅
             myname = "Charater"; // 이름 세팅
-            maxHp = 50; // 체력세팅
-            maxMp = 200; // 마나 세팅
-            maxExp = 300; // 최대경험치 세팅(레벨업시 증가)
-            HP = maxHp; // 시작시 최대체력으로 세팅
-            MP = maxMp; // 시작시 최대마나로 세팅
-            STR = 2; // 힘 세팅
-            INT = 10; // 지능 세팅
-            FIT = 2; // 체력 세팅
-            EXP = 0; // 경험치 세팅
+            maxHp += 50; // 체력세팅
+            maxMp += 200; // 마나 세팅
+            maxExp += 300; // 최대경험치 세팅(레벨업시 증가)
+            HP += maxHp; // 시작시 최대체력으로 세팅
+            MP += maxMp; // 시작시 최대마나로 세팅
+            STR += 2; // 힘 세팅
+            INT += 10; // 지능 세팅
+            FIT += 2; // 체력 세팅
+            EXP += 0; // 경험치 세팅
         }
         else if (newGameState == GameState.gameover) // 게임 종료시
         {
@@ -135,7 +136,6 @@ public class GameManager : MonoBehaviour
             APPoint -= 1;
         }
     }
-
 
     public string getName() // 이름 불러오기
     {
