@@ -185,6 +185,10 @@ public class GameManager : MonoBehaviour
     {
         return FIT;
     }
+    public int getAPPoint() // AP값 불러오기
+    {
+        return APPoint;
+    }
     public int setSTR(int newSTR) // STR 증가값 설정하기
     {
         STR += newSTR;

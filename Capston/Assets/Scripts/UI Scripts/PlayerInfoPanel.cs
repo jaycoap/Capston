@@ -6,7 +6,7 @@ using UnityEngine.UI;
 public class PlayerInfoPanel : MonoBehaviour
 {
     [SerializeField] private GameObject StatsPanel;
-    bool ActiveInfoPanel = false;
+    [SerializeField] private GameObject Button;
     [SerializeField] private Text NameText;
     [SerializeField] private Text LevelText;
     [SerializeField] private Text StrText;
@@ -15,6 +15,10 @@ public class PlayerInfoPanel : MonoBehaviour
     [SerializeField] private Text HpText;
     [SerializeField] private Text MpText;
     [SerializeField] private Text ExpText;
+    [SerializeField] private Text APText;
+
+    private bool ActiveInfoPanel = false;
+    private bool ActiveButton = false;
 
     void Start()
     {
@@ -30,12 +34,13 @@ public class PlayerInfoPanel : MonoBehaviour
         }
 
         UpdateInfoPanel();
+        OnOffApButton();
     }
 
     private void UpdateInfoPanel()
     {
         NameText.text = GameManager.Instance.getName();
-        //LevelText.text = GameManager.Instance.getLevel();
+        LevelText.text = GameManager.Instance.getLevel().ToString();
 
         HpText.text = GameManager.Instance.getHp() + " / " + GameManager.Instance.getmaxHp();
         MpText.text = GameManager.Instance.getMp() + " / " + GameManager.Instance.getmaxMp();
@@ -46,10 +51,28 @@ public class PlayerInfoPanel : MonoBehaviour
 
         ExpText.text = GameManager.Instance.getExp() + " / " + GameManager.Instance.getmaxExp();
 
+        APText.text = GameManager.Instance.getAPPoint().ToString();
+
+    }
+
+    private void OnOffApButton()
+    {
+        if (1 <= GameManager.Instance.getAPPoint())
+        {
+            ActiveButton = true;
+        }
+        else
+        {
+            ActiveButton = false;
+        }
+
+        Button.SetActive(ActiveButton);
+
     }
 
     public void InfoQuit()
     {
         StatsPanel.SetActive(false);
     }
+
 }
