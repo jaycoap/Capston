@@ -25,6 +25,7 @@ public class GameManager : MonoBehaviour
     private int maxHp = 0; // 최대 체력
     private int maxMp = 0; // 최대 마나
     private int maxExp = 0; // 최대 경험치
+    private double maxCheck = 0; // 최대경험치 x 1.2
     private int HP = 0; // 현재 체력
     private int MP = 0; // 현재 마나
     private int STR = 0;  // 힘( 공격력 체력증가)
@@ -33,11 +34,6 @@ public class GameManager : MonoBehaviour
     private int EXP = 0;  //경험치
     private int APPoint = 0;
 
-    void start()
-    {
-        StartGame();
-        FIT = 2;
-    }
 
 
 
@@ -58,6 +54,7 @@ public class GameManager : MonoBehaviour
         //currentGameState = GameState.menu;// 시작시 게임상태 변경
         StartGame();
     }
+    
 
     void SetGameState(GameState newGameState)// 게임 상태
     {
@@ -78,6 +75,7 @@ public class GameManager : MonoBehaviour
             INT += 10; // 지능 세팅
             FIT += 2; // 체력 세팅
             EXP += 0; // 경험치 세팅
+            
         }
         else if (newGameState == GameState.gameover) // 게임 종료시
         {
@@ -94,10 +92,22 @@ public class GameManager : MonoBehaviour
     {
         if (EXP >= maxExp) //현재 경험치가 최대 보다 높을시(레벨업) 레벨 +1, 현재 경험치 0으로 초기화
         {
+            
             activelevel += 1;
             EXP = 0;
             APPoint += 3; //레벨업 한 상태이기 때문에 스탯 포인트 3으로 설정.
+            if(activelevel % 10 <= 0) //레벨 10당 1.5배로 증가
+            {
+                maxCheck = maxExp * 1.5;
+            }
+            else// 아니면 1.2배
+            {
+                maxCheck = maxExp * 1.2;
+            }
+            
+            maxExp = (int)maxCheck;
         }
+        
     }
 
     public void UpSTR()
