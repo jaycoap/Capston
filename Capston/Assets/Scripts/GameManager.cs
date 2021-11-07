@@ -20,7 +20,7 @@ public class GameManager : MonoBehaviour
     private SpriteRenderer playerRenderer;
 
     private int activelevel = 0; // 레벨설정
-    private int beforelevel;
+    //private int beforelevel; 추후 사용예정
     private string myname; // 캐릭터 이름
     private int maxHp = 0; // 최대 체력
     private int maxMp = 0; // 최대 마나
@@ -33,6 +33,8 @@ public class GameManager : MonoBehaviour
     private int FIT = 0; // 체력( 이속 및 체력 마나 회복량 증가)
     private int EXP = 0;  //경험치
     private int APPoint = 0;
+    private int AD = 0;
+    private int AP = 0;
 
 
 
@@ -54,8 +56,20 @@ public class GameManager : MonoBehaviour
         //currentGameState = GameState.menu;// 시작시 게임상태 변경
         StartGame();
     }
-    
 
+    /*void Update() test 세팅
+    {
+        if (Input.GetKeyDown(KeyCode.Z))
+        {
+            EXP += 200;
+            Debug.Log(AD);
+            Debug.Log(AP);
+
+        }
+        setLevel();
+        ADAttack();
+        APAttack();
+    }*/
     void SetGameState(GameState newGameState)// 게임 상태
     {
         if (newGameState == GameState.menu) // 새게임시
@@ -110,6 +124,15 @@ public class GameManager : MonoBehaviour
         
     }
 
+    public void ADAttack()
+    {
+        AD = STR * 3;
+    }
+    public void APAttack()
+    {
+        AP = INT * 5;
+    }
+
     public void UpSTR()
     {
         if (APPoint <= 0)
@@ -143,6 +166,8 @@ public class GameManager : MonoBehaviour
         else
         {
             FIT += 1;
+            HP += 10;
+            MP += 10;
             APPoint -= 1;
         }
     }
