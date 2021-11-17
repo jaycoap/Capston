@@ -8,6 +8,8 @@ public class playerManager : MonoBehaviour
     private float jumpSpeed;
     private bool isDead;
     private bool isGrounded;
+    [SerializeField] private Transform pos;
+    private Vector2 attackRange;
     Rigidbody2D rigidBody;
     SpriteRenderer spriteRenderer;
     Animator animator;
@@ -20,6 +22,7 @@ public class playerManager : MonoBehaviour
         isGrounded = false;
         movementSpeed = 0.1f;
         jumpSpeed = 9f;
+        attackRange = new Vector2(0.9166667f, 1.666667f);
     }
 
     void Update()
@@ -27,7 +30,16 @@ public class playerManager : MonoBehaviour
         //Horizontal 버튼을 누를때 각 방향으로 캐릭터 스프라이트를 뒤집는 함수.
         if (Input.GetButton("Horizontal") && !animator.GetBool("isAttack"))
         {
+
             spriteRenderer.flipX = Input.GetAxisRaw("Horizontal") == -1;
+            
+        }
+        if(spriteRenderer.flipX == true)
+        {
+            pos.position = new Vector2(transform.position.x - 0.9166667f, pos.position.y);
+        }else
+        {
+            pos.position = new Vector2(transform.position.x + 0.9166667f, pos.position.y);
         }
         //걷고 있는지, 공중이 아닌지, 공격중인지 체크해서 걷는 애니메이션을 관리하는 변수를 바꾸는 함수.
         if (Mathf.Abs(Input.GetAxisRaw("Horizontal")) == 1 && !animator.GetBool("isAttack") && isGrounded)
@@ -82,6 +94,13 @@ public class playerManager : MonoBehaviour
                     {
                         animator.SetBool("isAttack", true);
                         animator.SetInteger("attackCount", 1);
+                        //hitEnemy = OverlapBoxAll(1,2,3,4) 1위치 기준 2범위에 있는 3회전의 4레이어 오브젝트를 전부 hitEnemy에 넣음
+                        Collider2D[] hitEnemy = Physics2D.OverlapBoxAll(pos.position, attackRange, 0, LayerMask.GetMask("Enemy"));
+                        //hitEnemy에 있는 모든 오브젝트에 안에 함수 실행 <- 여기다가 데미지 넣는 함수 넣으면댐
+                        foreach(Collider2D collider in hitEnemy)
+                        {
+                            Debug.Log("enemy1");
+                        }
                     }
                 }
                 else if (animator.GetInteger("attackCount") == 1)
@@ -93,6 +112,13 @@ public class playerManager : MonoBehaviour
                         {
                             animator.SetBool("isAttack", true);
                             animator.SetInteger("attackCount", 2);
+                            //hitEnemy = OverlapBoxAll(1,2,3,4) 1위치 기준 2범위에 있는 3회전의 4레이어 오브젝트를 전부 hitEnemy에 넣음
+                            Collider2D[] hitEnemy = Physics2D.OverlapBoxAll(pos.position, attackRange, 0, LayerMask.GetMask("Enemy"));
+                            //hitEnemy에 있는 모든 오브젝트에 안에 함수 실행 <- 여기다가 데미지 넣는 함수 넣으면댐
+                            foreach (Collider2D collider in hitEnemy)
+                            {
+                                Debug.Log("enemy2");
+                            }
                         }
                     }
                     //player_attack1 애니메이션이 완료되면 애니메이션 종료후 초기화
@@ -112,6 +138,13 @@ public class playerManager : MonoBehaviour
                         {
                             animator.SetBool("isAttack", true);
                             animator.SetInteger("attackCount", 3);
+                            //hitEnemy = OverlapBoxAll(1,2,3,4) 1위치 기준 2범위에 있는 3회전의 4레이어 오브젝트를 전부 hitEnemy에 넣음
+                            Collider2D[] hitEnemy = Physics2D.OverlapBoxAll(pos.position, attackRange, 0, LayerMask.GetMask("Enemy"));
+                            //hitEnemy에 있는 모든 오브젝트에 안에 함수 실행 <- 여기다가 데미지 넣는 함수 넣으면댐
+                            foreach (Collider2D collider in hitEnemy)
+                            {
+                                Debug.Log("enemy3");
+                            }
                         }
                     }
                     //player_attack2 애니메이션이 완료되면 애니메이션 종료후 초기화
@@ -130,6 +163,13 @@ public class playerManager : MonoBehaviour
                         {
                             animator.SetBool("isAttack", true);
                             animator.SetInteger("attackCount", 1);
+                            //hitEnemy = OverlapBoxAll(1,2,3,4) 1위치 기준 2범위에 있는 3회전의 4레이어 오브젝트를 전부 hitEnemy에 넣음
+                            Collider2D[] hitEnemy = Physics2D.OverlapBoxAll(pos.position, attackRange, 0, LayerMask.GetMask("Enemy"));
+                            //hitEnemy에 있는 모든 오브젝트에 안에 함수 실행 <- 여기다가 데미지 넣는 함수 넣으면댐
+                            foreach (Collider2D collider in hitEnemy)
+                            {
+                                Debug.Log("enemy1");
+                            }
                         }
                     }
                     //player_attack3 애니메이션이 완료되면 애니메이션 종료후 초기화
@@ -201,5 +241,11 @@ public class playerManager : MonoBehaviour
             isGrounded = false;
 
         }
-    }         
+    }
+
+    private void OnDrawGizmos()
+    {
+        Gizmos.color = Color.red;
+        Gizmos.DrawWireCube(pos.position, attackRange);
+    }
 }
