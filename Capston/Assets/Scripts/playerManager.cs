@@ -100,6 +100,7 @@ public class playerManager : MonoBehaviour
                         foreach(Collider2D collider in hitEnemy)
                         {
                             Debug.Log("enemy1");
+                            
                         }
                     }
                 }

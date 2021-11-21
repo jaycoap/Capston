@@ -35,6 +35,12 @@ public class GameManager : MonoBehaviour
     private int APPoint = 0;
     private int AD = 0;
     private int AP = 0;
+    private int NormalWarriorsHP = 0;
+    private int NormalWarriorsAD = 0;
+    private int NormalMagiciansHP = 0;
+    private int NormalMagiciansAD = 0;
+    private int PotionHeal = 0;
+
 
 
 
@@ -57,18 +63,22 @@ public class GameManager : MonoBehaviour
         StartGame();
     }
 
-    /*void Update() test 세팅
+    /*void Update() //test 세팅
     {
-        if (Input.GetKeyDown(KeyCode.Z))
+        if (Input.GetKeyDown(KeyCode.A))
         {
             EXP += 200;
-            Debug.Log(AD);
+            /*Debug.Log(AD);
             Debug.Log(AP);
+            Debug.Log(NormalWarriorsHP);
+            setWarriosMonsterHP(AP);
+            Debug.Log(AD);
 
         }
         setLevel();
-        ADAttack();
+        
         APAttack();
+        
     }*/
     void SetGameState(GameState newGameState)// 게임 상태
     {
@@ -89,7 +99,13 @@ public class GameManager : MonoBehaviour
             INT += 10; // 지능 세팅
             FIT += 2; // 체력 세팅
             EXP += 0; // 경험치 세팅
-            
+            NormalWarriorsHP += 30;
+            NormalWarriorsAD += 3;
+            NormalMagiciansHP += 18;
+            NormalMagiciansAD += 5;
+            PotionHeal += 10;
+
+
         }
         else if (newGameState == GameState.gameover) // 게임 종료시
         {
@@ -123,17 +139,57 @@ public class GameManager : MonoBehaviour
         }
         
     }
-
-    public void ADAttack()
+    //공격력, 마력
+    public void ADAttackFirst() // 1타
+    {
+        AD = STR * 1;
+    }
+    public void ADAttackSecond() // 2타
+    {
+        AD = STR * 2;
+    }
+    public void ADAttackThird() // 3타
     {
         AD = STR * 3;
     }
-    public void APAttack()
+    public void APAttack() //스킬 데미지
     {
-        AP = INT * 5;
+        AP = INT * 3;
+    }
+    //포션을 사용한다면 HP,MP쪽 둘다 넣어줘야함.
+    public int getPotionHeal()
+    {
+        return PotionHeal;
+    }
+    
+    public int usePotionHealHP()//사용시  HP오름
+    {
+        if (HP+PotionHeal >= maxHp) // 만약 HP가 45인데 포션 사용하면 55가 되어버리므로 maxHp를 넘지 못하게 함.
+        {
+            HP = maxHp; // HP를 최대 HP로 설정.
+        }
+        else // 아니면 HP회복.
+        {
+            HP += PotionHeal;
+        }
+        return HP;
+    }
+    public int usePotionHealMP()//사용시 MP오름
+    {
+        
+        if (MP + PotionHeal >= maxMp) // 만약 HP가 195인데 포션 사용하면 205가 되어버리므로 maxHp를 넘지 못하게 함.
+        {
+            MP = maxMp; //  MP를 최대 MP로 설정.
+        }
+        else // 아니면 MP회복.
+        {
+            MP += (PotionHeal + PotionHeal);
+        }
+        return MP;
     }
 
-    public void UpSTR()
+    //스텟업관련
+    public void UpSTR() //STR스텟업
     {
         if (APPoint <= 0)
         {
@@ -145,7 +201,7 @@ public class GameManager : MonoBehaviour
             APPoint -= 1;
         }
     }
-    public void UpINT()
+    public void UpINT() //INT스텟업
     {
         if (APPoint <= 0)
         {
@@ -157,7 +213,7 @@ public class GameManager : MonoBehaviour
             APPoint -= 1;
         }
     }
-    public void UpFIT()
+    public void UpFIT() //FIT스텟업
     {
         if (APPoint <= 0)
         {
@@ -166,12 +222,58 @@ public class GameManager : MonoBehaviour
         else
         {
             FIT += 1;
-            HP += 10;
-            MP += 10;
+            maxHp += 10;
+            maxMp += 10;
             APPoint -= 1;
         }
     }
+    // 몬스터 관련
+    public int getWarriosMonsterAD()// 전사 몬스터 공격력 
+    {
+        return NormalWarriorsAD;
+    }
+    public int getWarriosMonsterHP()// 전사 몬스터 체력
+    {
+        return NormalWarriorsHP;
+    }
+    public int setWarriosMonsterHP(int Damage) //전사몬스터 공격 받았을시
+    {
+        
+        if (NormalWarriorsHP - Damage <= 0) // 체력보다 데미지가 더 많을시
+        {
+            NormalWarriorsHP = 0; //체력을 0으로 설정
+        }
+        else //아니면 HP에 데미지를 빼줌
+        {
+            NormalWarriorsHP -= Damage;
+        }
+        return NormalWarriorsHP;
+    }
+    public int getMagicianMonsterAD()
+    {
+        return NormalMagiciansAD;
+    }
+    public int getMagicianMonsterHP()
+    {
 
+        return NormalMagiciansHP;
+    }
+    public int setMagicianMonsterHP(int Damage) //마법사 몬스터 공격시
+    {
+
+        if (NormalMagiciansHP - Damage <= 0) //체력보다 데미지가 더 많을시
+        {
+            NormalMagiciansHP = 0; //체력을 0으로 설정
+        }
+        else // 아니면 HP에 데미지를 빼줌
+        {
+            NormalMagiciansHP -= Damage;
+        }
+        return NormalMagiciansHP;
+    }
+
+
+    //스텟 세팅관련
     public string getName() // 이름 불러오기
     {
         return myname;
