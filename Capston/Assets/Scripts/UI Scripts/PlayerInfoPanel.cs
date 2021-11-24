@@ -17,7 +17,7 @@ public class PlayerInfoPanel : MonoBehaviour
     [SerializeField] private Text ExpText;
     [SerializeField] private Text APText;
 
-    private bool ActiveInfoPanel = false;
+    private bool ActiveStatsPanel = false;
     private bool ActiveButton = false;
 
     void Start()
@@ -29,8 +29,8 @@ public class PlayerInfoPanel : MonoBehaviour
     {
         if(Input.GetKeyDown(KeyCode.P))
         {
-            ActiveInfoPanel = !ActiveInfoPanel;
-            StatsPanel.SetActive(ActiveInfoPanel);
+            ActiveStatsPanel = !ActiveStatsPanel;
+            StatsPanel.SetActive(ActiveStatsPanel);
         }
 
         UpdateInfoPanel();
@@ -69,10 +69,4 @@ public class PlayerInfoPanel : MonoBehaviour
         Button.SetActive(ActiveButton);
 
     }
-
-    public void InfoQuit()
-    {
-        StatsPanel.SetActive(false);
-    }
-
 }
