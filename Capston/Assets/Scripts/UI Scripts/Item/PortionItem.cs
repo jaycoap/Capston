@@ -14,7 +14,6 @@ using UnityEngine;
         {
             // 임시 : 개수 하나 감소
             Amount--;
-
             return true;
         }
 

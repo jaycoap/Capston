@@ -68,11 +68,12 @@ public class GameManager : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.A))
         {
             EXP += 200;
-            /*Debug.Log(AD);
+            Debug.Log(AD);
             Debug.Log(AP);
             Debug.Log(NormalWarriorsHP);
             setWarriosMonsterHP(AP);
             Debug.Log(AD);
+            HP -= 10;
 
         }
         setLevel();
@@ -103,7 +104,7 @@ public class GameManager : MonoBehaviour
             NormalWarriorsAD += 3;
             NormalMagiciansHP += 18;
             NormalMagiciansAD += 5;
-            PotionHeal += 10;
+            PotionHeal += 50;
 
 
         }
@@ -227,6 +228,17 @@ public class GameManager : MonoBehaviour
             APPoint -= 1;
         }
     }
+
+    // 캐릭터 전투 관련
+    public void PlayerDamage()
+    {
+
+    }
+
+
+
+
+
     // 몬스터 관련
     public int getWarriosMonsterAD()// 전사 몬스터 공격력 
     {
@@ -296,6 +308,10 @@ public class GameManager : MonoBehaviour
     }
     public int getHp() //HP불러오기
     {
+        if (HP <= 0)
+        {
+            HP = 0;
+        }
         return HP;
     }
     public int getmaxHp() //MAX HP불러오기
@@ -304,6 +320,10 @@ public class GameManager : MonoBehaviour
     }
     public int getMp() //MP 불러오기
     {
+        if( HP<= 0)
+        {
+            MP = 0;
+        }
         return MP;
     }
     public int getmaxMp() //MAX MP 불러오기
