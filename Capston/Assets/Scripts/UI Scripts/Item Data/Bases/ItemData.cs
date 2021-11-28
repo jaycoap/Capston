@@ -23,10 +23,14 @@ using UnityEngine.UI;
         public int ID => _id;
         public string Name => _name;
         public string Tooltip => _tooltip;
+        public string Rating => _rating;
         public Sprite IconSprite => _iconSprite;
+
 
         [SerializeField] private int      _id;
         [SerializeField] private string   _name;    // 아이템 이름
+        [SerializeField] private string   _rating;   // 아이템 등급
+
         [Multiline]
         [SerializeField] private string   _tooltip; // 아이템 설명
         [SerializeField] private Sprite   _iconSprite; // 아이템 아이콘

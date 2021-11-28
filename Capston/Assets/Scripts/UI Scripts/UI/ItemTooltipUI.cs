@@ -19,11 +19,17 @@ using UnityEngine.UI;
         [SerializeField]
         private Text _contentText; // 아이템 설명 텍스트
 
-        #endregion
-        /***********************************************************************
-        *                               Private Fields
-        ***********************************************************************/
-        #region .
+        [SerializeField]
+        private Text _ratingText; // 아이템 설명 텍스트
+
+        [SerializeField]
+        private Image _contentImage; // 아이템 설명 텍스트
+
+    #endregion
+    /***********************************************************************
+    *                               Private Fields
+    ***********************************************************************/
+    #region .
         private RectTransform _rt;
         private CanvasScaler _canvasScaler;
 
@@ -85,6 +91,8 @@ using UnityEngine.UI;
         {
             _titleText.text = data.Name;
             _contentText.text = data.Tooltip;
+            _ratingText.text = data.Rating;
+            _contentImage.sprite = data.IconSprite;
         }
 
         /// <summary> 툴팁의 위치 조정 </summary>
