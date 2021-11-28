@@ -34,6 +34,7 @@ public class GameManager : MonoBehaviour
     private int EXP = 0;  //경험치
     private int APPoint = 0;
     private int AD = 0;
+    
     private int AP = 0;
     private int NormalWarriorsHP = 0;
     private int NormalWarriorsAD = 0;
@@ -65,15 +66,15 @@ public class GameManager : MonoBehaviour
 
     /*void Update() //test 세팅
     {
+        AD = 10;
         if (Input.GetKeyDown(KeyCode.A))
         {
             EXP += 200;
+            
             Debug.Log(AD);
-            Debug.Log(AP);
-            Debug.Log(NormalWarriorsHP);
-            setWarriosMonsterHP(AP);
-            Debug.Log(AD);
-            HP -= 10;
+            setDamage(AD, NormalMagiciansHP);
+            Debug.Log(NormalMagiciansHP);
+            
 
         }
         setLevel();
@@ -248,19 +249,7 @@ public class GameManager : MonoBehaviour
     {
         return NormalWarriorsHP;
     }
-    public int setWarriosMonsterHP(int Damage) //전사몬스터 공격 받았을시
-    {
-        
-        if (NormalWarriorsHP - Damage <= 0) // 체력보다 데미지가 더 많을시
-        {
-            NormalWarriorsHP = 0; //체력을 0으로 설정
-        }
-        else //아니면 HP에 데미지를 빼줌
-        {
-            NormalWarriorsHP -= Damage;
-        }
-        return NormalWarriorsHP;
-    }
+    
     public int getMagicianMonsterAD()
     {
         return NormalMagiciansAD;
@@ -270,19 +259,40 @@ public class GameManager : MonoBehaviour
 
         return NormalMagiciansHP;
     }
-    public int setMagicianMonsterHP(int Damage) //마법사 몬스터 공격시
+    public int setWarriosMonsterHP(int HIT)
     {
-
-        if (NormalMagiciansHP - Damage <= 0) //체력보다 데미지가 더 많을시
-        {
-            NormalMagiciansHP = 0; //체력을 0으로 설정
-        }
-        else // 아니면 HP에 데미지를 빼줌
-        {
-            NormalMagiciansHP -= Damage;
-        }
+        NormalWarriorsHP = HIT;
+        return NormalWarriorsHP;
+    }
+    public int setMagicianMonsterHP(int HIT)
+    {
+        NormalMagiciansHP = HIT;
         return NormalMagiciansHP;
     }
+    public void setDamage(int Damage, int MonsterHP) //전사몬스터 공격 받았을시
+    {
+        if (MonsterHP - Damage <= 0 && MonsterHP == NormalMagiciansHP) // 체력보다 데미지가 더 많을시, 마법 몬스터가 데미지를 받을때
+        {
+            MonsterHP = 0; //체력을 0으로 설정
+            setMagicianMonsterHP(MonsterHP);
+        }
+        else if(MonsterHP - Damage <= 0 && MonsterHP == NormalWarriorsHP) // 체력보다 데미지가 더 많을시, 전사 몬스터가 데미지를 받을때
+        {
+            MonsterHP = 0; //체력을 0으로 설정
+            setWarriosMonsterHP(MonsterHP);
+        }
+        else if(MonsterHP - Damage >= 0 && MonsterHP == NormalWarriorsHP) // 전사 몬스터가 데미지를 받을때
+        {
+            MonsterHP = MonsterHP - Damage;
+            setWarriosMonsterHP(MonsterHP);
+        }
+        else //// 마법 몬스터가 데미지를 받을때
+        {
+            MonsterHP = MonsterHP - Damage;
+            setMagicianMonsterHP(MonsterHP);
+        }
+    }
+
 
 
     //스텟 세팅관련
