@@ -7,7 +7,7 @@ using UnityEngine;
     [Item의 상속구조]
     - Item
         - CountableItem
-            - PortionItem : IUsableItem.Use() -> 사용 및 수량 1 소모
+            - PotionItem : IUsableItem.Use() -> 사용 및 수량 1 소모
         - EquipmentItem
             - WeaponItem
             - ArmorItem
@@ -18,7 +18,7 @@ using UnityEngine;
 
     - ItemData
         - CountableItemData
-            - PortionItemData : 효과량(Value : 회복량, 공격력 등에 사용)
+            - PotionItemData : 효과량(Value : 회복량, 공격력 등에 사용)
         - EquipmentItemData : 최대 내구도
             - WeaponItemData : 기본 공격력
             - ArmorItemData : 기본 방어력
@@ -94,7 +94,7 @@ using UnityEngine;
         /// <summary> 아이템 데이터 타입별 정렬 가중치 </summary>
         private readonly static Dictionary<Type, int> _sortWeightDict = new Dictionary<Type, int>
         {
-            { typeof(PortionItemData), 10000 },
+            { typeof(PotionItemData), 10000 },
             { typeof(WeaponItemData),  20000 },
             { typeof(ArmorItemData),   30000 },
         };

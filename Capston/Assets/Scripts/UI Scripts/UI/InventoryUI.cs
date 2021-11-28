@@ -617,7 +617,7 @@ public class InventoryUI : MonoBehaviour
                     break;
 
                 case FilterOption.Portion:
-                    isFiltered = (itemData is PortionItemData);
+                    isFiltered = (itemData is PotionItemData);
                     break;
             }
 

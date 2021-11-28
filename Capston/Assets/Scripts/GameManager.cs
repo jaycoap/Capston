@@ -40,7 +40,6 @@ public class GameManager : MonoBehaviour
     private int NormalWarriorsAD = 0;
     private int NormalMagiciansHP = 0;
     private int NormalMagiciansAD = 0;
-    private int PotionHeal = 0;
 
 
 
@@ -105,7 +104,6 @@ public class GameManager : MonoBehaviour
             NormalWarriorsAD += 3;
             NormalMagiciansHP += 18;
             NormalMagiciansAD += 5;
-            PotionHeal += 50;
 
 
         }
@@ -159,12 +157,9 @@ public class GameManager : MonoBehaviour
         AP = INT * 3;
     }
     //포션을 사용한다면 HP,MP쪽 둘다 넣어줘야함.
-    public int getPotionHeal()
-    {
-        return PotionHeal;
-    }
+
     
-    public int usePotionHealHP()//사용시  HP오름
+    public int usePotionHealHP(int PotionHeal)//사용시  HP오름
     {
         if (HP+PotionHeal >= maxHp) // 만약 HP가 45인데 포션 사용하면 55가 되어버리므로 maxHp를 넘지 못하게 함.
         {
@@ -176,7 +171,7 @@ public class GameManager : MonoBehaviour
         }
         return HP;
     }
-    public int usePotionHealMP()//사용시 MP오름
+    public int usePotionHealMP(int PotionHeal)//사용시 MP오름
     {
         
         if (MP + PotionHeal >= maxMp) // 만약 HP가 195인데 포션 사용하면 205가 되어버리므로 maxHp를 넘지 못하게 함.
@@ -185,7 +180,7 @@ public class GameManager : MonoBehaviour
         }
         else // 아니면 MP회복.
         {
-            MP += (PotionHeal + PotionHeal);
+            MP += PotionHeal;
         }
         return MP;
     }
