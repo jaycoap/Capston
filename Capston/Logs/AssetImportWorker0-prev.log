@@ -1,6 +1,10 @@
 Using pre-set license
 Built from '2020.3/staging' branch; Version is '2020.3.17f1 (a4537701e4ab) revision 10769271'; Using compiler version '192528614'; Build Type 'Release'
+<<<<<<< HEAD
 OS: 'Windows 10 Pro; OS build 18363.1556; Version 1909; 64bit' Language: 'ko' Physical Memory: 16318 MB
+=======
+OS: 'Windows 10 Home; OS build 22000.318; Version 2009; 64bit' Language: 'ko' Physical Memory: 32639 MB
+>>>>>>> parent of abbfc12 (새로 고침)
 BatchMode: 1, IsHumanControllingUs: 0, StartBugReporterOnCrash: 0, Is64bit: 1, IsPro: 0
 
 COMMAND LINE ARGUMENTS:
@@ -11,6 +15,7 @@ D:\Unity2\2020.3.17f1\Editor\Unity.exe
 -name
 AssetImportWorker0
 -projectPath
+<<<<<<< HEAD
 C:/Users/bkm09/Documents/GitHub/Capston/Capston
 -logFile
 Logs/AssetImportWorker0.log
@@ -48,11 +53,51 @@ Mono: successfully reloaded assembly
 Domain Reload Profiling:
 	ReloadAssembly (1286ms)
 		BeginReloadAssembly (78ms)
+=======
+C:/Users/dnjsw/OneDrive/문서/GitHub/Capston/Capston
+-logFile
+Logs/AssetImportWorker0.log
+-srvPort
+55393
+Successfully changed project path to: C:/Users/dnjsw/OneDrive/문서/GitHub/Capston/Capston
+C:/Users/dnjsw/OneDrive/문서/GitHub/Capston/Capston
+Using Asset Import Pipeline V2.
+Refreshing native plugins compatible for Editor in 48.28 ms, found 3 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Initialize engine version: 2020.3.17f1 (a4537701e4ab)
+[Subsystems] Discovering subsystems at path C:/Program Files/Unity/Hub/Editor/2020.3.17f1/Editor/Data/Resources/UnitySubsystems
+[Subsystems] Discovering subsystems at path C:/Users/dnjsw/OneDrive/문서/GitHub/Capston/Capston/Assets
+GfxDevice: creating device client; threaded=0
+Direct3D:
+    Version:  Direct3D 11.0 [level 11.1]
+    Renderer: NVIDIA GeForce RTX 3080 (ID=0x2216)
+    Vendor:   
+    VRAM:     10078 MB
+    Driver:   30.0.14.9613
+Initialize mono
+Mono path[0] = 'C:/Program Files/Unity/Hub/Editor/2020.3.17f1/Editor/Data/Managed'
+Mono path[1] = 'C:/Program Files/Unity/Hub/Editor/2020.3.17f1/Editor/Data/MonoBleedingEdge/lib/mono/unityjit'
+Mono config path = 'C:/Program Files/Unity/Hub/Editor/2020.3.17f1/Editor/Data/MonoBleedingEdge/etc'
+Using monoOptions --debugger-agent=transport=dt_socket,embedding=1,server=y,suspend=n,address=127.0.0.1:56448
+Begin MonoManager ReloadAssembly
+Registering precompiled unity dll's ...
+Register platform support module: C:/Program Files/Unity/Hub/Editor/2020.3.17f1/Editor/Data/PlaybackEngines/WindowsStandaloneSupport/UnityEditor.WindowsStandalone.Extensions.dll
+Registered in 0.001144 seconds.
+Native extension for WindowsStandalone target not found
+Refreshing native plugins compatible for Editor in 43.63 ms, found 3 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Mono: successfully reloaded assembly
+- Completed reload, in  0.693 seconds
+Domain Reload Profiling:
+	ReloadAssembly (693ms)
+		BeginReloadAssembly (43ms)
+>>>>>>> parent of abbfc12 (새로 고침)
 			ExecutionOrderSort (0ms)
 			DisableScriptedObjects (0ms)
 			BackupInstance (0ms)
 			ReleaseScriptingObjects (0ms)
 			CreateAndSetChildDomain (1ms)
+<<<<<<< HEAD
 		EndReloadAssembly (458ms)
 			LoadAssemblies (77ms)
 			RebuildTransferFunctionScriptingTraits (0ms)
@@ -67,12 +112,29 @@ Domain Reload Profiling:
 				BeforeProcessingInitializeOnLoad (17ms)
 				ProcessInitializeOnLoadAttributes (80ms)
 				ProcessInitializeOnLoadMethodAttributes (27ms)
+=======
+		EndReloadAssembly (306ms)
+			LoadAssemblies (41ms)
+			RebuildTransferFunctionScriptingTraits (0ms)
+			SetupTypeCache (96ms)
+			ReleaseScriptCaches (0ms)
+			RebuildScriptCaches (22ms)
+			SetupLoadedEditorAssemblies (134ms)
+				LogAssemblyErrors (0ms)
+				InitializePlatformSupportModulesInManaged (3ms)
+				SetLoadedEditorAssemblies (0ms)
+				RefreshPlugins (44ms)
+				BeforeProcessingInitializeOnLoad (13ms)
+				ProcessInitializeOnLoadAttributes (55ms)
+				ProcessInitializeOnLoadMethodAttributes (19ms)
+>>>>>>> parent of abbfc12 (새로 고침)
 				AfterProcessingInitializeOnLoad (0ms)
 				EditorAssembliesLoaded (0ms)
 			ExecutionOrderSort2 (0ms)
 			AwakeInstancesAfterBackupRestoration (0ms)
 Platform modules already initialized, skipping
 Registering precompiled user dll's ...
+<<<<<<< HEAD
 Registered in 0.009781 seconds.
 Begin MonoManager ReloadAssembly
 Native extension for WindowsStandalone target not found
@@ -83,10 +145,23 @@ Mono: successfully reloaded assembly
 Domain Reload Profiling:
 	ReloadAssembly (1733ms)
 		BeginReloadAssembly (184ms)
+=======
+Registered in 0.003075 seconds.
+Begin MonoManager ReloadAssembly
+Native extension for WindowsStandalone target not found
+Refreshing native plugins compatible for Editor in 44.81 ms, found 3 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Mono: successfully reloaded assembly
+- Completed reload, in  0.885 seconds
+Domain Reload Profiling:
+	ReloadAssembly (886ms)
+		BeginReloadAssembly (98ms)
+>>>>>>> parent of abbfc12 (새로 고침)
 			ExecutionOrderSort (0ms)
 			DisableScriptedObjects (5ms)
 			BackupInstance (0ms)
 			ReleaseScriptingObjects (0ms)
+<<<<<<< HEAD
 			CreateAndSetChildDomain (18ms)
 		EndReloadAssembly (1483ms)
 			LoadAssemblies (171ms)
@@ -102,6 +177,23 @@ Domain Reload Profiling:
 				BeforeProcessingInitializeOnLoad (121ms)
 				ProcessInitializeOnLoadAttributes (328ms)
 				ProcessInitializeOnLoadMethodAttributes (14ms)
+=======
+			CreateAndSetChildDomain (14ms)
+		EndReloadAssembly (746ms)
+			LoadAssemblies (71ms)
+			RebuildTransferFunctionScriptingTraits (0ms)
+			SetupTypeCache (202ms)
+			ReleaseScriptCaches (0ms)
+			RebuildScriptCaches (44ms)
+			SetupLoadedEditorAssemblies (339ms)
+				LogAssemblyErrors (0ms)
+				InitializePlatformSupportModulesInManaged (3ms)
+				SetLoadedEditorAssemblies (0ms)
+				RefreshPlugins (45ms)
+				BeforeProcessingInitializeOnLoad (71ms)
+				ProcessInitializeOnLoadAttributes (208ms)
+				ProcessInitializeOnLoadMethodAttributes (9ms)
+>>>>>>> parent of abbfc12 (새로 고침)
 				AfterProcessingInitializeOnLoad (3ms)
 				EditorAssembliesLoaded (0ms)
 			ExecutionOrderSort2 (0ms)
@@ -109,6 +201,7 @@ Domain Reload Profiling:
 Platform modules already initialized, skipping
 ========================================================================
 Worker process is ready to serve import requests
+<<<<<<< HEAD
 Launched and connected shader compiler UnityShaderCompiler.exe after 0.06 seconds
 Refreshing native plugins compatible for Editor in 0.62 ms, found 3 plugins.
 Preloading 0 native plugins for Editor in 0.00 ms.
@@ -118,6 +211,17 @@ System memory in use after: 153.6 MB.
 
 Unloading 29 unused Assets to reduce memory usage. Loaded Objects now: 3807.
 Total: 3.587100 ms (FindLiveObjects: 0.292200 ms CreateObjectMapping: 0.159400 ms MarkObjects: 3.050800 ms  DeleteObjects: 0.083700 ms)
+=======
+Launched and connected shader compiler UnityShaderCompiler.exe after 0.04 seconds
+Refreshing native plugins compatible for Editor in 0.49 ms, found 3 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Unloading 3348 Unused Serialized files (Serialized files now loaded: 0)
+System memory in use before: 149.8 MB.
+System memory in use after: 150.0 MB.
+
+Unloading 29 unused Assets to reduce memory usage. Loaded Objects now: 3786.
+Total: 2.489500 ms (FindLiveObjects: 0.214500 ms CreateObjectMapping: 0.088500 ms MarkObjects: 2.114000 ms  DeleteObjects: 0.071600 ms)
+>>>>>>> parent of abbfc12 (새로 고침)
 
 AssetImportParameters requested are different than current active one (requested -> active):
   custom:framework-win-MediaFoundation: 216162199b28c13a410421893ffa2e32 -> 
@@ -131,6 +235,7 @@ AssetImportParameters requested are different than current active one (requested
   custom:audio-encoder-webm-vorbis: bf7c407c2cedff20999df2af8eb42d56 -> 
 ========================================================================
 Received Import Request.
+<<<<<<< HEAD
   path: Assets/Scripts/UI Scripts/Item/PortionItem.cs
   artifactKey: Guid(2f1024a7001da4a47a4ce4ca5d2322fa) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
 Start importing Assets/Scripts/UI Scripts/Item/PortionItem.cs using Guid(2f1024a7001da4a47a4ce4ca5d2322fa) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '48f3e9f95630ee9648d30ad6d8fe8b04') in 0.043282 seconds 
@@ -217,11 +322,63 @@ AssetImportParameters requested are different than current active one (requested
 Received Prepare
 Registering precompiled user dll's ...
 Registered in 0.010715 seconds.
+=======
+  path: Assets/Images/UI/SkillDummy.png
+  artifactKey: Guid(2e6648b5c7ebf9d40b0a7f012bd2243c) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Images/UI/SkillDummy.png using Guid(2e6648b5c7ebf9d40b0a7f012bd2243c) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'd328fbb22f24c82dd0e8ea34a70faf41') in 0.328134 seconds 
+  Import took 0.332171 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000193 seconds.
+  path: Assets/Images/UI/potion.png
+  artifactKey: Guid(d85f3b898cd895d40a46f8caa4ed5ca5) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Images/UI/potion.png using Guid(d85f3b898cd895d40a46f8caa4ed5ca5) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '445602169da4a24dc5004982ef571c32') in 0.015416 seconds 
+  Import took 0.019850 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000162 seconds.
+  path: Assets/Images/UI/coin.png
+  artifactKey: Guid(796a4084c9929c347b26e0db59eb9dc7) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Images/UI/coin.png using Guid(796a4084c9929c347b26e0db59eb9dc7) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'c661c990b513b73583a4638cd04b35be') in 0.016588 seconds 
+  Import took 0.020764 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000168 seconds.
+  path: Assets/Images/UI/Slot.prefab
+  artifactKey: Guid(8264bd5f750b13a468daea4410bd59d1) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Images/UI/Slot.prefab using Guid(8264bd5f750b13a468daea4410bd59d1) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '7f3a84a6ae55e532870178a67787fc44') in 0.023516 seconds 
+  Import took 0.027365 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 76.181730 seconds.
+  path: Assets/Others/Defalt Physic Material.physicsMaterial2D
+  artifactKey: Guid(bb2683e31ff4cbd4ebe305aa35d69caa) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Others/Defalt Physic Material.physicsMaterial2D using Guid(bb2683e31ff4cbd4ebe305aa35d69caa) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '54f0feeb658374f92ab96272ecbfa831') in 0.009720 seconds 
+  Import took 0.014011 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 2.720066 seconds.
+  path: Assets/Images/Player/player_attack.png
+  artifactKey: Guid(1c535f8399c92874b99b0f5edc28b97b) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Images/Player/player_attack.png using Guid(1c535f8399c92874b99b0f5edc28b97b) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '47648a760977ee865d08ddfcb370b386') in 0.061632 seconds 
+  Import took 0.066095 seconds .
+
+========================================================================
+Received Prepare
+Registering precompiled user dll's ...
+Registered in 0.004423 seconds.
+>>>>>>> parent of abbfc12 (새로 고침)
 Begin MonoManager ReloadAssembly
 Native extension for WindowsStandalone target not found
 Refreshing native plugins compatible for Editor in 0.60 ms, found 3 plugins.
 Preloading 0 native plugins for Editor in 0.00 ms.
 Mono: successfully reloaded assembly
+<<<<<<< HEAD
 - Completed reload, in  1.220 seconds
 Domain Reload Profiling:
 	ReloadAssembly (1221ms)
@@ -402,10 +559,17 @@ Mono: successfully reloaded assembly
 Domain Reload Profiling:
 	ReloadAssembly (1214ms)
 		BeginReloadAssembly (135ms)
+=======
+- Completed reload, in  0.855 seconds
+Domain Reload Profiling:
+	ReloadAssembly (856ms)
+		BeginReloadAssembly (115ms)
+>>>>>>> parent of abbfc12 (새로 고침)
 			ExecutionOrderSort (0ms)
 			DisableScriptedObjects (6ms)
 			BackupInstance (0ms)
 			ReleaseScriptingObjects (0ms)
+<<<<<<< HEAD
 			CreateAndSetChildDomain (35ms)
 		EndReloadAssembly (1017ms)
 			LoadAssemblies (146ms)
@@ -414,10 +578,21 @@ Domain Reload Profiling:
 			ReleaseScriptCaches (1ms)
 			RebuildScriptCaches (50ms)
 			SetupLoadedEditorAssemblies (406ms)
+=======
+			CreateAndSetChildDomain (34ms)
+		EndReloadAssembly (699ms)
+			LoadAssemblies (71ms)
+			RebuildTransferFunctionScriptingTraits (0ms)
+			SetupTypeCache (210ms)
+			ReleaseScriptCaches (1ms)
+			RebuildScriptCaches (31ms)
+			SetupLoadedEditorAssemblies (304ms)
+>>>>>>> parent of abbfc12 (새로 고침)
 				LogAssemblyErrors (0ms)
 				InitializePlatformSupportModulesInManaged (4ms)
 				SetLoadedEditorAssemblies (0ms)
 				RefreshPlugins (1ms)
+<<<<<<< HEAD
 				BeforeProcessingInitializeOnLoad (106ms)
 				ProcessInitializeOnLoadAttributes (287ms)
 				ProcessInitializeOnLoadMethodAttributes (6ms)
@@ -477,6 +652,11 @@ Domain Reload Profiling:
 				BeforeProcessingInitializeOnLoad (105ms)
 				ProcessInitializeOnLoadAttributes (272ms)
 				ProcessInitializeOnLoadMethodAttributes (5ms)
+=======
+				BeforeProcessingInitializeOnLoad (80ms)
+				ProcessInitializeOnLoadAttributes (213ms)
+				ProcessInitializeOnLoadMethodAttributes (4ms)
+>>>>>>> parent of abbfc12 (새로 고침)
 				AfterProcessingInitializeOnLoad (3ms)
 				EditorAssembliesLoaded (0ms)
 			ExecutionOrderSort2 (0ms)
@@ -488,6 +668,7 @@ Unloading 3225 Unused Serialized files (Serialized files now loaded: 0)
 System memory in use before: 143.2 MB.
 System memory in use after: 143.4 MB.
 
+<<<<<<< HEAD
 Unloading 17 unused Assets to reduce memory usage. Loaded Objects now: 3825.
 Total: 3.650400 ms (FindLiveObjects: 0.261700 ms CreateObjectMapping: 0.147700 ms MarkObjects: 3.224500 ms  DeleteObjects: 0.015500 ms)
 
@@ -3010,6 +3191,10 @@ System memory in use after: 143.8 MB.
 
 Unloading 17 unused Assets to reduce memory usage. Loaded Objects now: 3951.
 Total: 3.468300 ms (FindLiveObjects: 0.284500 ms CreateObjectMapping: 0.148100 ms MarkObjects: 3.017600 ms  DeleteObjects: 0.017200 ms)
+=======
+Unloading 18 unused Assets to reduce memory usage. Loaded Objects now: 3802.
+Total: 2.634300 ms (FindLiveObjects: 0.212900 ms CreateObjectMapping: 0.081700 ms MarkObjects: 2.316200 ms  DeleteObjects: 0.022600 ms)
+>>>>>>> parent of abbfc12 (새로 고침)
 
 AssetImportParameters requested are different than current active one (requested -> active):
   custom:framework-win-MediaFoundation: 216162199b28c13a410421893ffa2e32 -> 
@@ -3021,3 +3206,7 @@ AssetImportParameters requested are different than current active one (requested
   custom:video-decoder-webm-vp8: 9c59270c3fd7afecdb556c50c9e8de78 -> 
   custom:audio-decoder-ogg-vorbis: bf7c407c2cedff20999df2af8eb42d56 -> 
   custom:audio-encoder-webm-vorbis: bf7c407c2cedff20999df2af8eb42d56 -> 
+<<<<<<< HEAD
+=======
+AssetImportWorkerClient::OnTransportError - code=2 error=End of file
+>>>>>>> parent of abbfc12 (새로 고침)
