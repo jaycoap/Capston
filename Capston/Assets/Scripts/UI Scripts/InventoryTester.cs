@@ -44,7 +44,7 @@ public class InventoryTester : MonoBehaviour
 
     //private void Update()
     //{
-    //    if(Input.GetKey(KeyCode.G))
+    //    if (Input.GetKey(KeyCode.G))
     //    {
     //        GameManager.Instance.getexp(100);
     //    }

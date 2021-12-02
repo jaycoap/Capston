@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b597242af57330945a22e8bf03013df0, type: 3}
   m_Name: "Item_Portion_\uD558\uAE09Mp\uD3EC\uC158"
   m_EditorClassIdentifier: 
-  _id: 1
+  _id: 2
   _name: "\uD558\uAE09 MP \uD3EC\uC158"
   _rating: "\uC77C\uBC18 \uC18C\uBAA8\uD488"
   _tooltip: "\uB9C8\uB098\uB97C 50 \uD68C\uBCF5\uC2DC\uCF1C\uC8FC\uB294 \uD558\uAE09
