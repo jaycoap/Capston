@@ -69,14 +69,14 @@ public class InventoryUI : MonoBehaviour
     [SerializeField] private ItemTooltipUI _itemTooltip;   // 아이템 정보를 보여줄 툴팁 UI
     [SerializeField] private InventoryPopupUI _popup;      // 팝업 UI 관리 객체
 
-    //[Header("Buttons")]
+    [Header("Buttons")]
     //[SerializeField] private Button _trimButton;
-    //[SerializeField] private Button _sortButton;
+    [SerializeField] private Button _sortButton;
 
     //[Header("Filter Toggles")]
     //[SerializeField] private Toggle _toggleFilterAll;
     //[SerializeField] private Toggle _toggleFilterEquipments;
-    //[SerializeField] private Toggle _toggleFilterPortions;
+    //[SerializeField] private Toggle _toggleFilterPotions;
 
     [Space(16)]
     [SerializeField] private bool _mouseReversed = false; // 마우스 클릭 반전 여부
@@ -109,7 +109,7 @@ public class InventoryUI : MonoBehaviour
     /// <summary> 인벤토리 UI 내 아이템 필터링 옵션 </summary>
     private enum FilterOption
     {
-        All, Equipment, Portion
+        All, Equipment, Potion
     }
     private FilterOption _currentFilterOption = FilterOption.All;
 
@@ -122,7 +122,7 @@ public class InventoryUI : MonoBehaviour
     {
         Init();
         InitSlots();
-        //InitButtonEvents();
+        InitButtonEvents();
         //InitToggleEvents();
     }
 
@@ -222,19 +222,19 @@ public class InventoryUI : MonoBehaviour
         }
     }
 
-    //private void InitButtonEvents()
-    //{
-    //    _trimButton.onClick.AddListener(() => _inventory.TrimAll());
-    //    _sortButton.onClick.AddListener(() => _inventory.SortAll());
-    //}
+    private void InitButtonEvents()
+    {
+        //_trimButton.onClick.AddListener(() => _inventory.TrimAll());
+        _sortButton.onClick.AddListener(() => _inventory.SortAll());
+    }
 
     //private void InitToggleEvents()
     //{
     //    _toggleFilterAll.onValueChanged.AddListener(flag => UpdateFilter(flag, FilterOption.All));
     //    _toggleFilterEquipments.onValueChanged.AddListener(flag => UpdateFilter(flag, FilterOption.Equipment));
-    //    _toggleFilterPortions.onValueChanged.AddListener(flag => UpdateFilter(flag, FilterOption.Portion));
+    //    _toggleFilterPotions.onValueChanged.AddListener(flag => UpdateFilter(flag, FilterOption.Potion));
 
-    //    // Local Method
+    //    Local Method
     //    void UpdateFilter(bool flag, FilterOption option)
     //    {
     //        if (flag)
@@ -616,7 +616,7 @@ public class InventoryUI : MonoBehaviour
                     isFiltered = (itemData is EquipmentItemData);
                     break;
 
-                case FilterOption.Portion:
+                case FilterOption.Potion:
                     isFiltered = (itemData is PotionItemData);
                     break;
             }

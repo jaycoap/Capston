@@ -511,45 +511,45 @@ using UnityEngine;
         }
 
         /// <summary> 빈 슬롯 없이 앞에서부터 채우기 </summary>
-        public void TrimAll()
-        {
-            // 가장 빠른 배열 빈공간 채우기 알고리즘
+        //public void TrimAll()
+        //{
+        //    // 가장 빠른 배열 빈공간 채우기 알고리즘
 
-            // i 커서와 j 커서
-            // i 커서 : 가장 앞에 있는 빈칸을 찾는 커서
-            // j 커서 : i 커서 위치에서부터 뒤로 이동하며 기존재 아이템을 찾는 커서
+        //    // i 커서와 j 커서
+        //    // i 커서 : 가장 앞에 있는 빈칸을 찾는 커서
+        //    // j 커서 : i 커서 위치에서부터 뒤로 이동하며 기존재 아이템을 찾는 커서
 
-            // i커서가 빈칸을 찾으면 j 커서는 i+1 위치부터 탐색
-            // j커서가 아이템을 찾으면 아이템을 옮기고, i 커서는 i+1 위치로 이동
-            // j커서가 Capacity에 도달하면 루프 즉시 종료
+        //    // i커서가 빈칸을 찾으면 j 커서는 i+1 위치부터 탐색
+        //    // j커서가 아이템을 찾으면 아이템을 옮기고, i 커서는 i+1 위치로 이동
+        //    // j커서가 Capacity에 도달하면 루프 즉시 종료
 
-            _indexSetForUpdate.Clear();
+        //    _indexSetForUpdate.Clear();
 
-            int i = -1;
-            while (_items[++i] != null) ;
-            int j = i;
+        //    int i = -1;
+        //    while (_items[++i] != null) ;
+        //    int j = i;
 
-            while (true)
-            {
-                while (++j < Capacity && _items[j] == null);
+        //    while (true)
+        //    {
+        //        while (++j < Capacity && _items[j] == null);
 
-                if (j == Capacity)
-                    break;
+        //        if (j == Capacity)
+        //            break;
 
-                _indexSetForUpdate.Add(i);
-                _indexSetForUpdate.Add(j);
+        //        _indexSetForUpdate.Add(i);
+        //        _indexSetForUpdate.Add(j);
 
-                _items[i] = _items[j];
-                _items[j] = null;
-                i++;
-            }
+        //        _items[i] = _items[j];
+        //        _items[j] = null;
+        //        i++;
+        //    }
 
-            foreach (var index in _indexSetForUpdate)
-            {
-                UpdateSlot(index);
-            }
-            _inventoryUI.UpdateAllSlotFilters();
-        }
+        //    foreach (var index in _indexSetForUpdate)
+        //    {
+        //        UpdateSlot(index);
+        //    }
+        //    _inventoryUI.UpdateAllSlotFilters();
+        //}
 
         /// <summary> 빈 슬롯 없이 채우면서 아이템 종류별로 정렬하기 </summary>
         public void SortAll()
