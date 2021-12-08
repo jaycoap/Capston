@@ -4,7 +4,7 @@ using UnityEngine;
 using System;
 
 
-public enum GameState//°ÔÀÓ ±âº» ¼¼ÆÃ
+public enum GameState//ï¿½ï¿½ï¿½ï¿½ ï¿½âº» ï¿½ï¿½ï¿½ï¿½
 {
     menu,
     inGame,
@@ -14,24 +14,24 @@ public class GameManager : MonoBehaviour
 {
     public static GameManager Instance { get { return _instance; } }
     public bool isPause = false;
-    public GameState currentGameState = GameState.menu; // °ÔÀÓ ½ÃÀÛ½Ã ¼³Á¤ °ª º¯¼ö.
+    public GameState currentGameState = GameState.menu; // ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Û½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½.
     private static GameManager _instance;
     private GameObject player;
     private SpriteRenderer playerRenderer;
 
-    private int activelevel = 0; // ·¹º§¼³Á¤
-    //private int beforelevel; ÃßÈÄ »ç¿ë¿¹Á¤
-    private string myname; // Ä³¸¯ÅÍ ÀÌ¸§
-    private int maxHp = 0; // ÃÖ´ë Ã¼·Â
-    private int maxMp = 0; // ÃÖ´ë ¸¶³ª
-    private int maxExp = 0; // ÃÖ´ë °æÇèÄ¡
-    private double maxCheck = 0; // ÃÖ´ë°æÇèÄ¡ x 1.2
-    private int HP = 0; // ÇöÀç Ã¼·Â
-    private int MP = 0; // ÇöÀç ¸¶³ª
-    private int STR = 0;  // Èû( °ø°Ý·Â Ã¼·ÂÁõ°¡)
-    private int INT = 0; //  Áö´É( ÁÖ¹®·Â ¸¶³ª Áõ°¡)
-    private int FIT = 0; // Ã¼·Â( ÀÌ¼Ó ¹× Ã¼·Â ¸¶³ª È¸º¹·® Áõ°¡)
-    private int EXP = 0;  //°æÇèÄ¡
+    private int activelevel = 0; // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+    //private int beforelevel; ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ë¿¹ï¿½ï¿½
+    private string myname; // Ä³ï¿½ï¿½ï¿½ï¿½ ï¿½Ì¸ï¿½
+    private int maxHp = 0; // ï¿½Ö´ï¿½ Ã¼ï¿½ï¿½
+    private int maxMp = 0; // ï¿½Ö´ï¿½ ï¿½ï¿½ï¿½ï¿½
+    private int maxExp = 0; // ï¿½Ö´ï¿½ ï¿½ï¿½ï¿½ï¿½Ä¡
+    private double maxCheck = 0; // ï¿½Ö´ï¿½ï¿½ï¿½ï¿½Ä¡ x 1.2
+    private int HP = 0; // ï¿½ï¿½ï¿½ï¿½ Ã¼ï¿½ï¿½
+    private int MP = 0; // ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
+    private int STR = 0;  // ï¿½ï¿½( ï¿½ï¿½ï¿½Ý·ï¿½ Ã¼ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½)
+    private int INT = 0; //  ï¿½ï¿½ï¿½ï¿½( ï¿½Ö¹ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½)
+    private int FIT = 0; // Ã¼ï¿½ï¿½( ï¿½Ì¼ï¿½ ï¿½ï¿½ Ã¼ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ È¸ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½)
+    private int EXP = 0;  //ï¿½ï¿½ï¿½ï¿½Ä¡
     private int APPoint = 0;
     private int AD = 0;
     
@@ -45,25 +45,25 @@ public class GameManager : MonoBehaviour
 
 
 
-    public void StartGame()//°ÔÀÓ ½ÃÀÛ ÇÔ¼ö
+    public void StartGame()//ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Ô¼ï¿½
     {
         SetGameState(GameState.inGame);
     }
-    public void GameOver()//°ÔÀÓ Á¾·á ÇÔ¼ö
+    public void GameOver()//ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Ô¼ï¿½
     {
 
     }
-    public void BackToMenu() // ¸Þ´º ÇÔ¼ö
+    public void BackToMenu() // ï¿½Þ´ï¿½ ï¿½Ô¼ï¿½
     {
 
     }
     void Start()
     {
-        //currentGameState = GameState.menu;// ½ÃÀÛ½Ã °ÔÀÓ»óÅÂ º¯°æ
+        //currentGameState = GameState.menu;// ï¿½ï¿½ï¿½Û½ï¿½ ï¿½ï¿½ï¿½Ó»ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
         StartGame();
     }
 
-    /*void Update() //test ¼¼ÆÃ
+    /*void Update() //test ï¿½ï¿½ï¿½ï¿½
     {
         AD = 10;
         if (Input.GetKeyDown(KeyCode.A))
@@ -81,25 +81,25 @@ public class GameManager : MonoBehaviour
         APAttack();
         
     }*/
-    void SetGameState(GameState newGameState)// °ÔÀÓ »óÅÂ
+    void SetGameState(GameState newGameState)// ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
     {
-        if (newGameState == GameState.menu) // »õ°ÔÀÓ½Ã
+        if (newGameState == GameState.menu) // ï¿½ï¿½ï¿½ï¿½ï¿½Ó½ï¿½
         {
             
         }
-        else if (newGameState == GameState.inGame) // °ÔÀÓ ÁøÇà½Ã
+        else if (newGameState == GameState.inGame) // ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½
         {
-            activelevel = 1; // ·¹º§ ¼¼ÆÃ
-            myname = "Charater"; // ÀÌ¸§ ¼¼ÆÃ
-            maxHp += 50; // Ã¼·Â¼¼ÆÃ
-            maxMp += 200; // ¸¶³ª ¼¼ÆÃ
-            maxExp += 300; // ÃÖ´ë°æÇèÄ¡ ¼¼ÆÃ(·¹º§¾÷½Ã Áõ°¡)
-            HP += maxHp; // ½ÃÀÛ½Ã ÃÖ´ëÃ¼·ÂÀ¸·Î ¼¼ÆÃ
-            MP += maxMp; // ½ÃÀÛ½Ã ÃÖ´ë¸¶³ª·Î ¼¼ÆÃ
-            STR += 2; // Èû ¼¼ÆÃ
-            INT += 10; // Áö´É ¼¼ÆÃ
-            FIT += 2; // Ã¼·Â ¼¼ÆÃ
-            EXP += 0; // °æÇèÄ¡ ¼¼ÆÃ
+            activelevel = 1; // ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
+            myname = "Charater"; // ï¿½Ì¸ï¿½ ï¿½ï¿½ï¿½ï¿½
+            maxHp += 50; // Ã¼ï¿½Â¼ï¿½ï¿½ï¿½
+            maxMp += 200; // ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
+            maxExp += 300; // ï¿½Ö´ï¿½ï¿½ï¿½ï¿½Ä¡ ï¿½ï¿½ï¿½ï¿½(ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½)
+            HP += maxHp; // ï¿½ï¿½ï¿½Û½ï¿½ ï¿½Ö´ï¿½Ã¼ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
+            MP += maxMp; // ï¿½ï¿½ï¿½Û½ï¿½ ï¿½Ö´ë¸¶ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
+            STR += 2; // ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
+            INT += 10; // ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
+            FIT += 2; // Ã¼ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
+            EXP += 0; // ï¿½ï¿½ï¿½ï¿½Ä¡ ï¿½ï¿½ï¿½ï¿½
             NormalWarriorsHP += 30;
             NormalWarriorsAD += 3;
             NormalMagiciansHP += 18;
@@ -107,30 +107,30 @@ public class GameManager : MonoBehaviour
 
 
         }
-        else if (newGameState == GameState.gameover) // °ÔÀÓ Á¾·á½Ã
+        else if (newGameState == GameState.gameover) // ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½
         {
 
         }
     }
 
-    public int getLevel() // ·¹º§ºÒ·¯¿À±â
+    public int getLevel() // ï¿½ï¿½ï¿½ï¿½ï¿½Ò·ï¿½ï¿½ï¿½ï¿½ï¿½
     {
         return activelevel;
     }
 
-    public void setLevel() // ·¹º§¾÷½Ã »ç¿ë
+    public void setLevel() // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½
     {
-        if (EXP >= maxExp) //ÇöÀç °æÇèÄ¡°¡ ÃÖ´ë º¸´Ù ³ôÀ»½Ã(·¹º§¾÷) ·¹º§ +1, ÇöÀç °æÇèÄ¡ 0À¸·Î ÃÊ±âÈ­
+        if (EXP >= maxExp) //ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½Ä¡ï¿½ï¿½ ï¿½Ö´ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½(ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½) ï¿½ï¿½ï¿½ï¿½ +1, ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½Ä¡ 0ï¿½ï¿½ï¿½ï¿½ ï¿½Ê±ï¿½È­
         {
             
             activelevel += 1;
             EXP = 0;
-            APPoint += 3; //·¹º§¾÷ ÇÑ »óÅÂÀÌ±â ¶§¹®¿¡ ½ºÅÈ Æ÷ÀÎÆ® 3À¸·Î ¼³Á¤.
-            if(activelevel % 10 <= 0) //·¹º§ 10´ç 1.5¹è·Î Áõ°¡
+            APPoint += 3; //ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ì±ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½Æ® 3ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½.
+            if(activelevel % 10 <= 0) //ï¿½ï¿½ï¿½ï¿½ 10ï¿½ï¿½ 1.5ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
             {
                 maxCheck = maxExp * 1.5;
             }
-            else// ¾Æ´Ï¸é 1.2¹è
+            else// ï¿½Æ´Ï¸ï¿½ 1.2ï¿½ï¿½
             {
                 maxCheck = maxExp * 1.2;
             }
@@ -139,7 +139,7 @@ public class GameManager : MonoBehaviour
         }
         
     }
-    //°ø°Ý·Â, ¸¶·Â
+    //ï¿½ï¿½ï¿½Ý·ï¿½, ï¿½ï¿½ï¿½ï¿½
     public void ADAttackFirst() // 1Å¸
     {
         AD = STR * 1;
@@ -152,41 +152,41 @@ public class GameManager : MonoBehaviour
     {
         AD = STR * 3;
     }
-    public void APAttack() //½ºÅ³ µ¥¹ÌÁö
+    public void APAttack() //ï¿½ï¿½Å³ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
     {
         AP = INT * 3;
     }
-    //Æ÷¼ÇÀ» »ç¿ëÇÑ´Ù¸é HP,MPÂÊ µÑ´Ù ³Ö¾îÁà¾ßÇÔ.
+    //ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½Ñ´Ù¸ï¿½ HP,MPï¿½ï¿½ ï¿½Ñ´ï¿½ ï¿½Ö¾ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½.
 
     
-    public int usePotionHealHP(int PotionHeal)//»ç¿ë½Ã  HP¿À¸§
+    public int usePotionHealHP(int PotionHeal)//ï¿½ï¿½ï¿½ï¿½  HPï¿½ï¿½ï¿½ï¿½
     {
-        if (HP+PotionHeal >= maxHp) // ¸¸¾à HP°¡ 45ÀÎµ¥ Æ÷¼Ç »ç¿ëÇÏ¸é 55°¡ µÇ¾î¹ö¸®¹Ç·Î maxHp¸¦ ³ÑÁö ¸øÇÏ°Ô ÇÔ.
+        if (HP+PotionHeal >= maxHp) // ï¿½ï¿½ï¿½ï¿½ HPï¿½ï¿½ 45ï¿½Îµï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½Ï¸ï¿½ 55ï¿½ï¿½ ï¿½Ç¾ï¿½ï¿½ï¿½ï¿½ï¿½Ç·ï¿½ maxHpï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ï°ï¿½ ï¿½ï¿½.
         {
-            HP = maxHp; // HP¸¦ ÃÖ´ë HP·Î ¼³Á¤.
+            HP = maxHp; // HPï¿½ï¿½ ï¿½Ö´ï¿½ HPï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½.
         }
-        else // ¾Æ´Ï¸é HPÈ¸º¹.
+        else // ï¿½Æ´Ï¸ï¿½ HPÈ¸ï¿½ï¿½.
         {
             HP += PotionHeal;
         }
         return HP;
     }
-    public int usePotionHealMP(int PotionHeal)//»ç¿ë½Ã MP¿À¸§
+    public int usePotionHealMP(int PotionHeal)//ï¿½ï¿½ï¿½ï¿½ MPï¿½ï¿½ï¿½ï¿½
     {
         
-        if (MP + PotionHeal >= maxMp) // ¸¸¾à HP°¡ 195ÀÎµ¥ Æ÷¼Ç »ç¿ëÇÏ¸é 205°¡ µÇ¾î¹ö¸®¹Ç·Î maxHp¸¦ ³ÑÁö ¸øÇÏ°Ô ÇÔ.
+        if (MP + PotionHeal >= maxMp) // ï¿½ï¿½ï¿½ï¿½ HPï¿½ï¿½ 195ï¿½Îµï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½Ï¸ï¿½ 205ï¿½ï¿½ ï¿½Ç¾ï¿½ï¿½ï¿½ï¿½ï¿½Ç·ï¿½ maxHpï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ï°ï¿½ ï¿½ï¿½.
         {
-            MP = maxMp; //  MP¸¦ ÃÖ´ë MP·Î ¼³Á¤.
+            MP = maxMp; //  MPï¿½ï¿½ ï¿½Ö´ï¿½ MPï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½.
         }
-        else // ¾Æ´Ï¸é MPÈ¸º¹.
+        else // ï¿½Æ´Ï¸ï¿½ MPÈ¸ï¿½ï¿½.
         {
             MP += PotionHeal;
         }
         return MP;
     }
 
-    //½ºÅÝ¾÷°ü·Ã
-    public void UpSTR() //STR½ºÅÝ¾÷
+    //ï¿½ï¿½ï¿½Ý¾ï¿½ï¿½ï¿½ï¿½ï¿½
+    public void UpSTR() //STRï¿½ï¿½ï¿½Ý¾ï¿½
     {
         if (APPoint <= 0)
         {
@@ -198,7 +198,7 @@ public class GameManager : MonoBehaviour
             APPoint -= 1;
         }
     }
-    public void UpINT() //INT½ºÅÝ¾÷
+    public void UpINT() //INTï¿½ï¿½ï¿½Ý¾ï¿½
     {
         if (APPoint <= 0)
         {
@@ -210,7 +210,7 @@ public class GameManager : MonoBehaviour
             APPoint -= 1;
         }
     }
-    public void UpFIT() //FIT½ºÅÝ¾÷
+    public void UpFIT() //FITï¿½ï¿½ï¿½Ý¾ï¿½
     {
         if (APPoint <= 0)
         {
@@ -225,7 +225,7 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    // Ä³¸¯ÅÍ ÀüÅõ °ü·Ã
+    // Ä³ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
     public void PlayerDamage()
     {
 
@@ -235,12 +235,12 @@ public class GameManager : MonoBehaviour
 
 
 
-    // ¸ó½ºÅÍ °ü·Ã
-    public int getWarriosMonsterAD()// Àü»ç ¸ó½ºÅÍ °ø°Ý·Â 
+    // ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
+    public int getWarriosMonsterAD()// ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ý·ï¿½ 
     {
         return NormalWarriorsAD;
     }
-    public int getWarriosMonsterHP()// Àü»ç ¸ó½ºÅÍ Ã¼·Â
+    public int getWarriosMonsterHP()// ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ Ã¼ï¿½ï¿½
     {
         return NormalWarriorsHP;
     }
@@ -264,24 +264,24 @@ public class GameManager : MonoBehaviour
         NormalMagiciansHP = HIT;
         return NormalMagiciansHP;
     }
-    public void setDamage(int Damage, int MonsterHP) //Àü»ç¸ó½ºÅÍ °ø°Ý ¹Þ¾ÒÀ»½Ã
+    public void setDamage(int Damage, int MonsterHP) //ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Þ¾ï¿½ï¿½ï¿½ï¿½ï¿½
     {
-        if (MonsterHP - Damage <= 0 && MonsterHP == NormalMagiciansHP) // Ã¼·Âº¸´Ù µ¥¹ÌÁö°¡ ´õ ¸¹À»½Ã, ¸¶¹ý ¸ó½ºÅÍ°¡ µ¥¹ÌÁö¸¦ ¹ÞÀ»¶§
+        if (MonsterHP - Damage <= 0 && MonsterHP == NormalMagiciansHP) // Ã¼ï¿½Âºï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½, ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Í°ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
         {
-            MonsterHP = 0; //Ã¼·ÂÀ» 0À¸·Î ¼³Á¤
+            MonsterHP = 0; //Ã¼ï¿½ï¿½ï¿½ï¿½ 0ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
             setMagicianMonsterHP(MonsterHP);
         }
-        else if(MonsterHP - Damage <= 0 && MonsterHP == NormalWarriorsHP) // Ã¼·Âº¸´Ù µ¥¹ÌÁö°¡ ´õ ¸¹À»½Ã, Àü»ç ¸ó½ºÅÍ°¡ µ¥¹ÌÁö¸¦ ¹ÞÀ»¶§
+        else if(MonsterHP - Damage <= 0 && MonsterHP == NormalWarriorsHP) // Ã¼ï¿½Âºï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½, ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Í°ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
         {
-            MonsterHP = 0; //Ã¼·ÂÀ» 0À¸·Î ¼³Á¤
+            MonsterHP = 0; //Ã¼ï¿½ï¿½ï¿½ï¿½ 0ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
             setWarriosMonsterHP(MonsterHP);
         }
-        else if(MonsterHP - Damage >= 0 && MonsterHP == NormalWarriorsHP) // Àü»ç ¸ó½ºÅÍ°¡ µ¥¹ÌÁö¸¦ ¹ÞÀ»¶§
+        else if(MonsterHP - Damage >= 0 && MonsterHP == NormalWarriorsHP) // ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Í°ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
         {
             MonsterHP = MonsterHP - Damage;
             setWarriosMonsterHP(MonsterHP);
         }
-        else //// ¸¶¹ý ¸ó½ºÅÍ°¡ µ¥¹ÌÁö¸¦ ¹ÞÀ»¶§
+        else //// ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Í°ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
         {
             MonsterHP = MonsterHP - Damage;
             setMagicianMonsterHP(MonsterHP);
@@ -290,28 +290,28 @@ public class GameManager : MonoBehaviour
 
 
 
-    //½ºÅÝ ¼¼ÆÃ°ü·Ã
-    public string getName() // ÀÌ¸§ ºÒ·¯¿À±â
+    //ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ã°ï¿½ï¿½ï¿½
+    public string getName() // ï¿½Ì¸ï¿½ ï¿½Ò·ï¿½ï¿½ï¿½ï¿½ï¿½
     {
         return myname;
     }
 
-    public int getExp() // ÇöÀç °æÇèÄ¡ ºÒ·¯¿À±â
+    public int getExp() // ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½Ä¡ ï¿½Ò·ï¿½ï¿½ï¿½ï¿½ï¿½
     {
         return EXP;
     }
 
-    public int getmaxExp() // ÃÖ´ë °æÇèÄ¡ ºÒ·¯¿À±â
+    public int getmaxExp() // ï¿½Ö´ï¿½ ï¿½ï¿½ï¿½ï¿½Ä¡ ï¿½Ò·ï¿½ï¿½ï¿½ï¿½ï¿½
     {
         return maxExp;
     }
 
-    public int getexp(int newExp) // ¾òÀº °æÇèÄ¡ ºÒ·¯¿À±â
+    public int getexp(int newExp) // ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½Ä¡ ï¿½Ò·ï¿½ï¿½ï¿½ï¿½ï¿½
     {
         EXP += newExp;
         return EXP;
     }
-    public int getHp() //HPºÒ·¯¿À±â
+    public int getHp() //HPï¿½Ò·ï¿½ï¿½ï¿½ï¿½ï¿½
     {
         if (HP <= 0)
         {
@@ -319,49 +319,49 @@ public class GameManager : MonoBehaviour
         }
         return HP;
     }
-    public int getmaxHp() //MAX HPºÒ·¯¿À±â
+    public int getmaxHp() //MAX HPï¿½Ò·ï¿½ï¿½ï¿½ï¿½ï¿½
     {
         return maxHp;
     }
-    public int getMp() //MP ºÒ·¯¿À±â
+    public int getMp() //MP ï¿½Ò·ï¿½ï¿½ï¿½ï¿½ï¿½
     {
-        if( HP<= 0)
+        if( MP<= 0)
         {
             MP = 0;
         }
         return MP;
     }
-    public int getmaxMp() //MAX MP ºÒ·¯¿À±â
+    public int getmaxMp() //MAX MP ï¿½Ò·ï¿½ï¿½ï¿½ï¿½ï¿½
     {
         return maxMp;
     }
-    public int getSTR() // STR°ª ºÒ·¯¿À±â
+    public int getSTR() // STRï¿½ï¿½ ï¿½Ò·ï¿½ï¿½ï¿½ï¿½ï¿½
     {
         return STR;
     }
-    public int getINT() // INT°ª ºÒ·¯¿À±â
+    public int getINT() // INTï¿½ï¿½ ï¿½Ò·ï¿½ï¿½ï¿½ï¿½ï¿½
     {
         return INT;
     }
-    public int getFIT() // FIT°ª ºÒ·¯¿À±â
+    public int getFIT() // FITï¿½ï¿½ ï¿½Ò·ï¿½ï¿½ï¿½ï¿½ï¿½
     {
         return FIT;
     }
-    public int getAPPoint() // AP°ª ºÒ·¯¿À±â
+    public int getAPPoint() // APï¿½ï¿½ ï¿½Ò·ï¿½ï¿½ï¿½ï¿½ï¿½
     {
         return APPoint;
     }
-    public int setSTR(int newSTR) // STR Áõ°¡°ª ¼³Á¤ÇÏ±â
+    public int setSTR(int newSTR) // STR ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ï±ï¿½
     {
         STR += newSTR;
         return STR;
     }
-    public int setINT(int newINT) // INT Áõ°¡°ª ¼³Á¤ÇÏ±â
+    public int setINT(int newINT) // INT ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ï±ï¿½
     {
         INT += newINT;
         return INT;
     }
-    public int setFIT(int newFIT) // FIT Áõ°¡°ª ¼³Á¤ÇÏ±â
+    public int setFIT(int newFIT) // FIT ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ï±ï¿½
     {
         FIT += newFIT;
         return FIT;
@@ -386,10 +386,10 @@ public class GameManager : MonoBehaviour
 
     //private void Update()
     //{
-    //    //ÀüÃ¼È­¸é Åä±Û
+    //    //ï¿½ï¿½Ã¼È­ï¿½ï¿½ ï¿½ï¿½ï¿½
     //    if (Input.GetKeyDown(KeyCode.Escape))
     //        Screen.fullScreen = !Screen.fullScreen;
-    //    if (Input.GetButtonDown("z"))// zÅ° ÀÔ·Â½Ã °ÔÀÓ ½ÃÀÛ
+    //    if (Input.GetButtonDown("z"))// zÅ° ï¿½Ô·Â½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
     //    {
     //        StartGame();
     //    }
