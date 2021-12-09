@@ -1,7 +1,31 @@
 fileFormatVersion: 2
 guid: 31c7a53483078454791122e7da1f4009
 TextureImporter:
-  internalIDToNameTable: []
+  internalIDToNameTable:
+  - first:
+      213: -6995954625717844463
+    second: slime1_idle_0
+  - first:
+      213: -6400357521212491622
+    second: slime1_idle_1
+  - first:
+      213: 7871890889951049432
+    second: slime1_idle_2
+  - first:
+      213: -2195544629053731686
+    second: slime1_idle_3
+  - first:
+      213: -2668754868849956269
+    second: slime1_idle_4
+  - first:
+      213: -95166138040155341
+    second: slime1_idle_5
+  - first:
+      213: 8971182442918048651
+    second: slime1_idle_6
+  - first:
+      213: -2637938364471248119
+    second: slime1_idle_7
   externalObjects: {}
   serializedVersion: 11
   mipmaps:
@@ -32,7 +56,7 @@ TextureImporter:
   maxTextureSize: 2048
   textureSettings:
     serializedVersion: 2
-    filterMode: 1
+    filterMode: 0
     aniso: 1
     mipBias: 0
     wrapU: 1
@@ -41,12 +65,12 @@ TextureImporter:
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
-  spriteMode: 1
+  spriteMode: 2
   spriteExtrude: 1
-  spriteMeshType: 1
+  spriteMeshType: 0
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 100
+  spritePixelsToUnits: 24
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -75,9 +99,189 @@ TextureImporter:
     overridden: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
-    sprites: []
+    sprites:
+    - serializedVersion: 2
+      name: slime1_idle_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 96
+        width: 59
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5084746, y: 0.1666667}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1164655855069ee90800000000000000
+      internalID: -6995954625717844463
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: slime1_idle_1
+      rect:
+        serializedVersion: 2
+        x: 59
+        y: 96
+        width: 59
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5084746, y: 0.1666667}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a9831a8bebc5d27a0800000000000000
+      internalID: -6400357521212491622
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: slime1_idle_2
+      rect:
+        serializedVersion: 2
+        x: 118
+        y: 96
+        width: 59
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5084746, y: 0.1666667}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8d67a2eae039e3d60800000000000000
+      internalID: 7871890889951049432
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: slime1_idle_3
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 48
+        width: 59
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5084746, y: 0.1666667}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a9c4cb8dacbd781e0800000000000000
+      internalID: -2195544629053731686
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: slime1_idle_4
+      rect:
+        serializedVersion: 2
+        x: 59
+        y: 48
+        width: 59
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5084746, y: 0.1666667}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 35aaa91269da6fad0800000000000000
+      internalID: -2668754868849956269
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: slime1_idle_5
+      rect:
+        serializedVersion: 2
+        x: 118
+        y: 48
+        width: 59
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5084746, y: 0.1666667}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3338873d6e6edaef0800000000000000
+      internalID: -95166138040155341
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: slime1_idle_6
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 59
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5084746, y: 0.1666667}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b83f95586ea008c70800000000000000
+      internalID: 8971182442918048651
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: slime1_idle_7
+      rect:
+        serializedVersion: 2
+        x: 59
+        y: 0
+        width: 59
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5084746, y: 0.1666667}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 90bf05ea809246bd0800000000000000
+      internalID: -2637938364471248119
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     outline: []
     physicsShape: []
     bones: []
