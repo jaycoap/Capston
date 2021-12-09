@@ -63,10 +63,10 @@ public class GameManager : MonoBehaviour
         StartGame();
     }
 
-    /*void Update() //test ����
+    void Update() //test ����
     {
         AD = 10;
-        if (Input.GetKeyDown(KeyCode.A))
+        if (Input.GetKeyDown(KeyCode.Z))
         {
             EXP += 200;
             
@@ -80,7 +80,7 @@ public class GameManager : MonoBehaviour
         
         APAttack();
         
-    }*/
+    }
     void SetGameState(GameState newGameState)// ���� ����
     {
         if (newGameState == GameState.menu) // �����ӽ�
@@ -126,6 +126,8 @@ public class GameManager : MonoBehaviour
             activelevel += 1;
             EXP = 0;
             APPoint += 3; //������ �� �����̱� ������ ���� ����Ʈ 3���� ����.
+            HP = maxHp;
+            MP = maxMp;
             if(activelevel % 10 <= 0) //���� 10�� 1.5��� ����
             {
                 maxCheck = maxExp * 1.5;
@@ -222,6 +224,8 @@ public class GameManager : MonoBehaviour
             maxHp += 10;
             maxMp += 10;
             APPoint -= 1;
+            HP = maxHp;
+            MP = maxMp;
         }
     }
 
@@ -317,6 +321,10 @@ public class GameManager : MonoBehaviour
         {
             HP = 0;
         }
+        else if (HP >= maxHp)
+        {
+            HP = maxHp;
+        }
         return HP;
     }
     public int getmaxHp() //MAX HP�ҷ�����
@@ -325,9 +333,13 @@ public class GameManager : MonoBehaviour
     }
     public int getMp() //MP �ҷ�����
     {
-        if( MP<= 0)
+        if( MP <= 0)
         {
             MP = 0;
+        }
+        else if (MP >= maxMp)
+        {
+            MP = maxMp;
         }
         return MP;
     }
