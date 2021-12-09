@@ -13,6 +13,7 @@ public class playerManager : MonoBehaviour
     Rigidbody2D rigidBody;
     SpriteRenderer spriteRenderer;
     Animator animator;
+
     void Start()
     {
         rigidBody = GetComponent<Rigidbody2D>();
@@ -99,7 +100,7 @@ public class playerManager : MonoBehaviour
                         //hitEnemy에 있는 모든 오브젝트에 안에 함수 실행 <- 여기다가 데미지 넣는 함수 넣으면댐
                         foreach(Collider2D collider in hitEnemy)
                         {
-                            Debug.Log("enemy1");
+                            collider.gameObject.GetComponent<enemyManager>().enemyDamaged(10);
                             
                         }
                     }
@@ -118,7 +119,7 @@ public class playerManager : MonoBehaviour
                             //hitEnemy에 있는 모든 오브젝트에 안에 함수 실행 <- 여기다가 데미지 넣는 함수 넣으면댐
                             foreach (Collider2D collider in hitEnemy)
                             {
-                                Debug.Log("enemy2");
+                                collider.gameObject.GetComponent<enemyManager>().enemyDamaged(10);
                             }
                         }
                     }
@@ -144,7 +145,7 @@ public class playerManager : MonoBehaviour
                             //hitEnemy에 있는 모든 오브젝트에 안에 함수 실행 <- 여기다가 데미지 넣는 함수 넣으면댐
                             foreach (Collider2D collider in hitEnemy)
                             {
-                                Debug.Log("enemy3");
+                                collider.gameObject.GetComponent<enemyManager>().enemyDamaged(10);
                             }
                         }
                     }
@@ -169,7 +170,8 @@ public class playerManager : MonoBehaviour
                             //hitEnemy에 있는 모든 오브젝트에 안에 함수 실행 <- 여기다가 데미지 넣는 함수 넣으면댐
                             foreach (Collider2D collider in hitEnemy)
                             {
-                                Debug.Log("enemy1");
+                                collider.gameObject.GetComponent<enemyManager>().enemyDamaged(10);
+                               
                             }
                         }
                     }
@@ -242,6 +244,33 @@ public class playerManager : MonoBehaviour
             isGrounded = false;
 
         }
+        
+        
+    }
+
+    //플레이어가 Enemy태그를 가진 오브젝트와 충돌하면 onDaamged 실행
+    void OnCollisionEnter2D(Collision2D other) {
+            if(other.gameObject.tag == "Enemy")
+            {
+                onDamaged(other.transform.position.x);
+            }
+            
+        }
+    //플레이어의 레이어를 PlayerDamaged로 바꾸고 반투명 하게 만들며 피격 당한 반대방향으로 이동됨 Invoke로 3초후에 무적을 끄는 OffDamaged실행
+    void onDamaged(float Enemy_X){
+        int dirc = transform.position.x - Enemy_X > 0 ? 1 : -1;
+        gameObject.layer = 9;
+        spriteRenderer.color = new Color(1,1,1,0.4f);
+        rigidBody.AddForce(new Vector2(dirc*7,5),ForceMode2D.Impulse);
+
+        Invoke("OffDamaged",3);
+
+    }
+    //플레이어의 레이어를 Player레이어로 변경, 반투명 해제 
+    void OffDamaged()
+    {
+        gameObject.layer = 7;
+        spriteRenderer.color = new Color(1,1,1,1);
     }
 
     private void OnDrawGizmos()
@@ -249,4 +278,6 @@ public class playerManager : MonoBehaviour
         Gizmos.color = Color.red;
         Gizmos.DrawWireCube(pos.position, attackRange);
     }
+
+
 }
