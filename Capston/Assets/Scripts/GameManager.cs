@@ -4,7 +4,7 @@ using UnityEngine;
 using System;
 
 
-public enum GameState//���� �⺻ ����
+public enum GameState
 {
     menu,
     inGame,
@@ -14,24 +14,24 @@ public class GameManager : MonoBehaviour
 {
     public static GameManager Instance { get { return _instance; } }
     public bool isPause = false;
-    public GameState currentGameState = GameState.menu; // ���� ���۽� ���� �� ����.
+    public GameState currentGameState = GameState.menu; // 게임상태 설정
     private static GameManager _instance;
     private GameObject player;
     private SpriteRenderer playerRenderer;
 
-    private int activelevel = 0; // ��������
-    //private int beforelevel; ���� ��뿹��
-    private string myname; // ĳ���� �̸�
-    private int maxHp = 0; // �ִ� ü��
-    private int maxMp = 0; // �ִ� ����
-    private int maxExp = 0; // �ִ� ����ġ
-    private double maxCheck = 0; // �ִ����ġ x 1.2
-    private int HP = 0; // ���� ü��
-    private int MP = 0; // ���� ����
-    private int STR = 0;  // ��( ���ݷ� ü������)
-    private int INT = 0; //  ����( �ֹ��� ���� ����)
-    private int FIT = 0; // ü��( �̼� �� ü�� ���� ȸ���� ����)
-    private int EXP = 0;  //����ġ
+    private int activelevel = 0; // 레벨설정
+    
+    private string myname; // 닉네임설정
+    private int maxHp = 0; // 최대체력 설정
+    private int maxMp = 0; // 최대마나 설정
+    private int maxExp = 0; // 레벨업에 필요한 경험치 설정
+    private double maxCheck = 0; // 레벨업시 필요경험치 = 경험치 x 1.2
+    private int HP = 0; // 현재체력
+    private int MP = 0; // 현재마나
+    private int STR = 0;  // 공격력(평타 공격)
+    private int INT = 0; //  주문력(스킬 공격력)
+    private int FIT = 0; // 캐릭터 체력 마나 스텟
+    private int EXP = 0;  //현재경험치
     private int APPoint = 0;
     private int AD = 0;
     
@@ -45,25 +45,25 @@ public class GameManager : MonoBehaviour
 
 
 
-    public void StartGame()//���� ���� �Լ�
+    public void StartGame()//게임시작시
     {
         SetGameState(GameState.inGame);
     }
-    public void GameOver()//���� ���� �Լ�
+    public void GameOver()//게임 끝날시
     {
 
     }
-    public void BackToMenu() // �޴� �Լ�
+    public void BackToMenu() // 메뉴로 돌아갈시
     {
 
     }
     void Start()
     {
-        //currentGameState = GameState.menu;// ���۽� ���ӻ��� ����
+        //currentGameState = GameState.menu;// 게임시작시 메뉴로 설정. (차후사용)
         StartGame();
     }
 
-    void Update() //test ����
+    void Update() //test 세팅
     {
         AD = 10;
         if (Input.GetKeyDown(KeyCode.Z))
@@ -81,25 +81,25 @@ public class GameManager : MonoBehaviour
         APAttack();
         
     }
-    void SetGameState(GameState newGameState)// ���� ����
+    void SetGameState(GameState newGameState)// 게임상태 설정
     {
-        if (newGameState == GameState.menu) // �����ӽ�
+        if (newGameState == GameState.menu) // 메뉴일때
         {
             
         }
-        else if (newGameState == GameState.inGame) // ���� �����
-        {
-            activelevel = 1; // ���� ����
-            myname = "Charater"; // �̸� ����
-            maxHp += 50; // ü�¼���
-            maxMp += 200; // ���� ����
-            maxExp += 300; // �ִ����ġ ����(�������� ����)
-            HP += maxHp; // ���۽� �ִ�ü������ ����
-            MP += maxMp; // ���۽� �ִ븶���� ����
-            STR += 2; // �� ����
-            INT += 10; // ���� ����
-            FIT += 2; // ü�� ����
-            EXP += 0; // ����ġ ����
+        else if (newGameState == GameState.inGame) // 게임 시작했을때
+        { 
+            activelevel = 1; // 레벨 설정
+            myname = "Charater"; // 닉네임 설정
+            maxHp += 50; // 최대 체력 설정.
+            maxMp += 200; // 최대마나
+            maxExp += 300; // 1랩때 최대 경험치 
+            HP += maxHp; // 초기 체력 설정
+            MP += maxMp; // 초기 마나 설정
+            STR += 2; // 초기 공격력 설정
+            INT += 10; // 초기 주문력 설정
+            FIT += 2; // 초기 체력 마나 스텟 설정
+            EXP += 0; // 초기 경험치 세팅
             NormalWarriorsHP += 30;
             NormalWarriorsAD += 3;
             NormalMagiciansHP += 18;
@@ -107,32 +107,32 @@ public class GameManager : MonoBehaviour
 
 
         }
-        else if (newGameState == GameState.gameover) // ���� �����
+        else if (newGameState == GameState.gameover) // 게임 끝날시
         {
 
         }
     }
 
-    public int getLevel() // �����ҷ�����
+    public int getLevel() // 레벨 불러오기
     {
         return activelevel;
     }
 
-    public void setLevel() // �������� ���
+    public void setLevel() // 레벨 세팅
     {
-        if (EXP >= maxExp) //���� ����ġ�� �ִ� ���� ������(������) ���� +1, ���� ����ġ 0���� �ʱ�ȭ
+        if (EXP >= maxExp) //현재 경험치가 최대경험치 이상일때 레벨 +1
         {
             
             activelevel += 1;
             EXP = 0;
-            APPoint += 3; //������ �� �����̱� ������ ���� ����Ʈ 3���� ����.
+            APPoint += 3; //스텟 포인트 3추가
             HP = maxHp;
             MP = maxMp;
-            if(activelevel % 10 <= 0) //���� 10�� 1.5��� ����
+            if(activelevel % 10 <= 0) // 10렙당 경험치 1.5배
             {
                 maxCheck = maxExp * 1.5;
             }
-            else// �ƴϸ� 1.2��
+            else// 아니면 1.2배
             {
                 maxCheck = maxExp * 1.2;
             }
@@ -142,53 +142,53 @@ public class GameManager : MonoBehaviour
         
     }
     //���ݷ�, ����
-    public void ADAttackFirst() // 1Ÿ
+    public void ADAttackFirst() // 1타
     {
         AD = STR * 1;
     }
-    public void ADAttackSecond() // 2Ÿ
+    public void ADAttackSecond() // 2타
     {
         AD = STR * 2;
     }
-    public void ADAttackThird() // 3Ÿ
+    public void ADAttackThird() // 3타
     {
         AD = STR * 3;
     }
-    public void APAttack() //��ų ������
+    public void APAttack() // 주문력
     {
         AP = INT * 3;
     }
-    //������ ����Ѵٸ� HP,MP�� �Ѵ� �־������.
+    //포션사용시 HP,MP 따로 증가하게 설정
 
     
-    public int usePotionHealHP(int PotionHeal)//����  HP����
+    public int usePotionHealHP(int PotionHeal)//사용시 HP 증가
     {
-        if (HP+PotionHeal >= maxHp) // ���� HP�� 45�ε� ���� ����ϸ� 55�� �Ǿ�����Ƿ� maxHp�� ���� ���ϰ� ��.
+        if (HP+PotionHeal >= maxHp) // HP+힐량이 최대체력보다 높을시 현재 체력을 최대 체력으로 설정.
         {
-            HP = maxHp; // HP�� �ִ� HP�� ����.
+            HP = maxHp; 
         }
-        else // �ƴϸ� HPȸ��.
+        else // 아니면 HP에 힐량 추가
         {
             HP += PotionHeal;
         }
         return HP;
     }
-    public int usePotionHealMP(int PotionHeal)//���� MP����
+    public int usePotionHealMP(int PotionHeal)//사용시 MP 증가
     {
         
-        if (MP + PotionHeal >= maxMp) // ���� HP�� 195�ε� ���� ����ϸ� 205�� �Ǿ�����Ƿ� maxHp�� ���� ���ϰ� ��.
+        if (MP + PotionHeal >= maxMp) // MP+힐량이 최대마나보다 높을시 현재 마나을 최대 마나으로 설정.
         {
-            MP = maxMp; //  MP�� �ִ� MP�� ����.
+            MP = maxMp; 
         }
-        else // �ƴϸ� MPȸ��.
+        else // 아니면 MP에 힐량 추가
         {
             MP += PotionHeal;
         }
         return MP;
     }
 
-    //���ݾ�����
-    public void UpSTR() //STR���ݾ�
+    //스텟증가 관련
+    public void UpSTR() //STR증가시
     {
         if (APPoint <= 0)
         {
@@ -200,7 +200,7 @@ public class GameManager : MonoBehaviour
             APPoint -= 1;
         }
     }
-    public void UpINT() //INT���ݾ�
+    public void UpINT() //INT증가시
     {
         if (APPoint <= 0)
         {
@@ -212,7 +212,7 @@ public class GameManager : MonoBehaviour
             APPoint -= 1;
         }
     }
-    public void UpFIT() //FIT���ݾ�
+    public void UpFIT() //FIT증가시
     {
         if (APPoint <= 0)
         {
@@ -229,7 +229,7 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    // ĳ���� ���� ����
+    // 플레이어 피격시
     public void PlayerDamage()
     {
 
@@ -239,53 +239,53 @@ public class GameManager : MonoBehaviour
 
 
 
-    // ���� ����
-    public int getWarriosMonsterAD()// ���� ���� ���ݷ� 
+    // 몬스터 설정
+    public int getWarriosMonsterAD()// 전사몬스터 공격력 설정
     {
         return NormalWarriorsAD;
     }
-    public int getWarriosMonsterHP()// ���� ���� ü��
+    public int getWarriosMonsterHP()// 전사몬스터 체력 설정
     {
         return NormalWarriorsHP;
     }
     
-    public int getMagicianMonsterAD()
+    public int getMagicianMonsterAD()//마법몬스터 공격력 설정
     {
         return NormalMagiciansAD;
     }
-    public int getMagicianMonsterHP()
+    public int getMagicianMonsterHP()//마법몬스터 체력설정
     {
 
         return NormalMagiciansHP;
     }
-    public int setWarriosMonsterHP(int HIT)
+    public int setWarriosMonsterHP(int HIT)//전사몬스터 체력설정
     {
         NormalWarriorsHP = HIT;
         return NormalWarriorsHP;
     }
-    public int setMagicianMonsterHP(int HIT)
+    public int setMagicianMonsterHP(int HIT)//마법몬스터 체력설정
     {
         NormalMagiciansHP = HIT;
         return NormalMagiciansHP;
     }
-    public void setDamage(int Damage, int MonsterHP) //������� ���� �޾�����
+    public void setDamage(int Damage, int MonsterHP) //몬스터 피격설정
     {
-        if (MonsterHP - Damage <= 0 && MonsterHP == NormalMagiciansHP) // ü�º��� �������� �� ������, ���� ���Ͱ� �������� ������
+        if (MonsterHP - Damage <= 0 && MonsterHP == NormalMagiciansHP) 
         {
-            MonsterHP = 0; //ü���� 0���� ����
+            MonsterHP = 0; 
             setMagicianMonsterHP(MonsterHP);
         }
-        else if(MonsterHP - Damage <= 0 && MonsterHP == NormalWarriorsHP) // ü�º��� �������� �� ������, ���� ���Ͱ� �������� ������
+        else if(MonsterHP - Damage <= 0 && MonsterHP == NormalWarriorsHP) 
         {
-            MonsterHP = 0; //ü���� 0���� ����
+            MonsterHP = 0; 
             setWarriosMonsterHP(MonsterHP);
         }
-        else if(MonsterHP - Damage >= 0 && MonsterHP == NormalWarriorsHP) // ���� ���Ͱ� �������� ������
+        else if(MonsterHP - Damage >= 0 && MonsterHP == NormalWarriorsHP) 
         {
             MonsterHP = MonsterHP - Damage;
             setWarriosMonsterHP(MonsterHP);
         }
-        else //// ���� ���Ͱ� �������� ������
+        else if(MonsterHP - Damage >= 0 && MonsterHP ==NormalMagiciansHP)
         {
             MonsterHP = MonsterHP - Damage;
             setMagicianMonsterHP(MonsterHP);
@@ -294,28 +294,28 @@ public class GameManager : MonoBehaviour
 
 
 
-    //���� ���ð���
-    public string getName() // �̸� �ҷ�����
+    //초기 세팅
+    public string getName() // 닉네임 불러오기
     {
         return myname;
     }
 
-    public int getExp() // ���� ����ġ �ҷ�����
+    public int getExp() // 현재 경험치 불러오기
     {
         return EXP;
     }
 
-    public int getmaxExp() // �ִ� ����ġ �ҷ�����
+    public int getmaxExp() // 최대 경험치 불러오기
     {
         return maxExp;
     }
 
-    public int getexp(int newExp) // ���� ����ġ �ҷ�����
+    public int getexp(int newExp) // 경험치 추가
     {
         EXP += newExp;
         return EXP;
     }
-    public int getHp() //HP�ҷ�����
+    public int getHp() //HP불러오기 및 세팅
     {
         if (HP <= 0)
         {
@@ -327,11 +327,11 @@ public class GameManager : MonoBehaviour
         }
         return HP;
     }
-    public int getmaxHp() //MAX HP�ҷ�����
+    public int getmaxHp() //MAX HP 불러오기
     {
         return maxHp;
     }
-    public int getMp() //MP �ҷ�����
+    public int getMp() //MP 불러오기 및 세팅
     {
         if( MP <= 0)
         {
@@ -343,37 +343,37 @@ public class GameManager : MonoBehaviour
         }
         return MP;
     }
-    public int getmaxMp() //MAX MP �ҷ�����
+    public int getmaxMp() //MAX MP 불러오기
     {
         return maxMp;
     }
-    public int getSTR() // STR�� �ҷ�����
+    public int getSTR() // STR불러오기
     {
         return STR;
     }
-    public int getINT() // INT�� �ҷ�����
+    public int getINT() // INT불러오기
     {
         return INT;
     }
-    public int getFIT() // FIT�� �ҷ�����
+    public int getFIT() // FIT불러오기
     {
         return FIT;
     }
-    public int getAPPoint() // AP�� �ҷ�����
+    public int getAPPoint() // AP불러오기
     {
         return APPoint;
     }
-    public int setSTR(int newSTR) // STR ������ �����ϱ�
+    public int setSTR(int newSTR) // STR 스텟 증가
     {
         STR += newSTR;
         return STR;
     }
-    public int setINT(int newINT) // INT ������ �����ϱ�
+    public int setINT(int newINT) // INT 스텟증가
     {
         INT += newINT;
         return INT;
     }
-    public int setFIT(int newFIT) // FIT ������ �����ϱ�
+    public int setFIT(int newFIT) // FIT 스텟증가
     {
         FIT += newFIT;
         return FIT;
@@ -398,10 +398,10 @@ public class GameManager : MonoBehaviour
 
     //private void Update()
     //{
-    //    //��üȭ�� ���
+    //    
     //    if (Input.GetKeyDown(KeyCode.Escape))
     //        Screen.fullScreen = !Screen.fullScreen;
-    //    if (Input.GetButtonDown("z"))// zŰ �Է½� ���� ����
+    //    if (Input.GetButtonDown("z"))
     //    {
     //        StartGame();
     //    }
