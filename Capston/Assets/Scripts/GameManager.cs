@@ -69,15 +69,13 @@ public class GameManager : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Z))
         {
             EXP += 200;
-            
-            Debug.Log(AD);
-            setDamage(AD, NormalMagiciansHP);
-            Debug.Log(NormalMagiciansHP);
-            
+            Debug.Log(HP);
+            PlayerDamage(NormalMagiciansAD);
+
 
         }
         setLevel();
-        
+        setPlayerHP(HP);
         APAttack();
         
     }
@@ -141,7 +139,7 @@ public class GameManager : MonoBehaviour
         }
         
     }
-    //���ݷ�, ����
+    //플레이어 공격 분리
     public void ADAttackFirst() // 1타
     {
         AD = STR * 1;
@@ -158,9 +156,9 @@ public class GameManager : MonoBehaviour
     {
         AP = INT * 3;
     }
-    //포션사용시 HP,MP 따로 증가하게 설정
 
-    
+
+    //포션사용시 HP,MP 따로 증가하게 설정
     public int usePotionHealHP(int PotionHeal)//사용시 HP 증가
     {
         if (HP+PotionHeal >= maxHp) // HP+힐량이 최대체력보다 높을시 현재 체력을 최대 체력으로 설정.
@@ -230,11 +228,25 @@ public class GameManager : MonoBehaviour
     }
 
     // 플레이어 피격시
-    public void PlayerDamage()
+    public void PlayerDamage(int PlayerHit) //PlayerHIt에는 몬스터 몬스터 공격력을 추가.
     {
-
+        if (HP - PlayerHit >= 0)
+        {
+            HP = HP-PlayerHit;
+            setPlayerHP(HP);
+        }
+        else
+        {
+            HP = 0;
+            setPlayerHP(HP);
+            Debug.Log("DIE!");
+        }
     }
-
+    public int setPlayerHP(int setHP)
+    {
+        HP = setHP;
+        return HP;
+    }
 
 
 
