@@ -8,6 +8,7 @@ public enum GameState
 {
     menu,
     inGame,
+    start,
     gameover
 }
 public class GameManager : MonoBehaviour
@@ -41,21 +42,34 @@ public class GameManager : MonoBehaviour
     private int NormalMagiciansHP = 0;
     private int NormalMagiciansAD = 0;
 
+    private bool menu = true;
+    private bool firstcheck = true;
+    private bool backmenu = false;
+    private bool backgame = true;
+    
+
 
 
 
 
     public void StartGame()//게임시작시
     {
-        SetGameState(GameState.inGame);
+        currentGameState = GameState.start;
+        SetGameState();
+        return;
     }
     public void GameOver()//게임 끝날시
     {
-
+        currentGameState = GameState.gameover;
+        SetGameState();
+        return;
     }
     public void BackToMenu() // 메뉴로 돌아갈시
     {
-
+        currentGameState = GameState.menu;
+        SetGameState();
+        Debug.Log("menu");
+        return;
     }
     void Start()
     {
@@ -66,46 +80,89 @@ public class GameManager : MonoBehaviour
     void Update() //test 세팅
     {
         AD = 10;
+        
+        if (Input.GetKeyDown(KeyCode.J))
+        {
+            
+            BackToMenu();
+            Debug.Log(currentGameState);
+            
+        }
         if (Input.GetKeyDown(KeyCode.Z))
         {
             EXP += 200;
-            Debug.Log(HP);
-            PlayerDamage(NormalMagiciansAD);
-
-
         }
+        SetGameState();
         setLevel();
         setPlayerHP(HP);
         APAttack();
         
     }
-    void SetGameState(GameState newGameState)// 게임상태 설정
+    void SetGameState()// 게임상태 설정
     {
-        if (newGameState == GameState.menu) // 메뉴일때
+        if (currentGameState == GameState.menu) // 메뉴일때
         {
-            
+
+            if (Input.GetKeyDown(KeyCode.M) && menu == true) //게임 일시정지
+            {
+                if (backgame == true)
+                {
+                    Time.timeScale = 0;
+                    menu = false;
+                    backgame = false;
+                    Debug.Log("Stop");
+                    return ;
+                }
+                
+            }
+            else if(Input.GetKeyDown(KeyCode.M) && menu == false) // 일시정지 해제
+            {
+                if (backgame == false)
+                {
+                    Time.timeScale = 1;
+                    menu = true;
+                    backgame = true;
+                    Debug.Log("Start");
+                    return;
+                }
+            }
         }
-        else if (newGameState == GameState.inGame) // 게임 시작했을때
-        { 
-            activelevel = 1; // 레벨 설정
-            myname = "Charater"; // 닉네임 설정
-            maxHp += 50; // 최대 체력 설정.
-            maxMp += 200; // 최대마나
-            maxExp += 300; // 1랩때 최대 경험치 
-            HP += maxHp; // 초기 체력 설정
-            MP += maxMp; // 초기 마나 설정
-            STR += 2; // 초기 공격력 설정
-            INT += 10; // 초기 주문력 설정
-            FIT += 2; // 초기 체력 마나 스텟 설정
-            EXP += 0; // 초기 경험치 세팅
-            NormalWarriorsHP += 30;
-            NormalWarriorsAD += 3;
-            NormalMagiciansHP += 18;
-            NormalMagiciansAD += 5;
+        
+        if (Input.GetKeyDown(KeyCode.U))
+        {
+                currentGameState = GameState.inGame;
+        }
+        
+        else if (currentGameState == GameState.inGame) // 게임 시작했을때
+        {
+            if (firstcheck == true) // 게임이 시작되면 밑 같이 설정
+            {
+                activelevel = 1; // 레벨 설정
+                myname = "Charater"; // 닉네임 설정
+                maxHp += 50; // 최대 체력 설정.
+                maxMp += 200; // 최대마나
+                maxExp += 300; // 1랩때 최대 경험치 
+                HP += maxHp; // 초기 체력 설정
+                MP += maxMp; // 초기 마나 설정
+                STR += 2; // 초기 공격력 설정
+                INT += 10; // 초기 주문력 설정
+                FIT += 2; // 초기 체력 마나 스텟 설정
+                EXP += 0; // 초기 경험치 세팅
+                NormalWarriorsHP += 30;
+                NormalWarriorsAD += 3;
+                NormalMagiciansHP += 18;
+                NormalMagiciansAD += 5;
+                APPoint = 0;
+                firstcheck = false;
+            }
+            else if(firstcheck == false) // 아니면 return
+            {
+                return ;
+            }
 
 
         }
-        else if (newGameState == GameState.gameover) // 게임 끝날시
+        else if (currentGameState == GameState.gameover) // 게임 끝날시
         {
 
         }
@@ -118,24 +175,31 @@ public class GameManager : MonoBehaviour
 
     public void setLevel() // 레벨 세팅
     {
-        if (EXP >= maxExp) //현재 경험치가 최대경험치 이상일때 레벨 +1
+        if (firstcheck == false) // 게임이 시작되야 레벨 및 경험치 설정
         {
-            
-            activelevel += 1;
-            EXP = 0;
-            APPoint += 3; //스텟 포인트 3추가
-            HP = maxHp;
-            MP = maxMp;
-            if(activelevel % 10 <= 0) // 10렙당 경험치 1.5배
+            if (EXP >= maxExp) //현재 경험치가 최대경험치 이상일때 레벨 +1
             {
-                maxCheck = maxExp * 1.5;
+
+                activelevel += 1;
+                EXP = 0;
+                APPoint += 3; //스텟 포인트 3추가
+                HP = maxHp;
+                MP = maxMp;
+                if (activelevel % 10 <= 0) // 10렙당 경험치 1.5배
+                {
+                    maxCheck = maxExp * 1.5;
+                }
+                else// 아니면 1.2배
+                {
+                    maxCheck = maxExp * 1.2;
+                }
+
+                maxExp = (int)maxCheck;
             }
-            else// 아니면 1.2배
-            {
-                maxCheck = maxExp * 1.2;
-            }
-            
-            maxExp = (int)maxCheck;
+        }
+        else if(firstcheck == true) // 아니면 실행 x
+        {
+            return;
         }
         
     }
