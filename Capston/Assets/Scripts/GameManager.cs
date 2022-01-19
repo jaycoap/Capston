@@ -27,6 +27,7 @@ public class GameManager : MonoBehaviour
     private int maxMp = 0; // 최대마나 설정
     private int maxExp = 0; // 레벨업에 필요한 경험치 설정
     private double maxCheck = 0; // 레벨업시 필요경험치 = 경험치 x 1.2
+    private int Expcheck = 0; //레벨업에 필요한 경험치를 제외하고 나머지를 다음 레벨 경험치로 이관
     private int HP = 0; // 현재체력
     private int MP = 0; // 현재마나
     private int STR = 0;  // 공격력(평타 공격)
@@ -177,14 +178,20 @@ public class GameManager : MonoBehaviour
     {
         if (firstcheck == false) // 게임이 시작되야 레벨 및 경험치 설정
         {
-            if (EXP >= maxExp) //현재 경험치가 최대경험치 이상일때 레벨 +1
+            if (EXP >= maxExp && EXP - maxExp >= 1) //현재 경험치가 최대경험치 이상일때 레벨 +1, 현재 경험치와 최대경험치 차이가 1 이상이면
             {
 
                 activelevel += 1;
-                EXP = 0;
                 APPoint += 3; //스텟 포인트 3추가
                 HP = maxHp;
                 MP = maxMp;
+                Expcheck = EXP - maxExp; // 현재 경험치와 최대경험치를 뺀 나머지를 현재 경험치로 설정.
+                EXP = Expcheck;
+                
+                if(EXP - maxExp == 0) // 아니면 현재경험치는 0
+                {
+                    EXP = 0;
+                }
                 if (activelevel % 10 <= 0) // 10렙당 경험치 1.5배
                 {
                     maxCheck = maxExp * 1.5;
