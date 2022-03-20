@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using System;
-
+using Random = UnityEngine.Random;
 
 public enum GameState
 {
@@ -36,6 +36,10 @@ public class GameManager : MonoBehaviour
     private int EXP = 0;  //현재경험치
     private int APPoint = 0;
     private int AD = 0;
+    private int MaxAD = 0;
+    private int MinAD = 0;
+    private int MaxAP = 0;
+    private int MinAP = 0;
     
     private int AP = 0;
     private int NormalWarriorsHP = 0;
@@ -48,6 +52,7 @@ public class GameManager : MonoBehaviour
     private bool backmenu = false;
     private bool backgame = true;
     
+    int answer = 0;
 
 
 
@@ -80,8 +85,15 @@ public class GameManager : MonoBehaviour
 
     void Update() //test 세팅
     {
-        AD = 10;
         
+        SetGameState();
+        setLevel();
+        setPlayerHP(HP);
+        APAttack();
+        ADAttackFirst();
+        ADAttackSecond();
+        ADAttackThird();
+
         if (Input.GetKeyDown(KeyCode.J))
         {
             
@@ -93,11 +105,37 @@ public class GameManager : MonoBehaviour
         {
             EXP += 200;
         }
-        SetGameState();
-        setLevel();
-        setPlayerHP(HP);
-        APAttack();
+        if (Input.GetKeyDown(KeyCode.A))
+        {
+            answer = answer + 1;
+
+            if (answer == 1)
+            {
+                ADAttackFirst();
+                Debug.Log(AD);
+                Debug.Log(answer);
+            }
+
+            else if (answer == 2) 
+            {
+                ADAttackSecond();
+                Debug.Log(AD);
+                Debug.Log(answer);
+            } 
+
+            else if (answer == 3)
+            {
+                ADAttackThird();
+                Debug.Log(AD);
+                Debug.Log(answer);
+                answer = 1;
+            }
+            
+        }
         
+
+
+
     }
     void SetGameState()// 게임상태 설정
     {
@@ -145,8 +183,8 @@ public class GameManager : MonoBehaviour
                 maxExp += 300; // 1랩때 최대 경험치 
                 HP += maxHp; // 초기 체력 설정
                 MP += maxMp; // 초기 마나 설정
-                STR += 2; // 초기 공격력 설정
-                INT += 10; // 초기 주문력 설정
+                STR += 5; // 초기 공격력 설정
+                INT += 12; // 초기 주문력 설정
                 FIT += 2; // 초기 체력 마나 스텟 설정
                 EXP += 0; // 초기 경험치 세팅
                 NormalWarriorsHP += 30;
@@ -213,19 +251,27 @@ public class GameManager : MonoBehaviour
     //플레이어 공격 분리
     public void ADAttackFirst() // 1타
     {
-        AD = STR * 1;
+        MinAD = (STR * FIT) / 2 * Random.Range(1, 2);
+        MaxAD = (STR * FIT) / 2 * Random.Range(1, 3);
+        AD = Random.Range(MinAD, MaxAD);
     }
     public void ADAttackSecond() // 2타
     {
-        AD = STR * 2;
+        MinAD = (STR * FIT) / 2 * Random.Range(1, 4);
+        MaxAD = (STR * FIT) / 2 * Random.Range(1, 5);
+        AD = Random.Range(MinAD, MaxAD);
     }
     public void ADAttackThird() // 3타
     {
-        AD = STR * 3;
+        MinAD = (STR * FIT) / 2 * Random.Range(1, 5);
+        MaxAD = (STR * FIT) / 2 * Random.Range(1, 6);
+        AD = Random.Range(MinAD, MaxAD);
     }
     public void APAttack() // 주문력
     {
-        AP = INT * 3;
+        MinAP = (INT * FIT) / 2 * Random.Range(1, 4);
+        MaxAP = (INT * FIT) / 2 * Random.Range(1, 6);
+        AP = Random.Range(MinAP, MaxAP);
     }
 
 
@@ -341,14 +387,14 @@ public class GameManager : MonoBehaviour
 
         return NormalMagiciansHP;
     }
-    public int setWarriosMonsterHP(int HIT)//전사몬스터 체력설정
+    public int setWarriosMonsterHP(int HIT)//전사몬스터 피격 후 체력설정
     {
-        NormalWarriorsHP = HIT;
+        NormalWarriorsHP -= HIT;
         return NormalWarriorsHP;
     }
     public int setMagicianMonsterHP(int HIT)//마법몬스터 체력설정
     {
-        NormalMagiciansHP = HIT;
+        NormalMagiciansHP -= HIT;
         return NormalMagiciansHP;
     }
     public void setDamage(int Damage, int MonsterHP) //몬스터 피격설정
@@ -357,6 +403,7 @@ public class GameManager : MonoBehaviour
         {
             MonsterHP = 0; 
             setMagicianMonsterHP(MonsterHP);
+            
         }
         else if(MonsterHP - Damage <= 0 && MonsterHP == NormalWarriorsHP) 
         {
