@@ -20,10 +20,7 @@ public class PlayerInfoPanel : MonoBehaviour
     private bool ActiveStatsPanel = false;
     private bool ActiveButton = false;
 
-    void Start()
-    {
-        
-    }
+
 
     void Update()
     {

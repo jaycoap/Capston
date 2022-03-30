@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using System;
+using UnityEngine.UI;
 using Random = UnityEngine.Random;
 
 public enum GameState
@@ -508,6 +509,8 @@ public class GameManager : MonoBehaviour
         FIT += newFIT;
         return FIT;
     }
+
+
     private void Awake()
     {
         if (_instance != null && _instance != this)

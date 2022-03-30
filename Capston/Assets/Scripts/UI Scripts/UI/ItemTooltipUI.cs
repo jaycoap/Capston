@@ -94,7 +94,6 @@ using UnityEngine.UI;
             _ratingText.text = data.Rating;
             _contentImage.sprite = data.IconSprite;
         }
-
         /// <summary> 툴팁의 위치 조정 </summary>
         public void SetRectPosition(RectTransform slotRect)
         {

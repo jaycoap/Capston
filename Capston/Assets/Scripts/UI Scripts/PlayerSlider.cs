@@ -14,10 +14,6 @@ public class PlayerSlider : MonoBehaviour
     [SerializeField]  private Text ExpText;
 
 
-    private void Start()
-    {
-        
-    }
 
     private void Update()//HP, MP, 경험치 바 세팅
     {

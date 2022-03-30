@@ -7,10 +7,6 @@ public class PlayerSkillPanel : MonoBehaviour
     [SerializeField]
     private GameObject SkillPanel;
     bool ActiveSkillPanel = false;
-    void Start()
-    {
-        
-    }
 
     void Update()
     {
