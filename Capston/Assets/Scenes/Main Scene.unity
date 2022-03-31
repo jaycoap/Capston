@@ -10234,6 +10234,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 337492028, guid: 3a4ae3f43b37a2e4da637253d13c20b3, type: 3}
+      propertyPath: enemyAI
+      value: 
+      objectReference: {fileID: 0}
     - target: {fileID: 3435441374833855152, guid: 3a4ae3f43b37a2e4da637253d13c20b3, type: 3}
       propertyPath: m_RootOrder
       value: 7
@@ -10281,6 +10285,10 @@ PrefabInstance:
     - target: {fileID: 5290438719731959125, guid: 3a4ae3f43b37a2e4da637253d13c20b3, type: 3}
       propertyPath: m_Name
       value: dummy
+      objectReference: {fileID: 0}
+    - target: {fileID: 9221004634922994866, guid: 3a4ae3f43b37a2e4da637253d13c20b3, type: 3}
+      propertyPath: m_BodyType
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3a4ae3f43b37a2e4da637253d13c20b3, type: 3}

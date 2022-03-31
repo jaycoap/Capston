@@ -24,11 +24,12 @@ public class playerManager : MonoBehaviour
         movementSpeed = 0.1f;
         jumpSpeed = 9f;
         attackRange = new Vector2(0.9166667f, 1.666667f);
+        Physics.IgnoreLayerCollision(8,8,true);
     }
 
     void Update()
     {
-        //Horizontal ¹öÆ°À» ´©¸¦¶§ °¢ ¹æÇâÀ¸·Î Ä³¸¯ÅÍ ½ºÇÁ¶óÀÌÆ®¸¦ µÚÁý´Â ÇÔ¼ö.
+        //Horizontal ï¿½ï¿½Æ°ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ Ä³ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Æ®ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ô¼ï¿½.
         if (Input.GetButton("Horizontal") && !animator.GetBool("isAttack"))
         {
 
@@ -42,7 +43,7 @@ public class playerManager : MonoBehaviour
         {
             pos.position = new Vector2(transform.position.x + 0.9166667f, pos.position.y);
         }
-        //°È°í ÀÖ´ÂÁö, °øÁßÀÌ ¾Æ´ÑÁö, °ø°ÝÁßÀÎÁö Ã¼Å©ÇØ¼­ °È´Â ¾Ö´Ï¸ÞÀÌ¼ÇÀ» °ü¸®ÇÏ´Â º¯¼ö¸¦ ¹Ù²Ù´Â ÇÔ¼ö.
+        //ï¿½È°ï¿½ ï¿½Ö´ï¿½ï¿½ï¿½, ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Æ´ï¿½ï¿½ï¿½, ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ Ã¼Å©ï¿½Ø¼ï¿½ ï¿½È´ï¿½ ï¿½Ö´Ï¸ï¿½ï¿½Ì¼ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ï´ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ù²Ù´ï¿½ ï¿½Ô¼ï¿½.
         if (Mathf.Abs(Input.GetAxisRaw("Horizontal")) == 1 && !animator.GetBool("isAttack") && isGrounded)
         {
             animator.SetBool("isWalk", true);
@@ -61,22 +62,22 @@ public class playerManager : MonoBehaviour
             float H_input = Input.GetAxisRaw("Horizontal");
 
             
-            //¶¥¿¡ ºÙ¾îÀÖÀ» °æ¿ì Ã¼Å©
+            //ï¿½ï¿½ï¿½ï¿½ ï¿½Ù¾ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ Ã¼Å©
             if (isGrounded)
             {
                 animator.SetBool("isGround", true);
                 animator.SetBool("isJump", false); 
-                //player_jump2 ¾Ö´Ï¸ÞÀÌ¼ÇÀÌ ³¡³­°É Ã¼Å©ÇØ¼­ isFallÀ» ÂüÀ¸·Î ¸¸µå´Â ÇÔ¼ö
+                //player_jump2 ï¿½Ö´Ï¸ï¿½ï¿½Ì¼ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ Ã¼Å©ï¿½Ø¼ï¿½ isFallï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ô¼ï¿½
                 if (animator.GetCurrentAnimatorStateInfo(0).IsName("player_jump2") && animator.GetCurrentAnimatorStateInfo(0).normalizedTime >= 1.0f)
                 {
                     animator.SetBool("isFall", true);
                 }
-                //player_jump3 ¾Ö´Ï¸ÞÀÌ¼ÇÀÌ ³¡³­°É Ã¼Å©ÇØ¼­ isFallÀ» °ÅÁþÀ¸·Î ¸¸µå´Â ÇÔ¼ö
+                //player_jump3 ï¿½Ö´Ï¸ï¿½ï¿½Ì¼ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ Ã¼Å©ï¿½Ø¼ï¿½ isFallï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ô¼ï¿½
                 if (animator.GetCurrentAnimatorStateInfo(0).IsName("player_jump3") && animator.GetCurrentAnimatorStateInfo(0).normalizedTime >= 1.0f)
                 {
                     animator.SetBool("isFall", false);
                 }
-                //Á¡ÇÁ¸¦ ½ÃÄÑÁÖ´Â ºÎºÐ
+                //ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ö´ï¿½ ï¿½Îºï¿½
                 float J_input = Input.GetAxisRaw("Jump");
 
                 if (J_input == 1 && !animator.GetBool("isAttack"))
@@ -87,7 +88,7 @@ public class playerManager : MonoBehaviour
                         animator.SetBool("isJump",true);
                     }
                 }
-                //attackCount°¡ 0ÀÌ¸é player_attack1 ¾Ö´Ï¸ÞÀÌ¼Ç ½ÇÇà
+                //attackCountï¿½ï¿½ 0ï¿½Ì¸ï¿½ player_attack1 ï¿½Ö´Ï¸ï¿½ï¿½Ì¼ï¿½ ï¿½ï¿½ï¿½ï¿½
                 if (animator.GetInteger("attackCount") == 0)
                 {
 
@@ -95,9 +96,9 @@ public class playerManager : MonoBehaviour
                     {
                         animator.SetBool("isAttack", true);
                         animator.SetInteger("attackCount", 1);
-                        //hitEnemy = OverlapBoxAll(1,2,3,4) 1À§Ä¡ ±âÁØ 2¹üÀ§¿¡ ÀÖ´Â 3È¸ÀüÀÇ 4·¹ÀÌ¾î ¿ÀºêÁ§Æ®¸¦ ÀüºÎ hitEnemy¿¡ ³ÖÀ½
+                        //hitEnemy = OverlapBoxAll(1,2,3,4) 1ï¿½ï¿½Ä¡ ï¿½ï¿½ï¿½ï¿½ 2ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ö´ï¿½ 3È¸ï¿½ï¿½ï¿½ï¿½ 4ï¿½ï¿½ï¿½Ì¾ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Æ®ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ hitEnemyï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
                         Collider2D[] hitEnemy = Physics2D.OverlapBoxAll(pos.position, attackRange, 0, LayerMask.GetMask("Enemy"));
-                        //hitEnemy¿¡ ÀÖ´Â ¸ðµç ¿ÀºêÁ§Æ®¿¡ ¾È¿¡ ÇÔ¼ö ½ÇÇà <- ¿©±â´Ù°¡ µ¥¹ÌÁö ³Ö´Â ÇÔ¼ö ³ÖÀ¸¸é´ï
+                        //hitEnemyï¿½ï¿½ ï¿½Ö´ï¿½ ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Æ®ï¿½ï¿½ ï¿½È¿ï¿½ ï¿½Ô¼ï¿½ ï¿½ï¿½ï¿½ï¿½ <- ï¿½ï¿½ï¿½ï¿½Ù°ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ö´ï¿½ ï¿½Ô¼ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
                         foreach(Collider2D collider in hitEnemy)
                         {
                             collider.gameObject.GetComponent<enemyManager>().enemyDamaged(10);
@@ -107,23 +108,23 @@ public class playerManager : MonoBehaviour
                 }
                 else if (animator.GetInteger("attackCount") == 1)
                 {
-                    //player_attack1 ¾Ö´Ï¸ÞÀÌ¼ÇÀÌ 50%~99% ¿Ï·áÁß¿¡ Attack1Å°ÀÔ·ÂÀ» ÇÏ¸é player_attack2 ¾Ö´Ï¸ÞÀÌ¼Ç ½ÇÇà
+                    //player_attack1 ï¿½Ö´Ï¸ï¿½ï¿½Ì¼ï¿½ï¿½ï¿½ 50%~99% ï¿½Ï·ï¿½ï¿½ß¿ï¿½ Attack1Å°ï¿½Ô·ï¿½ï¿½ï¿½ ï¿½Ï¸ï¿½ player_attack2 ï¿½Ö´Ï¸ï¿½ï¿½Ì¼ï¿½ ï¿½ï¿½ï¿½ï¿½
                     if (animator.GetCurrentAnimatorStateInfo(0).IsName("player_attack1") && animator.GetCurrentAnimatorStateInfo(0).normalizedTime < 1.0f && animator.GetCurrentAnimatorStateInfo(0).normalizedTime >= 0.5f)
                     {
                         if (Input.GetButton("Attack1"))
                         {
                             animator.SetBool("isAttack", true);
                             animator.SetInteger("attackCount", 2);
-                            //hitEnemy = OverlapBoxAll(1,2,3,4) 1À§Ä¡ ±âÁØ 2¹üÀ§¿¡ ÀÖ´Â 3È¸ÀüÀÇ 4·¹ÀÌ¾î ¿ÀºêÁ§Æ®¸¦ ÀüºÎ hitEnemy¿¡ ³ÖÀ½
+                            //hitEnemy = OverlapBoxAll(1,2,3,4) 1ï¿½ï¿½Ä¡ ï¿½ï¿½ï¿½ï¿½ 2ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ö´ï¿½ 3È¸ï¿½ï¿½ï¿½ï¿½ 4ï¿½ï¿½ï¿½Ì¾ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Æ®ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ hitEnemyï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
                             Collider2D[] hitEnemy = Physics2D.OverlapBoxAll(pos.position, attackRange, 0, LayerMask.GetMask("Enemy"));
-                            //hitEnemy¿¡ ÀÖ´Â ¸ðµç ¿ÀºêÁ§Æ®¿¡ ¾È¿¡ ÇÔ¼ö ½ÇÇà <- ¿©±â´Ù°¡ µ¥¹ÌÁö ³Ö´Â ÇÔ¼ö ³ÖÀ¸¸é´ï
+                            //hitEnemyï¿½ï¿½ ï¿½Ö´ï¿½ ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Æ®ï¿½ï¿½ ï¿½È¿ï¿½ ï¿½Ô¼ï¿½ ï¿½ï¿½ï¿½ï¿½ <- ï¿½ï¿½ï¿½ï¿½Ù°ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ö´ï¿½ ï¿½Ô¼ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
                             foreach (Collider2D collider in hitEnemy)
                             {
                                 collider.gameObject.GetComponent<enemyManager>().enemyDamaged(10);
                             }
                         }
                     }
-                    //player_attack1 ¾Ö´Ï¸ÞÀÌ¼ÇÀÌ ¿Ï·áµÇ¸é ¾Ö´Ï¸ÞÀÌ¼Ç Á¾·áÈÄ ÃÊ±âÈ­
+                    //player_attack1 ï¿½Ö´Ï¸ï¿½ï¿½Ì¼ï¿½ï¿½ï¿½ ï¿½Ï·ï¿½Ç¸ï¿½ ï¿½Ö´Ï¸ï¿½ï¿½Ì¼ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ê±ï¿½È­
                     if (animator.GetCurrentAnimatorStateInfo(0).IsName("player_attack1") && (animator.GetCurrentAnimatorStateInfo(0).normalizedTime >= 1.0f))
                     {
                         animator.SetBool("isAttack", false);
@@ -133,23 +134,23 @@ public class playerManager : MonoBehaviour
                 }
                 else if (animator.GetInteger("attackCount") == 2)
                 {
-                    //player_attack2 ¾Ö´Ï¸ÞÀÌ¼ÇÀÌ 50%~99% ¿Ï·áÁß¿¡ Attack1Å°ÀÔ·ÂÀ» ÇÏ¸é player_attack3 ¾Ö´Ï¸ÞÀÌ¼Ç ½ÇÇà
+                    //player_attack2 ï¿½Ö´Ï¸ï¿½ï¿½Ì¼ï¿½ï¿½ï¿½ 50%~99% ï¿½Ï·ï¿½ï¿½ß¿ï¿½ Attack1Å°ï¿½Ô·ï¿½ï¿½ï¿½ ï¿½Ï¸ï¿½ player_attack3 ï¿½Ö´Ï¸ï¿½ï¿½Ì¼ï¿½ ï¿½ï¿½ï¿½ï¿½
                     if (animator.GetCurrentAnimatorStateInfo(0).IsName("player_attack2") && animator.GetCurrentAnimatorStateInfo(0).normalizedTime < 1.0f && animator.GetCurrentAnimatorStateInfo(0).normalizedTime >= 0.5f)
                     {
                         if (Input.GetButton("Attack1"))
                         {
                             animator.SetBool("isAttack", true);
                             animator.SetInteger("attackCount", 3);
-                            //hitEnemy = OverlapBoxAll(1,2,3,4) 1À§Ä¡ ±âÁØ 2¹üÀ§¿¡ ÀÖ´Â 3È¸ÀüÀÇ 4·¹ÀÌ¾î ¿ÀºêÁ§Æ®¸¦ ÀüºÎ hitEnemy¿¡ ³ÖÀ½
+                            //hitEnemy = OverlapBoxAll(1,2,3,4) 1ï¿½ï¿½Ä¡ ï¿½ï¿½ï¿½ï¿½ 2ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ö´ï¿½ 3È¸ï¿½ï¿½ï¿½ï¿½ 4ï¿½ï¿½ï¿½Ì¾ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Æ®ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ hitEnemyï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
                             Collider2D[] hitEnemy = Physics2D.OverlapBoxAll(pos.position, attackRange, 0, LayerMask.GetMask("Enemy"));
-                            //hitEnemy¿¡ ÀÖ´Â ¸ðµç ¿ÀºêÁ§Æ®¿¡ ¾È¿¡ ÇÔ¼ö ½ÇÇà <- ¿©±â´Ù°¡ µ¥¹ÌÁö ³Ö´Â ÇÔ¼ö ³ÖÀ¸¸é´ï
+                            //hitEnemyï¿½ï¿½ ï¿½Ö´ï¿½ ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Æ®ï¿½ï¿½ ï¿½È¿ï¿½ ï¿½Ô¼ï¿½ ï¿½ï¿½ï¿½ï¿½ <- ï¿½ï¿½ï¿½ï¿½Ù°ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ö´ï¿½ ï¿½Ô¼ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
                             foreach (Collider2D collider in hitEnemy)
                             {
                                 collider.gameObject.GetComponent<enemyManager>().enemyDamaged(10);
                             }
                         }
                     }
-                    //player_attack2 ¾Ö´Ï¸ÞÀÌ¼ÇÀÌ ¿Ï·áµÇ¸é ¾Ö´Ï¸ÞÀÌ¼Ç Á¾·áÈÄ ÃÊ±âÈ­
+                    //player_attack2 ï¿½Ö´Ï¸ï¿½ï¿½Ì¼ï¿½ï¿½ï¿½ ï¿½Ï·ï¿½Ç¸ï¿½ ï¿½Ö´Ï¸ï¿½ï¿½Ì¼ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ê±ï¿½È­
                     if (animator.GetCurrentAnimatorStateInfo(0).IsName("player_attack2") && (animator.GetCurrentAnimatorStateInfo(0).normalizedTime >= 1.0f))
                     {
                         animator.SetBool("isAttack", false);
@@ -158,16 +159,16 @@ public class playerManager : MonoBehaviour
                 }
                 else if (animator.GetInteger("attackCount") == 3)
                 {
-                    //player_attack3 ¾Ö´Ï¸ÞÀÌ¼ÇÀÌ 50%~99% ¿Ï·áÁß¿¡ Attack1Å°ÀÔ·ÂÀ» ÇÏ¸é player_attack1 ¾Ö´Ï¸ÞÀÌ¼Ç ½ÇÇà
+                    //player_attack3 ï¿½Ö´Ï¸ï¿½ï¿½Ì¼ï¿½ï¿½ï¿½ 50%~99% ï¿½Ï·ï¿½ï¿½ß¿ï¿½ Attack1Å°ï¿½Ô·ï¿½ï¿½ï¿½ ï¿½Ï¸ï¿½ player_attack1 ï¿½Ö´Ï¸ï¿½ï¿½Ì¼ï¿½ ï¿½ï¿½ï¿½ï¿½
                     if (animator.GetCurrentAnimatorStateInfo(0).IsName("player_attack3") && animator.GetCurrentAnimatorStateInfo(0).normalizedTime < 1.0f && animator.GetCurrentAnimatorStateInfo(0).normalizedTime >= 0.5f)
                     {
                         if (Input.GetButton("Attack1"))
                         {
                             animator.SetBool("isAttack", true);
                             animator.SetInteger("attackCount", 1);
-                            //hitEnemy = OverlapBoxAll(1,2,3,4) 1À§Ä¡ ±âÁØ 2¹üÀ§¿¡ ÀÖ´Â 3È¸ÀüÀÇ 4·¹ÀÌ¾î ¿ÀºêÁ§Æ®¸¦ ÀüºÎ hitEnemy¿¡ ³ÖÀ½
+                            //hitEnemy = OverlapBoxAll(1,2,3,4) 1ï¿½ï¿½Ä¡ ï¿½ï¿½ï¿½ï¿½ 2ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ö´ï¿½ 3È¸ï¿½ï¿½ï¿½ï¿½ 4ï¿½ï¿½ï¿½Ì¾ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Æ®ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ hitEnemyï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
                             Collider2D[] hitEnemy = Physics2D.OverlapBoxAll(pos.position, attackRange, 0, LayerMask.GetMask("Enemy"));
-                            //hitEnemy¿¡ ÀÖ´Â ¸ðµç ¿ÀºêÁ§Æ®¿¡ ¾È¿¡ ÇÔ¼ö ½ÇÇà <- ¿©±â´Ù°¡ µ¥¹ÌÁö ³Ö´Â ÇÔ¼ö ³ÖÀ¸¸é´ï
+                            //hitEnemyï¿½ï¿½ ï¿½Ö´ï¿½ ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Æ®ï¿½ï¿½ ï¿½È¿ï¿½ ï¿½Ô¼ï¿½ ï¿½ï¿½ï¿½ï¿½ <- ï¿½ï¿½ï¿½ï¿½Ù°ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ö´ï¿½ ï¿½Ô¼ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
                             foreach (Collider2D collider in hitEnemy)
                             {
                                 collider.gameObject.GetComponent<enemyManager>().enemyDamaged(10);
@@ -175,7 +176,7 @@ public class playerManager : MonoBehaviour
                             }
                         }
                     }
-                    //player_attack3 ¾Ö´Ï¸ÞÀÌ¼ÇÀÌ ¿Ï·áµÇ¸é ¾Ö´Ï¸ÞÀÌ¼Ç Á¾·áÈÄ ÃÊ±âÈ­
+                    //player_attack3 ï¿½Ö´Ï¸ï¿½ï¿½Ì¼ï¿½ï¿½ï¿½ ï¿½Ï·ï¿½Ç¸ï¿½ ï¿½Ö´Ï¸ï¿½ï¿½Ì¼ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ê±ï¿½È­
                     if (animator.GetCurrentAnimatorStateInfo(0).IsName("player_attack3") && (animator.GetCurrentAnimatorStateInfo(0).normalizedTime >= 1.0f))
                     {
                         animator.SetBool("isAttack", false);
@@ -186,12 +187,12 @@ public class playerManager : MonoBehaviour
             //isGrounded
             else
             {
-                //player_jump1 ¾Ö´Ï¸ÞÀÌ¼ÇÀÌ Á¾·áµÇ¸é isJump¸¦ °ÅÁþÀ¸·Î ¸¸µå´Â ÇÔ¼ö
+                //player_jump1 ï¿½Ö´Ï¸ï¿½ï¿½Ì¼ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½Ç¸ï¿½ isJumpï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ô¼ï¿½
                 if (animator.GetCurrentAnimatorStateInfo(0).IsName("player_jump1") && (animator.GetCurrentAnimatorStateInfo(0).normalizedTime >= 1.0f))
                 {
                     animator.SetBool("isJump", false);
                 }
-                //player_jump3 ¾Ö´Ï¸ÞÀÌ¼ÇÀÌ Á¾·áµÇ¸é isFallÀ» °ÅÁþÀ¸·Î ¸¸µå´Â ÇÔ¼ö
+                //player_jump3 ï¿½Ö´Ï¸ï¿½ï¿½Ì¼ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½Ç¸ï¿½ isFallï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ô¼ï¿½
                 if (animator.GetCurrentAnimatorStateInfo(0).IsName("player_jump3") && animator.GetCurrentAnimatorStateInfo(0).normalizedTime >= 1.0f)
                 {
                     animator.SetBool("isFall", false);
@@ -199,12 +200,12 @@ public class playerManager : MonoBehaviour
                 animator.SetBool("isGround", false);
             }
 
-            //Horizontal¹öÆ°À» ´©¸£¸é ÀÌµ¿½ÃÅ°´Â ÇÔ¼ö
+            //Horizontalï¿½ï¿½Æ°ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ìµï¿½ï¿½ï¿½Å°ï¿½ï¿½ ï¿½Ô¼ï¿½
             if (Input.GetButton("Horizontal"))
             {
                 if(H_input == 1 && !animator.GetBool("isAttack"))
                 {
-                    //Ä³¸¯ÅÍÀÇ ¿À¸¥ÂÊ,¿ÞÂÊ¿¡ º®ÀÌ ÀÖ´ÂÁö Ã¼Å©ÇÏ°í °¢°¢ º®ÀÌ ÀÖÀ¸¸é ±×ÂÊÀ¸·Î ÀÌµ¿ÀÌ ¾ÈµÇ´Â ÇÔ¼ö
+                    //Ä³ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½,ï¿½ï¿½ï¿½Ê¿ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Ö´ï¿½ï¿½ï¿½ Ã¼Å©ï¿½Ï°ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ìµï¿½ï¿½ï¿½ ï¿½ÈµÇ´ï¿½ ï¿½Ô¼ï¿½
                     if (Physics2D.OverlapBox(new Vector2(transform.position.x + 0.229166675f, transform.position.y), new Vector2(0.45833335f, 1.4f), 0, LayerMask.GetMask("Floor")))
                     {
 
@@ -231,7 +232,7 @@ public class playerManager : MonoBehaviour
             
             
         }
-        //overlapbox(1,2,3,4) 1¹ø À§Ä¡¿¡¼­ 2¹ø Å©±âÀÇ ¹üÀ§¿¡ 3¹ø È¸ÀüÀÇ ¿ÀºêÁ§Æ®°¡ 4¹ø ·¹ÀÌ¾îÀÌ¸é true
+        //overlapbox(1,2,3,4) 1ï¿½ï¿½ ï¿½ï¿½Ä¡ï¿½ï¿½ï¿½ï¿½ 2ï¿½ï¿½ Å©ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ 3ï¿½ï¿½ È¸ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Æ®ï¿½ï¿½ 4ï¿½ï¿½ ï¿½ï¿½ï¿½Ì¾ï¿½ï¿½Ì¸ï¿½ true
         if (Physics2D.OverlapBox(new Vector2(transform.position.x,transform.position.y - 0.8333f), new Vector2(0.7f, 0.1f), 0, LayerMask.GetMask("Floor")))
         {
             isGrounded = true;
@@ -248,7 +249,7 @@ public class playerManager : MonoBehaviour
         
     }
 
-    //ÇÃ·¹ÀÌ¾î°¡ EnemyÅÂ±×¸¦ °¡Áø ¿ÀºêÁ§Æ®¿Í Ãæµ¹ÇÏ¸é onDaamged ½ÇÇà
+    //ï¿½Ã·ï¿½ï¿½Ì¾î°¡ Enemyï¿½Â±×¸ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Æ®ï¿½ï¿½ ï¿½æµ¹ï¿½Ï¸ï¿½ onDaamged ï¿½ï¿½ï¿½ï¿½
     void OnCollisionEnter2D(Collision2D other) {
             if(other.gameObject.tag == "Enemy")
             {
@@ -256,17 +257,17 @@ public class playerManager : MonoBehaviour
             }
             
         }
-    //ÇÃ·¹ÀÌ¾îÀÇ ·¹ÀÌ¾î¸¦ PlayerDamaged·Î ¹Ù²Ù°í ¹ÝÅõ¸í ÇÏ°Ô ¸¸µé¸ç ÇÇ°Ý ´çÇÑ ¹Ý´ë¹æÇâÀ¸·Î ÀÌµ¿µÊ Invoke·Î 3ÃÊÈÄ¿¡ ¹«ÀûÀ» ²ô´Â OffDamaged½ÇÇà
+    //ï¿½Ã·ï¿½ï¿½Ì¾ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ì¾î¸¦ PlayerDamagedï¿½ï¿½ ï¿½Ù²Ù°ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ï°ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ç°ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Ý´ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ìµï¿½ï¿½ï¿½ Invokeï¿½ï¿½ 3ï¿½ï¿½ï¿½Ä¿ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ OffDamagedï¿½ï¿½ï¿½ï¿½
     void onDamaged(float Enemy_X){
         int dirc = transform.position.x - Enemy_X > 0 ? 1 : -1;
         gameObject.layer = 9;
         spriteRenderer.color = new Color(1,1,1,0.4f);
         rigidBody.AddForce(new Vector2(dirc*7,5),ForceMode2D.Impulse);
 
-        Invoke("OffDamaged",3);
+        Invoke("OffDamaged",1);
 
     }
-    //ÇÃ·¹ÀÌ¾îÀÇ ·¹ÀÌ¾î¸¦ Player·¹ÀÌ¾î·Î º¯°æ, ¹ÝÅõ¸í ÇØÁ¦ 
+    //ï¿½Ã·ï¿½ï¿½Ì¾ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ì¾î¸¦ Playerï¿½ï¿½ï¿½Ì¾ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½, ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ 
     void OffDamaged()
     {
         gameObject.layer = 7;
