@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 using System;
 
 public class enemyManager : MonoBehaviour
@@ -14,6 +15,9 @@ public class enemyManager : MonoBehaviour
     
     [SerializeField] private int enemyHp = 0;
     [SerializeField] private string enemyAI = "";
+    [SerializeField] Slider EnemyHpSlider;
+    [SerializeField] private GameObject heathlBar;
+    private int MaxHp;
 
 
     private void Awake()
@@ -27,7 +31,7 @@ public class enemyManager : MonoBehaviour
     }
     void Start()
     {
-        
+        MaxHp = enemyHp;
         rigidBody = GetComponent<Rigidbody2D>();
         spriteRenderer = GetComponent<SpriteRenderer>();
         animator = GetComponent<Animator>();
@@ -43,6 +47,11 @@ public class enemyManager : MonoBehaviour
         if(enemyHp  == 0){
             Destroy(gameObject);
         }
+        EnemyHpSlider.maxValue = MaxHp;
+        EnemyHpSlider.value = enemyHp;
+        heathlBar.SetActive(true);
+        StopAllCoroutines();
+        StartCoroutine(WaitCoroutine());
     }
     
     public int getEnemyHp(){
@@ -56,18 +65,25 @@ public class enemyManager : MonoBehaviour
 
     public void enemyAI_Control()
     {
-        if(Physics2D.OverlapBox(new Vector2(transform.position.x,transform.position.y),playerDetectRange,0,LayerMask.GetMask("Player")))
+        if (Physics2D.OverlapBox(new Vector2(transform.position.x, transform.position.y), playerDetectRange, 0, LayerMask.GetMask("Player")))
         {
-            Collider2D Player = Physics2D.OverlapBox(new Vector2(transform.position.x,transform.position.y),playerDetectRange,0,LayerMask.GetMask("Player"));
+            Collider2D Player = Physics2D.OverlapBox(new Vector2(transform.position.x, transform.position.y), playerDetectRange, 0, LayerMask.GetMask("Player"));
             float direction = Player.transform.position.x - transform.position.x;
             transform.Translate(Vector2.right * direction * 0.025f);
         }
-        switch(enemyAI){
+        switch (enemyAI)
+        {
             case "slime":
 
             default:
-                    return;
+                return;
 
         }
+    }
+
+    IEnumerator WaitCoroutine()
+    {
+        yield return new WaitForSeconds(3f);
+        heathlBar.SetActive(false);
     }
 }
