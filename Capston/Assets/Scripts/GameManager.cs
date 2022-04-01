@@ -53,35 +53,17 @@ public class GameManager : MonoBehaviour
     private bool backmenu = false;
     private bool backgame = true;
     
-    int answer = 0;
+    int attackCount = 0;
 
 
 
 
 
-    public void StartGame()//게임시작시
-    {
-        currentGameState = GameState.start;
-        SetGameState();
-        return;
-    }
-    public void GameOver()//게임 끝날시
-    {
-        currentGameState = GameState.gameover;
-        SetGameState();
-        return;
-    }
-    public void BackToMenu() // 메뉴로 돌아갈시
-    {
-        currentGameState = GameState.menu;
-        SetGameState();
-        Debug.Log("menu");
-        return;
-    }
+    
     void Start()
     {
         //currentGameState = GameState.menu;// 게임시작시 메뉴로 설정. (차후사용)
-        StartGame();
+        
     }
 
     void Update() //test 세팅
@@ -95,12 +77,14 @@ public class GameManager : MonoBehaviour
         ADAttackSecond();
         ADAttackThird();
 
-        if (Input.GetKeyDown(KeyCode.J))
+        if (Input.GetKeyDown(KeyCode.Escape))
         {
-            
             BackToMenu();
-            Debug.Log(currentGameState);
-            
+        }
+        if (Input.GetKeyDown(KeyCode.U))
+        {
+            Ingame();
+           
         }
         if (Input.GetKeyDown(KeyCode.Z))
         {
@@ -108,72 +92,73 @@ public class GameManager : MonoBehaviour
         }
         if (Input.GetKeyDown(KeyCode.A))
         {
-            answer = answer + 1;
+            attackCount = attackCount + 1;
 
-            if (answer == 1)
+            if (attackCount == 1)
             {
                 ADAttackFirst();
-                Debug.Log(AD);
-                Debug.Log(answer);
             }
 
-            else if (answer == 2) 
+            else if (attackCount == 2) 
             {
                 ADAttackSecond();
-                Debug.Log(AD);
-                Debug.Log(answer);
             } 
 
-            else if (answer == 3)
+            else if (attackCount == 3)
             {
                 ADAttackThird();
-                Debug.Log(AD);
-                Debug.Log(answer);
-                answer = 1;
+                attackCount = 1;
             }
             
         }
         
 
-
-
     }
+    
+    public void Ingame() // 게임 시작시 설정값 입력 <- UI에서 new게임 눌렀을시 사용 부탁.
+    {
+        currentGameState = GameState.inGame;
+        SetGameState();
+        return;
+    }
+    public void GameOver()//게임 끝날시
+    {
+        currentGameState = GameState.gameover;
+        SetGameState();
+        return;
+    }
+    public void BackToMenu() // 메뉴로 돌아갈시 <- UI에서 Input.GetKeyDown(KeyCode.Escape) 사용부탁.
+    {
+        if (menu == true)
+        {
+            currentGameState = GameState.menu;
+            Time.timeScale = 0;
+            menu = false;
+            backgame = false;
+            Debug.Log("Stop");
+            
+            SetGameState();
+        }
+        else
+        {
+            currentGameState = GameState.menu;
+            Time.timeScale = 1;
+            menu = true;
+            backgame = true;
+            Debug.Log("Start");
+            
+            SetGameState();
+        }
+        
+        Debug.Log("menu");
+        
+    }
+
     void SetGameState()// 게임상태 설정
     {
-        if (currentGameState == GameState.menu) // 메뉴일때
-        {
-
-            if (Input.GetKeyDown(KeyCode.M) && menu == true) //게임 일시정지
-            {
-                if (backgame == true)
-                {
-                    Time.timeScale = 0;
-                    menu = false;
-                    backgame = false;
-                    Debug.Log("Stop");
-                    return ;
-                }
-                
-            }
-            else if(Input.GetKeyDown(KeyCode.M) && menu == false) // 일시정지 해제
-            {
-                if (backgame == false)
-                {
-                    Time.timeScale = 1;
-                    menu = true;
-                    backgame = true;
-                    Debug.Log("Start");
-                    return;
-                }
-            }
-        }
         
-        if (Input.GetKeyDown(KeyCode.U))
-        {
-                currentGameState = GameState.inGame;
-        }
         
-        else if (currentGameState == GameState.inGame) // 게임 시작했을때
+        if (currentGameState == GameState.inGame) // 게임 시작했을때
         {
             if (firstcheck == true) // 게임이 시작되면 밑 같이 설정
             {
@@ -193,6 +178,7 @@ public class GameManager : MonoBehaviour
                 NormalMagiciansHP += 18;
                 NormalMagiciansAD += 5;
                 APPoint = 0;
+                
                 firstcheck = false;
             }
             else if(firstcheck == false) // 아니면 return

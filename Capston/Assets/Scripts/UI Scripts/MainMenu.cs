@@ -9,7 +9,7 @@ public class MainMenu : MonoBehaviour
 
     public void NewGame()
     {
-        GameManager.Instance.StartGame();
+        GameManager.Instance.Ingame();
         Invoke("HideMainMenu", 1.2f); ;
     }
 
