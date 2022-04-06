@@ -29,13 +29,14 @@ public class playerManager : MonoBehaviour
 
     void Update()
     {
-        //Horizontal ��ư�� ������ �� �������� ĳ���� ��������Ʈ�� ������ �Լ�.
+        //방향전환시 스프라이트 뒤집기
         if (Input.GetButton("Horizontal") && !animator.GetBool("isAttack"))
         {
 
             spriteRenderer.flipX = Input.GetAxisRaw("Horizontal") == -1;
             
         }
+        //방향전환시 공격범위 변경
         if(spriteRenderer.flipX == true)
         {
             pos.position = new Vector2(transform.position.x - 0.9166667f, pos.position.y);
@@ -43,7 +44,7 @@ public class playerManager : MonoBehaviour
         {
             pos.position = new Vector2(transform.position.x + 0.9166667f, pos.position.y);
         }
-        //�Ȱ� �ִ���, ������ �ƴ���, ���������� üũ�ؼ� �ȴ� �ִϸ��̼��� �����ϴ� ������ �ٲٴ� �Լ�.
+        //이동시 걷는 애니메이션 출력
         if (Mathf.Abs(Input.GetAxisRaw("Horizontal")) == 1 && !animator.GetBool("isAttack") && isGrounded)
         {
             animator.SetBool("isWalk", true);
@@ -62,22 +63,22 @@ public class playerManager : MonoBehaviour
             float H_input = Input.GetAxisRaw("Horizontal");
 
             
-            //���� �پ����� ��� üũ
+            //땅에 닿아있을때
             if (isGrounded)
             {
                 animator.SetBool("isGround", true);
-                animator.SetBool("isJump", false); 
-                //player_jump2 �ִϸ��̼��� ������ üũ�ؼ� isFall�� ������ ����� �Լ�
-                if (animator.GetCurrentAnimatorStateInfo(0).IsName("player_jump2") && animator.GetCurrentAnimatorStateInfo(0).normalizedTime >= 1.0f)
+                animator.SetBool("isJump", false);
+                //공중에 있을시 player_jump2 애니메이션 출력
+                if ((animator.GetCurrentAnimatorStateInfo(0).IsName("player_jump2")|| animator.GetCurrentAnimatorStateInfo(0).IsName("player_jump2_skill")) && animator.GetCurrentAnimatorStateInfo(0).normalizedTime >= 1.0f)
                 {
                     animator.SetBool("isFall", true);
                 }
-                //player_jump3 �ִϸ��̼��� ������ üũ�ؼ� isFall�� �������� ����� �Լ�
-                if (animator.GetCurrentAnimatorStateInfo(0).IsName("player_jump3") && animator.GetCurrentAnimatorStateInfo(0).normalizedTime >= 1.0f)
+                //착지시 player_jump3 애니메이션 출력
+                if ((animator.GetCurrentAnimatorStateInfo(0).IsName("player_jump3") || animator.GetCurrentAnimatorStateInfo(0).IsName("player_jump3_skill")) && animator.GetCurrentAnimatorStateInfo(0).normalizedTime >= 1.0f)
                 {
                     animator.SetBool("isFall", false);
                 }
-                //������ �����ִ� �κ�
+                //점프
                 float J_input = Input.GetAxisRaw("Jump");
 
                 if (J_input == 1 && !animator.GetBool("isAttack"))
@@ -88,124 +89,125 @@ public class playerManager : MonoBehaviour
                         animator.SetBool("isJump",true);
                     }
                 }
-                //attackCount�� 0�̸� player_attack1 �ִϸ��̼� ����
-                if (animator.GetInteger("attackCount") == 0)
+                //attackCount 0 1 2 각각 1 2 3타 각 애니메이션이 50퍼센트 ~ 끝나기 전에 공격키 누를시 다음 공격
+                if (animator.GetInteger("attackCount") == 0 && !animator.GetBool("isAttack"))
                 {
-
-                    if (Input.GetButton("Attack1"))
-                    {
-                        animator.SetBool("isAttack", true);
-                        animator.SetInteger("attackCount", 1);
-                        //hitEnemy = OverlapBoxAll(1,2,3,4) 1��ġ ���� 2������ �ִ� 3ȸ���� 4���̾� ������Ʈ�� ���� hitEnemy�� ����
-                        Collider2D[] hitEnemy = Physics2D.OverlapBoxAll(pos.position, attackRange, 0, LayerMask.GetMask("Enemy"));
-                        //hitEnemy�� �ִ� ��� ������Ʈ�� �ȿ� �Լ� ���� <- ����ٰ� ������ �ִ� �Լ� �������
-                        foreach(Collider2D collider in hitEnemy)
-                        {
-                            collider.gameObject.GetComponent<enemyManager>().enemyDamaged(10);
-                            
-                        }
-                    }
-                }
-                else if (animator.GetInteger("attackCount") == 1)
-                {
-                    //player_attack1 �ִϸ��̼��� 50%~99% �Ϸ��߿� Attack1Ű�Է��� �ϸ� player_attack2 �ִϸ��̼� ����
-                    if (animator.GetCurrentAnimatorStateInfo(0).IsName("player_attack1") && animator.GetCurrentAnimatorStateInfo(0).normalizedTime < 1.0f && animator.GetCurrentAnimatorStateInfo(0).normalizedTime >= 0.5f)
-                    {
-                        if (Input.GetButton("Attack1"))
-                        {
-                            animator.SetBool("isAttack", true);
-                            animator.SetInteger("attackCount", 2);
-                            //hitEnemy = OverlapBoxAll(1,2,3,4) 1��ġ ���� 2������ �ִ� 3ȸ���� 4���̾� ������Ʈ�� ���� hitEnemy�� ����
-                            Collider2D[] hitEnemy = Physics2D.OverlapBoxAll(pos.position, attackRange, 0, LayerMask.GetMask("Enemy"));
-                            //hitEnemy�� �ִ� ��� ������Ʈ�� �ȿ� �Լ� ���� <- ����ٰ� ������ �ִ� �Լ� �������
-                            foreach (Collider2D collider in hitEnemy)
-                            {
-                                collider.gameObject.GetComponent<enemyManager>().enemyDamaged(10);
-                            }
-                        }
-                    }
-                    //player_attack1 �ִϸ��̼��� �Ϸ�Ǹ� �ִϸ��̼� ������ �ʱ�ȭ
-                    if (animator.GetCurrentAnimatorStateInfo(0).IsName("player_attack1") && (animator.GetCurrentAnimatorStateInfo(0).normalizedTime >= 1.0f))
-                    {
-                        animator.SetBool("isAttack", false);
-                        animator.SetInteger("attackCount", 0);
-                    }
-
-                }
-                else if (animator.GetInteger("attackCount") == 2)
-                {
-                    //player_attack2 �ִϸ��̼��� 50%~99% �Ϸ��߿� Attack1Ű�Է��� �ϸ� player_attack3 �ִϸ��̼� ����
-                    if (animator.GetCurrentAnimatorStateInfo(0).IsName("player_attack2") && animator.GetCurrentAnimatorStateInfo(0).normalizedTime < 1.0f && animator.GetCurrentAnimatorStateInfo(0).normalizedTime >= 0.5f)
-                    {
-                        if (Input.GetButton("Attack1"))
-                        {
-                            animator.SetBool("isAttack", true);
-                            animator.SetInteger("attackCount", 3);
-                            //hitEnemy = OverlapBoxAll(1,2,3,4) 1��ġ ���� 2������ �ִ� 3ȸ���� 4���̾� ������Ʈ�� ���� hitEnemy�� ����
-                            Collider2D[] hitEnemy = Physics2D.OverlapBoxAll(pos.position, attackRange, 0, LayerMask.GetMask("Enemy"));
-                            //hitEnemy�� �ִ� ��� ������Ʈ�� �ȿ� �Լ� ���� <- ����ٰ� ������ �ִ� �Լ� �������
-                            foreach (Collider2D collider in hitEnemy)
-                            {
-                                collider.gameObject.GetComponent<enemyManager>().enemyDamaged(10);
-                            }
-                        }
-                    }
-                    //player_attack2 �ִϸ��̼��� �Ϸ�Ǹ� �ִϸ��̼� ������ �ʱ�ȭ
-                    if (animator.GetCurrentAnimatorStateInfo(0).IsName("player_attack2") && (animator.GetCurrentAnimatorStateInfo(0).normalizedTime >= 1.0f))
-                    {
-                        animator.SetBool("isAttack", false);
-                        animator.SetInteger("attackCount", 0);
-                    }
-                }
-                else if (animator.GetInteger("attackCount") == 3)
-                {
-                    //player_attack3 �ִϸ��̼��� 50%~99% �Ϸ��߿� Attack1Ű�Է��� �ϸ� player_attack1 �ִϸ��̼� ����
-                    if (animator.GetCurrentAnimatorStateInfo(0).IsName("player_attack3") && animator.GetCurrentAnimatorStateInfo(0).normalizedTime < 1.0f && animator.GetCurrentAnimatorStateInfo(0).normalizedTime >= 0.5f)
+                    if (animator.GetBool("isSkill3") == true)
                     {
                         if (Input.GetButton("Attack1"))
                         {
                             animator.SetBool("isAttack", true);
                             animator.SetInteger("attackCount", 1);
-                            //hitEnemy = OverlapBoxAll(1,2,3,4) 1��ġ ���� 2������ �ִ� 3ȸ���� 4���̾� ������Ʈ�� ���� hitEnemy�� ����
-                            Collider2D[] hitEnemy = Physics2D.OverlapBoxAll(pos.position, attackRange, 0, LayerMask.GetMask("Enemy"));
-                            //hitEnemy�� �ִ� ��� ������Ʈ�� �ȿ� �Լ� ���� <- ����ٰ� ������ �ִ� �Լ� �������
-                            foreach (Collider2D collider in hitEnemy)
-                            {
-                                collider.gameObject.GetComponent<enemyManager>().enemyDamaged(10);
-                               
-                            }
+                            attackDamage(10);
                         }
                     }
-                    //player_attack3 �ִϸ��̼��� �Ϸ�Ǹ� �ִϸ��̼� ������ �ʱ�ȭ
-                    if (animator.GetCurrentAnimatorStateInfo(0).IsName("player_attack3") && (animator.GetCurrentAnimatorStateInfo(0).normalizedTime >= 1.0f))
+                    else
                     {
-                        animator.SetBool("isAttack", false);
-                        animator.SetInteger("attackCount", 0);
+                        if (Input.GetButton("Attack1"))
+                        {
+                            animator.SetBool("isAttack", true);
+                            animator.SetInteger("attackCount", 1);
+                            attackDamage(10);
+                        }
                     }
+                    
+                }
+                else if (animator.GetInteger("attackCount") == 1)
+                {
+                    if(animator.GetBool("isSkill3") == true)
+                    {
+                        attacker("player_attack1_skill", 2, 11);
+                    }
+                    else
+                    {
+                        attacker("player_attack1", 2, 10);
+                    }
+                }
+                else if (animator.GetInteger("attackCount") == 2)
+                {
+                    if (animator.GetBool("isSkill3") == true)
+                    {
+                        attacker("player_attack2_skill", 3, 22);
+                    }
+                    else
+                    {
+                        attacker("player_attack2", 3, 20);
+                    }
+                }
+                else if (animator.GetInteger("attackCount") == 3)
+                {
+                    if (animator.GetBool("isSkill3") == true)
+                    {
+                        attacker("player_attack3_skill", 1, 33);
+                    }
+                    else
+                    {
+                        attacker("player_attack3", 1, 30);
+                    }
+                }
+                //공격끝
+
+                //스킬1
+                if(Input.GetButton("Skill1") && animator.GetBool("isSkill1") == false && animator.GetBool("isAttack") == false)
+                {
+                    animator.SetBool("isSkill1", true);
+                    animator.SetBool("isAttack", true);
+                    attackDamage(40);
+                }
+                if (animator.GetCurrentAnimatorStateInfo(0).IsName("player_skill1") && (animator.GetCurrentAnimatorStateInfo(0).normalizedTime >= 1.0f))
+                {
+                    animator.SetBool("isAttack", false);
+                    animator.SetBool("isSkill1", false);
+                }
+
+                //스킬2
+                if (Input.GetButton("Skill2") && animator.GetBool("isSkill2") == false && animator.GetBool("isAttack") == false)
+                {
+                    animator.SetBool("isSkill2", true);
+                    animator.SetBool("isAttack", true);
+                    attackDamage(50);
+                }
+                if (animator.GetCurrentAnimatorStateInfo(0).IsName("player_skill2") && (animator.GetCurrentAnimatorStateInfo(0).normalizedTime >= 1.0f))
+                {
+                    animator.SetBool("isAttack", false);
+                    animator.SetBool("isSkill2", false);
+                }
+
+                //스킬3
+                if (Input.GetButton("Skill3") && animator.GetBool("isSkill3") == false && animator.GetBool("isAttack") == false)
+                {
+                    animator.SetBool("isSkill3", true);
+                    animator.SetBool("isAttack", true);
+                }
+                if (animator.GetCurrentAnimatorStateInfo(0).IsName("player_skill3") && (animator.GetCurrentAnimatorStateInfo(0).normalizedTime >= 1.0f))
+                {
+                    animator.SetBool("isAttack", false);
+                    Invoke("skill3_Off", 5);    
                 }
             }
             //isGrounded
             else
             {
-                //player_jump1 �ִϸ��̼��� ����Ǹ� isJump�� �������� ����� �Լ�
-                if (animator.GetCurrentAnimatorStateInfo(0).IsName("player_jump1") && (animator.GetCurrentAnimatorStateInfo(0).normalizedTime >= 1.0f))
+                //점프 시작 애니메이션 완료시 
+                if ((animator.GetCurrentAnimatorStateInfo(0).IsName("player_jump1") || animator.GetCurrentAnimatorStateInfo(0).IsName("player_jump1_skill")) && (animator.GetCurrentAnimatorStateInfo(0).normalizedTime >= 1.0f))
                 {
                     animator.SetBool("isJump", false);
                 }
-                //player_jump3 �ִϸ��̼��� ����Ǹ� isFall�� �������� ����� �Լ�
-                if (animator.GetCurrentAnimatorStateInfo(0).IsName("player_jump3") && animator.GetCurrentAnimatorStateInfo(0).normalizedTime >= 1.0f)
+                //착지 애니메이션 완료시
+                if ((animator.GetCurrentAnimatorStateInfo(0).IsName("player_jump3") || animator.GetCurrentAnimatorStateInfo(0).IsName("player_jump3_skill")) && animator.GetCurrentAnimatorStateInfo(0).normalizedTime >= 1.0f)
                 {
                     animator.SetBool("isFall", false);
                 }
                 animator.SetBool("isGround", false);
             }
 
-            //Horizontal��ư�� ������ �̵���Ű�� �Լ�
+            //이동
             if (Input.GetButton("Horizontal"))
             {
+                //오른쪽
                 if(H_input == 1 && !animator.GetBool("isAttack"))
                 {
-                    //ĳ������ ������,���ʿ� ���� �ִ��� üũ�ϰ� ���� ���� ������ �������� �̵��� �ȵǴ� �Լ�
+                    //벽이 있는지 체크
                     if (Physics2D.OverlapBox(new Vector2(transform.position.x + 0.229166675f, transform.position.y), new Vector2(0.45833335f, 1.4f), 0, LayerMask.GetMask("Floor")))
                     {
 
@@ -215,6 +217,7 @@ public class playerManager : MonoBehaviour
                         transform.Translate(Vector2.right * H_input * movementSpeed);
                     }
                 }
+                //왼쪽
                 if (H_input == -1 && !animator.GetBool("isAttack"))
                 {
                     if (Physics2D.OverlapBox(new Vector2(transform.position.x - 0.229166675f, transform.position.y), new Vector2(0.45833335f, 1.4f), 0, LayerMask.GetMask("Floor")))
@@ -232,7 +235,7 @@ public class playerManager : MonoBehaviour
             
             
         }
-        //overlapbox(1,2,3,4) 1�� ��ġ���� 2�� ũ���� ������ 3�� ȸ���� ������Ʈ�� 4�� ���̾��̸� true
+        //바닥 체크
         if (Physics2D.OverlapBox(new Vector2(transform.position.x,transform.position.y - 0.8333f), new Vector2(0.7f, 0.1f), 0, LayerMask.GetMask("Floor")))
         {
             isGrounded = true;
@@ -249,7 +252,48 @@ public class playerManager : MonoBehaviour
         
     }
 
-    //�÷��̾ Enemy�±׸� ���� ������Ʈ�� �浹�ϸ� onDaamged ����
+    //연속 공격 관련 함수
+    void attacker(string animation,int next,int damage)
+    {
+        if (animator.GetCurrentAnimatorStateInfo(0).IsName(animation) && animator.GetCurrentAnimatorStateInfo(0).normalizedTime < 1.0f && animator.GetCurrentAnimatorStateInfo(0).normalizedTime >= 0.5f)
+        {
+            if (Input.GetButton("Attack1"))
+            {
+                animator.SetBool("isAttack", true);
+                animator.SetInteger("attackCount", next);
+
+                attackDamage(damage);
+            }
+        }
+        //애니메이션이 끝났을 경우 attackCount 초기화 
+        if (animator.GetCurrentAnimatorStateInfo(0).IsName(animation) && (animator.GetCurrentAnimatorStateInfo(0).normalizedTime >= 1.0f))
+        {
+            animator.SetBool("isAttack", false);
+            animator.SetInteger("attackCount", 0);
+        }
+    }
+    //enemy 데미지 받게하는 함수 !추후 스킬 범위도 개별적용할 예정
+    void attackDamage(int damage)
+    {
+        //hitEnemy = OverlapBox 안에 있는 Enemy 레이어의 모든 오브젝트
+        Collider2D[] hitEnemy = Physics2D.OverlapBoxAll(pos.position, attackRange, 0, LayerMask.GetMask("Enemy"));
+        //hitEnemy 안에 있는 모든 오브젝트에게 enemyDamaged 실시
+        foreach (Collider2D collider in hitEnemy)
+        {
+            collider.gameObject.GetComponent<enemyManager>().enemyDamaged(damage);
+
+        }
+    }
+
+    void skill3_Off() 
+    { 
+        animator.SetBool("isSkill3", false);
+        animator.SetBool("isAttack", false);
+        animator.SetInteger("attackCount", 0);
+    }
+
+    //OnCollisionEnter2D - 현재 오브젝트가 다른 오브젝트의 콜라이더2d와 닿을때 호출
+    //Enemy 태그를 가진 오브젝트와 충돌시 onDamaged
     void OnCollisionEnter2D(Collision2D other) {
             if(other.gameObject.tag == "Enemy")
             {
@@ -257,7 +301,7 @@ public class playerManager : MonoBehaviour
             }
             
         }
-    //�÷��̾��� ���̾ PlayerDamaged�� �ٲٰ� ������ �ϰ� ����� �ǰ� ���� �ݴ�������� �̵��� Invoke�� 3���Ŀ� ������ ���� OffDamaged����
+    //몬스터와 반대방향으로 튀어오르고 레이어 변경 - 일정시간 후 OffDamaged 함수 호출 !추후 데미지 추가 
     void onDamaged(float Enemy_X){
         int dirc = transform.position.x - Enemy_X > 0 ? 1 : -1;
         gameObject.layer = 9;
@@ -267,18 +311,18 @@ public class playerManager : MonoBehaviour
         Invoke("OffDamaged",1);
 
     }
-    //�÷��̾��� ���̾ Player���̾�� ����, ������ ���� 
+    //레이어,캐릭터 색상 변경
     void OffDamaged()
     {
         gameObject.layer = 7;
         spriteRenderer.color = new Color(1,1,1,1);
     }
-
+    //기즈모
     private void OnDrawGizmos()
     {
         Gizmos.color = Color.red;
         Gizmos.DrawWireCube(pos.position, attackRange);
     }
 
-
+    
 }
