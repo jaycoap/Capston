@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 using System;
 
 public class enemyManager : MonoBehaviour
@@ -11,7 +12,9 @@ public class enemyManager : MonoBehaviour
     SpriteRenderer spriteRenderer;
     Animator animator;
     private Vector2 playerDetectRange;
+    private int maxHp;
     //enemy의 체력과 AI SerializeField로 유니티 내부에서 조작 가능 
+    [SerializeField] private Slider enemySlider;
     [SerializeField] private int enemyHp = 0;
     [SerializeField] private string enemyAI = "";
 
@@ -27,16 +30,14 @@ public class enemyManager : MonoBehaviour
     }
     void Start()
     {
-        
+        maxHp = enemyHp;
         rigidBody = GetComponent<Rigidbody2D>();
         spriteRenderer = GetComponent<SpriteRenderer>();
         animator = GetComponent<Animator>();
         playerDetectRange = new Vector2(10,10);
-
     }
     void FixedUpdate()
     {
-        
         enemyAI_Control();
     }
     //적이 데미지 받는 함수
@@ -45,6 +46,7 @@ public class enemyManager : MonoBehaviour
         if(enemyHp  <= 0){
             Destroy(gameObject);
         }
+        enemyHpBar();
     }
     
     public int getEnemyHp(){
@@ -73,5 +75,20 @@ public class enemyManager : MonoBehaviour
                     return;
 
         }
+    }
+
+    public void enemyHpBar()
+    {
+        enemySlider.maxValue = maxHp;
+        enemySlider.value = enemyHp;
+        enemySlider.gameObject.SetActive(true);
+        enemySlider.StopAllCoroutines();
+        enemySlider.StartCoroutine(WaitCoroutine());
+    }
+
+    IEnumerator WaitCoroutine()
+    {
+        yield return new WaitForSeconds(3f);
+        enemySlider.gameObject.SetActive(false);
     }
 }
