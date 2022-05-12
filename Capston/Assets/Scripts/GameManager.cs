@@ -72,7 +72,7 @@ public class GameManager : MonoBehaviour
         SetGameState();
         setLevel();
         setPlayerHP(HP);
-        APAttack();
+        
         ADAttackFirst();
         ADAttackSecond();
         ADAttackThird();
@@ -110,6 +110,10 @@ public class GameManager : MonoBehaviour
                 attackCount = 1;
             }
             
+        }
+        if (Input.GetKeyDown(KeyCode.Q))
+        {
+            Energy_slash();
         }
         
 
@@ -254,11 +258,50 @@ public class GameManager : MonoBehaviour
         MaxAD = (STR * FIT) / 2 * Random.Range(1, 6);
         AD = Random.Range(MinAD, MaxAD);
     }
-    public void APAttack() // 주문력
+    /*public void APAttack() // 주문력
     {
         MinAP = (INT * FIT) / 2 * Random.Range(1, 4);
         MaxAP = (INT * FIT) / 2 * Random.Range(1, 6);
         AP = Random.Range(MinAP, MaxAP);
+    }*/
+
+    public void Energy_slash() //Q스킬
+    {
+        
+        if (MP > 0)
+        {
+            MP = MP - 10;
+            MinAP = (INT * FIT) / 2 * Random.Range(1, 2);
+            MaxAP = (INT * FIT) / 2 * Random.Range(1, 3);
+            AP = Random.Range(MinAP, MaxAP);
+        }
+        
+    }
+    public void Energy_rush()//W스킬
+    {
+
+        if (MP > 0)
+        {
+            MP = MP - 15;
+            MinAP = (INT * FIT) / 2 * Random.Range(1, 3);
+            MaxAP = (INT * FIT) / 2 * Random.Range(1, 4);
+            AP = Random.Range(MinAP, MaxAP);
+        }
+        
+
+    }
+
+    public void Energy_sword()//E스킬
+    {
+
+        if (MP > 0)
+        {
+            MP = MP - 20;
+            MinAP = (INT * FIT) / 2 * AD;
+            MaxAP = (INT * FIT) / 2 * AD;
+            AP = Random.Range(MinAP, MaxAP);
+        }
+        
     }
 
 
