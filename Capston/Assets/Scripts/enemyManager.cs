@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 using System;
 
 public class enemyManager : MonoBehaviour
@@ -11,9 +12,12 @@ public class enemyManager : MonoBehaviour
     SpriteRenderer spriteRenderer;
     Animator animator;
     private Vector2 playerDetectRange;
-    //enemy의 체력과 AI SerializeField로 유니티 내부에서 조작 가능 
+    
     [SerializeField] private int enemyHp = 0;
     [SerializeField] private string enemyAI = "";
+    [SerializeField] Slider EnemyHpSlider;
+    [SerializeField] private GameObject heathlBar;
+    private int MaxHp;
 
 
     private void Awake()
@@ -27,7 +31,7 @@ public class enemyManager : MonoBehaviour
     }
     void Start()
     {
-        
+        MaxHp = enemyHp;
         rigidBody = GetComponent<Rigidbody2D>();
         spriteRenderer = GetComponent<SpriteRenderer>();
         animator = GetComponent<Animator>();
@@ -36,15 +40,18 @@ public class enemyManager : MonoBehaviour
     }
     void FixedUpdate()
     {
-        
         enemyAI_Control();
     }
-    //적이 데미지 받는 함수
     public void enemyDamaged(int damage){
         setEnemyHp(enemyHp - damage);
-        if(enemyHp  <= 0){
+        if(enemyHp  == 0){
             Destroy(gameObject);
         }
+        EnemyHpSlider.maxValue = MaxHp;
+        EnemyHpSlider.value = enemyHp;
+        heathlBar.SetActive(true);
+        StopAllCoroutines();
+        StartCoroutine(WaitCoroutine());
     }
     
     public int getEnemyHp(){
@@ -55,23 +62,28 @@ public class enemyManager : MonoBehaviour
         enemyHp = X;
         return enemyHp;
     }
-    //AI 컨트롤러
+
     public void enemyAI_Control()
     {
-        //캐릭터 식별시 이동
-        if(Physics2D.OverlapBox(new Vector2(transform.position.x,transform.position.y),playerDetectRange,0,LayerMask.GetMask("Player")))
+        if (Physics2D.OverlapBox(new Vector2(transform.position.x, transform.position.y), playerDetectRange, 0, LayerMask.GetMask("Player")))
         {
-            Collider2D Player = Physics2D.OverlapBox(new Vector2(transform.position.x,transform.position.y),playerDetectRange,0,LayerMask.GetMask("Player"));
+            Collider2D Player = Physics2D.OverlapBox(new Vector2(transform.position.x, transform.position.y), playerDetectRange, 0, LayerMask.GetMask("Player"));
             float direction = Player.transform.position.x - transform.position.x;
             transform.Translate(Vector2.right * direction * 0.025f);
         }
-        //몬스터 종류별 개별 AI
-        switch(enemyAI){
+        switch (enemyAI)
+        {
             case "slime":
 
             default:
-                    return;
+                return;
 
         }
+    }
+
+    IEnumerator WaitCoroutine()
+    {
+        yield return new WaitForSeconds(3f);
+        heathlBar.SetActive(false);
     }
 }
