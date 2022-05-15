@@ -11,6 +11,9 @@ public class enemyManager : MonoBehaviour
     Rigidbody2D rigidBody;
     SpriteRenderer spriteRenderer;
     Animator animator;
+    [SerializeField] GameObject hudDamageText;
+    [SerializeField] Transform hudPos;
+
     private Vector2 playerDetectRange;
     private int maxHp;
     //enemy의 체력과 AI SerializeField로 유니티 내부에서 조작 가능 
@@ -46,6 +49,7 @@ public class enemyManager : MonoBehaviour
         if(enemyHp  <= 0){
             Destroy(gameObject);
         }
+        TakeDamage(damage);
         enemyHpBar();
     }
     
@@ -75,6 +79,8 @@ public class enemyManager : MonoBehaviour
                     return;
 
         }
+
+
     }
 
     public void enemyHpBar()
@@ -84,6 +90,13 @@ public class enemyManager : MonoBehaviour
         enemySlider.gameObject.SetActive(true);
         enemySlider.StopAllCoroutines();
         enemySlider.StartCoroutine(WaitCoroutine());
+    }
+
+    public void TakeDamage(int damage)
+    {
+        GameObject hudText = Instantiate(hudDamageText);
+        hudText.transform.position = hudPos.position + new Vector3(0, 1, 0);
+        hudText.GetComponent<DamageText>().setDmgText(damage);
     }
 
     IEnumerator WaitCoroutine()

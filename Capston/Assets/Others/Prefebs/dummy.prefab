@@ -445,6 +445,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 53355aca3521ce24e8b0255563c94c00, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  hudDamageText: {fileID: 3040949605863473835, guid: d2bde22206f16a44ebcc635f08423623, type: 3}
+  hudPos: {fileID: 3435441374833855152}
   enemySlider: {fileID: 5105733493409765319}
   enemyHp: 100
   enemyAI: 
