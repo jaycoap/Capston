@@ -12,12 +12,11 @@ public class enemyManager : MonoBehaviour
     SpriteRenderer spriteRenderer;
     Animator animator;
     private Vector2 playerDetectRange;
-    
+    private int maxHp;
+    //enemy의 체력과 AI SerializeField로 유니티 내부에서 조작 가능 
+    [SerializeField] private Slider enemySlider;
     [SerializeField] private int enemyHp = 0;
     [SerializeField] private string enemyAI = "";
-    [SerializeField] Slider EnemyHpSlider;
-    [SerializeField] private GameObject heathlBar;
-    private int MaxHp;
 
 
     private void Awake()
@@ -31,27 +30,23 @@ public class enemyManager : MonoBehaviour
     }
     void Start()
     {
-        MaxHp = enemyHp;
+        maxHp = enemyHp;
         rigidBody = GetComponent<Rigidbody2D>();
         spriteRenderer = GetComponent<SpriteRenderer>();
         animator = GetComponent<Animator>();
         playerDetectRange = new Vector2(10,10);
-
     }
     void FixedUpdate()
     {
         enemyAI_Control();
     }
+    //적이 데미지 받는 함수
     public void enemyDamaged(int damage){
         setEnemyHp(enemyHp - damage);
-        if(enemyHp  == 0){
+        if(enemyHp  <= 0){
             Destroy(gameObject);
         }
-        EnemyHpSlider.maxValue = MaxHp;
-        EnemyHpSlider.value = enemyHp;
-        heathlBar.SetActive(true);
-        StopAllCoroutines();
-        StartCoroutine(WaitCoroutine());
+        enemyHpBar();
     }
     
     public int getEnemyHp(){
@@ -62,28 +57,38 @@ public class enemyManager : MonoBehaviour
         enemyHp = X;
         return enemyHp;
     }
-
+    //AI 컨트롤러
     public void enemyAI_Control()
     {
-        if (Physics2D.OverlapBox(new Vector2(transform.position.x, transform.position.y), playerDetectRange, 0, LayerMask.GetMask("Player")))
+        //캐릭터 식별시 이동
+        if(Physics2D.OverlapBox(new Vector2(transform.position.x,transform.position.y),playerDetectRange,0,LayerMask.GetMask("Player")))
         {
-            Collider2D Player = Physics2D.OverlapBox(new Vector2(transform.position.x, transform.position.y), playerDetectRange, 0, LayerMask.GetMask("Player"));
+            Collider2D Player = Physics2D.OverlapBox(new Vector2(transform.position.x,transform.position.y),playerDetectRange,0,LayerMask.GetMask("Player"));
             float direction = Player.transform.position.x - transform.position.x;
             transform.Translate(Vector2.right * direction * 0.025f);
         }
-        switch (enemyAI)
-        {
+        //몬스터 종류별 개별 AI
+        switch(enemyAI){
             case "slime":
 
             default:
-                return;
+                    return;
 
         }
+    }
+
+    public void enemyHpBar()
+    {
+        enemySlider.maxValue = maxHp;
+        enemySlider.value = enemyHp;
+        enemySlider.gameObject.SetActive(true);
+        enemySlider.StopAllCoroutines();
+        enemySlider.StartCoroutine(WaitCoroutine());
     }
 
     IEnumerator WaitCoroutine()
     {
         yield return new WaitForSeconds(3f);
-        heathlBar.SetActive(false);
+        enemySlider.gameObject.SetActive(false);
     }
 }
