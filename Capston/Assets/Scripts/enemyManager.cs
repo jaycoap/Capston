@@ -79,6 +79,8 @@ public class enemyManager : MonoBehaviour
                     return;
 
         }
+
+
     }
 
     public void enemyHpBar()
