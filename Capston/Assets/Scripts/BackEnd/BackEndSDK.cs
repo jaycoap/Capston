@@ -24,20 +24,5 @@ public class BackEndSDK : MonoBehaviour
         Backend.AsyncPoll();
     }
 
-    public void CustomSignUp()
-    {
-        string id = "test1";
-        string password = "1234";
-
-        var bro = Backend.BMember.CustomSignUp(id, password);
-        if (bro.IsSuccess())
-        {
-            Debug.Log("가입성공");
-        }
-        else
-        {
-            Debug.LogError("실패!");
-            Debug.Log(bro);
-        }
-    }
+    
 }
