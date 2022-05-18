@@ -12469,7 +12469,7 @@ GameObject:
   - component: {fileID: 1670697565}
   - component: {fileID: 1670697567}
   m_Layer: 0
-  m_Name: BackEndInitialize
+  m_Name: BackendManager
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
