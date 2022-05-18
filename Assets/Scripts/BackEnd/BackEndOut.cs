@@ -30,7 +30,7 @@ public class BackEndOut : MonoBehaviour
         }
         else
         {
-            BackEndSDK.MyInstance.ShowErrorUI(BRO);
+            BackEndManager.MyInstance.ShowErrorUI(BRO);
         }
     }
 }

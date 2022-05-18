@@ -19,7 +19,7 @@ public class CustomSignUp : MonoBehaviour
         }
         else
         {
-            BackEndSDK.MyInstance.ShowErrorUI(backendReturnObject);
+            BackEndManager.MyInstance.ShowErrorUI(backendReturnObject);
         }
         Debug.Log("동기방식");
     }
@@ -35,7 +35,7 @@ public class CustomSignUp : MonoBehaviour
 
         else
         {
-            BackEndSDK.MyInstance.ShowErrorUI(backendReturnObject);
+            BackEndManager.MyInstance.ShowErrorUI(backendReturnObject);
         }
     }
 

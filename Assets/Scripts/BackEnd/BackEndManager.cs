@@ -3,10 +3,10 @@ using System.Collections.Generic;
 using UnityEngine;
 using BackEnd;
 
-public class BackEndSDK : MonoBehaviour // 싱글톤으로 만들고 파괴되지 않는 게임오브젝트로 만든후 초기화 코드, 에러관리 함수
+public class BackEndManager : MonoBehaviour // 싱글톤으로 만들고 파괴되지 않는 게임오브젝트로 만든후 초기화 코드, 에러관리 함수
 {
-    private static BackEndSDK instance = null;
-    public static BackEndSDK MyInstance { get => instance; set => instance = value; }
+    private static BackEndManager instance = null;
+    public static BackEndManager MyInstance { get => instance; set => instance = value; }
     void Awake()
     {   
         if(instance == null)
@@ -29,22 +29,21 @@ public class BackEndSDK : MonoBehaviour // 싱글톤으로 만들고 파괴되지 않는 게임�
     
     private void InitBackEnd()
     {
-        Backend.Initialize(BRO =>
-        {
-            Debug.Log("뒤끝 초기화 진행 " + BRO);
 
-            // 성공
-            if (BRO.IsSuccess())
-            {
-                Debug.Log(Backend.Utils.GetServerTime());
-            }
+        var bro = Backend.Initialize(true);
+        Debug.Log("뒤끝 초기화 진행" + bro);
+        if (bro.IsSuccess())
+        {
+            Debug.Log(Backend.Utils.GetServerTime());
+        }
 
             // 실패
-            else
-            {
-                ShowErrorUI(BRO);
-            }
-        });
+        else
+        {
+           ShowErrorUI(bro);
+        }
+        
+
     }
 
     public void ShowErrorUI(BackendReturnObject backendReturn)
