@@ -49,7 +49,7 @@ MonoBehaviour:
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_Intensity: 1
   m_LightVolumeOpacity: 0
-  m_ApplyToSortingLayers: 0708087800000000f166eab11971a675
+  m_ApplyToSortingLayers: 00000000f166eab11971a675
   m_LightCookieSprite: {fileID: 0}
   m_UseNormalMap: 0
   m_LightOrder: 0
@@ -239,6 +239,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pos: {fileID: 6383038854105650999}
+  Bullet1: {fileID: 8906656035751744187, guid: a000ba256cd36f84db21632d4ef5543b, type: 3}
+  flipx: 0
 --- !u!1 &2483057103409792653
 GameObject:
   m_ObjectHideFlags: 0
