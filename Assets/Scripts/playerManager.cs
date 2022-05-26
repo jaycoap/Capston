@@ -13,6 +13,10 @@ public class playerManager : MonoBehaviour
     Rigidbody2D rigidBody;
     SpriteRenderer spriteRenderer;
     Animator animator;
+    [SerializeField] private GameObject Bullet1;
+    [SerializeField] private GameObject Bullet2;
+    [SerializeField] private GameObject Bullet3;
+    public static bool flipx;
 
     void Start()
     {
@@ -34,7 +38,7 @@ public class playerManager : MonoBehaviour
         {
 
             spriteRenderer.flipX = Input.GetAxisRaw("Horizontal") == -1;
-
+            flipx = spriteRenderer.flipX;
         }
         //방향전환시 공격범위 변경
         if (spriteRenderer.flipX == true)
@@ -58,7 +62,7 @@ public class playerManager : MonoBehaviour
 
     void FixedUpdate()
     {
-
+        
         if (!isDead)
         {
             float H_input = Input.GetAxisRaw("Horizontal");
@@ -100,6 +104,7 @@ public class playerManager : MonoBehaviour
                             animator.SetBool("isAttack", true);
                             animator.SetInteger("attackCount", 1);
                             attackDamage(10);
+                            fire(1);
                         }
                     }
                     else
@@ -109,6 +114,7 @@ public class playerManager : MonoBehaviour
                             animator.SetBool("isAttack", true);
                             animator.SetInteger("attackCount", 1);
                             attackDamage(10);
+                            
                         }
                     }
 
@@ -128,7 +134,7 @@ public class playerManager : MonoBehaviour
                 {
                     if (animator.GetBool("isSkill3") == true)
                     {
-                        attacker("player_attack2_skill", 3, 22);
+                        attacker("player_attack2_skill", 3, 22);                  
                     }
                     else
                     {
@@ -264,6 +270,10 @@ public class playerManager : MonoBehaviour
                 animator.SetInteger("attackCount", next);
 
                 attackDamage(damage);
+                if (animator.GetBool("isSkill3") == true)
+                {
+                    fire(next);
+                }
             }
         }
         //애니메이션이 끝났을 경우 attackCount 초기화 
@@ -299,26 +309,48 @@ public class playerManager : MonoBehaviour
     {
         if (other.gameObject.tag == "Enemy")
         {
-            onDamaged(other.transform.position.x);
+            onDamaged(other.transform.position.x,10);
         }
 
     }
     //몬스터와 반대방향으로 튀어오르고 레이어 변경 - 일정시간 후 OffDamaged 함수 호출 !추후 데미지 추가 
-    void onDamaged(float Enemy_X)
+    public void onDamaged(float Enemy_X,int Enemy_damage)
     {
         int dirc = transform.position.x - Enemy_X > 0 ? 1 : -1;
         gameObject.layer = 9;
+        //무적색상 변경
         spriteRenderer.color = new Color(1, 1, 1, 0.4f);
         rigidBody.AddForce(new Vector2(dirc * 7, 5), ForceMode2D.Impulse);
-
+        //무적시간
         Invoke("OffDamaged", 1);
 
+        GameManager.Instance.PlayerDamage(Enemy_damage);
     }
     //레이어,캐릭터 색상 변경
     void OffDamaged()
     {
         gameObject.layer = 7;
+        
         spriteRenderer.color = new Color(1, 1, 1, 1);
+    }
+
+    void fire(int a)
+    {
+        switch (a)
+        {
+            case 1:
+                Instantiate(Bullet1, new Vector2(transform.position.x,transform.position.y + 0.3f), transform.rotation);
+                break;
+            case 2:
+                Instantiate(Bullet2, transform.position, transform.rotation);
+                break;
+            case 3:
+                Instantiate(Bullet3, new Vector2(transform.position.x, transform.position.y + 0.3f), transform.rotation);
+                break;
+            default:
+                break;
+        }
+        
     }
     //기즈모
     private void OnDrawGizmos()
