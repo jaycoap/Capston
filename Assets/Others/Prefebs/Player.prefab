@@ -240,7 +240,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   pos: {fileID: 6383038854105650999}
   Bullet1: {fileID: 8906656035751744187, guid: a000ba256cd36f84db21632d4ef5543b, type: 3}
-  flipx: 0
+  Bullet2: {fileID: 4903134286554453919, guid: 8ae73608c32c6844b95cb11fc0d4749d, type: 3}
+  Bullet3: {fileID: 6242477684107909711, guid: 374211ba8a2d34b4d992ffb7150d2568, type: 3}
 --- !u!1 &2483057103409792653
 GameObject:
   m_ObjectHideFlags: 0
