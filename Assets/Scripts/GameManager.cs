@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using System;
 using UnityEngine.UI;
+using BackEnd;
 using Random = UnityEngine.Random;
 
 public enum GameState
@@ -20,10 +21,11 @@ public class GameManager : MonoBehaviour
     private static GameManager _instance;
     private GameObject player;
     private SpriteRenderer playerRenderer;
+    public BackEndNickname backendnickname;
 
     private int activelevel = 0; // 레벨설정
     
-    private string myname; // 닉네임설정
+    private string myname = "test1"; // 닉네임설정
     private int maxHp = 0; // 최대체력 설정
     private int maxMp = 0; // 최대마나 설정
     private int maxExp = 0; // 레벨업에 필요한 경험치 설정
@@ -43,15 +45,13 @@ public class GameManager : MonoBehaviour
     private int MinAP = 0;
     
     private int AP = 0;
-    private int NormalWarriorsHP = 0;
-    private int NormalWarriorsAD = 0;
-    private int NormalMagiciansHP = 0;
-    private int NormalMagiciansAD = 0;
+    
 
     private bool menu = true;
     private bool firstcheck = true;
     private bool backmenu = false;
     private bool backgame = true;
+    Param param = new Param();
     
     int attackCount = 0;
 
@@ -63,6 +63,7 @@ public class GameManager : MonoBehaviour
     void Start()
     {
         //currentGameState = GameState.menu;// 게임시작시 메뉴로 설정. (차후사용)
+        backendnickname = GetComponent<BackEndNickname>(); 
         
     }
 
@@ -167,7 +168,7 @@ public class GameManager : MonoBehaviour
             if (firstcheck == true) // 게임이 시작되면 밑 같이 설정
             {
                 activelevel = 1; // 레벨 설정
-                myname = "Charater"; // 닉네임 설정
+                myname = "Test1"; // 닉네임 설정
                 maxHp += 50; // 최대 체력 설정.
                 maxMp += 200; // 최대마나
                 maxExp += 300; // 1랩때 최대 경험치 
@@ -177,10 +178,6 @@ public class GameManager : MonoBehaviour
                 INT += 12; // 초기 주문력 설정
                 FIT += 2; // 초기 체력 마나 스텟 설정
                 EXP += 0; // 초기 경험치 세팅
-                NormalWarriorsHP += 30;
-                NormalWarriorsAD += 3;
-                NormalMagiciansHP += 18;
-                NormalMagiciansAD += 5;
                 APPoint = 0;
                 
                 firstcheck = false;
@@ -398,59 +395,7 @@ public class GameManager : MonoBehaviour
 
 
 
-    // 몬스터 설정
-    public int getWarriosMonsterAD()// 전사몬스터 공격력 설정
-    {
-        return NormalWarriorsAD;
-    }
-    public int getWarriosMonsterHP()// 전사몬스터 체력 설정
-    {
-        return NormalWarriorsHP;
-    }
-    
-    public int getMagicianMonsterAD()//마법몬스터 공격력 설정
-    {
-        return NormalMagiciansAD;
-    }
-    public int getMagicianMonsterHP()//마법몬스터 체력설정
-    {
 
-        return NormalMagiciansHP;
-    }
-    public int setWarriosMonsterHP(int HIT)//전사몬스터 피격 후 체력설정
-    {
-        NormalWarriorsHP -= HIT;
-        return NormalWarriorsHP;
-    }
-    public int setMagicianMonsterHP(int HIT)//마법몬스터 체력설정
-    {
-        NormalMagiciansHP -= HIT;
-        return NormalMagiciansHP;
-    }
-    public void setDamage(int Damage, int MonsterHP) //몬스터 피격설정
-    {
-        if (MonsterHP - Damage <= 0 && MonsterHP == NormalMagiciansHP) 
-        {
-            MonsterHP = 0; 
-            setMagicianMonsterHP(MonsterHP);
-            
-        }
-        else if(MonsterHP - Damage <= 0 && MonsterHP == NormalWarriorsHP) 
-        {
-            MonsterHP = 0; 
-            setWarriosMonsterHP(MonsterHP);
-        }
-        else if(MonsterHP - Damage >= 0 && MonsterHP == NormalWarriorsHP) 
-        {
-            MonsterHP = MonsterHP - Damage;
-            setWarriosMonsterHP(MonsterHP);
-        }
-        else if(MonsterHP - Damage >= 0 && MonsterHP ==NormalMagiciansHP)
-        {
-            MonsterHP = MonsterHP - Damage;
-            setMagicianMonsterHP(MonsterHP);
-        }
-    }
 
 
 
