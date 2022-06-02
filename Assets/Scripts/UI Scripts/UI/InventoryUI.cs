@@ -648,8 +648,8 @@ public class InventoryUI : MonoBehaviour
     [System.Diagnostics.Conditional("UNITY_EDITOR")]
     private void EditorLog(object message)
     {
-        if (!_showDebug) return;
-        UnityEngine.Debug.Log($"[InventoryUI] {message}");
+        //if (!_showDebug) return;
+        Debug.Log($"[InventoryUI] {message}");
     }
 
     #endregion

@@ -45,7 +45,7 @@ public class GameManager : MonoBehaviour
     private int MinAP = 0;
     
     private int AP = 0;
-    
+    BackEndGameInfo check;
 
     private bool menu = true;
     private bool firstcheck = true;
@@ -64,7 +64,7 @@ public class GameManager : MonoBehaviour
     {
         //currentGameState = GameState.menu;// 게임시작시 메뉴로 설정. (차후사용)
         backendnickname = GetComponent<BackEndNickname>(); 
-        
+        check = GetComponent<BackEndGameInfo>();
     }
 
     void Update() //test 세팅
