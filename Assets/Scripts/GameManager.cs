@@ -22,9 +22,11 @@ public class GameManager : MonoBehaviour
     private GameObject player;
     private SpriteRenderer playerRenderer;
     public BackEndNickname backendnickname;
+    Animator animator;
 
+
+    //게임 세팅 변수
     private int activelevel = 0; // 레벨설정
-    
     private string myname = "test1"; // 닉네임설정
     private int maxHp = 0; // 최대체력 설정
     private int maxMp = 0; // 최대마나 설정
@@ -43,17 +45,21 @@ public class GameManager : MonoBehaviour
     private int MinAD = 0;
     private int MaxAP = 0;
     private int MinAP = 0;
-    
     private int AP = 0;
-    BackEndGameInfo check;
+    int attackCount = 0;
 
+    
+
+    //게임 상태 변수
     private bool menu = true;
     private bool firstcheck = true;
     private bool backmenu = false;
     private bool backgame = true;
+
+    //DB 변수
     Param param = new Param();
     
-    int attackCount = 0;
+    
 
 
 
@@ -63,8 +69,9 @@ public class GameManager : MonoBehaviour
     void Start()
     {
         //currentGameState = GameState.menu;// 게임시작시 메뉴로 설정. (차후사용)
-        backendnickname = GetComponent<BackEndNickname>(); 
-        check = GetComponent<BackEndGameInfo>();
+        backendnickname = GetComponent<BackEndNickname>();
+        animator = GetComponent<Animator>();
+        
     }
 
     void Update() //test 세팅
@@ -112,10 +119,7 @@ public class GameManager : MonoBehaviour
             }
             
         }
-        if (Input.GetKeyDown(KeyCode.Q))
-        {
-            Energy_slash();
-        }
+        
         
 
     }
@@ -301,6 +305,8 @@ public class GameManager : MonoBehaviour
         
     }
 
+   
+    
 
     //포션사용시 HP,MP 따로 증가하게 설정
     public int usePotionHealHP(int PotionHeal)//사용시 HP 증가
