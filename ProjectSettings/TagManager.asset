@@ -17,8 +17,8 @@ TagManager:
   - Enemy
   - PlayerDamaged
   - bullet
-  - 
-  - 
+  - PlayerDash
+  - thorn
   - 
   - 
   - 
