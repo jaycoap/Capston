@@ -6,6 +6,23 @@ public class playerManager : MonoBehaviour
 {
     private float movementSpeed;
     private float jumpSpeed;
+    private float skill2_movement = 15;
+    //쿨타임 변수
+    private float coolTime1_start;
+    private float coolTime1_current;
+    private float coolTime1_skill = 4;
+    private bool isCoolTime1;
+
+    private float coolTime2_start;
+    private float coolTime2_current;
+    private float coolTime2_skill = 3;
+    private bool isCoolTime2;
+
+    private float coolTime3_start;
+    private float coolTime3_current;
+    private float coolTime3_skill = 10;
+    private bool isCoolTime3;
+
     private bool isDead;
     private bool isGrounded;
     [SerializeField] private Transform pos;
@@ -58,6 +75,10 @@ public class playerManager : MonoBehaviour
         {
             animator.SetBool("isWalk", false);
         }
+
+        checkCool1();
+        checkCool2();
+        checkCool3();
     }
 
     void FixedUpdate()
@@ -104,7 +125,6 @@ public class playerManager : MonoBehaviour
                             animator.SetBool("isAttack", true);
                             animator.SetInteger("attackCount", 1);
                             attackDamage(10);
-                            fire(1);
                         }
                     }
                     else
@@ -155,11 +175,12 @@ public class playerManager : MonoBehaviour
                 //공격끝
 
                 //스킬1
-                if (Input.GetButton("Skill1") && animator.GetBool("isSkill1") == false && animator.GetBool("isAttack") == false)
+                if ((Input.GetButton("Skill1")) && (animator.GetBool("isSkill1") == false) && (animator.GetBool("isAttack") == false) && !isCoolTime1)
                 {
                     animator.SetBool("isSkill1", true);
                     animator.SetBool("isAttack", true);
                     attackDamage(40);
+                    coolTime1_start = Time.time;
                 }
                 if (animator.GetCurrentAnimatorStateInfo(0).IsName("player_skill1") && (animator.GetCurrentAnimatorStateInfo(0).normalizedTime >= 1.0f))
                 {
@@ -168,23 +189,28 @@ public class playerManager : MonoBehaviour
                 }
 
                 //스킬2
-                if (Input.GetButton("Skill2") && animator.GetBool("isSkill2") == false && animator.GetBool("isAttack") == false)
+                if (Input.GetButton("Skill2") && (animator.GetBool("isSkill2") == false) && (animator.GetBool("isAttack") == false) && !isCoolTime2)
                 {
                     animator.SetBool("isSkill2", true);
                     animator.SetBool("isAttack", true);
                     attackDamage(50);
+                    skill2Move();
+                    coolTime2_start = Time.time;
                 }
                 if (animator.GetCurrentAnimatorStateInfo(0).IsName("player_skill2") && (animator.GetCurrentAnimatorStateInfo(0).normalizedTime >= 1.0f))
                 {
                     animator.SetBool("isAttack", false);
                     animator.SetBool("isSkill2", false);
+                    rigidBody.velocity = Vector2.zero;
+                    gameObject.layer = 7;
                 }
 
                 //스킬3
-                if (Input.GetButton("Skill3") && animator.GetBool("isSkill3") == false && animator.GetBool("isAttack") == false)
+                if (Input.GetButton("Skill3") && (animator.GetBool("isSkill3") == false) && (animator.GetBool("isAttack") == false) && !isCoolTime3)
                 {
                     animator.SetBool("isSkill3", true);
                     animator.SetBool("isAttack", true);
+                    coolTime3_start = Time.time;
                 }
                 if (animator.GetCurrentAnimatorStateInfo(0).IsName("player_skill3") && (animator.GetCurrentAnimatorStateInfo(0).normalizedTime >= 1.0f))
                 {
@@ -270,10 +296,7 @@ public class playerManager : MonoBehaviour
                 animator.SetInteger("attackCount", next);
 
                 attackDamage(damage);
-                if (animator.GetBool("isSkill3") == true)
-                {
-                    fire(next);
-                }
+
             }
         }
         //애니메이션이 끝났을 경우 attackCount 초기화 
@@ -307,10 +330,18 @@ public class playerManager : MonoBehaviour
     //Enemy 태그를 가진 오브젝트와 충돌시 onDamaged
     void OnCollisionEnter2D(Collision2D other)
     {
-        if (other.gameObject.tag == "Enemy")
+        if(gameObject.layer == 7)
         {
-            onDamaged(other.transform.position.x,10);
+            if (other.gameObject.tag == "Enemy" && other.gameObject.layer == 8)
+            {
+                onDamaged(other.transform.position.x, 10);
+            }
         }
+        if(gameObject.layer == 11)
+        {
+            other.gameObject.GetComponent<enemyManager>().enemyDamaged(30);
+            rigidBody.velocity = Vector2.zero;
+        }       
 
     }
     //몬스터와 반대방향으로 튀어오르고 레이어 변경 - 일정시간 후 OffDamaged 함수 호출 !추후 데미지 추가 
@@ -351,6 +382,52 @@ public class playerManager : MonoBehaviour
                 break;
         }
         
+    }
+    //스킬2 이동
+    void skill2Move()
+    {
+        int dirc = spriteRenderer.flipX == true ? -1 : 1;
+        rigidBody.AddForce(new Vector2(dirc * skill2_movement, 0), ForceMode2D.Impulse);
+        gameObject.layer = 11;
+    }
+    //쿨타임
+    void checkCool1()
+    {
+        coolTime1_current = Time.time - coolTime1_start;
+        if (coolTime1_current < coolTime1_skill)
+        {
+            isCoolTime1 = true;
+        }
+        else
+        {
+            isCoolTime1 = false;
+        }
+    }
+
+    void checkCool2()
+    {
+        coolTime2_current = Time.time - coolTime2_start;
+        if (coolTime2_current < coolTime2_skill)
+        {
+            isCoolTime2 = true;
+        }
+        else
+        {
+            isCoolTime2 = false;
+        }
+    }
+
+    void checkCool3()
+    {
+        coolTime3_current = Time.time - coolTime3_start;
+        if (coolTime3_current < coolTime3_skill)
+        {
+            isCoolTime3 = true;
+        }
+        else
+        {
+            isCoolTime3 = false;
+        }
     }
     //기즈모
     private void OnDrawGizmos()
