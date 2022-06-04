@@ -78,7 +78,6 @@ public class enemyManager : MonoBehaviour
                 {
                     if (Physics2D.OverlapBox(new Vector2(transform.position.x, transform.position.y), bossDiveRange, 0, LayerMask.GetMask("Player")))
                     {
-                        Debug.Log("플레이어 감지");
                         Collider2D player = Physics2D.OverlapBox(new Vector2(transform.position.x, transform.position.y), bossDiveRange, 0, LayerMask.GetMask("Player"));
                         
                         int dirc = transform.position.x - player.transform.position.x > 0 ? -1 : 1;
