@@ -2,11 +2,13 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using BackEnd;
+using UnityEngine.UI;
 
 public class BackEndManager : MonoBehaviour // 싱글톤으로 만들고 파괴되지 않는 게임오브젝트로 만든후 초기화 코드, 에러관리 함수
 {
     private static BackEndManager instance = null;
     public static BackEndManager MyInstance { get => instance; set => instance = value; }
+    [SerializeField] private Text join1;
     void Awake()
     {   
         if(instance == null)
@@ -54,12 +56,14 @@ public class BackEndManager : MonoBehaviour // 싱글톤으로 만들고 파괴되지 않는 �
         {
             case 401:
                 Debug.Log("ID or Password Error");
+                join1.text = "ID or Password Error";
                 break;
             case 403:
                 Debug.Log(backendReturn.GetErrorCode());
                 break;
             case 404:
                 Debug.Log("game not found");
+                join1.text = "game not found";
                 break;
             case 408:
                 // 타임아웃 오류(서버에서 응답이 늦거나, 네트워크 등이 끊겨 있는 경우)
@@ -69,10 +73,12 @@ public class BackEndManager : MonoBehaviour // 싱글톤으로 만들고 파괴되지 않는 �
 
             case 409:
                 Debug.Log("Duplicated customId, 중복된 customId 입니다");
+                join1.text = "Duplicated customId, 중복된 customId 입니다";
                 break;
 
             case 410:
                 Debug.Log("bad refreshToken, 잘못된 refreshToken 입니다");
+                join1.text = "bad refreshToken, 잘못된 refreshToken 입니다";
                 break;
 
             case 429:
