@@ -1,22 +1,31 @@
 fileFormatVersion: 2
-guid: e68f3619e65a5634796289ce950e3719
+guid: 0731484ec16acd340a6cb3435265682a
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -4184626272510423297
-    second: slimeBoss_idle_0
+      213: 4756055587904197394
+    second: warnning_0
   - first:
-      213: -9206257895508003018
-    second: slimeBoss_idle_1
+      213: -7956541856935333483
+    second: warnning_1
   - first:
-      213: 4905265005806343952
-    second: slimeBoss_idle_2
+      213: -2766986755320396230
+    second: warnning_2
   - first:
-      213: -7480124290988553168
-    second: slimeBoss_idle_3
+      213: -7162296628576387192
+    second: warnning_3
   - first:
-      213: -4276998357311013115
-    second: slimeBoss_idle_4
+      213: -1289162676001965734
+    second: warnning_4
+  - first:
+      213: 879574986512178754
+    second: warnning_5
+  - first:
+      213: 5738793501542257700
+    second: warnning_6
+  - first:
+      213: 4362840624780953576
+    second: warnning_7
   externalObjects: {}
   serializedVersion: 11
   mipmaps:
@@ -106,106 +115,169 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: slimeBoss_idle_0
+      name: warnning_0
       rect:
         serializedVersion: 2
         x: 0
-        y: 96
-        width: 160
-        height: 96
-      alignment: 9
-      pivot: {x: 0.5, y: 0.1261109}
+        y: 100
+        width: 65
+        height: 50
+      alignment: 0
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: ffecf3583983de5c0800000000000000
-      internalID: -4184626272510423297
+      spriteID: 2139a09cb57e00240800000000000000
+      internalID: 4756055587904197394
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: slimeBoss_idle_1
+      name: warnning_1
       rect:
         serializedVersion: 2
-        x: 160
-        y: 96
-        width: 160
-        height: 96
-      alignment: 9
-      pivot: {x: 0.5105569, y: 0.1261109}
+        x: 65
+        y: 100
+        width: 65
+        height: 50
+      alignment: 0
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 6373c9b883dcc3080800000000000000
-      internalID: -9206257895508003018
+      spriteID: 591b7d0365fa49190800000000000000
+      internalID: -7956541856935333483
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: slimeBoss_idle_2
+      name: warnning_2
       rect:
         serializedVersion: 2
-        x: 320
-        y: 96
-        width: 160
-        height: 96
-      alignment: 9
-      pivot: {x: 0.5105569, y: 0.1261109}
+        x: 130
+        y: 100
+        width: 65
+        height: 50
+      alignment: 0
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 017dd389880031440800000000000000
-      internalID: 4905265005806343952
+      spriteID: a36cae6c430b999d0800000000000000
+      internalID: -2766986755320396230
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: slimeBoss_idle_3
+      name: warnning_3
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 50
+        width: 65
+        height: 50
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 88ff9bde9296a9c90800000000000000
+      internalID: -7162296628576387192
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: warnning_4
+      rect:
+        serializedVersion: 2
+        x: 65
+        y: 50
+        width: 65
+        height: 50
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a59f53f5069fb1ee0800000000000000
+      internalID: -1289162676001965734
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: warnning_5
+      rect:
+        serializedVersion: 2
+        x: 130
+        y: 50
+        width: 65
+        height: 50
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 24e90604ac0e43c00800000000000000
+      internalID: 879574986512178754
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: warnning_6
       rect:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 160
-        height: 96
-      alignment: 9
-      pivot: {x: 0.5105569, y: 0.1261109}
+        width: 65
+        height: 50
+      alignment: 0
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 03c4bd7b692413890800000000000000
-      internalID: -7480124290988553168
+      spriteID: 4241fb2c84a44af40800000000000000
+      internalID: 5738793501542257700
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: slimeBoss_idle_4
+      name: warnning_7
       rect:
         serializedVersion: 2
-        x: 160
+        x: 65
         y: 0
-        width: 160
-        height: 96
-      alignment: 9
-      pivot: {x: 0.5105569, y: 0.1261109}
+        width: 65
+        height: 50
+      alignment: 0
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 50f3c8f87ac05a4c0800000000000000
-      internalID: -4276998357311013115
+      spriteID: 8e746b3de6ceb8c30800000000000000
+      internalID: 4362840624780953576
       vertices: []
       indices: 
       edges: []

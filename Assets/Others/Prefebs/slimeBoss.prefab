@@ -1,5 +1,35 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &4791511
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4791512}
+  m_Layer: 8
+  m_Name: BrithPos
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4791512
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4791511}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -2, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1600463871425195582}
+  m_RootOrder: 4
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &116891413
 GameObject:
   m_ObjectHideFlags: 0
@@ -29,6 +59,36 @@ Transform:
   m_Children: []
   m_Father: {fileID: 1600463871425195582}
   m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &481262239
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 481262240}
+  m_Layer: 8
+  m_Name: BackShotPos
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &481262240
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 481262239}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0.863, y: 1.377, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1600463871425195582}
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &554926465
 GameObject:
@@ -353,8 +413,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1202518672036276839}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -10.726278, y: -0.78099996, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalPosition: {x: -1.745, y: 0.3, z: 0}
+  m_LocalScale: {x: 1.5, y: 1.6, z: 1}
   m_Children: []
   m_Father: {fileID: 1600463871425195582}
   m_RootOrder: 0
@@ -394,6 +454,8 @@ Transform:
   - {fileID: 1202518672036276832}
   - {fileID: 116891414}
   - {fileID: 554926466}
+  - {fileID: 481262240}
+  - {fileID: 4791512}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -437,7 +499,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: -4184626272510423297, guid: e68f3619e65a5634796289ce950e3719, type: 3}
+  m_Sprite: {fileID: 1981074799352789824, guid: 5a1edc7f9713b07448c887e9b4553dcf, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -485,7 +547,7 @@ BoxCollider2D:
   m_Offset: {x: 0.2, y: 0.5}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.5105569, y: 0.1261109}
+    pivot: {x: 0.5, y: 0.1261109}
     oldSize: {x: 6.6666665, y: 4}
     newSize: {x: 1, y: 1}
     adaptiveTilingThreshold: 0.5
@@ -507,13 +569,33 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 53355aca3521ce24e8b0255563c94c00, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  hudDamageText: {fileID: 3040949605863473835, guid: d2bde22206f16a44ebcc635f08423623, type: 3}
-  hudPos: {fileID: 1600463871425195582}
-  enemySlider: {fileID: 1508466556}
   enemyHp: 1000
   enemyAI: slimeBoss
-  pos: {fileID: 116891414}
-  warning: {fileID: 5678865381889518342, guid: 43303c9ae0848c34c9c32111457f830b, type: 3}
+  pos: {fileID: 1202518672036276832}
+  AttackRange: {x: 3, y: 1.6}
+  playerDetectRange: {x: 20, y: 20}
+  enemyUI:
+    hudDamageText: {fileID: 3040949605863473835, guid: d2bde22206f16a44ebcc635f08423623, type: 3}
+    hudPos: {fileID: 1600463871425195582}
+    enemySlider: {fileID: 1508466556}
+  enemyStat:
+    movementSpeed: 0.04
+    patternTime: 3
+  slimeBossStat:
+    diveCool: 30
+    backShotCool: 25
+    birthCool: 20
+    thornAmount: 1
+    bossDiveRange: {x: 30, y: 30}
+    attackDamage: 30
+    warning: {fileID: 5678865381889518342, guid: 43303c9ae0848c34c9c32111457f830b, type: 3}
+    spikeBall: {fileID: 4156887817372671998, guid: efcdb54c2b4382043826fa422e437c90, type: 3}
+    poisonBall: {fileID: 6817137390068419651, guid: 6bf76947586a28441a6c7aac6896db59, type: 3}
+    slime: {fileID: 5290438719731959125, guid: 3a4ae3f43b37a2e4da637253d13c20b3, type: 3}
+    backShotPos: {fileID: 481262240}
+    birthPos: {fileID: 4791512}
+  slimeStat:
+    isBackShot: 0
 --- !u!95 &3963894815034830289
 Animator:
   serializedVersion: 3

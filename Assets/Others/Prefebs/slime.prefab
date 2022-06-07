@@ -314,7 +314,7 @@ GameObject:
   - component: {fileID: 337492028}
   - component: {fileID: 1987731306}
   m_Layer: 8
-  m_Name: dummy
+  m_Name: slime
   m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -446,12 +446,31 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 53355aca3521ce24e8b0255563c94c00, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  hudDamageText: {fileID: 3040949605863473835, guid: d2bde22206f16a44ebcc635f08423623, type: 3}
-  hudPos: {fileID: 3435441374833855152}
-  enemySlider: {fileID: 5105733493409765319}
   enemyHp: 100
   enemyAI: slime
   pos: {fileID: 1717740826452577950}
+  AttackRange: {x: 0.5632785, y: 0.7097316}
+  playerDetectRange: {x: 20, y: 20}
+  enemyUI:
+    hudDamageText: {fileID: 3040949605863473835, guid: d2bde22206f16a44ebcc635f08423623, type: 3}
+    hudPos: {fileID: 3435441374833855152}
+    enemySlider: {fileID: 5105733493409765319}
+  enemyStat:
+    movementSpeed: 0
+    patternTime: 2
+  slimeBossStat:
+    diveCool: 0
+    backShotCool: 0
+    thornAmount: 0
+    bossDiveRange: {x: 0, y: 0}
+    attackDamage: 0
+    warning: {fileID: 0}
+    spikeBall: {fileID: 0}
+    poisonBall: {fileID: 0}
+    slime: {fileID: 0}
+    backShotPos: {fileID: 0}
+  slimeStat:
+    isBackShot: 0
 --- !u!95 &1987731306
 Animator:
   serializedVersion: 3
@@ -495,7 +514,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5348171156264774849}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.5632785, y: 0, z: 0}
+  m_LocalPosition: {x: -0.8449178, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 3435441374833855152}

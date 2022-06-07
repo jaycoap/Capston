@@ -1,22 +1,31 @@
 fileFormatVersion: 2
-guid: e68f3619e65a5634796289ce950e3719
+guid: 36982eb9499b05547932c283c09f9dca
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -4184626272510423297
-    second: slimeBoss_idle_0
+      213: -3168398187900126469
+    second: slimeBoss_poisionFloor_0
   - first:
-      213: -9206257895508003018
-    second: slimeBoss_idle_1
+      213: 1846045163498317749
+    second: slimeBoss_poisionFloor_1
   - first:
-      213: 4905265005806343952
-    second: slimeBoss_idle_2
+      213: -6704115576778676327
+    second: slimeBoss_poisionFloor_2
   - first:
-      213: -7480124290988553168
-    second: slimeBoss_idle_3
+      213: -5150735569166300349
+    second: slimeBoss_poisionFloor_3
   - first:
-      213: -4276998357311013115
-    second: slimeBoss_idle_4
+      213: -6606796113806747312
+    second: slimeBoss_poisionFloor_4
+  - first:
+      213: 1062474405298351457
+    second: slimeBoss_poisionFloor_5
+  - first:
+      213: 3732789815082430657
+    second: slimeBoss_poisionFloor_6
+  - first:
+      213: 8218876032658736139
+    second: slimeBoss_poisionFloor_7
   externalObjects: {}
   serializedVersion: 11
   mipmaps:
@@ -106,106 +115,169 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: slimeBoss_idle_0
+      name: slimeBoss_poisionFloor_0
       rect:
         serializedVersion: 2
         x: 0
-        y: 96
-        width: 160
-        height: 96
-      alignment: 9
-      pivot: {x: 0.5, y: 0.1261109}
+        y: 28
+        width: 55
+        height: 14
+      alignment: 0
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: ffecf3583983de5c0800000000000000
-      internalID: -4184626272510423297
+      spriteID: bfab83f82a69704d0800000000000000
+      internalID: -3168398187900126469
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: slimeBoss_idle_1
+      name: slimeBoss_poisionFloor_1
       rect:
         serializedVersion: 2
-        x: 160
-        y: 96
-        width: 160
-        height: 96
-      alignment: 9
-      pivot: {x: 0.5105569, y: 0.1261109}
+        x: 55
+        y: 28
+        width: 55
+        height: 14
+      alignment: 0
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 6373c9b883dcc3080800000000000000
-      internalID: -9206257895508003018
+      spriteID: 5b725a1ab487e9910800000000000000
+      internalID: 1846045163498317749
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: slimeBoss_idle_2
+      name: slimeBoss_poisionFloor_2
       rect:
         serializedVersion: 2
-        x: 320
-        y: 96
-        width: 160
-        height: 96
-      alignment: 9
-      pivot: {x: 0.5105569, y: 0.1261109}
+        x: 110
+        y: 28
+        width: 55
+        height: 14
+      alignment: 0
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 017dd389880031440800000000000000
-      internalID: 4905265005806343952
+      spriteID: 997a1f0276236f2a0800000000000000
+      internalID: -6704115576778676327
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: slimeBoss_idle_3
+      name: slimeBoss_poisionFloor_3
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 14
+        width: 55
+        height: 14
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 34b8fd32a49e488b0800000000000000
+      internalID: -5150735569166300349
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: slimeBoss_poisionFloor_4
+      rect:
+        serializedVersion: 2
+        x: 55
+        y: 14
+        width: 55
+        height: 14
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0591e1550f1ff44a0800000000000000
+      internalID: -6606796113806747312
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: slimeBoss_poisionFloor_5
+      rect:
+        serializedVersion: 2
+        x: 110
+        y: 14
+        width: 55
+        height: 14
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 16da0c6a7daaebe00800000000000000
+      internalID: 1062474405298351457
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: slimeBoss_poisionFloor_6
       rect:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 160
-        height: 96
-      alignment: 9
-      pivot: {x: 0.5105569, y: 0.1261109}
+        width: 55
+        height: 14
+      alignment: 0
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 03c4bd7b692413890800000000000000
-      internalID: -7480124290988553168
+      spriteID: 1c03f254f888dc330800000000000000
+      internalID: 3732789815082430657
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: slimeBoss_idle_4
+      name: slimeBoss_poisionFloor_7
       rect:
         serializedVersion: 2
-        x: 160
+        x: 55
         y: 0
-        width: 160
-        height: 96
-      alignment: 9
-      pivot: {x: 0.5105569, y: 0.1261109}
+        width: 55
+        height: 14
+      alignment: 0
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 50f3c8f87ac05a4c0800000000000000
-      internalID: -4276998357311013115
+      spriteID: b04889bc4305f0270800000000000000
+      internalID: 8218876032658736139
       vertices: []
       indices: 
       edges: []
