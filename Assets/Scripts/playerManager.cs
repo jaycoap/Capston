@@ -33,6 +33,9 @@ public class playerManager : MonoBehaviour
     [SerializeField] private GameObject Bullet1;
     [SerializeField] private GameObject Bullet2;
     [SerializeField] private GameObject Bullet3;
+    [SerializeField] private GameObject AttackBox;
+    [SerializeField] private GameObject Qbox;
+
     public static bool flipx;
     GameManager GM;
     void Start()
@@ -62,11 +65,13 @@ public class playerManager : MonoBehaviour
         //방향전환시 공격범위 변경
         if (spriteRenderer.flipX == true)
         {
-            pos.position = new Vector2(transform.position.x - 0.9166667f, pos.position.y);
+            AttackBox.transform.position = new Vector2(transform.position.x - 1.3f, pos.position.y);
+            Qbox.transform.position = new Vector2(transform.position.x - 1.55f, pos.position.y);
         }
         else
         {
-            pos.position = new Vector2(transform.position.x + 0.9166667f, pos.position.y);
+            AttackBox.transform.position = new Vector2(transform.position.x + 1.3f, pos.position.y);
+            Qbox.transform.position = new Vector2(transform.position.x + 1.55f, pos.position.y);
         }
         //이동시 걷는 애니메이션 출력
         if (Mathf.Abs(Input.GetAxisRaw("Horizontal")) == 1 && !animator.GetBool("isAttack") && isGrounded)
@@ -127,7 +132,7 @@ public class playerManager : MonoBehaviour
                             animator.SetBool("isAttack", true);
                             animator.SetInteger("attackCount", 1);
                             //1타뎀
-                            attackDamage(GameManager.Instance.Return1AD());
+                            attackDamage(GameManager.Instance.Return1AD(), AttackBox);
                         }
                     }
                     else
@@ -137,7 +142,7 @@ public class playerManager : MonoBehaviour
                             animator.SetBool("isAttack", true);
                             animator.SetInteger("attackCount", 1);
                             //1타뎀
-                            attackDamage(GameManager.Instance.Return1AD());
+                            attackDamage(GameManager.Instance.Return1AD(),AttackBox);
                             
                         }
                     }
@@ -190,7 +195,7 @@ public class playerManager : MonoBehaviour
                     animator.SetBool("isSkill1", true);
                     animator.SetBool("isAttack", true);
                     //Q스킬뎀
-                    attackDamage(GameManager.Instance.ReturnSlash());
+                    attackDamage(GameManager.Instance.ReturnSlash(),Qbox);
                     coolTime1_start = Time.time;
                 }
                 if (animator.GetCurrentAnimatorStateInfo(0).IsName("player_skill1") && (animator.GetCurrentAnimatorStateInfo(0).normalizedTime >= 1.0f))
@@ -205,7 +210,7 @@ public class playerManager : MonoBehaviour
                     animator.SetBool("isSkill2", true);
                     animator.SetBool("isAttack", true);
                     //W스킬뎀
-                    attackDamage(GameManager.Instance.ReturnRush());
+                    attackDamage(GameManager.Instance.ReturnRush(),AttackBox);
                     skill2Move();
                     coolTime2_start = Time.time;
                 }
@@ -308,7 +313,7 @@ public class playerManager : MonoBehaviour
                 animator.SetBool("isAttack", true);
                 animator.SetInteger("attackCount", next);
 
-                attackDamage(damage);
+                attackDamage(damage, AttackBox);
 
             }
         }
@@ -320,10 +325,10 @@ public class playerManager : MonoBehaviour
         }
     }
     //enemy 데미지 받게하는 함수 !추후 스킬 범위도 개별적용할 예정
-    void attackDamage(int damage)
+    void attackDamage(int damage, GameObject Range)
     {
         //hitEnemy = OverlapBox 안에 있는 Enemy 레이어의 모든 오브젝트
-        Collider2D[] hitEnemy = Physics2D.OverlapBoxAll(pos.position, attackRange, 0, LayerMask.GetMask("Enemy"));
+        Collider2D[] hitEnemy = Physics2D.OverlapBoxAll(Range.transform.position, Range.transform.localScale, 0, LayerMask.GetMask("Enemy"));
         //hitEnemy 안에 있는 모든 오브젝트에게 enemyDamaged 실시
         foreach (Collider2D collider in hitEnemy)
         {
@@ -451,7 +456,8 @@ public class playerManager : MonoBehaviour
     private void OnDrawGizmos()
     {
         Gizmos.color = Color.red;
-        Gizmos.DrawWireCube(pos.position, attackRange);
+        Gizmos.DrawWireCube(AttackBox.transform.position, new Vector2(AttackBox.transform.localScale.x, AttackBox.transform.localScale.y));
+        Gizmos.DrawWireCube(Qbox.transform.position, new Vector2(Qbox.transform.localScale.x, Qbox.transform.localScale.y));
     }
 
 
