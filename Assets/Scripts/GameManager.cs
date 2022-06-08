@@ -23,6 +23,7 @@ public class GameManager : MonoBehaviour
     private SpriteRenderer playerRenderer;
     public BackEndNickname backendnickname;
     Animator animator;
+    spawnManager spawnmanager;
 
     //게임 세팅 변수
     private int activelevel = 0; // 레벨설정
@@ -63,18 +64,13 @@ public class GameManager : MonoBehaviour
     Param param = new Param();
     
     
-
-
-
-
-
     
     void Start()
     {
         //currentGameState = GameState.menu;// 게임시작시 메뉴로 설정. (차후사용)
         backendnickname = GetComponent<BackEndNickname>();
         animator = GetComponent<Animator>();
-        
+        spawnmanager = GetComponent<spawnManager>();
     }
 
     void Update() //test 세팅
@@ -133,6 +129,14 @@ public class GameManager : MonoBehaviour
     {
         currentGameState = GameState.inGame;
         SetGameState();
+
+        spawnmanager.SponEnemy(0, 3, new Vector2(50, -5));
+        spawnmanager.SponEnemy(0, 3, new Vector2(55, -5));
+        spawnmanager.SponEnemy(0, 3, new Vector2(60, -5));
+        spawnmanager.SponEnemy(1, 3, new Vector2(40, 0));
+
+        Debug.Log("asdfasdfasfd");
+
         return;
     }
     public void GameOver()//게임 끝날시
@@ -172,12 +176,11 @@ public class GameManager : MonoBehaviour
     {
         
         
-        if (currentGameState == GameState.inGame) // 게임 시작했을때
-        {
-            if (firstcheck == true) // 게임이 시작되면 밑 같이 설정
-            {
+        
+         if (firstcheck == true) // 게임이 시작되면 밑 같이 설정
+         {
                 activelevel = 1; // 레벨 설정
-                myname = "Test1"; // 닉네임 설정
+                myname = backendnickname.nickNameInput.text; // 닉네임 설정
                 maxHp += 50; // 최대 체력 설정.
                 maxMp += 200; // 최대마나
                 maxExp += 300; // 1랩때 최대 경험치 
@@ -190,19 +193,20 @@ public class GameManager : MonoBehaviour
                 APPoint = 0;
                 
                 firstcheck = false;
-            }
-            else if(firstcheck == false) // 아니면 return
-            {
+         }
+         else if(firstcheck == false) // 아니면 return
+         {
                 return ;
-            }
+         }
 
 
-        }
-        else if (currentGameState == GameState.gameover) // 게임 끝날시
+        
+        if (currentGameState == GameState.gameover) // 게임 끝날시
         {
 
         }
     }
+
 
     public int getLevel() // 레벨 불러오기
     {
