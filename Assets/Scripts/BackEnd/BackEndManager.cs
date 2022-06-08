@@ -60,6 +60,7 @@ public class BackEndManager : MonoBehaviour // ½Ì±ÛÅæÀ¸·Î ¸¸µé°í ÆÄ±«µÇÁö ¾Ê´Â °
                 break;
             case 403:
                 Debug.Log(backendReturn.GetErrorCode());
+                join1.text = backendReturn.GetErrorCode();
                 break;
             case 404:
                 Debug.Log("game not found");
@@ -69,6 +70,7 @@ public class BackEndManager : MonoBehaviour // ½Ì±ÛÅæÀ¸·Î ¸¸µé°í ÆÄ±«µÇÁö ¾Ê´Â °
                 // Å¸ÀÓ¾Æ¿ô ¿À·ù(¼­¹ö¿¡¼­ ÀÀ´äÀÌ ´Ê°Å³ª, ³×Æ®¿öÅ© µîÀÌ ²÷°Ü ÀÖ´Â °æ¿ì)
                 // ¿äÃ» ¿À·ù
                 Debug.Log(backendReturn.GetMessage());
+                join1.text = backendReturn.GetMessage();
                 break;
 
             case 409:
@@ -85,17 +87,21 @@ public class BackEndManager : MonoBehaviour // ½Ì±ÛÅæÀ¸·Î ¸¸µé°í ÆÄ±«µÇÁö ¾Ê´Â °
                 // µ¥ÀÌÅÍº£ÀÌ½º ÇÒ´ç·®À» ÃÊ°úÇÑ °æ¿ì
                 // µ¥ÀÌÅÍº£ÀÌ½º ÇÒ´ç·® ¾÷µ¥ÀÌÆ® ÁßÀÎ °æ¿ì
                 Debug.Log(backendReturn.GetMessage());
+                join1.text = backendReturn.GetMessage();
                 break;
 
             case 503:
                 // ¼­¹ö°¡ Á¤»óÀûÀ¸·Î ÀÛµ¿ÇÏÁö ¾Ê´Â °æ¿ì
                 Debug.Log(backendReturn.GetMessage());
+                join1.text = backendReturn.GetMessage();
                 break;
 
             case 504:
                 // Å¸ÀÓ¾Æ¿ô ¿À·ù(¼­¹ö¿¡¼­ ÀÀ´äÀÌ ´Ê°Å³ª, ³×Æ®¿öÅ© µîÀÌ ²÷°Ü ÀÖ´Â °æ¿ì)
                 Debug.Log(backendReturn.GetMessage());
+                join1.text = backendReturn.GetMessage();
                 break;
+
         }
     }
     
