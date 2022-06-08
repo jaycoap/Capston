@@ -22,7 +22,6 @@ public class GameManager : MonoBehaviour
     private GameObject player;
     private SpriteRenderer playerRenderer;
     public BackEndNickname backendnickname;
-    public playerManager playerManager;
     Animator animator;
     spawnManager spawnmanager;
 
@@ -60,7 +59,6 @@ public class GameManager : MonoBehaviour
     public bool firstcheck = true;
     private bool backmenu = false;
     private bool backgame = true;
-    public bool LakeofMP = true;
 
     //DB 변수
     Param param = new Param();
@@ -131,11 +129,13 @@ public class GameManager : MonoBehaviour
     {
         currentGameState = GameState.inGame;
         SetGameState();
+
         spawnmanager.SponEnemy(0, 3, new Vector2(50, -5));
         spawnmanager.SponEnemy(0, 3, new Vector2(55, -5));
         spawnmanager.SponEnemy(0, 3, new Vector2(60, -5));
-        spawnmanager.SponEnemy(1, 3, new Vector2(70, 0));
-        
+        spawnmanager.SponEnemy(1, 3, new Vector2(40, 0));
+
+        Debug.Log("asdfasdfasfd");
 
         return;
     }
@@ -281,27 +281,22 @@ public class GameManager : MonoBehaviour
         return AD3;
     }
 
-    
+   
 
     public void Energy_slash() //Q스킬
     {
         
-        if (MP >= 10)
+        if (MP >= 10 && Input.GetKeyDown(KeyCode.Q))
         {
-            if (Input.GetKeyDown(KeyCode.Q) && playerManager.isCoolTime1 == false)
-            {
-                MP = MP - 10;
-                MinAP = (INT * FIT) / 2 * Random.Range(1, 2);
-                MaxAP = (INT * FIT) / 2 * Random.Range(1, 3);
-                SlashAP = Random.Range(MinAP, MaxAP);
-                LakeofMP = true;
-                
-            }
+            MP = MP - 10;
+            MinAP = (INT * FIT) / 2 * Random.Range(1, 2);
+            MaxAP = (INT * FIT) / 2 * Random.Range(1, 3);
+            SlashAP = Random.Range(MinAP, MaxAP);
+            Debug.Log(MinAP);
         }
         else
         {
-            MP = MP - 0;
-            LakeofMP =false;
+            return;
         }
 
     }
@@ -309,29 +304,21 @@ public class GameManager : MonoBehaviour
     {
         return SlashAP;
     }
-
     public void Energy_rush()//W스킬
     {
 
-        if (MP >= 15 )
+        if (MP >= 15 && Input.GetKeyDown(KeyCode.W))
         {
-            if(Input.GetKeyDown(KeyCode.W) && playerManager.isCoolTime2 == false)
-            {
-                MP = MP - 15;
-                MinAP = (INT * FIT) / 2 * Random.Range(1, 3);
-                MaxAP = (INT * FIT) / 2 * Random.Range(1, 4);
-                RushAP = Random.Range(MinAP, MaxAP);
-                LakeofMP = true;
-            }
-            
+            MP = MP - 15;
+            MinAP = (INT * FIT) / 2 * Random.Range(1, 3);
+            MaxAP = (INT * FIT) / 2 * Random.Range(1, 4);
+            RushAP = Random.Range(MinAP, MaxAP);
         }
         else
         {
-            MP = MP - 0;
-            LakeofMP = false;
+            return;
         }
     }
-    
     public int ReturnRush()
     {
         return RushAP;
@@ -339,33 +326,23 @@ public class GameManager : MonoBehaviour
     public void Energy_sword()//E스킬
     {
 
-        if (MP >= 20 )
+        if (MP >= 20 &&Input.GetKeyDown(KeyCode.E))
         {
-            if (Input.GetKeyDown(KeyCode.E) && playerManager.isCoolTime3 == false)
-            { 
-                MP = MP - 20;
-                MinAP = (INT * FIT) / 2 * Random.Range(1, 3);
-                MaxAP = (INT * FIT) / 2 * Random.Range(1, 5);
-                SwordAP = Random.Range(MinAP, MaxAP);
-                LakeofMP = true;
-            }
+            MP = MP - 20;
+            MinAP = (INT * FIT) / 2 * Random.Range(1, 3);
+            MaxAP = (INT * FIT) / 2 * Random.Range(1, 5);
+            SwordAP = Random.Range(MinAP, MaxAP);
         }
         else
         {
-            MP = MP - 0;
-            LakeofMP = false;
+            return;
         }
     }
-    
     public int ReturnSword()
     {
         return SwordAP;
     }
 
-    public bool ReturnLake()
-    {
-        return LakeofMP;
-    }
 
 
     //포션사용시 HP,MP 따로 증가하게 설정

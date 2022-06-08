@@ -585,7 +585,7 @@ MonoBehaviour:
     diveCool: 30
     backShotCool: 25
     birthCool: 20
-    thornAmount: 1
+    thornAmount: 12
     bossDiveRange: {x: 30, y: 30}
     attackDamage: 30
     warning: {fileID: 5678865381889518342, guid: 43303c9ae0848c34c9c32111457f830b, type: 3}
