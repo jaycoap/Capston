@@ -2372,9 +2372,8 @@ MonoBehaviour:
   isPause: 0
   currentGameState: 0
   backendnickname: {fileID: 0}
-  playerManager: {fileID: 0}
+  idText: {fileID: 378507059}
   firstcheck: 1
-  LakeofMP: 1
 --- !u!4 &312096313
 Transform:
   m_ObjectHideFlags: 0
@@ -16691,10 +16690,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 2079265387, guid: d3866f61265bc784ea8f4b7a9ad7d1a9, type: 3}
-      propertyPath: m_Mass
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 1686731076479105878, guid: d3866f61265bc784ea8f4b7a9ad7d1a9, type: 3}
       propertyPath: m_Name
       value: Player
