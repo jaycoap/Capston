@@ -2372,6 +2372,9 @@ MonoBehaviour:
   isPause: 0
   currentGameState: 0
   backendnickname: {fileID: 0}
+  playerManager: {fileID: 0}
+  firstcheck: 1
+  LakeofMP: 1
 --- !u!4 &312096313
 Transform:
   m_ObjectHideFlags: 0
@@ -2398,7 +2401,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cd11ba8863373ce4a8017175347eb140, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  dummy: {fileID: 5290438719731959125, guid: 3a4ae3f43b37a2e4da637253d13c20b3, type: 3}
+  enemy: []
 --- !u!1 &315713819
 GameObject:
   m_ObjectHideFlags: 0
@@ -13038,6 +13041,7 @@ GameObject:
   - component: {fileID: 1670697566}
   - component: {fileID: 1670697567}
   - component: {fileID: 1670697565}
+  - component: {fileID: 1670697568}
   m_Layer: 0
   m_Name: Backend Manager
   m_TagString: Untagged
@@ -13090,6 +13094,19 @@ MonoBehaviour:
   fd: {fileID: 2080765899}
   joinPopup: {fileID: 1101304407}
   joinFail: {fileID: 1516091206}
+--- !u!114 &1670697568
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1670697564}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 68c1022156b7b4f4ca59dc15ef252a12, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  nickNameInput: {fileID: 1634794568}
 --- !u!1 &1681848630
 GameObject:
   m_ObjectHideFlags: 0

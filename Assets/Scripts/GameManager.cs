@@ -176,12 +176,11 @@ public class GameManager : MonoBehaviour
     {
         
         
-        if (currentGameState == GameState.inGame) // 게임 시작했을때
-        {
-            if (firstcheck == true) // 게임이 시작되면 밑 같이 설정
-            {
+        
+         if (firstcheck == true) // 게임이 시작되면 밑 같이 설정
+         {
                 activelevel = 1; // 레벨 설정
-                myname = "Test1"; // 닉네임 설정
+                myname = backendnickname.nickNameInput.text; // 닉네임 설정
                 maxHp += 50; // 최대 체력 설정.
                 maxMp += 200; // 최대마나
                 maxExp += 300; // 1랩때 최대 경험치 
@@ -194,19 +193,20 @@ public class GameManager : MonoBehaviour
                 APPoint = 0;
                 
                 firstcheck = false;
-            }
-            else if(firstcheck == false) // 아니면 return
-            {
+         }
+         else if(firstcheck == false) // 아니면 return
+         {
                 return ;
-            }
+         }
 
 
-        }
-        else if (currentGameState == GameState.gameover) // 게임 끝날시
+        
+        if (currentGameState == GameState.gameover) // 게임 끝날시
         {
 
         }
     }
+
 
     public int getLevel() // 레벨 불러오기
     {
