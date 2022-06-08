@@ -94,7 +94,7 @@ public class GameManager : MonoBehaviour
         }
         if (Input.GetKeyDown(KeyCode.U))
         {
-            LoadGameState();
+            //LoadGameState();
            
         }
         if (Input.GetKeyDown(KeyCode.Z))
@@ -144,7 +144,7 @@ public class GameManager : MonoBehaviour
     public void LoadIngame()
     {
         currentGameState = GameState.inGame;
-        LoadGameState();
+        //LoadGameState();
 
         spawnmanager.SponEnemy(0, 3, new Vector2(50, -5));
         spawnmanager.SponEnemy(0, 3, new Vector2(55, -5));
@@ -215,18 +215,18 @@ public class GameManager : MonoBehaviour
 
         if (firstcheck == true) // 게임이 시작되면 밑 같이 설정
         {
-            activelevel = gameinfo.DBLevel; // 레벨 설정
+            activelevel = gameinfo.q; // 레벨 설정
             myname = idText.text; // 닉네임 설정
-            maxHp += gameinfo.DBMaxHP; // 최대 체력 설정.
-            maxMp += gameinfo.DBMaxMP; // 최대마나
-            maxExp += gameinfo.DBMaxEXP; // 1랩때 최대 경험치 
-            HP += gameinfo.DBHP; // 초기 체력 설정
-            MP += gameinfo.DBMP; // 초기 마나 설정
-            STR += gameinfo.DBSTR; // 초기 공격력 설정
-            INT += gameinfo.DBINT; // 초기 주문력 설정
-            FIT += gameinfo.DBFIT; // 초기 체력 마나 스텟 설정
-            EXP += gameinfo.DBEXP; // 초기 경험치 세팅
-            APPoint = gameinfo.DBAPPoint;
+            maxHp = gameinfo.n; // 최대 체력 설정.
+            maxMp = gameinfo.l; // 최대마나
+            maxExp = gameinfo.e; // 1랩때 최대 경험치 
+            HP = gameinfo.r; // 초기 체력 설정
+            MP = gameinfo.t; // 초기 마나 설정
+            STR = gameinfo.u; // 초기 공격력 설정
+            INT = gameinfo.v; // 초기 주문력 설정
+            FIT = gameinfo.x; // 초기 체력 마나 스텟 설정
+            EXP = gameinfo.w; // 초기 경험치 세팅
+            APPoint = gameinfo.y;
 
             firstcheck = false;
         }

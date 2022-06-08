@@ -384,6 +384,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 312096312}
+        m_TargetAssemblyTypeName: GameManager, Assembly-CSharp
+        m_MethodName: LoadIngame
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &8419399
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -508,6 +520,30 @@ MonoBehaviour:
       - m_Target: {fileID: 1670697567}
         m_TargetAssemblyTypeName: CustomSignUp, Assembly-CSharp
         m_MethodName: OnclickSignUp
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 312096312}
+        m_TargetAssemblyTypeName: GameManager, Assembly-CSharp
+        m_MethodName: SetGameState
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 1670697569}
+        m_TargetAssemblyTypeName: BackEndGameInfo, Assembly-CSharp
+        m_MethodName: OnClickInsertData
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -9173,7 +9209,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1343912401
 RectTransform:
   m_ObjectHideFlags: 0
@@ -12295,7 +12331,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1640084935
 RectTransform:
   m_ObjectHideFlags: 0
@@ -12516,17 +12552,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9da4ca06ba6eb4e4b95abe5015c3a05d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  charLevel: 0
-  charEXP: 0
-  charMaxEXP: 0
-  charHP: 0
-  charMaxHP: 0
-  charMP: 0
-  charMaxMp: 0
-  charSTR: 0
-  charINT: 0
-  charFIT: 0
-  charAPPoint: 0
+  q: 0
+  w: 0
+  e: 0
+  r: 0
+  t: 0
+  u: 0
+  v: 0
+  x: 0
+  y: 0
+  z: 0
+  n: 0
+  l: 0
 --- !u!1 &1681848630
 GameObject:
   m_ObjectHideFlags: 0

@@ -8,28 +8,27 @@ public class BackEndGameInfo : MonoBehaviour
 {
     string firstKey = string.Empty;
     GameManager gameManager;
-    public int DBLevel;
-    public int DBEXP;
-    public int DBMaxEXP;
-    public int DBHP;
-    public int DBMaxHP;
-    public int DBMP;
-    public int DBMaxMP;
-    public int DBSTR;
-    public int DBINT;
-    public int DBFIT;
-    public int DBAPPoint;
+    public int q;
+    public int w;
+    public int e;
+    public int r;
+    public int t;
+    public int u;   
+    public int v;
+    public int x;
+    public int y;
+    public int z;
+    public int n;
+    public int l;
+
+    
     void update()
     {
-        if (Input.GetKeyDown(KeyCode.U))
-        {
-            OnClickGameInfoUpdate();
-        }
+        
     }
     public void OnClickInsertData()
     {
         int charLevel = GameManager.Instance.getLevel();
-        string charname = GameManager.Instance.getName();
         int charEXP = GameManager.Instance.getExp();
         int charMaxEXP = GameManager.Instance.getmaxExp();
         int charHP = GameManager.Instance.getHp();
@@ -41,10 +40,22 @@ public class BackEndGameInfo : MonoBehaviour
         int charFIT = GameManager.Instance.getFIT();
         int charAPPoint = GameManager.Instance.getAPPoint();
 
+        q = charLevel;
+        w = charEXP;
+        e = charMaxEXP;
+        r = charHP;
+        t = charMP;
+        u = charSTR;
+        v = charINT;
+        x = charFIT;
+        y = charAPPoint;
+        z = charMP;
+        n = charMaxHP;
+        l = charMaxMp;
+
         Param param = new Param();
 
         param.Add("Level", charLevel);
-        param.Add("Name", charname);
         param.Add("EXP", charEXP);
         param.Add("MaxEXP", charMaxEXP);
         param.Add("HP", charHP);
@@ -105,7 +116,7 @@ public class BackEndGameInfo : MonoBehaviour
 
     public void OnClickGetPrivateContents()
     {
-        BackendReturnObject BRO = Backend.GameData.Get("character", new Where(), 10);
+        BackendReturnObject BRO = Backend.GameInfo.GetPrivateContents("character");
 
         if (BRO.IsSuccess())
         {
@@ -155,7 +166,9 @@ public class BackEndGameInfo : MonoBehaviour
     {
         //var nickname = data["name"][0];
         var character = data["character"];
-        DBLevel = (int)data["Level"][0];
+
+       
+
         if (data.Keys.Contains("Level"))
         {
             Debug.Log(data["Level"][0]);
@@ -183,7 +196,7 @@ public class BackEndGameInfo : MonoBehaviour
                 else if (BRO.GetMessage().Contains("table not found"))
                 {
                     Debug.Log("존재하지 않는 테이블");
-                    Debug.Log(DBLevel);
+                    
                 }
                 break;
 
@@ -211,7 +224,7 @@ public class BackEndGameInfo : MonoBehaviour
 
         }
     }
-    public void OnClickGameInfoUpdate()
+    /*public void OnClickGameInfoUpdate()
     {
 
         int charLevel = GameManager.Instance.getLevel();
@@ -286,6 +299,6 @@ public class BackEndGameInfo : MonoBehaviour
             }
         }
 
-    }
+    }*/
 
 }
