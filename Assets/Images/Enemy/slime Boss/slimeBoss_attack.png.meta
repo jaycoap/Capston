@@ -1,22 +1,37 @@
 fileFormatVersion: 2
-guid: e68f3619e65a5634796289ce950e3719
+guid: f046a200a5e1b274e95c98ea0c498a11
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -4184626272510423297
-    second: slimeBoss_idle_0
+      213: -3488474618173832113
+    second: slimeBoss_attack_0
   - first:
-      213: -9206257895508003018
-    second: slimeBoss_idle_1
+      213: 6683435171954412040
+    second: slimeBoss_attack_1
   - first:
-      213: 4905265005806343952
-    second: slimeBoss_idle_2
+      213: -3625717245779444427
+    second: slimeBoss_attack_2
   - first:
-      213: -7480124290988553168
-    second: slimeBoss_idle_3
+      213: -6331922394303725729
+    second: slimeBoss_attack_3
   - first:
-      213: -4276998357311013115
-    second: slimeBoss_idle_4
+      213: 4900705378750830038
+    second: slimeBoss_attack_4
+  - first:
+      213: 7974612778489231726
+    second: slimeBoss_attack_5
+  - first:
+      213: 1844718551524896254
+    second: slimeBoss_attack_6
+  - first:
+      213: -5066509054180945954
+    second: slimeBoss_attack_7
+  - first:
+      213: 8898283994748353844
+    second: slimeBoss_attack_8
+  - first:
+      213: -9040882757079175745
+    second: slimeBoss_attack_9
   externalObjects: {}
   serializedVersion: 11
   mipmaps:
@@ -106,7 +121,91 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: slimeBoss_idle_0
+      name: slimeBoss_attack_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 191
+        width: 160
+        height: 96
+      alignment: 9
+      pivot: {x: 0.5, y: 0.1261109}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f4448c741d2769fc0800000000000000
+      internalID: -3488474618173832113
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: slimeBoss_attack_1
+      rect:
+        serializedVersion: 2
+        x: 160
+        y: 192
+        width: 160
+        height: 96
+      alignment: 9
+      pivot: {x: 0.5, y: 0.1261109}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 80ac1b7e0e450cc50800000000000000
+      internalID: 6683435171954412040
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: slimeBoss_attack_2
+      rect:
+        serializedVersion: 2
+        x: 320
+        y: 192
+        width: 160
+        height: 96
+      alignment: 9
+      pivot: {x: 0.5, y: 0.1261109}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 53dfe45ff5ddeadc0800000000000000
+      internalID: -3625717245779444427
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: slimeBoss_attack_3
+      rect:
+        serializedVersion: 2
+        x: 480
+        y: 192
+        width: 160
+        height: 96
+      alignment: 9
+      pivot: {x: 0.5, y: 0.1261109}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f5f7f2e512e7028a0800000000000000
+      internalID: -6331922394303725729
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: slimeBoss_attack_4
       rect:
         serializedVersion: 2
         x: 0
@@ -120,14 +219,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: ffecf3583983de5c0800000000000000
-      internalID: -4184626272510423297
+      spriteID: 6d51a41b39dc20440800000000000000
+      internalID: 4900705378750830038
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: slimeBoss_idle_1
+      name: slimeBoss_attack_5
       rect:
         serializedVersion: 2
         x: 160
@@ -135,20 +234,20 @@ TextureImporter:
         width: 160
         height: 96
       alignment: 9
-      pivot: {x: 0.5105569, y: 0.1261109}
+      pivot: {x: 0.5, y: 0.1261109}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 6373c9b883dcc3080800000000000000
-      internalID: -9206257895508003018
+      spriteID: e69342b12148bae60800000000000000
+      internalID: 7974612778489231726
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: slimeBoss_idle_2
+      name: slimeBoss_attack_6
       rect:
         serializedVersion: 2
         x: 320
@@ -156,20 +255,41 @@ TextureImporter:
         width: 160
         height: 96
       alignment: 9
-      pivot: {x: 0.5105569, y: 0.1261109}
+      pivot: {x: 0.5, y: 0.1261109}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 017dd389880031440800000000000000
-      internalID: 4905265005806343952
+      spriteID: efde636bfb1c99910800000000000000
+      internalID: 1844718551524896254
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: slimeBoss_idle_3
+      name: slimeBoss_attack_7
+      rect:
+        serializedVersion: 2
+        x: 480
+        y: 96
+        width: 160
+        height: 96
+      alignment: 9
+      pivot: {x: 0.5, y: 0.1261109}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: edf8e36dbd420b9b0800000000000000
+      internalID: -5066509054180945954
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: slimeBoss_attack_8
       rect:
         serializedVersion: 2
         x: 0
@@ -177,20 +297,20 @@ TextureImporter:
         width: 160
         height: 96
       alignment: 9
-      pivot: {x: 0.5105569, y: 0.1261109}
+      pivot: {x: 0.5, y: 0.1261109}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 03c4bd7b692413890800000000000000
-      internalID: -7480124290988553168
+      spriteID: 43df489e52e0d7b70800000000000000
+      internalID: 8898283994748353844
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: slimeBoss_idle_4
+      name: slimeBoss_attack_9
       rect:
         serializedVersion: 2
         x: 160
@@ -198,14 +318,14 @@ TextureImporter:
         width: 160
         height: 96
       alignment: 9
-      pivot: {x: 0.5105569, y: 0.1261109}
+      pivot: {x: 0.5, y: 0.1261109}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 50f3c8f87ac05a4c0800000000000000
-      internalID: -4276998357311013115
+      spriteID: fbd67587805588280800000000000000
+      internalID: -9040882757079175745
       vertices: []
       indices: 
       edges: []
