@@ -582,16 +582,17 @@ MonoBehaviour:
     movementSpeed: 0.04
     patternTime: 3
   slimeBossStat:
-    diveCool: 30
-    backShotCool: 25
-    birthCool: 20
-    thornAmount: 12
+    diveCool: 25
+    backShotCool: 15
+    birthCool: 10
+    thornAmount: 15
     thornSpeed: 0.35
     bossDiveRange: {x: 30, y: 30}
     attackDamage: 30
     warning: {fileID: 5678865381889518342, guid: 43303c9ae0848c34c9c32111457f830b, type: 3}
-    spikeBall: {fileID: 4156887817372671998, guid: efcdb54c2b4382043826fa422e437c90, type: 3}
-    poisonBall: {fileID: 6817137390068419651, guid: 6bf76947586a28441a6c7aac6896db59, type: 3}
+    ballShot:
+    - {fileID: 6817137390068419651, guid: 6bf76947586a28441a6c7aac6896db59, type: 3}
+    - {fileID: 4156887817372671998, guid: efcdb54c2b4382043826fa422e437c90, type: 3}
     slime: {fileID: 5290438719731959125, guid: 3a4ae3f43b37a2e4da637253d13c20b3, type: 3}
     backShotPos: {fileID: 481262240}
     birthPos: {fileID: 4791512}

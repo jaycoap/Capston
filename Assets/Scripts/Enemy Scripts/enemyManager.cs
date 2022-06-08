@@ -37,8 +37,7 @@ public class SlimeBossStat
     public Vector2 bossDiveRange;
     public int attackDamage;
     public GameObject warning;
-    public GameObject spikeBall;
-    public GameObject poisonBall;
+    public GameObject[] ballShot;
     public GameObject slime;
     public Transform backShotPos;
     public Transform birthPos;
@@ -467,7 +466,7 @@ public class enemyManager : MonoBehaviour
         if(!(player == null))
         {
             Instantiate(slimeBossStat.warning
-             , new Vector2(player.transform.position.x, -6f), Quaternion.identity);
+             , new Vector2(player.transform.position.x + Random.Range(-2f, 2f), -6f), Quaternion.identity);
         }
     }
 
@@ -520,20 +519,10 @@ public class enemyManager : MonoBehaviour
     
     private void backShot()
     {
-        int kind = Random.Range(1, 3);
-
-        switch (kind)
+        for(int i = 0; i < 4; i++)
         {
-            case 1:
-                Instantiate(slimeBossStat.spikeBall, new Vector2(slimeBossStat.backShotPos.position.x
+            Instantiate(slimeBossStat.ballShot[Random.Range(0, 2)], new Vector2(slimeBossStat.backShotPos.position.x
                     , slimeBossStat.backShotPos.position.y), Quaternion.identity);
-                break;
-
-            case 2:
-                Instantiate(slimeBossStat.poisonBall, new Vector2(slimeBossStat.backShotPos.position.x
-                    , slimeBossStat.backShotPos.position.y), Quaternion.identity);
-                break;
- 
         }
     }
 

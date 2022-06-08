@@ -104,8 +104,9 @@ MonoBehaviour:
   poison: {fileID: 0}
   poisonFloorTime: 0
   poisonFloorDestroyTime: 0
-  minAngle: 30
-  maxAngle: 60
+  poisonDamage: 0
+  minAngle: 20
+  maxAngle: 80
 --- !u!50 &4824466258459145691
 Rigidbody2D:
   serializedVersion: 4
