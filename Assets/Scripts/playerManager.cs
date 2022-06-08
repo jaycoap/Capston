@@ -11,17 +11,17 @@ public class playerManager : MonoBehaviour
     private float coolTime1_start;
     private float coolTime1_current;
     private float coolTime1_skill = 4;
-    private bool isCoolTime1;
+    public bool isCoolTime1 = false;
 
     private float coolTime2_start;
     private float coolTime2_current;
     private float coolTime2_skill = 3;
-    private bool isCoolTime2;
+    public bool isCoolTime2 = false;
 
     private float coolTime3_start;
     private float coolTime3_current;
     private float coolTime3_skill = 10;
-    private bool isCoolTime3;
+    public bool isCoolTime3 = false;
 
     private bool isDead;
     private bool isGrounded;
@@ -187,13 +187,22 @@ public class playerManager : MonoBehaviour
                 //스킬1
                 if ((Input.GetButton("Skill1")) && (animator.GetBool("isSkill1") == false) && (animator.GetBool("isAttack") == false) && !isCoolTime1)
                 {
-                    animator.SetBool("isSkill1", true);
-                    animator.SetBool("isAttack", true);
-                    //Q스킬뎀
-                    attackDamage(GameManager.Instance.ReturnSlash());
-                    coolTime1_start = Time.time;
+                    if (GameManager.Instance.ReturnLake() == true)
+                    {
+                        animator.SetBool("isSkill1", true);
+                        animator.SetBool("isAttack", true);
+                        //Q스킬뎀
+                        attackDamage(GameManager.Instance.ReturnSlash());
+                        coolTime1_start = Time.time;
+                    }
+                    else if(GameManager.Instance.ReturnLake() == false)
+                    {
+                        return;
+
+                    }
                 }
-                if (animator.GetCurrentAnimatorStateInfo(0).IsName("player_skill1") && (animator.GetCurrentAnimatorStateInfo(0).normalizedTime >= 1.0f))
+                
+                if (animator.GetCurrentAnimatorStateInfo(0).IsName("player_skill1") && (animator.GetCurrentAnimatorStateInfo(0).normalizedTime >= 1.0f)) //애니메이션 끝났을떄
                 {
                     animator.SetBool("isAttack", false);
                     animator.SetBool("isSkill1", false);
@@ -202,12 +211,19 @@ public class playerManager : MonoBehaviour
                 //스킬2
                 if (Input.GetButton("Skill2") && (animator.GetBool("isSkill2") == false) && (animator.GetBool("isAttack") == false) && !isCoolTime2)
                 {
-                    animator.SetBool("isSkill2", true);
-                    animator.SetBool("isAttack", true);
-                    //W스킬뎀
-                    attackDamage(GameManager.Instance.ReturnRush());
-                    skill2Move();
-                    coolTime2_start = Time.time;
+                    if (GameManager.Instance.ReturnLake() == true)
+                    {
+                        animator.SetBool("isSkill2", true);
+                        animator.SetBool("isAttack", true);
+                        //W스킬뎀
+                        attackDamage(GameManager.Instance.ReturnRush());
+                        skill2Move();
+                        coolTime2_start = Time.time;
+                    }
+                    else
+                    {
+                        return;
+                    }
                 }
                 if (animator.GetCurrentAnimatorStateInfo(0).IsName("player_skill2") && (animator.GetCurrentAnimatorStateInfo(0).normalizedTime >= 1.0f))
                 {
@@ -220,10 +236,17 @@ public class playerManager : MonoBehaviour
                 //스킬3
                 if (Input.GetButton("Skill3") && (animator.GetBool("isSkill3") == false) && (animator.GetBool("isAttack") == false) && !isCoolTime3)
                 {
-                    //E데미지는 bulletManager 참고 
-                    animator.SetBool("isSkill3", true);
-                    animator.SetBool("isAttack", true);
-                    coolTime3_start = Time.time;
+                    if (GameManager.Instance.ReturnLake() == true)
+                    {
+                        //E데미지는 bulletManager 참고 
+                        animator.SetBool("isSkill3", true);
+                        animator.SetBool("isAttack", true);
+                        coolTime3_start = Time.time;
+                    }
+                    else
+                    {
+                        return;
+                    }
                 }
                 if (animator.GetCurrentAnimatorStateInfo(0).IsName("player_skill3") && (animator.GetCurrentAnimatorStateInfo(0).normalizedTime >= 1.0f))
                 {
@@ -298,6 +321,18 @@ public class playerManager : MonoBehaviour
 
     }
 
+    public bool ReturnCoolTime1()
+    {
+        return isCoolTime1;
+    }
+    public bool ReturnCoolTime2()
+    {
+        return isCoolTime2;
+    }
+    public bool ReturnCoolTime3()
+    {
+        return isCoolTime3;
+    }
     //연속 공격 관련 함수
     void attacker(string animation, int next, int damage)
     {
