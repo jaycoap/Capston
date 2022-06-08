@@ -1,16 +1,15 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using BackEnd;
 using UnityEngine.UI;
 
 public class MainMenu : MonoBehaviour
 {
-    [SerializeField] private GameObject MainMenuPanel;
+    
 
     public void NewGame()
     {
-        GameManager.Instance.Ingame();
-        Invoke("HideMainMenu", 1.2f); ;
     }
 
     public void LoadGame()
@@ -26,10 +25,5 @@ public class MainMenu : MonoBehaviour
         Application.Quit(); // ºôµå½Ã Á¾·á
 #endif
     }
-    public void HideMainMenu()
-    {
-        MainMenuPanel.SetActive(false);
-    }
-
 
 }
