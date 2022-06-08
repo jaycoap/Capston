@@ -94,7 +94,7 @@ public class GameManager : MonoBehaviour
         }
         if (Input.GetKeyDown(KeyCode.U))
         {
-            Ingame();
+            LoadGameState();
            
         }
         if (Input.GetKeyDown(KeyCode.Z))
@@ -135,11 +135,21 @@ public class GameManager : MonoBehaviour
         spawnmanager.SponEnemy(0, 3, new Vector2(50, -5));
         spawnmanager.SponEnemy(0, 3, new Vector2(55, -5));
         spawnmanager.SponEnemy(0, 3, new Vector2(60, -5));
-        spawnmanager.SponEnemy(1, 3, new Vector2(40, 0));
+        spawnmanager.SponEnemy(1, 3, new Vector2(80, 0));
 
-        Debug.Log("asdfasdfasfd");
+        
 
         return;
+    }
+    public void LoadIngame()
+    {
+        currentGameState = GameState.inGame;
+        LoadGameState();
+
+        spawnmanager.SponEnemy(0, 3, new Vector2(50, -5));
+        spawnmanager.SponEnemy(0, 3, new Vector2(55, -5));
+        spawnmanager.SponEnemy(0, 3, new Vector2(60, -5));
+        spawnmanager.SponEnemy(1, 3, new Vector2(80, 0));
     }
     public void GameOver()//게임 끝날시
     {
@@ -205,18 +215,18 @@ public class GameManager : MonoBehaviour
 
         if (firstcheck == true) // 게임이 시작되면 밑 같이 설정
         {
-            activelevel = gameinfo.charLevel; // 레벨 설정
+            activelevel = gameinfo.DBLevel; // 레벨 설정
             myname = idText.text; // 닉네임 설정
-            maxHp += gameinfo.charMaxHP; // 최대 체력 설정.
-            maxMp += gameinfo.charMaxMp; // 최대마나
-            maxExp += 300; // 1랩때 최대 경험치 
-            HP += maxHp; // 초기 체력 설정
-            MP += maxMp; // 초기 마나 설정
-            STR += 5; // 초기 공격력 설정
-            INT += 12; // 초기 주문력 설정
-            FIT += 2; // 초기 체력 마나 스텟 설정
-            EXP += 0; // 초기 경험치 세팅
-            APPoint = 0;
+            maxHp += gameinfo.DBMaxHP; // 최대 체력 설정.
+            maxMp += gameinfo.DBMaxMP; // 최대마나
+            maxExp += gameinfo.DBMaxEXP; // 1랩때 최대 경험치 
+            HP += gameinfo.DBHP; // 초기 체력 설정
+            MP += gameinfo.DBMP; // 초기 마나 설정
+            STR += gameinfo.DBSTR; // 초기 공격력 설정
+            INT += gameinfo.DBINT; // 초기 주문력 설정
+            FIT += gameinfo.DBFIT; // 초기 체력 마나 스텟 설정
+            EXP += gameinfo.DBEXP; // 초기 경험치 세팅
+            APPoint = gameinfo.DBAPPoint;
 
             firstcheck = false;
         }

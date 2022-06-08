@@ -8,20 +8,23 @@ public class BackEndGameInfo : MonoBehaviour
 {
     string firstKey = string.Empty;
     GameManager gameManager;
-    public int charLevel = GameManager.Instance.getLevel();
-    public int charEXP = GameManager.Instance.getExp();
-    public int charMaxEXP = GameManager.Instance.getmaxExp();
-    public int charHP = GameManager.Instance.getHp();
-    public int charMaxHP = GameManager.Instance.getmaxHp();
-    public int charMP = GameManager.Instance.getMp();
-    public int charMaxMp = GameManager.Instance.getmaxMp();
-    public int charSTR = GameManager.Instance.getSTR();
-    public int charINT = GameManager.Instance.getINT();
-    public int charFIT = GameManager.Instance.getFIT();
-    public int charAPPoint = GameManager.Instance.getAPPoint();
-    void Start()
+    public int DBLevel;
+    public int DBEXP;
+    public int DBMaxEXP;
+    public int DBHP;
+    public int DBMaxHP;
+    public int DBMP;
+    public int DBMaxMP;
+    public int DBSTR;
+    public int DBINT;
+    public int DBFIT;
+    public int DBAPPoint;
+    void update()
     {
-
+        if (Input.GetKeyDown(KeyCode.U))
+        {
+            OnClickGameInfoUpdate();
+        }
     }
     public void OnClickInsertData()
     {
@@ -37,7 +40,7 @@ public class BackEndGameInfo : MonoBehaviour
         int charINT = GameManager.Instance.getINT();
         int charFIT = GameManager.Instance.getFIT();
         int charAPPoint = GameManager.Instance.getAPPoint();
-        
+
         Param param = new Param();
 
         param.Add("Level", charLevel);
@@ -68,14 +71,10 @@ public class BackEndGameInfo : MonoBehaviour
             { "APPoint", charAPPoint }
         };
 
-        Dictionary<string, string> nickname = new Dictionary<string, string>
-        {
-            {"Nickname",charname }
-        };
-        param.Add("Nickname", charname);
+
         param.Add("character", character);
         BackendReturnObject BRO = Backend.GameData.Insert("character", param);
-        BackendReturnObject BROname = Backend.GameData.Insert("Nickname", param);
+        
 
         if (BRO.IsSuccess())
         {
@@ -103,16 +102,14 @@ public class BackEndGameInfo : MonoBehaviour
             }
         }
     }
-    
+
     public void OnClickGetPrivateContents()
     {
-        BackendReturnObject BRO = Backend.GameData.Get("character", new Where(),10);
-        BackendReturnObject BRONickname = Backend.GameData.Get("Nickname",new Where(),10);
+        BackendReturnObject BRO = Backend.GameData.Get("character", new Where(), 10);
 
         if (BRO.IsSuccess())
         {
             GetGameInfo(BRO.GetReturnValuetoJSON());
-            GetGameInfo(BRONickname.GetReturnValuetoJSON());
         }
         else
         {
@@ -158,8 +155,7 @@ public class BackEndGameInfo : MonoBehaviour
     {
         //var nickname = data["name"][0];
         var character = data["character"];
-        var Nickname = data["Nickname"];
-        Debug.Log(character);
+        DBLevel = (int)data["Level"][0];
         if (data.Keys.Contains("Level"))
         {
             Debug.Log(data["Level"][0]);
@@ -169,7 +165,7 @@ public class BackEndGameInfo : MonoBehaviour
         {
             Debug.Log("Error");
         }
-        
+
     }
     void CheckError(BackendReturnObject BRO)
     {
@@ -187,6 +183,7 @@ public class BackEndGameInfo : MonoBehaviour
                 else if (BRO.GetMessage().Contains("table not found"))
                 {
                     Debug.Log("존재하지 않는 테이블");
+                    Debug.Log(DBLevel);
                 }
                 break;
 
@@ -216,17 +213,20 @@ public class BackEndGameInfo : MonoBehaviour
     }
     public void OnClickGameInfoUpdate()
     {
+
         int charLevel = GameManager.Instance.getLevel();
+        string charname = GameManager.Instance.getName();
         int charEXP = GameManager.Instance.getExp();
         int charMaxEXP = GameManager.Instance.getmaxExp();
         int charHP = GameManager.Instance.getHp();
         int charMaxHP = GameManager.Instance.getmaxHp();
         int charMP = GameManager.Instance.getMp();
-        int charMaxmp = GameManager.Instance.getmaxMp();
+        int charMaxMp = GameManager.Instance.getmaxMp();
         int charSTR = GameManager.Instance.getSTR();
         int charINT = GameManager.Instance.getINT();
         int charFIT = GameManager.Instance.getFIT();
         int charAPPoint = GameManager.Instance.getAPPoint();
+
         Param param = new Param();
         param.Add("Level", charLevel);
         param.Add("EXP", charEXP);
@@ -234,7 +234,7 @@ public class BackEndGameInfo : MonoBehaviour
         param.Add("HP", charHP);
         param.Add("MaxHP", charMaxHP);
         param.Add("MP", charMP);
-        param.Add("MaxMP", charMaxmp);
+        param.Add("MaxMP", charMaxMp);
         param.Add("STR", charSTR);
         param.Add("INT", charINT);
         param.Add("FIT", charFIT);
@@ -248,13 +248,13 @@ public class BackEndGameInfo : MonoBehaviour
             { "HP", charHP },
             { "MaxHP", charMaxHP },
             { "MP", charMP },
-            { "MaxMP", charMaxmp },
+            { "MaxMP", charMaxMp },
             { "STR",charSTR },
             { "INT",charINT },
             { "FIT",charFIT },
             { "APPoint", charAPPoint }
         };
-
+        param.Add("character", character);
         BackendReturnObject BRO = Backend.GameInfo.Update("character", System.DateTime.Now.ToString("yyyy-MM-DD"), param);
         if (BRO.IsSuccess())
         {
