@@ -24,6 +24,7 @@ public class GameManager : MonoBehaviour
     public BackEndNickname backendnickname;
     Animator animator;
     spawnManager spawnmanager;
+    public Text idText;
 
     //게임 세팅 변수
     private int activelevel = 0; // 레벨설정
@@ -76,7 +77,7 @@ public class GameManager : MonoBehaviour
     void Update() //test 세팅
     {
         
-        SetGameState();
+        
         setLevel();
         setPlayerHP(HP);
         
@@ -172,7 +173,7 @@ public class GameManager : MonoBehaviour
         
     }
 
-    void SetGameState()// 게임상태 설정
+    public void SetGameState()// 게임상태 설정
     {
         
         
@@ -201,10 +202,7 @@ public class GameManager : MonoBehaviour
 
 
         
-        if (currentGameState == GameState.gameover) // 게임 끝날시
-        {
-
-        }
+        
     }
 
 

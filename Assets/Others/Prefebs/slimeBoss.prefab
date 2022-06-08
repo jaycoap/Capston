@@ -439,7 +439,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &1600463871425195582
 Transform:
   m_ObjectHideFlags: 0
@@ -448,7 +448,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8466940026092785851}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.5, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1202518672036276832}
@@ -499,7 +499,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 1981074799352789824, guid: 5a1edc7f9713b07448c887e9b4553dcf, type: 3}
+  m_Sprite: {fileID: -4184626272510423297, guid: e68f3619e65a5634796289ce950e3719, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -585,7 +585,8 @@ MonoBehaviour:
     diveCool: 30
     backShotCool: 25
     birthCool: 20
-    thornAmount: 1
+    thornAmount: 12
+    thornSpeed: 0.35
     bossDiveRange: {x: 30, y: 30}
     attackDamage: 30
     warning: {fileID: 5678865381889518342, guid: 43303c9ae0848c34c9c32111457f830b, type: 3}

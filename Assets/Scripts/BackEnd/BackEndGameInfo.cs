@@ -58,8 +58,14 @@ public class BackEndGameInfo : MonoBehaviour
             { "APPoint", charAPPoint }
         };
 
+        Dictionary<string, string> nickname = new Dictionary<string, string>
+        {
+            {"Nickname",charname }
+        };
+        param.Add("Nickname", charname);
         param.Add("character", character);
         BackendReturnObject BRO = Backend.GameData.Insert("character", param);
+        BackendReturnObject BROname = Backend.GameData.Insert("Nickname", param);
 
         if (BRO.IsSuccess())
         {
