@@ -260,7 +260,7 @@ MonoBehaviour:
   smoothTimeX: 0.2
   smoothTimeY: 0.2
   velocity: {x: 0, y: 0}
-  player: {fileID: 0}
+  player: {fileID: 1686731076479105878, guid: d3866f61265bc784ea8f4b7a9ad7d1a9, type: 3}
   minPos: {x: 0, y: 0}
   maxPos: {x: 0, y: 0}
   bound: 0
