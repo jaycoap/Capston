@@ -71,8 +71,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: -1310038287
+  m_SortingLayer: 2
   m_SortingOrder: 0
   m_Sprite: {fileID: -3168398187900126469, guid: 36982eb9499b05547932c283c09f9dca, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -121,9 +121,9 @@ MonoBehaviour:
   spikeBallDestroyTime: 0
   poisonFloor: {fileID: 0}
   poison: {fileID: 8483995010220451866}
-  poisonFloorTime: 1
-  poisonFloorDestroyTime: 5
-  poisonDamage: 3
+  poisonFloorTime: 0.25
+  poisonFloorDestroyTime: 12
+  poisonDamage: 2
   minAngle: 0
   maxAngle: 0
 --- !u!1 &8483995010220451866

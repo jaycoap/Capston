@@ -99,13 +99,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   bulletType: spikeBall
   bulletPower: 10
-  spikeBallDestroyTime: 3
+  spikeBallDestroyTime: 7
   poisonFloor: {fileID: 0}
   poison: {fileID: 0}
   poisonFloorTime: 0
   poisonFloorDestroyTime: 0
-  minAngle: 30
-  maxAngle: 60
+  poisonDamage: 0
+  minAngle: 20
+  maxAngle: 80
 --- !u!50 &9158073028084284641
 Rigidbody2D:
   serializedVersion: 4

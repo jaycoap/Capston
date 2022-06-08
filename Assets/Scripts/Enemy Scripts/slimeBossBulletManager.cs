@@ -12,15 +12,17 @@ public class slimeBossBulletManager : MonoBehaviour
 
     //발사 가속도
     [SerializeField] float bulletPower;
+
     //가시공 파괴시간
     [SerializeField] float spikeBallDestroyTime;
-
     [SerializeField] GameObject poisonFloor;
     [SerializeField] GameObject poison;
+
     //독 장판 poisonFloorTime -> 독데미지 틱 관리 poisonFloorDestroyTime -> 독장판 파괴 시간
     [SerializeField] float poisonFloorTime;
     [SerializeField] float poisonFloorDestroyTime;
     [SerializeField] int poisonDamage;
+
     //발사각도 최소,최대
     [SerializeField] int minAngle;
     [SerializeField] int maxAngle;
@@ -30,7 +32,9 @@ public class slimeBossBulletManager : MonoBehaviour
     {
         rigidBody = GetComponent<Rigidbody2D>();
         slimeBoss = Physics2D.OverlapBox(new Vector2(transform.position.x,transform.position.y), new Vector2(1,1), 0, LayerMask.GetMask("Enemy"));
-        if(!(slimeBoss == null)) isFlip = slimeBoss.GetComponent<SpriteRenderer>().flipX;
+
+        if(!(slimeBoss == null)) 
+            isFlip = slimeBoss.GetComponent<SpriteRenderer>().flipX;
         
         switch (bulletType)
         {
@@ -38,10 +42,12 @@ public class slimeBossBulletManager : MonoBehaviour
                 backShotBullet();
                 Invoke("Destroy", spikeBallDestroyTime);
                 break;
+
             case "poisonBall":
                 backShotBullet();
                 Invoke("Destroy", 5);
                 break;
+
             case "poisonFloor":
                 StartCoroutine("PoisonFloor", poisonFloorTime);
                 Invoke("Destroy", poisonFloorDestroyTime);
@@ -87,7 +93,7 @@ public class slimeBossBulletManager : MonoBehaviour
             case "poisonBall":
                 if (other.gameObject.layer == 6)
                 {
-                    Instantiate(poisonFloor, new Vector2(transform.position.x, transform.position.y), Quaternion.identity);
+                    Instantiate(poisonFloor, new Vector2(transform.position.x, -6f), Quaternion.identity);
                     Destroy(gameObject);
                 }
                 break;
