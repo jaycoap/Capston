@@ -1,25 +1,37 @@
 fileFormatVersion: 2
-guid: 5a1edc7f9713b07448c887e9b4553dcf
+guid: 00c2df4f2c3589d4584286cdf1170cfa
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -3071254578797087959
-    second: slimeBoss_shot_0
+      213: 7655373690443347022
+    second: player_die_0
   - first:
-      213: -1898496939731956308
-    second: slimeBoss_shot_1
+      213: -5734390907000970668
+    second: player_die_1
   - first:
-      213: 1981074799352789824
-    second: slimeBoss_shot_2
+      213: 7742148393393280329
+    second: player_die_2
   - first:
-      213: -4820494158401922255
-    second: slimeBoss_shot_3
+      213: 558616767113724153
+    second: player_die_3
   - first:
-      213: -4110727003926579105
-    second: slimeBoss_shot_4
+      213: 2212775953322428132
+    second: player_die_4
   - first:
-      213: 415085964708354978
-    second: slimeBoss_birth_0
+      213: -8187471560655110634
+    second: player_die_5
+  - first:
+      213: 7942954343436529536
+    second: player_die_6
+  - first:
+      213: -228167492580779429
+    second: player_die_7
+  - first:
+      213: -8156177657805130850
+    second: player_die_8
+  - first:
+      213: -3774600579662601050
+    second: player_die_9
   externalObjects: {}
   serializedVersion: 11
   mipmaps:
@@ -109,127 +121,211 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: slimeBoss_shot_0
+      name: player_die_0
       rect:
         serializedVersion: 2
         x: 0
-        y: 96
-        width: 160
-        height: 96
+        y: 128
+        width: 96
+        height: 64
       alignment: 9
-      pivot: {x: 0.5, y: 0.1261109}
+      pivot: {x: 0.3958333, y: 0.3125}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 923f1089b36b065d0800000000000000
-      internalID: -3071254578797087959
+      spriteID: e443fb1cfc95d3a60800000000000000
+      internalID: 7655373690443347022
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: slimeBoss_shot_1
+      name: player_die_1
       rect:
         serializedVersion: 2
-        x: 160
-        y: 96
-        width: 160
-        height: 96
+        x: 96
+        y: 128
+        width: 96
+        height: 64
       alignment: 9
-      pivot: {x: 0.5, y: 0.1261109}
+      pivot: {x: 0.3958333, y: 0.3125}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: cad4c1c871f27a5e0800000000000000
-      internalID: -1898496939731956308
+      spriteID: 4522af82ad95b60b0800000000000000
+      internalID: -5734390907000970668
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: slimeBoss_shot_2
+      name: player_die_2
       rect:
         serializedVersion: 2
-        x: 320
-        y: 96
-        width: 160
-        height: 96
+        x: 192
+        y: 128
+        width: 96
+        height: 64
       alignment: 9
-      pivot: {x: 0.5, y: 0.1261109}
+      pivot: {x: 0.3958333, y: 0.3125}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 04bb6e8a8013e7b10800000000000000
-      internalID: 1981074799352789824
+      spriteID: 9455192b1f2a17b60800000000000000
+      internalID: 7742148393393280329
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: slimeBoss_shot_3
+      name: player_die_3
+      rect:
+        serializedVersion: 2
+        x: 288
+        y: 128
+        width: 96
+        height: 64
+      alignment: 9
+      pivot: {x: 0.3958333, y: 0.3125}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9f004617dfa90c700800000000000000
+      internalID: 558616767113724153
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: player_die_4
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 64
+        width: 96
+        height: 64
+      alignment: 9
+      pivot: {x: 0.3958333, y: 0.3125}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4e64f49710c55be10800000000000000
+      internalID: 2212775953322428132
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: player_die_5
+      rect:
+        serializedVersion: 2
+        x: 96
+        y: 64
+        width: 96
+        height: 64
+      alignment: 9
+      pivot: {x: 0.3958333, y: 0.3125}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 61ef982aef1406e80800000000000000
+      internalID: -8187471560655110634
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: player_die_6
+      rect:
+        serializedVersion: 2
+        x: 192
+        y: 64
+        width: 96
+        height: 64
+      alignment: 9
+      pivot: {x: 0.3958333, y: 0.3125}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 08f2eab44ea0b3e60800000000000000
+      internalID: 7942954343436529536
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: player_die_7
+      rect:
+        serializedVersion: 2
+        x: 288
+        y: 64
+        width: 96
+        height: 64
+      alignment: 9
+      pivot: {x: 0.3958333, y: 0.3125}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b5a5e67dfd265dcf0800000000000000
+      internalID: -228167492580779429
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: player_die_8
       rect:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 160
-        height: 96
+        width: 96
+        height: 64
       alignment: 9
-      pivot: {x: 0.5, y: 0.1261109}
+      pivot: {x: 0.3958333, y: 0.3125}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 13b9b9e5a1a2a1db0800000000000000
-      internalID: -4820494158401922255
+      spriteID: e933c8d22af6fce80800000000000000
+      internalID: -8156177657805130850
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: slimeBoss_shot_4
+      name: player_die_9
       rect:
         serializedVersion: 2
-        x: 160
+        x: 96
         y: 0
-        width: 160
-        height: 96
+        width: 96
+        height: 64
       alignment: 9
-      pivot: {x: 0.5, y: 0.1261109}
+      pivot: {x: 0.3958333, y: 0.3125}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: f58b95ac193c3f6c0800000000000000
-      internalID: -4110727003926579105
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: slimeBoss_birth_0
-      rect:
-        serializedVersion: 2
-        x: 422
-        y: 47
-        width: 2
-        height: 3
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 2ab11b55c7ea2c500800000000000000
-      internalID: 415085964708354978
+      spriteID: 6a42a3085cced9bc0800000000000000
+      internalID: -3774600579662601050
       vertices: []
       indices: 
       edges: []

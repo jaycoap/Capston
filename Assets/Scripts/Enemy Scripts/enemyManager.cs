@@ -172,7 +172,15 @@ public class enemyManager : MonoBehaviour
     public void enemyDamaged(int damage){
         setEnemyHp(enemyHp - damage);
         if(enemyHp  <= 0){
-            Destroy(gameObject);
+            switch (enemyAI)
+            {
+                case "slime":
+                    animator.SetBool("isDie", true);
+                    break;
+                case "slimeBoss":
+                    animator.SetBool("isDie", true);
+                    break;
+            }
         }
         TakeDamage(damage);
         enemyHpBar();
@@ -427,6 +435,11 @@ public class enemyManager : MonoBehaviour
     private void birth()
     {
         Instantiate(slimeBossStat.slime, new Vector2(slimeBossStat.birthPos.position.x, slimeBossStat.birthPos.position.y), Quaternion.identity);
+    }
+
+    private void destroy()
+    {
+        Destroy(gameObject);
     }
     private void backShot()
     {

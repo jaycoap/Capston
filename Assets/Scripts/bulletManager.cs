@@ -7,6 +7,7 @@ public class bulletManager : MonoBehaviour
     private float rotation = 0;
     SpriteRenderer spriteRenderer;
     Animator animator;
+    GameManager GM;
     void Start()
     {
         animator = GetComponent<Animator>();
@@ -35,7 +36,8 @@ public class bulletManager : MonoBehaviour
     {
         if(collision.gameObject.tag == "Enemy")
         {
-            collision.gameObject.GetComponent<enemyManager>().enemyDamaged(50);
+            //E½ºÅ³µ©
+            collision.gameObject.GetComponent<enemyManager>().enemyDamaged(3);
         }
             
     }

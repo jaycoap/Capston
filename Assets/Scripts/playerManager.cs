@@ -34,12 +34,14 @@ public class playerManager : MonoBehaviour
     [SerializeField] private GameObject Bullet2;
     [SerializeField] private GameObject Bullet3;
     public static bool flipx;
-
+    GameManager GM;
     void Start()
     {
         rigidBody = GetComponent<Rigidbody2D>();
         spriteRenderer = GetComponent<SpriteRenderer>();
         animator = GetComponent<Animator>();
+        GM = GetComponent<GameManager>();
+
         isDead = false;
         isGrounded = false;
         movementSpeed = 0.1f;
@@ -124,7 +126,8 @@ public class playerManager : MonoBehaviour
                         {
                             animator.SetBool("isAttack", true);
                             animator.SetInteger("attackCount", 1);
-                            attackDamage(10);
+                            //1타뎀
+                            attackDamage(1);
                         }
                     }
                     else
@@ -133,7 +136,8 @@ public class playerManager : MonoBehaviour
                         {
                             animator.SetBool("isAttack", true);
                             animator.SetInteger("attackCount", 1);
-                            attackDamage(10);
+                            //1타뎀
+                            attackDamage(1);
                             
                         }
                     }
@@ -143,33 +147,39 @@ public class playerManager : MonoBehaviour
                 {
                     if (animator.GetBool("isSkill3") == true)
                     {
-                        attacker("player_attack1_skill", 2, 11);
+                        //1타뎀 3번째 
+                        attacker("player_attack1_skill", 2, 1);
                     }
                     else
                     {
-                        attacker("player_attack1", 2, 10);
+                        //1타뎀 3번째
+                        attacker("player_attack1", 2, 1);
                     }
                 }
                 else if (animator.GetInteger("attackCount") == 2)
                 {
                     if (animator.GetBool("isSkill3") == true)
                     {
-                        attacker("player_attack2_skill", 3, 22);                  
+                        //2타뎀 3번째
+                        attacker("player_attack2_skill", 3, 2);                  
                     }
                     else
                     {
-                        attacker("player_attack2", 3, 20);
+                        //2타뎀 3번째
+                        attacker("player_attack2", 3, 2);
                     }
                 }
                 else if (animator.GetInteger("attackCount") == 3)
                 {
                     if (animator.GetBool("isSkill3") == true)
                     {
-                        attacker("player_attack3_skill", 1, 33);
+                        //3타뎀 3번째
+                        attacker("player_attack3_skill", 1, 3);
                     }
                     else
                     {
-                        attacker("player_attack3", 1, 30);
+                        //3타뎀 3번째
+                        attacker("player_attack3", 1, 3);
                     }
                 }
                 //공격끝
@@ -179,7 +189,8 @@ public class playerManager : MonoBehaviour
                 {
                     animator.SetBool("isSkill1", true);
                     animator.SetBool("isAttack", true);
-                    attackDamage(40);
+                    //Q스킬뎀
+                    attackDamage(1);
                     coolTime1_start = Time.time;
                 }
                 if (animator.GetCurrentAnimatorStateInfo(0).IsName("player_skill1") && (animator.GetCurrentAnimatorStateInfo(0).normalizedTime >= 1.0f))
@@ -193,7 +204,8 @@ public class playerManager : MonoBehaviour
                 {
                     animator.SetBool("isSkill2", true);
                     animator.SetBool("isAttack", true);
-                    attackDamage(50);
+                    //W스킬뎀
+                    attackDamage(2);
                     skill2Move();
                     coolTime2_start = Time.time;
                 }
@@ -208,6 +220,7 @@ public class playerManager : MonoBehaviour
                 //스킬3
                 if (Input.GetButton("Skill3") && (animator.GetBool("isSkill3") == false) && (animator.GetBool("isAttack") == false) && !isCoolTime3)
                 {
+                    //E데미지는 bulletManager 참고 
                     animator.SetBool("isSkill3", true);
                     animator.SetBool("isAttack", true);
                     coolTime3_start = Time.time;
@@ -428,6 +441,11 @@ public class playerManager : MonoBehaviour
         {
             isCoolTime3 = false;
         }
+    }
+
+    void ting()
+    {
+        Application.Quit();
     }
     //기즈모
     private void OnDrawGizmos()

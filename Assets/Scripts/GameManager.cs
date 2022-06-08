@@ -24,7 +24,6 @@ public class GameManager : MonoBehaviour
     public BackEndNickname backendnickname;
     Animator animator;
 
-
     //게임 세팅 변수
     private int activelevel = 0; // 레벨설정
     private string myname = "test1"; // 닉네임설정
@@ -276,7 +275,7 @@ public class GameManager : MonoBehaviour
             MaxAP = (INT * FIT) / 2 * Random.Range(1, 3);
             AP = Random.Range(MinAP, MaxAP);
         }
-        
+
     }
     public void Energy_rush()//W스킬
     {
@@ -288,8 +287,6 @@ public class GameManager : MonoBehaviour
             MaxAP = (INT * FIT) / 2 * Random.Range(1, 4);
             AP = Random.Range(MinAP, MaxAP);
         }
-        
-
     }
 
     public void Energy_sword()//E스킬
@@ -302,7 +299,6 @@ public class GameManager : MonoBehaviour
             MaxAP = (INT * FIT) / 2 * AD;
             AP = Random.Range(MinAP, MaxAP);
         }
-        
     }
 
    
@@ -389,6 +385,8 @@ public class GameManager : MonoBehaviour
         {
             HP = 0;
             setPlayerHP(HP);
+            player = GameObject.FindWithTag("Player");
+            player.GetComponent<Animator>().SetBool("isDie", true);
             Debug.Log("DIE!");
         }
     }
