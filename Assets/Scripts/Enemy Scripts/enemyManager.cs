@@ -33,6 +33,7 @@ public class SlimeBossStat
     public float backShotCool;
     public float birthCool;
     public int thornAmount;
+    public float thornSpeed = 0.35f;
     public Vector2 bossDiveRange;
     public int attackDamage;
     public GameObject warning;
@@ -417,10 +418,10 @@ public class enemyManager : MonoBehaviour
             
             for(int i = 0 ; i < slimeBossStat.thornAmount; i++)
             {
-                Invoke("slimeBossThorn", i + 0.5f);
+                Invoke("slimeBossThorn", i * slimeBossStat.thornSpeed);
             }
      
-            Invoke("diveOff", slimeBossStat.thornAmount + 1.5f);
+            Invoke("diveOff", slimeBossStat.thornAmount * slimeBossStat.thornSpeed);
             Invoke("ThornCool", slimeBossStat.diveCool);
         }
 

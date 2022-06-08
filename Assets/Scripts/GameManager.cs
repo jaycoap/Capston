@@ -129,10 +129,12 @@ public class GameManager : MonoBehaviour
     {
         currentGameState = GameState.inGame;
         SetGameState();
+
         spawnmanager.SponEnemy(0, 3, new Vector2(50, -5));
         spawnmanager.SponEnemy(0, 3, new Vector2(55, -5));
         spawnmanager.SponEnemy(0, 3, new Vector2(60, -5));
-        spawnmanager.SponEnemy(1, 3, new Vector2(70, 0));
+        spawnmanager.SponEnemy(1, 3, new Vector2(40, 0));
+
         Debug.Log("asdfasdfasfd");
 
         return;
