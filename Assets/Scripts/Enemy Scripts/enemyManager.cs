@@ -467,7 +467,7 @@ public class enemyManager : MonoBehaviour
         if(!(player == null))
         {
             Instantiate(slimeBossStat.warning
-             , new Vector2(player.transform.position.x, divePosition.y), Quaternion.identity);
+             , new Vector2(player.transform.position.x, -6f), Quaternion.identity);
         }
     }
 
