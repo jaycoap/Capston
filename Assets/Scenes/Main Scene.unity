@@ -384,18 +384,6 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 312096312}
-        m_TargetAssemblyTypeName: GameManager, Assembly-CSharp
-        m_MethodName: LoadGameState
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
 --- !u!114 &8419399
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -520,18 +508,6 @@ MonoBehaviour:
       - m_Target: {fileID: 1670697567}
         m_TargetAssemblyTypeName: CustomSignUp, Assembly-CSharp
         m_MethodName: OnclickSignUp
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-      - m_Target: {fileID: 312096312}
-        m_TargetAssemblyTypeName: GameManager, Assembly-CSharp
-        m_MethodName: SetGameState
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -12540,17 +12516,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9da4ca06ba6eb4e4b95abe5015c3a05d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  DBLevel: 0
-  DBEXP: 0
-  DBMaxEXP: 0
-  DBHP: 0
-  DBMaxHP: 0
-  DBMP: 0
-  DBMaxMP: 0
-  DBSTR: 0
-  DBINT: 0
-  DBFIT: 0
-  DBAPPoint: 0
+  charLevel: 0
+  charEXP: 0
+  charMaxEXP: 0
+  charHP: 0
+  charMaxHP: 0
+  charMP: 0
+  charMaxMp: 0
+  charSTR: 0
+  charINT: 0
+  charFIT: 0
+  charAPPoint: 0
 --- !u!1 &1681848630
 GameObject:
   m_ObjectHideFlags: 0
@@ -16192,10 +16168,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 2079265387, guid: d3866f61265bc784ea8f4b7a9ad7d1a9, type: 3}
-      propertyPath: m_Mass
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 1686731076479105878, guid: d3866f61265bc784ea8f4b7a9ad7d1a9, type: 3}
       propertyPath: m_Name
       value: Player
@@ -16244,25 +16216,25 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 5873156550019304599, guid: d3866f61265bc784ea8f4b7a9ad7d1a9, type: 3}
-      propertyPath: m_ApplyToSortingLayers.Array.size
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: 5873156550019304599, guid: d3866f61265bc784ea8f4b7a9ad7d1a9, type: 3}
-      propertyPath: m_ApplyToSortingLayers.Array.data[0]
+    - target: {fileID: 6383038854105650999, guid: d3866f61265bc784ea8f4b7a9ad7d1a9, type: 3}
+      propertyPath: m_LocalPosition.y
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 5873156550019304599, guid: d3866f61265bc784ea8f4b7a9ad7d1a9, type: 3}
-      propertyPath: m_ApplyToSortingLayers.Array.data[1]
-      value: -1310038287
+    - target: {fileID: 8120887435432445732, guid: d3866f61265bc784ea8f4b7a9ad7d1a9, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 2
       objectReference: {fileID: 0}
-    - target: {fileID: 5873156550019304599, guid: d3866f61265bc784ea8f4b7a9ad7d1a9, type: 3}
-      propertyPath: m_ApplyToSortingLayers.Array.data[2]
-      value: 1973842201
+    - target: {fileID: 8120887435432445732, guid: d3866f61265bc784ea8f4b7a9ad7d1a9, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 2
       objectReference: {fileID: 0}
-    - target: {fileID: 6383038854105650999, guid: d3866f61265bc784ea8f4b7a9ad7d1a9, type: 3}
-      propertyPath: m_RootOrder
-      value: 1
+    - target: {fileID: 8120887435432445732, guid: d3866f61265bc784ea8f4b7a9ad7d1a9, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 1.55
+      objectReference: {fileID: 0}
+    - target: {fileID: 8120887435432445732, guid: d3866f61265bc784ea8f4b7a9ad7d1a9, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d3866f61265bc784ea8f4b7a9ad7d1a9, type: 3}
