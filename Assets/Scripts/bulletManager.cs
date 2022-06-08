@@ -37,7 +37,7 @@ public class bulletManager : MonoBehaviour
         if(collision.gameObject.tag == "Enemy")
         {
             //E½ºÅ³µ©
-            collision.gameObject.GetComponent<enemyManager>().enemyDamaged(3);
+            collision.gameObject.GetComponent<enemyManager>().enemyDamaged(GameManager.Instance.ReturnSword());
         }
             
     }

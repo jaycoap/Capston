@@ -39,19 +39,23 @@ public class GameManager : MonoBehaviour
     private int FIT = 0; // 캐릭터 체력 마나 스텟
     private int EXP = 0;  //현재경험치
     private int APPoint = 0;
-    private int AD = 0;
+    private int AD1 = 0;
+    private int AD2 = 0;
+    private int AD3 = 0;
     private int MaxAD = 0;
     private int MinAD = 0;
     private int MaxAP = 0;
     private int MinAP = 0;
-    private int AP = 0;
+    private int RushAP = 0;
+    private int SlashAP = 0;
+    private int SwordAP = 0;
     int attackCount = 0;
 
     
 
     //게임 상태 변수
     private bool menu = true;
-    private bool firstcheck = true;
+    public bool firstcheck = true;
     private bool backmenu = false;
     private bool backgame = true;
 
@@ -83,7 +87,9 @@ public class GameManager : MonoBehaviour
         ADAttackFirst();
         ADAttackSecond();
         ADAttackThird();
-
+        Energy_rush();
+        Energy_slash();
+        Energy_sword();
         if (Input.GetKeyDown(KeyCode.Escape))
         {
             BackToMenu();
@@ -244,65 +250,96 @@ public class GameManager : MonoBehaviour
     {
         MinAD = (STR * FIT) / 2 * Random.Range(1, 2);
         MaxAD = (STR * FIT) / 2 * Random.Range(1, 3);
-        AD = Random.Range(MinAD, MaxAD);
+        AD1 = Random.Range(MinAD, MaxAD);
+    }
+    public int Return1AD()
+    {
+        return AD1;
     }
     public void ADAttackSecond() // 2타
     {
         MinAD = (STR * FIT) / 2 * Random.Range(1, 4);
         MaxAD = (STR * FIT) / 2 * Random.Range(1, 5);
-        AD = Random.Range(MinAD, MaxAD);
+        AD2 = Random.Range(MinAD, MaxAD);
+    }
+    public int Return2AD()
+    {
+        return AD2;
     }
     public void ADAttackThird() // 3타
     {
         MinAD = (STR * FIT) / 2 * Random.Range(1, 5);
         MaxAD = (STR * FIT) / 2 * Random.Range(1, 6);
-        AD = Random.Range(MinAD, MaxAD);
+        AD3 = Random.Range(MinAD, MaxAD);
     }
-    /*public void APAttack() // 주문력
+    public int Return3AD()
     {
-        MinAP = (INT * FIT) / 2 * Random.Range(1, 4);
-        MaxAP = (INT * FIT) / 2 * Random.Range(1, 6);
-        AP = Random.Range(MinAP, MaxAP);
-    }*/
+        return AD3;
+    }
+
+   
 
     public void Energy_slash() //Q스킬
     {
         
-        if (MP > 0)
+        if (MP >= 10 && Input.GetKeyDown(KeyCode.Q))
         {
             MP = MP - 10;
             MinAP = (INT * FIT) / 2 * Random.Range(1, 2);
             MaxAP = (INT * FIT) / 2 * Random.Range(1, 3);
-            AP = Random.Range(MinAP, MaxAP);
+            SlashAP = Random.Range(MinAP, MaxAP);
+            Debug.Log(MinAP);
+        }
+        else
+        {
+            return;
         }
 
+    }
+    public int ReturnSlash()
+    {
+        return SlashAP;
     }
     public void Energy_rush()//W스킬
     {
 
-        if (MP > 0)
+        if (MP >= 15 && Input.GetKeyDown(KeyCode.W))
         {
             MP = MP - 15;
             MinAP = (INT * FIT) / 2 * Random.Range(1, 3);
             MaxAP = (INT * FIT) / 2 * Random.Range(1, 4);
-            AP = Random.Range(MinAP, MaxAP);
+            RushAP = Random.Range(MinAP, MaxAP);
+        }
+        else
+        {
+            return;
         }
     }
-
+    public int ReturnRush()
+    {
+        return RushAP;
+    }
     public void Energy_sword()//E스킬
     {
 
-        if (MP > 0)
+        if (MP >= 20 &&Input.GetKeyDown(KeyCode.E))
         {
             MP = MP - 20;
-            MinAP = (INT * FIT) / 2 * AD;
-            MaxAP = (INT * FIT) / 2 * AD;
-            AP = Random.Range(MinAP, MaxAP);
+            MinAP = (INT * FIT) / 2 * Random.Range(1, 3);
+            MaxAP = (INT * FIT) / 2 * Random.Range(1, 5);
+            SwordAP = Random.Range(MinAP, MaxAP);
+        }
+        else
+        {
+            return;
         }
     }
+    public int ReturnSword()
+    {
+        return SwordAP;
+    }
 
-   
-    
+
 
     //포션사용시 HP,MP 따로 증가하게 설정
     public int usePotionHealHP(int PotionHeal)//사용시 HP 증가
@@ -381,7 +418,7 @@ public class GameManager : MonoBehaviour
             HP = HP-PlayerHit;
             setPlayerHP(HP);
         }
-        else
+        else if(currentGameState == GameState.inGame)
         {
             HP = 0;
             setPlayerHP(HP);

@@ -457,19 +457,24 @@ public class enemyManager : MonoBehaviour
     }
     private void OnDrawGizmos()
     {
-        Gizmos.color = Color.red;
-        switch (enemyAI)
-        {
-            case "slime":
-                Gizmos.DrawWireCube(pos.position, AttackRange);
-                break;
+        
+        
+            Gizmos.color = Color.red;
+            switch (enemyAI)
+            {
+                case "slime":
+                    Gizmos.DrawWireCube(pos.position, AttackRange);
+                    break;
 
-            case "slimeBoss":
-                Gizmos.DrawWireCube(pos.position, AttackRange);
+                case "slimeBoss":
+                    Gizmos.DrawWireCube(pos.position, AttackRange);
 
-                Gizmos.DrawWireCube(slimeBossStat.birthPos.position, new Vector2(1,1));
-                break;
-        }
+                    Gizmos.DrawWireCube(slimeBossStat.birthPos.position, new Vector2(1, 1));
+                    break;
+            }
+        
+        
+        
         
     }
 }

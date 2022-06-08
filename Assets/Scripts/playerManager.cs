@@ -127,7 +127,7 @@ public class playerManager : MonoBehaviour
                             animator.SetBool("isAttack", true);
                             animator.SetInteger("attackCount", 1);
                             //1타뎀
-                            attackDamage(1);
+                            attackDamage(GameManager.Instance.Return1AD());
                         }
                     }
                     else
@@ -137,7 +137,7 @@ public class playerManager : MonoBehaviour
                             animator.SetBool("isAttack", true);
                             animator.SetInteger("attackCount", 1);
                             //1타뎀
-                            attackDamage(1);
+                            attackDamage(GameManager.Instance.Return1AD());
                             
                         }
                     }
@@ -148,12 +148,12 @@ public class playerManager : MonoBehaviour
                     if (animator.GetBool("isSkill3") == true)
                     {
                         //1타뎀 3번째 
-                        attacker("player_attack1_skill", 2, 1);
+                        attacker("player_attack1_skill", 2, GameManager.Instance.Return1AD());
                     }
                     else
                     {
                         //1타뎀 3번째
-                        attacker("player_attack1", 2, 1);
+                        attacker("player_attack1", 2, GameManager.Instance.Return1AD());
                     }
                 }
                 else if (animator.GetInteger("attackCount") == 2)
@@ -161,12 +161,12 @@ public class playerManager : MonoBehaviour
                     if (animator.GetBool("isSkill3") == true)
                     {
                         //2타뎀 3번째
-                        attacker("player_attack2_skill", 3, 2);                  
+                        attacker("player_attack2_skill", 3, GameManager.Instance.Return2AD());                  
                     }
                     else
                     {
                         //2타뎀 3번째
-                        attacker("player_attack2", 3, 2);
+                        attacker("player_attack2", 3, GameManager.Instance.Return2AD());
                     }
                 }
                 else if (animator.GetInteger("attackCount") == 3)
@@ -174,12 +174,12 @@ public class playerManager : MonoBehaviour
                     if (animator.GetBool("isSkill3") == true)
                     {
                         //3타뎀 3번째
-                        attacker("player_attack3_skill", 1, 3);
+                        attacker("player_attack3_skill", 1, GameManager.Instance.Return3AD());
                     }
                     else
                     {
                         //3타뎀 3번째
-                        attacker("player_attack3", 1, 3);
+                        attacker("player_attack3", 1, GameManager.Instance.Return3AD());
                     }
                 }
                 //공격끝
@@ -190,7 +190,7 @@ public class playerManager : MonoBehaviour
                     animator.SetBool("isSkill1", true);
                     animator.SetBool("isAttack", true);
                     //Q스킬뎀
-                    attackDamage(1);
+                    attackDamage(GameManager.Instance.ReturnSlash());
                     coolTime1_start = Time.time;
                 }
                 if (animator.GetCurrentAnimatorStateInfo(0).IsName("player_skill1") && (animator.GetCurrentAnimatorStateInfo(0).normalizedTime >= 1.0f))
@@ -205,7 +205,7 @@ public class playerManager : MonoBehaviour
                     animator.SetBool("isSkill2", true);
                     animator.SetBool("isAttack", true);
                     //W스킬뎀
-                    attackDamage(2);
+                    attackDamage(GameManager.Instance.ReturnRush());
                     skill2Move();
                     coolTime2_start = Time.time;
                 }
@@ -350,9 +350,9 @@ public class playerManager : MonoBehaviour
                 onDamaged(other.transform.position.x, 10);
             }
         }
-        if(gameObject.layer == 11)
+        if(gameObject.layer == 11) // W스킬 데미지
         {
-            other.gameObject.GetComponent<enemyManager>().enemyDamaged(30);
+            other.gameObject.GetComponent<enemyManager>().enemyDamaged(GameManager.Instance.ReturnRush());
             rigidBody.velocity = Vector2.zero;
         }       
 

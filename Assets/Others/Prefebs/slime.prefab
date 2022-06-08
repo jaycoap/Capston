@@ -319,7 +319,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &3435441374833855152
 Transform:
   m_ObjectHideFlags: 0
@@ -461,6 +461,7 @@ MonoBehaviour:
   slimeBossStat:
     diveCool: 0
     backShotCool: 0
+    birthCool: 0
     thornAmount: 0
     bossDiveRange: {x: 0, y: 0}
     attackDamage: 0
@@ -469,6 +470,7 @@ MonoBehaviour:
     poisonBall: {fileID: 0}
     slime: {fileID: 0}
     backShotPos: {fileID: 0}
+    birthPos: {fileID: 0}
   slimeStat:
     isBackShot: 0
 --- !u!95 &1987731306
