@@ -309,8 +309,8 @@ public class GameManager : MonoBehaviour
         if (MP >= 10 && Input.GetKeyDown(KeyCode.Q))
         {
             MP = MP - 10;
-            MinAP = (INT * FIT) / 2 * Random.Range(1, 2);
-            MaxAP = (INT * FIT) / 2 * Random.Range(1, 3);
+            MinAP = (INT * FIT) / 2 * Random.Range(1, 4);
+            MaxAP = (INT * FIT) / 2 * Random.Range(1, 6);
             SlashAP = Random.Range(MinAP, MaxAP);
             Debug.Log(MinAP);
         }
@@ -330,7 +330,7 @@ public class GameManager : MonoBehaviour
         if (MP >= 15 && Input.GetKeyDown(KeyCode.W))
         {
             MP = MP - 15;
-            MinAP = (INT * FIT) / 2 * Random.Range(1, 3);
+            MinAP = (INT * FIT) / 2 * Random.Range(1, 2);
             MaxAP = (INT * FIT) / 2 * Random.Range(1, 4);
             RushAP = Random.Range(MinAP, MaxAP);
         }
@@ -349,8 +349,8 @@ public class GameManager : MonoBehaviour
         if (MP >= 20 &&Input.GetKeyDown(KeyCode.E))
         {
             MP = MP - 20;
-            MinAP = (INT * FIT) / 2 * Random.Range(1, 3);
-            MaxAP = (INT * FIT) / 2 * Random.Range(1, 5);
+            MinAP = (INT * FIT) / 2 * 1;
+            MaxAP = (INT * FIT) / 2 * Random.Range(1, 2);
             SwordAP = Random.Range(MinAP, MaxAP);
         }
         else
