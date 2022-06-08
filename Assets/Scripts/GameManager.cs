@@ -23,7 +23,6 @@ public class GameManager : MonoBehaviour
     private SpriteRenderer playerRenderer;
     public BackEndNickname backendnickname;
     Animator animator;
-    spawnManager spawnmanager;
 
     //게임 세팅 변수
     private int activelevel = 0; // 레벨설정
@@ -64,13 +63,18 @@ public class GameManager : MonoBehaviour
     Param param = new Param();
     
     
+
+
+
+
+
     
     void Start()
     {
         //currentGameState = GameState.menu;// 게임시작시 메뉴로 설정. (차후사용)
         backendnickname = GetComponent<BackEndNickname>();
         animator = GetComponent<Animator>();
-        spawnmanager = GetComponent<spawnManager>();
+        
     }
 
     void Update() //test 세팅
@@ -129,14 +133,6 @@ public class GameManager : MonoBehaviour
     {
         currentGameState = GameState.inGame;
         SetGameState();
-
-        spawnmanager.SponEnemy(0, 3, new Vector2(50, -5));
-        spawnmanager.SponEnemy(0, 3, new Vector2(55, -5));
-        spawnmanager.SponEnemy(0, 3, new Vector2(60, -5));
-        spawnmanager.SponEnemy(1, 3, new Vector2(40, 0));
-
-        Debug.Log("asdfasdfasfd");
-
         return;
     }
     public void GameOver()//게임 끝날시
