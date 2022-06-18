@@ -8,14 +8,12 @@ public class spawnManager : MonoBehaviour
     public GameObject dummy;
     public GameObject boss;
     GameManager gameManager;
-    void Start()
+    public GameObject[] enemy;
+    public void SponEnemy(int enemy_code, int num, Vector2 pos)
     {
-        gameManager = GetComponent<GameManager>();
-        Instantiate(dummy, new Vector2(10, 10), Quaternion.identity);
-        Instantiate(dummy, new Vector2(20, 10), Quaternion.identity);
-        Instantiate(dummy, new Vector2(30, 10), Quaternion.identity);
+        Instantiate(enemy[enemy_code], new Vector2(pos.x, pos.y), Quaternion.identity);
     }
 
-    
+
 
 }

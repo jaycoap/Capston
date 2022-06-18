@@ -2,11 +2,13 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using BackEnd;
+using UnityEngine.UI;
 
 public class BackEndManager : MonoBehaviour // 싱글톤으로 만들고 파괴되지 않는 게임오브젝트로 만든후 초기화 코드, 에러관리 함수
 {
     private static BackEndManager instance = null;
     public static BackEndManager MyInstance { get => instance; set => instance = value; }
+    [SerializeField] private Text join1;
     void Awake()
     {   
         if(instance == null)
