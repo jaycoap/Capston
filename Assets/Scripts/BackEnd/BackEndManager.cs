@@ -8,6 +8,7 @@ public class BackEndManager : MonoBehaviour // ½Ì±ÛÅæÀ¸·Î ¸¸µé°í ÆÄ±«µÇÁö ¾Ê´Â °
 {
     private static BackEndManager instance = null;
     public static BackEndManager MyInstance { get => instance; set => instance = value; }
+    [SerializeField] private GameObject joinfail;
     [SerializeField] private Text join1;
     void Awake()
     {   
@@ -56,6 +57,7 @@ public class BackEndManager : MonoBehaviour // ½Ì±ÛÅæÀ¸·Î ¸¸µé°í ÆÄ±«µÇÁö ¾Ê´Â °
         {
             case 401:
                 Debug.Log("ID or Password Error");
+                join1.text = "ID or Password Error";
                 break;
             case 403:
                 Debug.Log(backendReturn.GetErrorCode());
@@ -63,6 +65,7 @@ public class BackEndManager : MonoBehaviour // ½Ì±ÛÅæÀ¸·Î ¸¸µé°í ÆÄ±«µÇÁö ¾Ê´Â °
                 break;
             case 404:
                 Debug.Log("game not found");
+                join1.text = "game not found";
                 break;
             case 408:
                 // Å¸ÀÓ¾Æ¿ô ¿À·ù(¼­¹ö¿¡¼­ ÀÀ´äÀÌ ´Ê°Å³ª, ³×Æ®¿öÅ© µîÀÌ ²÷°Ü ÀÖ´Â °æ¿ì)
@@ -73,10 +76,12 @@ public class BackEndManager : MonoBehaviour // ½Ì±ÛÅæÀ¸·Î ¸¸µé°í ÆÄ±«µÇÁö ¾Ê´Â °
 
             case 409:
                 Debug.Log("Duplicated customId, Áßº¹µÈ customId ÀÔ´Ï´Ù");
+                join1.text = "Duplicated customId, Áßº¹µÈ customId ÀÔ´Ï´Ù";
                 break;
 
             case 410:
                 Debug.Log("bad refreshToken, Àß¸øµÈ refreshToken ÀÔ´Ï´Ù");
+                join1.text = "bad refreshToken, Àß¸øµÈ refreshToken ÀÔ´Ï´Ù";
                 break;
 
             case 429:
@@ -99,6 +104,8 @@ public class BackEndManager : MonoBehaviour // ½Ì±ÛÅæÀ¸·Î ¸¸µé°í ÆÄ±«µÇÁö ¾Ê´Â °
                 break;
 
         }
+
+        joinfail.SetActive(true);
     }
     
 

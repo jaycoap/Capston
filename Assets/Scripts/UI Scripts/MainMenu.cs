@@ -6,10 +6,12 @@ using UnityEngine.UI;
 public class MainMenu : MonoBehaviour
 {
     [SerializeField] private GameObject MainMenuPanel;
+    [SerializeField] private Fade mainFade;
 
-    public void NewGame()
+    public void GameLogin()
     {
         GameManager.Instance.Ingame();
+        mainFade.FadeOutIn();
         Invoke("HideMainMenu", 1.2f); ;
     }
 
