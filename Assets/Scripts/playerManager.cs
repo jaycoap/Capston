@@ -205,24 +205,13 @@ public class playerManager : MonoBehaviour
             }
             //isGrounded
             else
-            {
-                //점프 시작 애니메이션 완료시 
-                if ((animator.GetCurrentAnimatorStateInfo(0).IsName("player_jump1") || animator.GetCurrentAnimatorStateInfo(0).IsName("player_jump1_skill")) 
-                    && (animator.GetCurrentAnimatorStateInfo(0).normalizedTime >= 1.0f))
-                {
-                    animator.SetBool("isJump", false);
-                }
-                //착지 애니메이션 완료시
-                if ((animator.GetCurrentAnimatorStateInfo(0).IsName("player_jump3") || animator.GetCurrentAnimatorStateInfo(0).IsName("player_jump3_skill")) 
-                    && animator.GetCurrentAnimatorStateInfo(0).normalizedTime >= 1.0f)
-                {
-                    animator.SetBool("isFall", false);
-                }
+            {   
                 animator.SetBool("isGround", false);
             }
 
             //이동
-            if (Input.GetButton("Horizontal") && !(animator.GetBool("isSkill1")) && !(animator.GetBool("isSkill2")) && !(animator.GetBool("isSkill3On")) && !animator.GetBool("isAttack"))
+            if (Input.GetButton("Horizontal") && !(animator.GetBool("isSkill1")) && !(animator.GetBool("isSkill2")) && !(animator.GetBool("isSkill3On")) 
+                && !animator.GetBool("isAttack"))
             {
                 //오른쪽
                 if (H_input == 1)
@@ -303,6 +292,16 @@ public class playerManager : MonoBehaviour
     void isAttackFalse()
     {
         animator.SetBool("isAttack", false);
+    }
+
+    void isJumpFalse()
+    {
+        animator.SetBool("isJump", false);
+    }
+
+    void isFallFalse()
+    {
+        animator.SetBool("isFall", false);
     }
     void attackEnd()
     {
