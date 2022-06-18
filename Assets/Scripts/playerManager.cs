@@ -8,17 +8,17 @@ public class playerManager : MonoBehaviour
     private float jumpSpeed;
     private float skill2_movement = 15;
     //쿨타임 변수
-    private float coolTime1_start;
+    private float coolTime1_start = 0;
     private float coolTime1_current;
     private float coolTime1_skill = 4;
     private bool isCoolTime1;
 
-    private float coolTime2_start;
+    private float coolTime2_start = 0;
     private float coolTime2_current;
     private float coolTime2_skill = 3;
     private bool isCoolTime2;
 
-    private float coolTime3_start;
+    private float coolTime3_start = 0;
     private float coolTime3_current;
     private float coolTime3_skill = 10;
     private bool isCoolTime3;
@@ -56,7 +56,8 @@ public class playerManager : MonoBehaviour
     void Update()
     {
         //방향전환시 스프라이트 뒤집기
-        if (Input.GetButton("Horizontal") && !animator.GetBool("isAttack"))
+        if (Input.GetButton("Horizontal") && !animator.GetBool("isAttack") 
+            && !(animator.GetBool("isSkill1")) && !(animator.GetBool("isSkill2")) && !(animator.GetBool("isSkill3On")))
         {
 
             spriteRenderer.flipX = Input.GetAxisRaw("Horizontal") == -1;
@@ -74,7 +75,8 @@ public class playerManager : MonoBehaviour
             Qbox.transform.position = new Vector2(transform.position.x + 1.55f, pos.position.y);
         }
         //이동시 걷는 애니메이션 출력
-        if (Mathf.Abs(Input.GetAxisRaw("Horizontal")) == 1 && !animator.GetBool("isAttack") && isGrounded)
+        if (Mathf.Abs(Input.GetAxisRaw("Horizontal")) == 1 && !animator.GetBool("isAttack") && isGrounded 
+            && !(animator.GetBool("isSkill1")) && !(animator.GetBool("isSkill2")) && !(animator.GetBool("isSkill3On")))
         {
             animator.SetBool("isWalk", true);
         }
@@ -95,19 +97,22 @@ public class playerManager : MonoBehaviour
         {
             float H_input = Input.GetAxisRaw("Horizontal");
 
+            //player_jump2 애니메이션이 실행중일때 isFall을 true로
+            if ((animator.GetCurrentAnimatorStateInfo(0).IsName("player_jump2") || animator.GetCurrentAnimatorStateInfo(0).IsName("player_jump2_skill"))
+                && animator.GetCurrentAnimatorStateInfo(0).normalizedTime <= 1.0f && animator.GetCurrentAnimatorStateInfo(0).normalizedTime >= 0.0f)
+            {
+                animator.SetBool("isFall", true);
+            }
 
             //땅에 닿아있을때
             if (isGrounded)
             {
                 animator.SetBool("isGround", true);
                 animator.SetBool("isJump", false);
-                //공중에 있을시 player_jump2 애니메이션 출력
-                if ((animator.GetCurrentAnimatorStateInfo(0).IsName("player_jump2") || animator.GetCurrentAnimatorStateInfo(0).IsName("player_jump2_skill")) && animator.GetCurrentAnimatorStateInfo(0).normalizedTime >= 1.0f)
-                {
-                    animator.SetBool("isFall", true);
-                }
-                //착지시 player_jump3 애니메이션 출력
-                if ((animator.GetCurrentAnimatorStateInfo(0).IsName("player_jump3") || animator.GetCurrentAnimatorStateInfo(0).IsName("player_jump3_skill")) && animator.GetCurrentAnimatorStateInfo(0).normalizedTime >= 1.0f)
+                
+                //player_jump3 애니메이션 출력 완료시 isFall false
+                if ((animator.GetCurrentAnimatorStateInfo(0).IsName("player_jump3") || animator.GetCurrentAnimatorStateInfo(0).IsName("player_jump3_skill")) 
+                    && animator.GetCurrentAnimatorStateInfo(0).normalizedTime >= 1.0f)
                 {
                     animator.SetBool("isFall", false);
                 }
@@ -122,141 +127,94 @@ public class playerManager : MonoBehaviour
                         animator.SetBool("isJump", true);
                     }
                 }
-                //attackCount 0 1 2 각각 1 2 3타 각 애니메이션이 50퍼센트 ~ 끝나기 전에 공격키 누를시 다음 공격
-                if (animator.GetInteger("attackCount") == 0 && !animator.GetBool("isAttack"))
+                if (Input.GetButton("Attack1"))
                 {
-                    if (animator.GetBool("isSkill3") == true)
+                    if((animator.GetCurrentAnimatorStateInfo(0).IsName("player_idle") || animator.GetCurrentAnimatorStateInfo(0).IsName("player_idle_skill") 
+                        || animator.GetCurrentAnimatorStateInfo(0).IsName("player_run") || animator.GetCurrentAnimatorStateInfo(0).IsName("player_run_skill")) 
+                        && animator.GetCurrentAnimatorStateInfo(0).normalizedTime < 1.0f && animator.GetCurrentAnimatorStateInfo(0).normalizedTime >= 0.0f)
                     {
-                        if (Input.GetButton("Attack1"))
+                        animator.SetBool("isAttack", true);
+                    }
+                    else
+                    {
+                        switch (animator.GetInteger("attackCount"))
                         {
-                            animator.SetBool("isAttack", true);
-                            animator.SetInteger("attackCount", 1);
-                            //1타뎀
-                            attackDamage(GameManager.Instance.Return1AD(), AttackBox);
+                            case 1:
+                                if (animator.GetBool("isSkill3") == true)
+                                {
+                                    attacker("player_attack1_skill", 2);
+                                }
+                                else
+                                {
+                                    attacker("player_attack1", 2);
+                                }
+                                break;
+                            case 2:
+                                if (animator.GetBool("isSkill3") == true)
+                                {
+                                    attacker("player_attack2_skill", 3);
+                                }
+                                else
+                                {
+                                    attacker("player_attack2", 3);
+                                }
+                                break;
+                            case 3:
+                                if (animator.GetBool("isSkill3") == true)
+                                {
+                                    attacker("player_attack3_skill", 1);
+                                }
+                                else
+                                {
+                                    attacker("player_attack3", 1);
+                                }
+                                break;
                         }
                     }
-                    else
-                    {
-                        if (Input.GetButton("Attack1"))
-                        {
-                            animator.SetBool("isAttack", true);
-                            animator.SetInteger("attackCount", 1);
-                            //1타뎀
-                            attackDamage(GameManager.Instance.Return1AD(),AttackBox);
-                            
-                        }
-                    }
-
-                }
-                else if (animator.GetInteger("attackCount") == 1)
-                {
-                    if (animator.GetBool("isSkill3") == true)
-                    {
-                        //1타뎀 3번째 
-                        attacker("player_attack1_skill", 2, GameManager.Instance.Return1AD());
-                    }
-                    else
-                    {
-                        //1타뎀 3번째
-                        attacker("player_attack1", 2, GameManager.Instance.Return1AD());
-                    }
-                }
-                else if (animator.GetInteger("attackCount") == 2)
-                {
-                    if (animator.GetBool("isSkill3") == true)
-                    {
-                        //2타뎀 3번째
-                        attacker("player_attack2_skill", 3, GameManager.Instance.Return2AD());                  
-                    }
-                    else
-                    {
-                        //2타뎀 3번째
-                        attacker("player_attack2", 3, GameManager.Instance.Return2AD());
-                    }
-                }
-                else if (animator.GetInteger("attackCount") == 3)
-                {
-                    if (animator.GetBool("isSkill3") == true)
-                    {
-                        //3타뎀 3번째
-                        attacker("player_attack3_skill", 1, GameManager.Instance.Return3AD());
-                    }
-                    else
-                    {
-                        //3타뎀 3번째
-                        attacker("player_attack3", 1, GameManager.Instance.Return3AD());
-                    }
-                }
-                //공격끝
+                    
+                }   
 
                 //스킬1
-                if ((Input.GetButton("Skill1")) && (animator.GetBool("isSkill1") == false) && (animator.GetBool("isAttack") == false) && !isCoolTime1)
+                if ((Input.GetButton("Skill1")) && !(animator.GetBool("isSkill1")) && !(animator.GetBool("isSkill2")) && !(animator.GetBool("isSkill3On")) 
+                    && (animator.GetBool("isAttack") == false) && !isCoolTime1 && (GameManager.Instance.getMp() >= 10))
                 {
+                    GameManager.Instance.DecreaseMP(10);
                     animator.SetBool("isSkill1", true);
-                    animator.SetBool("isAttack", true);
-                    //Q스킬뎀
-                    attackDamage(GameManager.Instance.ReturnSlash(),Qbox);
                     coolTime1_start = Time.time;
-                }
-                if (animator.GetCurrentAnimatorStateInfo(0).IsName("player_skill1") && (animator.GetCurrentAnimatorStateInfo(0).normalizedTime >= 1.0f))
-                {
-                    animator.SetBool("isAttack", false);
-                    animator.SetBool("isSkill1", false);
                 }
 
                 //스킬2
-                if (Input.GetButton("Skill2") && (animator.GetBool("isSkill2") == false) && (animator.GetBool("isAttack") == false) && !isCoolTime2)
+                if (Input.GetButton("Skill2") && !(animator.GetBool("isSkill1")) && !(animator.GetBool("isSkill2")) && !(animator.GetBool("isSkill3On"))
+                    && (animator.GetBool("isAttack") == false) && !isCoolTime2 && (GameManager.Instance.getMp() >= 20))
                 {
+                    GameManager.Instance.DecreaseMP(20);
                     animator.SetBool("isSkill2", true);
-                    animator.SetBool("isAttack", true);
-                    //W스킬뎀
-                    attackDamage(GameManager.Instance.ReturnRush(),AttackBox);
-                    skill2Move();
                     coolTime2_start = Time.time;
-                }
-                if (animator.GetCurrentAnimatorStateInfo(0).IsName("player_skill2") && (animator.GetCurrentAnimatorStateInfo(0).normalizedTime >= 1.0f))
-                {
-                    animator.SetBool("isAttack", false);
-                    animator.SetBool("isSkill2", false);
-                    rigidBody.velocity = Vector2.zero;
-                    gameObject.layer = 7;
                 }
 
                 //스킬3
-                if (Input.GetButton("Skill3") && (animator.GetBool("isSkill3") == false) && (animator.GetBool("isAttack") == false) && !isCoolTime3)
+                if (Input.GetButton("Skill3") && !(animator.GetBool("isSkill1")) && !(animator.GetBool("isSkill2")) && !(animator.GetBool("isSkill3On"))
+                    && (animator.GetBool("isAttack") == false) && !isCoolTime3 && (GameManager.Instance.getMp() >= 30))
                 {
-                    //E데미지는 bulletManager 참고 
+                    GameManager.Instance.DecreaseMP(30);
+                    //E검기 데미지는 bulletManager 참고 
+                    animator.SetBool("isSkill3On", true);
                     animator.SetBool("isSkill3", true);
-                    animator.SetBool("isAttack", true);
                     coolTime3_start = Time.time;
-                }
-                if (animator.GetCurrentAnimatorStateInfo(0).IsName("player_skill3") && (animator.GetCurrentAnimatorStateInfo(0).normalizedTime >= 1.0f))
-                {
-                    animator.SetBool("isAttack", false);
-                    Invoke("skill3_Off", 5);
                 }
             }
             //isGrounded
             else
-            {
-                //점프 시작 애니메이션 완료시 
-                if ((animator.GetCurrentAnimatorStateInfo(0).IsName("player_jump1") || animator.GetCurrentAnimatorStateInfo(0).IsName("player_jump1_skill")) && (animator.GetCurrentAnimatorStateInfo(0).normalizedTime >= 1.0f))
-                {
-                    animator.SetBool("isJump", false);
-                }
-                //착지 애니메이션 완료시
-                if ((animator.GetCurrentAnimatorStateInfo(0).IsName("player_jump3") || animator.GetCurrentAnimatorStateInfo(0).IsName("player_jump3_skill")) && animator.GetCurrentAnimatorStateInfo(0).normalizedTime >= 1.0f)
-                {
-                    animator.SetBool("isFall", false);
-                }
+            {   
                 animator.SetBool("isGround", false);
             }
 
             //이동
-            if (Input.GetButton("Horizontal"))
+            if (Input.GetButton("Horizontal") && !(animator.GetBool("isSkill1")) && !(animator.GetBool("isSkill2")) && !(animator.GetBool("isSkill3On")) 
+                && !animator.GetBool("isAttack"))
             {
                 //오른쪽
-                if (H_input == 1 && !animator.GetBool("isAttack"))
+                if (H_input == 1)
                 {
                     //벽이 있는지 체크
                     if (Physics2D.OverlapBox(new Vector2(transform.position.x + 0.229166675f, transform.position.y), new Vector2(0.45833335f, 1.4f), 0, LayerMask.GetMask("Floor")))
@@ -269,7 +227,7 @@ public class playerManager : MonoBehaviour
                     }
                 }
                 //왼쪽
-                if (H_input == -1 && !animator.GetBool("isAttack"))
+                if (H_input == -1)
                 {
                     if (Physics2D.OverlapBox(new Vector2(transform.position.x - 0.229166675f, transform.position.y), new Vector2(0.45833335f, 1.4f), 0, LayerMask.GetMask("Floor")))
                     {
@@ -297,34 +255,71 @@ public class playerManager : MonoBehaviour
         else
         {
             isGrounded = false;
-
         }
-
-
     }
 
-    //연속 공격 관련 함수
-    void attacker(string animation, int next, int damage)
+    //animation 진행 0%~50% 일때 isAttack을 true로 만들고 attackCount를 next로 만듬
+    void attacker(string animation, int next)
     {
         if (animator.GetCurrentAnimatorStateInfo(0).IsName(animation) && animator.GetCurrentAnimatorStateInfo(0).normalizedTime < 1.0f && animator.GetCurrentAnimatorStateInfo(0).normalizedTime >= 0.5f)
         {
-            if (Input.GetButton("Attack1"))
-            {
                 animator.SetBool("isAttack", true);
                 animator.SetInteger("attackCount", next);
-
-                attackDamage(damage, AttackBox);
-
-            }
-        }
-        //애니메이션이 끝났을 경우 attackCount 초기화 
-        if (animator.GetCurrentAnimatorStateInfo(0).IsName(animation) && (animator.GetCurrentAnimatorStateInfo(0).normalizedTime >= 1.0f))
-        {
-            animator.SetBool("isAttack", false);
-            animator.SetInteger("attackCount", 0);
         }
     }
-    //enemy 데미지 받게하는 함수 !추후 스킬 범위도 개별적용할 예정
+
+    void AttackDamage(int nowAttack)
+    {
+        int damage = 0;
+        Collider2D[] hitEnemy = Physics2D.OverlapBoxAll(AttackBox.transform.position, AttackBox.transform.localScale, 0, LayerMask.GetMask("Enemy"));
+        foreach (Collider2D collider in hitEnemy)
+        {
+            switch (nowAttack)
+            {
+                case 1:
+                    damage = GameManager.Instance.Return1AD(); 
+                    break;
+                case 2:
+                    damage = GameManager.Instance.Return2AD();
+                    break;
+                case 3:
+                    damage = GameManager.Instance.Return3AD(); 
+                    break;
+            }
+            collider.gameObject.GetComponent<enemyManager>().enemyDamaged(damage);
+        }
+    }
+    void isAttackFalse()
+    {
+        animator.SetBool("isAttack", false);
+    }
+
+    void isJumpFalse()
+    {
+        animator.SetBool("isJump", false);
+    }
+
+    void isFallFalse()
+    {
+        animator.SetBool("isFall", false);
+    }
+    void attackEnd()
+    {
+        animator.SetBool("isAttack", false);
+        animator.SetInteger("attackCount", 1);
+    }
+
+    void QskillDamage()
+    {
+        //hitEnemy = OverlapBox 안에 있는 Enemy 레이어의 모든 오브젝트
+        Collider2D[] hitEnemy = Physics2D.OverlapBoxAll(Qbox.transform.position, Qbox.transform.localScale, 0, LayerMask.GetMask("Enemy"));
+        //hitEnemy 안에 있는 모든 오브젝트에게 enemyDamaged 실시
+        foreach (Collider2D collider in hitEnemy)
+        {
+            collider.gameObject.GetComponent<enemyManager>().enemyDamaged(GameManager.Instance.ReturnSlash());
+        }
+    }
+    //enemy 데미지 받게하는 함수 
     void attackDamage(int damage, GameObject Range)
     {
         //hitEnemy = OverlapBox 안에 있는 Enemy 레이어의 모든 오브젝트
@@ -341,7 +336,7 @@ public class playerManager : MonoBehaviour
     {
         animator.SetBool("isSkill3", false);
         animator.SetBool("isAttack", false);
-        animator.SetInteger("attackCount", 0);
+        animator.SetInteger("attackCount", 1);
     }
 
     //OnCollisionEnter2D - 현재 오브젝트가 다른 오브젝트의 콜라이더2d와 닿을때 호출
@@ -408,43 +403,84 @@ public class playerManager : MonoBehaviour
         rigidBody.AddForce(new Vector2(dirc * skill2_movement, 0), ForceMode2D.Impulse);
         gameObject.layer = 11;
     }
+
+    void skill1End()
+    {
+        animator.SetBool("isAttack", false);
+        animator.SetBool("isSkill1", false);
+    }
+
+    void skill2End()
+    {
+        animator.SetBool("isAttack", false);
+        animator.SetBool("isSkill2", false);
+        rigidBody.velocity = Vector2.zero;
+        gameObject.layer = 7;
+    }
+
+    void skill3End()
+    {
+        animator.SetBool("isSkill3On", false);
+        Invoke("skill3_Off", 5);
+    }
     //쿨타임
     void checkCool1()
     {
         coolTime1_current = Time.time - coolTime1_start;
-        if (coolTime1_current < coolTime1_skill)
-        {
-            isCoolTime1 = true;
-        }
-        else
+        if (coolTime1_start == 0)
         {
             isCoolTime1 = false;
         }
+        else
+        {
+            if (coolTime1_current < coolTime1_skill)
+            {
+                isCoolTime1 = true;
+            }
+            else
+            {
+                isCoolTime1 = false;
+            }
+        } 
     }
 
     void checkCool2()
     {
         coolTime2_current = Time.time - coolTime2_start;
-        if (coolTime2_current < coolTime2_skill)
+        if (coolTime2_start == 0)
         {
-            isCoolTime2 = true;
+            isCoolTime2 = false;
         }
         else
         {
-            isCoolTime2 = false;
+            if (coolTime2_current < coolTime2_skill)
+            {
+                isCoolTime2 = true;
+            }
+            else
+            {
+                isCoolTime2 = false;
+            }
         }
     }
 
     void checkCool3()
     {
         coolTime3_current = Time.time - coolTime3_start;
-        if (coolTime3_current < coolTime3_skill)
+        if(coolTime3_start == 0)
         {
-            isCoolTime3 = true;
+            isCoolTime3 = false;
         }
         else
         {
-            isCoolTime3 = false;
+            if (coolTime3_current < coolTime3_skill)
+            {
+                isCoolTime3 = true;
+            }
+            else
+            {
+                isCoolTime3 = false;
+            }
         }
     }
 
