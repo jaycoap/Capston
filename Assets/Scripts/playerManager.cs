@@ -421,6 +421,7 @@ public class playerManager : MonoBehaviour
     void skill3End()
     {
         animator.SetBool("isSkill3On", false);
+        animator.SetBool("isSkill3", false);
         Invoke("skill3_Off", 5);
     }
     //쿨타임
