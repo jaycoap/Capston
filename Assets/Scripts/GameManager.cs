@@ -132,16 +132,16 @@ public class GameManager : MonoBehaviour
         currentGameState = GameState.inGame;
         SetGameState();
 
-        spawnmanager.SponEnemy(0, 3, new Vector2(50, -5));
-        spawnmanager.SponEnemy(0, 3, new Vector2(55, -5));
-        spawnmanager.SponEnemy(0, 3, new Vector2(60, -5));
+        spawnmanager.SponEnemy(0, 3, new Vector2(50, 0));
+        spawnmanager.SponEnemy(0, 3, new Vector2(55, 0));
+        spawnmanager.SponEnemy(0, 3, new Vector2(60, 0));
         spawnmanager.SponEnemy(1, 3, new Vector2(80, 0));
 
         
 
         return;
     }
-    public void LoadIngame()
+    /*public void LoadIngame()
     {
         currentGameState = GameState.inGame;
         //LoadGameState();
@@ -150,7 +150,7 @@ public class GameManager : MonoBehaviour
         spawnmanager.SponEnemy(0, 3, new Vector2(55, -5));
         spawnmanager.SponEnemy(0, 3, new Vector2(60, -5));
         spawnmanager.SponEnemy(1, 3, new Vector2(80, 0));
-    }
+    }*/
     public void GameOver()//게임 끝날시
     {
         currentGameState = GameState.gameover;
