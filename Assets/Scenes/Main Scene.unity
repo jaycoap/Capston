@@ -2581,8 +2581,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cd11ba8863373ce4a8017175347eb140, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  dummy: {fileID: 0}
-  boss: {fileID: 0}
   enemy:
   - {fileID: 5290438719731959125, guid: 3a4ae3f43b37a2e4da637253d13c20b3, type: 3}
   - {fileID: 8466940026092785851, guid: b909157ebe0d711489ba677e33e605d7, type: 3}
@@ -13131,6 +13129,8 @@ MonoBehaviour:
   FIT: 0
   APPoint: 0
   getIndate: 
+  getowner: 2022-07-25T05:47:22.446Z
+  getname: 2022-07-25T05:47:22.110Z
 --- !u!1 &1681848630
 GameObject:
   m_ObjectHideFlags: 0

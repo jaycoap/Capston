@@ -136,14 +136,14 @@ public class GameManager : MonoBehaviour
     {
         currentGameState = GameState.inGame;
        
+        
+
+        spawnmanager.SponEnemy(0, new Vector2(50, 0));
+        
+        spawnmanager.SponEnemy(1, new Vector2(80, 0));
         LoadGameState();
 
-        spawnmanager.SponEnemy(0, 3, new Vector2(50, 0));
-        //spawnmanager.SponEnemy(0, 3, new Vector2(55, 0));
-        //spawnmanager.SponEnemy(0, 3, new Vector2(60, 0));
-        //spawnmanager.SponEnemy(1, 3, new Vector2(80, 0));
 
-        
 
         return;
     }
@@ -190,18 +190,18 @@ public class GameManager : MonoBehaviour
     {
         
         
-                activelevel = 1;
-                myname = idText.text; // 닉네임 설정
-                maxHp += 50; // 최대 체력 설정.
-                maxMp += 200; // 최대마나
-                maxExp += 300; // 1랩때 최대 경험치 
-                HP += maxHp; // 초기 체력 설정
-                MP += maxMp; // 초기 마나 설정
-                STR += 5; // 초기 공격력 설정
-                INT += 12; // 초기 주문력 설정
-                FIT += 2; // 초기 체력 마나 스텟 설정
-                EXP += 0; // 초기 경험치 세팅
-                APPoint = 0;
+           activelevel = 1;
+           myname = idText.text; // 닉네임 설정
+           maxHp += 50; // 최대 체력 설정.
+           maxMp += 200; // 최대마나
+           maxExp += 300; // 1랩때 최대 경험치 
+           HP += maxHp; // 초기 체력 설정
+           MP += maxMp; // 초기 마나 설정
+           STR += 5; // 초기 공격력 설정
+           INT += 12; // 초기 주문력 설정
+           FIT += 2; // 초기 체력 마나 스텟 설정
+           EXP += 0; // 초기 경험치 세팅
+           APPoint = 0;
                 
                 
         

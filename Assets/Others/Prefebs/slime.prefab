@@ -319,7 +319,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &3435441374833855152
 Transform:
   m_ObjectHideFlags: 0
@@ -463,11 +463,11 @@ MonoBehaviour:
     backShotCool: 0
     birthCool: 0
     thornAmount: 0
+    thornSpeed: 0.35
     bossDiveRange: {x: 0, y: 0}
     attackDamage: 0
     warning: {fileID: 0}
-    spikeBall: {fileID: 0}
-    poisonBall: {fileID: 0}
+    ballShot: []
     slime: {fileID: 0}
     backShotPos: {fileID: 0}
     birthPos: {fileID: 0}

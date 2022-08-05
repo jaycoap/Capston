@@ -10,7 +10,7 @@ public class MainMenu : MonoBehaviour
 
     public void GameLogin()
     {
-        GameManager.Instance.Ingame();
+        
         mainFade.FadeOutIn();
         Invoke("HideMainMenu", 1.2f); ;
     }
