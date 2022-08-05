@@ -211,7 +211,7 @@ public class GameManager : MonoBehaviour
         firstcheck = true;
         if (firstcheck == true) // 게임이 시작되면 밑 같이 설정
         {
-            Debug.Log(firstcheck);
+            
             activelevel = BackEndGameInfo.instance.GetLevel();
             myname = idText.text; // 닉네임 설정
             maxHp = BackEndGameInfo.instance.GetMaxHP(); // 최대 체력 설정.

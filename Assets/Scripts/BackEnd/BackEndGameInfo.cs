@@ -36,15 +36,12 @@ public class BackEndGameInfo : MonoBehaviour
     
     void Update()
     {
-        
+        GameManager.Instance.setLevel();
+        GameManager.Instance.getLevel();
     }
     
 
-    // 개인 프라이빗 테이블 정보 가져오기 
-
-    [System.Obsolete]
-
-    
+    // 개인 프라이빗 테이블 정보 가져오기     
     public void OnClickInsertData()
     {
         int charLevel = GameManager.Instance.getLevel();
@@ -131,8 +128,10 @@ public class BackEndGameInfo : MonoBehaviour
         if (BRO.IsSuccess())
         {
             GetGameInfo(BRO.GetReturnValuetoJSON());
-            Debug.Log(BRO);
+            Debug.Log("indate:" + BRO.GetInDate());
+            getIndate = BRO.GetInDate();
             
+
         }
         else
         {
@@ -191,7 +190,54 @@ public class BackEndGameInfo : MonoBehaviour
 
         SetDBLevel(Level);
     }
-    
+
+    public void OnClickGameInfoUpdate()
+    {
+        Param param = new Param();
+        param.Add("Level", GameManager.Instance.getLevel());
+        param.Add("HP", GameManager.Instance.getHp());
+        param.Add("MaxHP", GameManager.Instance.getmaxHp());
+        param.Add("MP", GameManager.Instance.getMp());
+        param.Add("EXP", GameManager.Instance.getExp());
+        param.Add("MaxEXP", GameManager.Instance.getmaxExp());
+        param.Add("STR", GameManager.Instance.getSTR());
+        param.Add("INT", GameManager.Instance.getINT());
+        param.Add("FIT", GameManager.Instance.getFIT());
+        param.Add("APPoint", GameManager.Instance.getAPPoint());
+
+        BackendReturnObject BRO = Backend.GameData.Update("character", getIndate, param);
+
+        if (BRO.IsSuccess())
+        {
+            Debug.Log("수정 완료");
+        }
+        else
+        {
+            switch (BRO.GetStatusCode())
+            {
+                case "405":
+                    Debug.Log("param에 partition, gamer_id, inDate, updatedAt 네가지 필드가 있는 경우");
+                    break;
+
+                case "403":
+                    Debug.Log("퍼블릭테이블의 타인정보를 수정하고자 하였을 경우");
+                    break;
+
+                case "404":
+                    Debug.Log("존재하지 않는 tableName인 경우");
+                    break;
+
+                case "412":
+                    Debug.Log("비활성화 된 tableName인 경우");
+                    break;
+
+                case "413":
+                    Debug.Log("하나의 row( column들의 집합 )이 400KB를 넘는 경우");
+                    break;
+            }
+        }
+
+    }
     void CheckError(BackendReturnObject BRO)
     {
         switch (BRO.GetStatusCode())
@@ -288,81 +334,6 @@ public class BackEndGameInfo : MonoBehaviour
         Level = DBLevel;
         return Level;
     }
-    /*public void OnClickGameInfoUpdate()
-    {
-
-        int charLevel = GameManager.Instance.getLevel();
-        string charname = GameManager.Instance.getName();
-        int charEXP = GameManager.Instance.getExp();
-        int charMaxEXP = GameManager.Instance.getmaxExp();
-        int charHP = GameManager.Instance.getHp();
-        int charMaxHP = GameManager.Instance.getmaxHp();
-        int charMP = GameManager.Instance.getMp();
-        int charMaxMp = GameManager.Instance.getmaxMp();
-        int charSTR = GameManager.Instance.getSTR();
-        int charINT = GameManager.Instance.getINT();
-        int charFIT = GameManager.Instance.getFIT();
-        int charAPPoint = GameManager.Instance.getAPPoint();
-
-        Param param = new Param();
-        param.Add("Level", charLevel);
-        param.Add("EXP", charEXP);
-        param.Add("MaxEXP", charMaxEXP);
-        param.Add("HP", charHP);
-        param.Add("MaxHP", charMaxHP);
-        param.Add("MP", charMP);
-        param.Add("MaxMP", charMaxMp);
-        param.Add("STR", charSTR);
-        param.Add("INT", charINT);
-        param.Add("FIT", charFIT);
-        param.Add("APPoint", charAPPoint);
-
-        Dictionary<string, int> character = new Dictionary<string, int>
-        {
-            { "Level",charLevel },
-            { "EXP", charEXP },
-            { "MaxEXP", charMaxEXP },
-            { "HP", charHP },
-            { "MaxHP", charMaxHP },
-            { "MP", charMP },
-            { "MaxMP", charMaxMp },
-            { "STR",charSTR },
-            { "INT",charINT },
-            { "FIT",charFIT },
-            { "APPoint", charAPPoint }
-        };
-        param.Add("character", character);
-        BackendReturnObject BRO = Backend.GameInfo.Update("character", System.DateTime.Now.ToString("yyyy-MM-DD"), param);
-        if (BRO.IsSuccess())
-        {
-            Debug.Log("수정 완료");
-        }
-        else
-        {
-            switch (BRO.GetStatusCode())
-            {
-                case "405":
-                    Debug.Log("param에 partition, gamer_id, inDate, updatedAt 네가지 필드가 있는 경우");
-                    break;
-
-                case "403":
-                    Debug.Log("퍼블릭테이블의 타인정보를 수정하고자 하였을 경우");
-                    break;
-
-                case "404":
-                    Debug.Log("존재하지 않는 tableName인 경우");
-                    break;
-
-                case "412":
-                    Debug.Log("비활성화 된 tableName인 경우");
-                    break;
-
-                case "413":
-                    Debug.Log("하나의 row( column들의 집합 )이 400KB를 넘는 경우");
-                    break;
-            }
-        }
-
-    }*/
+    
 
 }
