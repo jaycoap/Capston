@@ -126,13 +126,13 @@ public class BackEndGameInfo : MonoBehaviour
     
     public void OnClickGetPrivateContents()
     {
-        BackendReturnObject BRO = Backend.GameData.GetV2("character", "inDate", getowner);
+        BackendReturnObject BRO = Backend.GameData.GetMyData("character", new Where());
        
         if (BRO.IsSuccess())
         {
             GetGameInfo(BRO.GetReturnValuetoJSON());
             Debug.Log(BRO);
-            Debug.Log("Pass");
+            
         }
         else
         {
@@ -149,6 +149,7 @@ public class BackEndGameInfo : MonoBehaviour
 
             if (returnData.Keys.Contains("rows"))
             {
+                Debug.Log("Pass");
                 JsonData rows = returnData["rows"];
                 for (int i = 0; i < rows.Count; i++)
                 {
@@ -175,8 +176,8 @@ public class BackEndGameInfo : MonoBehaviour
 
     public void GetData(JsonData data)
     {
+        
         Level = Int32.Parse(data["Level"][0].ToString());
-        Debug.Log(Level);
         HP = Int32.Parse(data["HP"][0].ToString());
         MaxHP = Int32.Parse(data["MaxHP"][0].ToString());
         MP = Int32.Parse(data["MP"][0].ToString());
