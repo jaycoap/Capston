@@ -139,9 +139,9 @@ public class GameManager : MonoBehaviour
         LoadGameState();
 
         spawnmanager.SponEnemy(0, 3, new Vector2(50, 0));
-        spawnmanager.SponEnemy(0, 3, new Vector2(55, 0));
-        spawnmanager.SponEnemy(0, 3, new Vector2(60, 0));
-        spawnmanager.SponEnemy(1, 3, new Vector2(80, 0));
+        //spawnmanager.SponEnemy(0, 3, new Vector2(55, 0));
+        //spawnmanager.SponEnemy(0, 3, new Vector2(60, 0));
+        //spawnmanager.SponEnemy(1, 3, new Vector2(80, 0));
 
         
 
