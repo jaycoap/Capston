@@ -328,7 +328,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5290438719731959125}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 3.497, y: -1.441, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4980767800246850887}
@@ -463,11 +463,11 @@ MonoBehaviour:
     backShotCool: 0
     birthCool: 0
     thornAmount: 0
+    thornSpeed: 0.35
     bossDiveRange: {x: 0, y: 0}
     attackDamage: 0
     warning: {fileID: 0}
-    spikeBall: {fileID: 0}
-    poisonBall: {fileID: 0}
+    ballShot: []
     slime: {fileID: 0}
     backShotPos: {fileID: 0}
     birthPos: {fileID: 0}

@@ -5,6 +5,8 @@ using System;
 using UnityEngine.UI;
 using BackEnd;
 using Random = UnityEngine.Random;
+using LitJson;
+
 
 public enum GameState
 {
@@ -26,6 +28,7 @@ public class GameManager : MonoBehaviour
     spawnManager spawnmanager;
     BackEndGameInfo gameinfo;
     public Text idText;
+    private BackEndManager backendmanager;
 
     //게임 세팅 변수
     private int activelevel = 0; // 레벨설정
@@ -73,13 +76,15 @@ public class GameManager : MonoBehaviour
         backendnickname = GetComponent<BackEndNickname>();
         animator = GetComponent<Animator>();
         spawnmanager = GetComponent<spawnManager>();
+
+        
     }
 
     void Update() //test 세팅
     {
         
         
-        setLevel();
+       
         setPlayerHP(HP);
         
         ADAttackFirst();
@@ -127,21 +132,22 @@ public class GameManager : MonoBehaviour
 
     }
     
-    public void Ingame() // 게임 시작시 설정값 입력 <- UI에서 new게임 눌렀을시 사용 부탁.
+    public void Ingame() // 게임 시작시 설정값 입력 
     {
         currentGameState = GameState.inGame;
-        SetGameState();
-
-        spawnmanager.SponEnemy(0, 3, new Vector2(50, -5));
-        spawnmanager.SponEnemy(0, 3, new Vector2(55, -5));
-        spawnmanager.SponEnemy(0, 3, new Vector2(60, -5));
-        spawnmanager.SponEnemy(1, 3, new Vector2(80, 0));
-
+       
         
+
+        spawnmanager.SponEnemy(0, new Vector2(50, 0));
+        
+        spawnmanager.SponEnemy(1, new Vector2(80, 0));
+        LoadGameState();
+
+
 
         return;
     }
-    public void LoadIngame()
+    /*public void LoadIngame()
     {
         currentGameState = GameState.inGame;
         //LoadGameState();
@@ -150,11 +156,11 @@ public class GameManager : MonoBehaviour
         spawnmanager.SponEnemy(0, 3, new Vector2(55, -5));
         spawnmanager.SponEnemy(0, 3, new Vector2(60, -5));
         spawnmanager.SponEnemy(1, 3, new Vector2(80, 0));
-    }
+    }*/
     public void GameOver()//게임 끝날시
     {
         currentGameState = GameState.gameover;
-        SetGameState();
+       
         return;
     }
     public void BackToMenu() // 메뉴로 돌아갈시 <- UI에서 Input.GetKeyDown(KeyCode.Escape) 사용부탁.
@@ -166,8 +172,6 @@ public class GameManager : MonoBehaviour
             menu = false;
             backgame = false;
             Debug.Log("Stop");
-            
-            SetGameState();
         }
         else
         {
@@ -176,8 +180,6 @@ public class GameManager : MonoBehaviour
             menu = true;
             backgame = true;
             Debug.Log("Start");
-            
-            SetGameState();
         }
         
         Debug.Log("menu");
@@ -187,46 +189,41 @@ public class GameManager : MonoBehaviour
     public void SetGameState()// 게임상태 설정
     {
         
-         if (firstcheck == true) // 게임이 시작되면 밑 같이 설정
-         {
-                activelevel = 1; // 레벨 설정
-                myname = idText.text; // 닉네임 설정
-                maxHp += 50; // 최대 체력 설정.
-                maxMp += 200; // 최대마나
-                maxExp += 300; // 1랩때 최대 경험치 
-                HP += maxHp; // 초기 체력 설정
-                MP += maxMp; // 초기 마나 설정
-                STR += 5; // 초기 공격력 설정
-                INT += 12; // 초기 주문력 설정
-                FIT += 2; // 초기 체력 마나 스텟 설정
-                EXP += 0; // 초기 경험치 세팅
-                APPoint = 0;
+        
+           activelevel = 1;
+           myname = idText.text; // 닉네임 설정
+           maxHp += 50; // 최대 체력 설정.
+           maxMp += 200; // 최대마나
+           maxExp += 300; // 1랩때 최대 경험치 
+           HP += maxHp; // 초기 체력 설정
+           MP += maxMp; // 초기 마나 설정
+           STR += 5; // 초기 공격력 설정
+           INT += 12; // 초기 주문력 설정
+           FIT += 2; // 초기 체력 마나 스텟 설정
+           EXP += 0; // 초기 경험치 세팅
+           APPoint = 0;
                 
-                firstcheck = false;
-         }
-         else if(firstcheck == false) // 아니면 return
-         {
-                return ;
-         }
+                
         
     }
     public void LoadGameState()// 게임상태 설정
     {
-
+        firstcheck = true;
         if (firstcheck == true) // 게임이 시작되면 밑 같이 설정
         {
-            activelevel = gameinfo.q; // 레벨 설정
+            
+            activelevel = BackEndGameInfo.instance.GetLevel();
             myname = idText.text; // 닉네임 설정
-            maxHp = gameinfo.n; // 최대 체력 설정.
-            maxMp = gameinfo.l; // 최대마나
-            maxExp = gameinfo.e; // 1랩때 최대 경험치 
-            HP = gameinfo.r; // 초기 체력 설정
-            MP = gameinfo.t; // 초기 마나 설정
-            STR = gameinfo.u; // 초기 공격력 설정
-            INT = gameinfo.v; // 초기 주문력 설정
-            FIT = gameinfo.x; // 초기 체력 마나 스텟 설정
-            EXP = gameinfo.w; // 초기 경험치 세팅
-            APPoint = gameinfo.y;
+            maxHp = BackEndGameInfo.instance.GetMaxHP(); // 최대 체력 설정.
+            maxMp = BackEndGameInfo.instance.GetMaxMP(); // 최대마나
+            maxExp = BackEndGameInfo.instance.GetMaxEXP(); // 1랩때 최대 경험치 
+            HP = BackEndGameInfo.instance.GetMaxHP(); // 초기 체력 설정
+            MP = BackEndGameInfo.instance.GetMaxMP(); // 초기 마나 설정
+            STR = BackEndGameInfo.instance.GetSTR(); // 초기 공격력 설정
+            INT = BackEndGameInfo.instance.GetINT(); // 초기 주문력 설정
+            FIT = BackEndGameInfo.instance.GetFIT(); // 초기 체력 마나 스텟 설정
+            EXP = BackEndGameInfo.instance.GetEXP(); // 초기 경험치 세팅
+            APPoint = BackEndGameInfo.instance.GetAPPoint();
 
             firstcheck = false;
         }
@@ -237,11 +234,7 @@ public class GameManager : MonoBehaviour
 
     }
 
-
-    public int getLevel() // 레벨 불러오기
-    {
-        return activelevel;
-    }
+    
 
     public void setLevel() // 레벨 세팅
     {
@@ -473,7 +466,10 @@ public class GameManager : MonoBehaviour
 
 
 
-
+    public int getLevel() // 레벨 불러오기
+    {
+        return activelevel;
+    }
 
     //초기 세팅
     public string getName() // 닉네임 불러오기
@@ -559,6 +555,8 @@ public class GameManager : MonoBehaviour
         FIT += newFIT;
         return FIT;
     }
+
+    
 
 
     private void Awake()

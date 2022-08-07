@@ -8,26 +8,21 @@ public class CustomSignUp : MonoBehaviour
 {
     public InputField idInput;
     public InputField passInput;
-    [SerializeField] private GameObject MainMenuPanel;
-    [SerializeField] private Fade fd;
-    [SerializeField] private GameObject joinPopup;
-    [SerializeField] private GameObject joinFail;
-    
+    [SerializeField] private MainMenu CustomSignUpMenu;
+    [SerializeField] private GameObject joinPopUp;
 
     public void OnclickSignUp() //회원가입 버튼에 사용
     {
         BackendReturnObject backendReturnObject = Backend.BMember.CustomSignUp(idInput.text, passInput.text, "test1");
-       
 
         if(backendReturnObject.IsSuccess() == true)
         {
             Debug.Log("[동기방식 회원가입 성공.]");
-            joinPopup.SetActive(true);
+            joinPopUp.SetActive(true);
         }
         else
         {
             BackEndManager.MyInstance.ShowErrorUI(backendReturnObject);
-            joinFail.SetActive(true);
         }
         Debug.Log("동기방식");
     }
@@ -38,16 +33,13 @@ public class CustomSignUp : MonoBehaviour
 
         if (backendReturnObject.IsSuccess()==true)
         {
+            CustomSignUpMenu.GameLogin();
             Debug.Log("로그인 완료");
-            GameManager.Instance.Ingame();
-            Invoke("HideMainMenu", 1.2f);
-            fd.FadeOutIn();
         }
 
         else
         {
             BackEndManager.MyInstance.ShowErrorUI(backendReturnObject);
-            joinFail.SetActive(true);
         }
     }
 
@@ -62,10 +54,5 @@ public class CustomSignUp : MonoBehaviour
             bro.Clear();
 
         }
-    }
-
-    public void HideMainMenu()
-    {
-        MainMenuPanel.SetActive(false);
     }
 }

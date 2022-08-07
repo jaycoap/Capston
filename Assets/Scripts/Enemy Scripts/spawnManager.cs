@@ -4,14 +4,14 @@ using UnityEngine;
 
 public class spawnManager : MonoBehaviour
 {
-    public GameObject[] enemy;
-    /*
-            0: Slime
-            1: SlimeBoss
-    */
     
-    public void SponEnemy(int enemy_code, int num, Vector2 pos)
+    
+    public GameObject[] enemy;
+    public void SponEnemy(int enemy_code, Vector2 pos)
     {
         Instantiate(enemy[enemy_code], new Vector2(pos.x, pos.y), Quaternion.identity);
     }
+
+
+
 }
