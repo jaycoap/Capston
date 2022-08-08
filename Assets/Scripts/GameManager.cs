@@ -64,6 +64,9 @@ public class GameManager : MonoBehaviour
     public bool firstcheck = true;
     private bool backmenu = false;
     private bool backgame = true;
+    public InputField Idfield;
+    public InputField Pwfield;
+    public Button EnterButton;
 
     //DB 변수
     Param param = new Param();
@@ -76,6 +79,7 @@ public class GameManager : MonoBehaviour
         backendnickname = GetComponent<BackEndNickname>();
         animator = GetComponent<Animator>();
         spawnmanager = GetComponent<spawnManager>();
+        Idfield.Select();
 
         
     }
@@ -83,6 +87,21 @@ public class GameManager : MonoBehaviour
     void Update() //test 세팅
     {
         
+        if (Idfield.isFocused == true)
+        {
+            if (Input.GetKeyDown(KeyCode.Tab))
+            {
+                Pwfield.Select();
+            }
+        }
+
+        if (Idfield.text != null && Pwfield.text != null)
+        {
+            if (Input.GetKeyDown(KeyCode.Return))
+            {
+                EnterButton.onClick.Invoke();
+            }
+        }
         
        
         setPlayerHP(HP);

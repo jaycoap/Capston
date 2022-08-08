@@ -2555,6 +2555,9 @@ MonoBehaviour:
   backendnickname: {fileID: 0}
   idText: {fileID: 378507059}
   firstcheck: 1
+  Idfield: {fileID: 1634794568}
+  Pwfield: {fileID: 518703838}
+  EnterButton: {fileID: 8419398}
 --- !u!4 &312096313
 Transform:
   m_ObjectHideFlags: 0
