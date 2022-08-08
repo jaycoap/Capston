@@ -28,8 +28,8 @@ public class BackEndGameInfo : MonoBehaviour
     public int FIT;
     public int APPoint;
     public string getIndate;
-    public string getowner = "2022-07-25T05:47:22.446Z";
-    public string getname = "2022-07-25T05:47:22.110Z";
+    public string getowner;
+    
 
     
 
@@ -96,6 +96,7 @@ public class BackEndGameInfo : MonoBehaviour
         {
             Debug.Log("indate:" + BRO.GetInDate());
             getIndate = BRO.GetInDate();
+            
         }
         else
         {

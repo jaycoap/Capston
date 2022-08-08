@@ -104,8 +104,16 @@ public class BackEndManager : MonoBehaviour // 싱글톤으로 만들고 파괴되지 않는 �
                 break;
 
         }
+        if (statusCode != null)
+        {
+            joinfail.SetActive(true);
+        }
+        else
+        {
+            joinfail.SetActive(false);
+        }
 
-        joinfail.SetActive(true);
+        
     }
     
 
