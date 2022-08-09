@@ -104,14 +104,20 @@ public class GameManager : MonoBehaviour
         }
         
        
-        setPlayerHP(HP);
-        
-        ADAttackFirst();
-        ADAttackSecond();
-        ADAttackThird();
-        Energy_rush();
-        Energy_slash();
-        Energy_sword();
+        if (currentGameState == GameState.inGame)
+        {
+            setPlayerHP(HP);
+            ADAttackFirst();
+            ADAttackSecond();
+            ADAttackThird();
+            Energy_rush();
+            Energy_slash();
+            Energy_sword();
+        }
+        else
+        {
+            return;
+        }
         if (Input.GetKeyDown(KeyCode.Escape))
         {
             BackToMenu();
