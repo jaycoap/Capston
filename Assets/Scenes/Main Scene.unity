@@ -2611,6 +2611,7 @@ MonoBehaviour:
   currentGameState: 0
   backendnickname: {fileID: 0}
   idText: {fileID: 378507059}
+  menu: 1
   firstcheck: 1
   Idfield: {fileID: 1634794568}
   Pwfield: {fileID: 518703838}
@@ -46854,10 +46855,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 2079265388, guid: d3866f61265bc784ea8f4b7a9ad7d1a9, type: 3}
-      propertyPath: m_Material
-      value: 
-      objectReference: {fileID: 6200000, guid: bb2683e31ff4cbd4ebe305aa35d69caa, type: 2}
     - target: {fileID: 1686731076479105878, guid: d3866f61265bc784ea8f4b7a9ad7d1a9, type: 3}
       propertyPath: m_Name
       value: Player

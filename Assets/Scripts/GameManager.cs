@@ -60,10 +60,10 @@ public class GameManager : MonoBehaviour
     
 
     //게임 상태 변수
-    private bool menu = true;
+    public bool menu = false;
     public bool firstcheck = true;
     private bool backmenu = false;
-    private bool backgame = true;
+    
     public InputField Idfield;
     public InputField Pwfield;
     public Button EnterButton;
@@ -119,8 +119,10 @@ public class GameManager : MonoBehaviour
             return;
         }
         if (Input.GetKeyDown(KeyCode.Escape))
-        {
+        {   
+            
             BackToMenu();
+
         }
         if (Input.GetKeyDown(KeyCode.U))
         {
@@ -172,16 +174,7 @@ public class GameManager : MonoBehaviour
 
         return;
     }
-    /*public void LoadIngame()
-    {
-        currentGameState = GameState.inGame;
-        //LoadGameState();
-
-        spawnmanager.SponEnemy(0, 3, new Vector2(50, -5));
-        spawnmanager.SponEnemy(0, 3, new Vector2(55, -5));
-        spawnmanager.SponEnemy(0, 3, new Vector2(60, -5));
-        spawnmanager.SponEnemy(1, 3, new Vector2(80, 0));
-    }*/
+    
     public void GameOver()//게임 끝날시
     {
         currentGameState = GameState.gameover;
@@ -190,24 +183,20 @@ public class GameManager : MonoBehaviour
     }
     public void BackToMenu() // 메뉴로 돌아갈시 <- UI에서 Input.GetKeyDown(KeyCode.Escape) 사용부탁.
     {
-        if (menu == true)
+        if (backmenu == false)
         {
-            currentGameState = GameState.menu;
             Time.timeScale = 0;
-            menu = false;
-            backgame = false;
-            Debug.Log("Stop");
+            backmenu = true;
+            return;
         }
-        else
-        {
-            currentGameState = GameState.menu;
+        if (backmenu == true)
+        { 
             Time.timeScale = 1;
-            menu = true;
-            backgame = true;
-            Debug.Log("Start");
+            backmenu = false;
+            return;
         }
         
-        Debug.Log("menu");
+       
         
     }
 
