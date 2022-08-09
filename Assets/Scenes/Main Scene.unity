@@ -46837,6 +46837,14 @@ PrefabInstance:
       propertyPath: m_Tiles.Array.data[2510].second.m_TileSpriteIndex
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 1085959506864912046, guid: 20df38514d9d9584fbf173cfdbd4135f, type: 3}
+      propertyPath: m_Material
+      value: 
+      objectReference: {fileID: 6200000, guid: bb2683e31ff4cbd4ebe305aa35d69caa, type: 2}
+    - target: {fileID: 1085959506864912047, guid: 20df38514d9d9584fbf173cfdbd4135f, type: 3}
+      propertyPath: m_Material
+      value: 
+      objectReference: {fileID: 6200000, guid: bb2683e31ff4cbd4ebe305aa35d69caa, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 20df38514d9d9584fbf173cfdbd4135f, type: 3}
 --- !u!1001 &1686731076909214001
@@ -46846,6 +46854,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 2079265388, guid: d3866f61265bc784ea8f4b7a9ad7d1a9, type: 3}
+      propertyPath: m_Material
+      value: 
+      objectReference: {fileID: 6200000, guid: bb2683e31ff4cbd4ebe305aa35d69caa, type: 2}
     - target: {fileID: 1686731076479105878, guid: d3866f61265bc784ea8f4b7a9ad7d1a9, type: 3}
       propertyPath: m_Name
       value: Player
@@ -46860,11 +46872,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1686731076479105883, guid: d3866f61265bc784ea8f4b7a9ad7d1a9, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0.19
+      value: 0.134
       objectReference: {fileID: 0}
     - target: {fileID: 1686731076479105883, guid: d3866f61265bc784ea8f4b7a9ad7d1a9, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -3
+      value: -4.477
       objectReference: {fileID: 0}
     - target: {fileID: 1686731076479105883, guid: d3866f61265bc784ea8f4b7a9ad7d1a9, type: 3}
       propertyPath: m_LocalPosition.z

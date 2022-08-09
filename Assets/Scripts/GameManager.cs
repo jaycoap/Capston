@@ -160,7 +160,7 @@ public class GameManager : MonoBehaviour
     public void Ingame() // 게임 시작시 설정값 입력 
     {
         currentGameState = GameState.inGame;
-       
+
         
 
         spawnmanager.SponEnemy(0, new Vector2(50, 0));
