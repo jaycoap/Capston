@@ -161,7 +161,7 @@ public class GameManager : MonoBehaviour
     {
         currentGameState = GameState.inGame;
 
-        
+        playerManager.isStart = true;
 
         spawnmanager.SponEnemy(0, new Vector2(50, 0));
         
