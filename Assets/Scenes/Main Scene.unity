@@ -2609,6 +2609,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isPause: 0
   currentGameState: 0
+  playerRigid: {fileID: 1657803673}
   backendnickname: {fileID: 0}
   idText: {fileID: 378507059}
   menu: 1
@@ -13061,6 +13062,11 @@ Canvas:
   m_SortingLayerID: 0
   m_SortingOrder: 0
   m_TargetDisplay: 0
+--- !u!50 &1657803673 stripped
+Rigidbody2D:
+  m_CorrespondingSourceObject: {fileID: 2079265387, guid: d3866f61265bc784ea8f4b7a9ad7d1a9, type: 3}
+  m_PrefabInstance: {fileID: 1686731076909214001}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1670697564
 GameObject:
   m_ObjectHideFlags: 0

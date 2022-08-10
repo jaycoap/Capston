@@ -22,6 +22,7 @@ public class GameManager : MonoBehaviour
     public GameState currentGameState = GameState.menu; // 게임상태 설정
     private static GameManager _instance;
     private GameObject player;
+    public Rigidbody2D playerRigid;
     private SpriteRenderer playerRenderer;
     public BackEndNickname backendnickname;
     Animator animator;
@@ -79,6 +80,7 @@ public class GameManager : MonoBehaviour
         backendnickname = GetComponent<BackEndNickname>();
         animator = GetComponent<Animator>();
         spawnmanager = GetComponent<spawnManager>();
+
         Idfield.Select();
 
         
@@ -206,14 +208,14 @@ public class GameManager : MonoBehaviour
         
            activelevel = 1;
            myname = idText.text; // 닉네임 설정
-           maxHp += 50; // 최대 체력 설정.
+           maxHp += 70; // 최대 체력 설정.
            maxMp += 200; // 최대마나
            maxExp += 300; // 1랩때 최대 경험치 
            HP += maxHp; // 초기 체력 설정
            MP += maxMp; // 초기 마나 설정
-           STR += 5; // 초기 공격력 설정
+           STR += 7; // 초기 공격력 설정
            INT += 12; // 초기 주문력 설정
-           FIT += 2; // 초기 체력 마나 스텟 설정
+           FIT += 3; // 초기 체력 마나 스텟 설정
            EXP += 0; // 초기 경험치 세팅
            APPoint = 0;
                 
@@ -460,13 +462,11 @@ public class GameManager : MonoBehaviour
             HP = HP-PlayerHit;
             setPlayerHP(HP);
         }
-        else if(currentGameState == GameState.inGame)
+        else if(HP - PlayerHit <= 0)
         {
-            HP = 0;
             setPlayerHP(HP);
-            player = GameObject.FindWithTag("Player");
-            player.GetComponent<Animator>().SetBool("isDie", true);
-            Debug.Log("DIE!");
+            Dead();
+            
         }
     }
     public int setPlayerHP(int setHP)
@@ -570,7 +570,13 @@ public class GameManager : MonoBehaviour
         return FIT;
     }
 
-    
+    public void Dead()
+    {
+        setPlayerHP(HP);
+        player = GameObject.FindWithTag("Player");
+        player.GetComponent<Animator>().SetBool("isDie", true);
+        
+    }
 
 
     private void Awake()
