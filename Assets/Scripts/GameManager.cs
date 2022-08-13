@@ -23,13 +23,13 @@ public class GameManager : MonoBehaviour
     private static GameManager _instance;
     private GameObject player;
     public Rigidbody2D playerRigid;
-    private SpriteRenderer playerRenderer;
+    
     public BackEndNickname backendnickname;
-    Animator animator;
+    
     spawnManager spawnmanager;
-    BackEndGameInfo gameinfo;
+    
     public Text idText;
-    private BackEndManager backendmanager;
+    
 
     //게임 세팅 변수
     private int activelevel = 0; // 레벨설정
@@ -69,27 +69,21 @@ public class GameManager : MonoBehaviour
     public InputField Pwfield;
     public Button EnterButton;
 
-    //DB 변수
-    Param param = new Param();
+   
     
     
     
     void Start()
-    {
-        //currentGameState = GameState.menu;// 게임시작시 메뉴로 설정. (차후사용)
+    { 
         backendnickname = GetComponent<BackEndNickname>();
-        animator = GetComponent<Animator>();
         spawnmanager = GetComponent<spawnManager>();
-
         Idfield.Select();
-
-        
     }
 
     void Update() //test 세팅
     {
         
-        if (Idfield.isFocused == true)
+        if (Idfield.isFocused == true) //로그인시 tab키 입력하면 Pw필드로 이동
         {
             if (Input.GetKeyDown(KeyCode.Tab))
             {
@@ -97,7 +91,7 @@ public class GameManager : MonoBehaviour
             }
         }
 
-        if (Idfield.text != null && Pwfield.text != null)
+        if (Idfield.text != null && Pwfield.text != null) //아이디, 비밀번호 입력후 Enter키를 입력하면 자동으로 로그인
         {
             if (Input.GetKeyDown(KeyCode.Return))
             {
@@ -106,7 +100,7 @@ public class GameManager : MonoBehaviour
         }
         
        
-        if (currentGameState == GameState.inGame)
+        if (currentGameState == GameState.inGame) // 게임이 시작되었을때 사용됨.
         {
             setPlayerHP(HP);
             ADAttackFirst();
@@ -120,17 +114,13 @@ public class GameManager : MonoBehaviour
         {
             return;
         }
-        if (Input.GetKeyDown(KeyCode.Escape))
+        if (Input.GetKeyDown(KeyCode.Escape)) // 게임 일시정지 
         {   
             
             BackToMenu();
 
         }
-        if (Input.GetKeyDown(KeyCode.U))
-        {
-            //LoadGameState();
-           
-        }
+        
         if (Input.GetKeyDown(KeyCode.Z))
         {
             EXP += 200;
@@ -183,7 +173,7 @@ public class GameManager : MonoBehaviour
        
         return;
     }
-    public void BackToMenu() // 메뉴로 돌아갈시 <- UI에서 Input.GetKeyDown(KeyCode.Escape) 사용부탁.
+    public void BackToMenu() // 메뉴로 돌아갈시 
     {
         if (backmenu == false)
         {
@@ -252,42 +242,7 @@ public class GameManager : MonoBehaviour
 
     
 
-    public void setLevel() // 레벨 세팅
-    {
-        if (firstcheck == false) // 게임이 시작되야 레벨 및 경험치 설정
-        {
-            if (EXP >= maxExp && EXP - maxExp >= 1) //현재 경험치가 최대경험치 이상일때 레벨 +1, 현재 경험치와 최대경험치 차이가 1 이상이면
-            {
-
-                activelevel += 1;
-                APPoint += 3; //스텟 포인트 3추가
-                HP = maxHp;
-                MP = maxMp;
-                Expcheck = EXP - maxExp; // 현재 경험치와 최대경험치를 뺀 나머지를 현재 경험치로 설정.
-                EXP = Expcheck;
-                
-                if(EXP - maxExp == 0) // 아니면 현재경험치는 0
-                {
-                    EXP = 0;
-                }
-                if (activelevel % 10 <= 0) // 10렙당 경험치 1.5배
-                {
-                    maxCheck = maxExp * 1.5;
-                }
-                else// 아니면 1.2배
-                {
-                    maxCheck = maxExp * 1.2;
-                }
-
-                maxExp = (int)maxCheck;
-            }
-        }
-        else if(firstcheck == true) // 아니면 실행 x
-        {
-            return;
-        }
-        
-    }
+    
     //플레이어 공격 분리
     public void ADAttackFirst() // 1타
     {
@@ -385,12 +340,38 @@ public class GameManager : MonoBehaviour
         MP = MP - mp;
     }
 
+    
+
+    
+
+    // 플레이어 피격시
+    public void PlayerDamage(int PlayerHit) //PlayerHIt에는 몬스터 몬스터 공격력을 추가.
+    {
+        if (HP - PlayerHit >= 0)
+        {
+            HP = HP-PlayerHit;
+            setPlayerHP(HP);
+        }
+        else if(HP - PlayerHit <= 0)
+        {
+            setPlayerHP(HP);
+            Dead();
+            
+        }
+    }
+    public int setPlayerHP(int setHP)
+    {
+        HP = setHP;
+        return HP;
+    }
+
+
     //포션사용시 HP,MP 따로 증가하게 설정
     public int usePotionHealHP(int PotionHeal)//사용시 HP 증가
     {
-        if (HP+PotionHeal >= maxHp) // HP+힐량이 최대체력보다 높을시 현재 체력을 최대 체력으로 설정.
+        if (HP + PotionHeal >= maxHp) // HP+힐량이 최대체력보다 높을시 현재 체력을 최대 체력으로 설정.
         {
-            HP = maxHp; 
+            HP = maxHp;
         }
         else // 아니면 HP에 힐량 추가
         {
@@ -400,10 +381,10 @@ public class GameManager : MonoBehaviour
     }
     public int usePotionHealMP(int PotionHeal)//사용시 MP 증가
     {
-        
+
         if (MP + PotionHeal >= maxMp) // MP+힐량이 최대마나보다 높을시 현재 마나을 최대 마나으로 설정.
         {
-            MP = maxMp; 
+            MP = maxMp;
         }
         else // 아니면 MP에 힐량 추가
         {
@@ -454,31 +435,42 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    // 플레이어 피격시
-    public void PlayerDamage(int PlayerHit) //PlayerHIt에는 몬스터 몬스터 공격력을 추가.
+    public void setLevel() // 레벨 세팅
     {
-        if (HP - PlayerHit >= 0)
+        if (firstcheck == false) // 게임이 시작되야 레벨 및 경험치 설정
         {
-            HP = HP-PlayerHit;
-            setPlayerHP(HP);
+            if (EXP >= maxExp && EXP - maxExp >= 1) //현재 경험치가 최대경험치 이상일때 레벨 +1, 현재 경험치와 최대경험치 차이가 1 이상이면
+            {
+
+                activelevel += 1;
+                APPoint += 3; //스텟 포인트 3추가
+                HP = maxHp;
+                MP = maxMp;
+                Expcheck = EXP - maxExp; // 현재 경험치와 최대경험치를 뺀 나머지를 현재 경험치로 설정.
+                EXP = Expcheck;
+
+                if (EXP - maxExp == 0) // 아니면 현재경험치는 0
+                {
+                    EXP = 0;
+                }
+                if (activelevel % 10 <= 0) // 10렙당 경험치 1.5배
+                {
+                    maxCheck = maxExp * 1.5;
+                }
+                else// 아니면 1.2배
+                {
+                    maxCheck = maxExp * 1.2;
+                }
+
+                maxExp = (int)maxCheck;
+            }
         }
-        else if(HP - PlayerHit <= 0)
+        else if (firstcheck == true) // 아니면 실행 x
         {
-            setPlayerHP(HP);
-            Dead();
-            
+            return;
         }
+
     }
-    public int setPlayerHP(int setHP)
-    {
-        HP = setHP;
-        return HP;
-    }
-
-
-
-
-
 
     public int getLevel() // 레벨 불러오기
     {
@@ -570,7 +562,7 @@ public class GameManager : MonoBehaviour
         return FIT;
     }
 
-    public void Dead()
+    public void Dead() // 캐릭터 사망시 사용될 함수.
     {
         setPlayerHP(HP);
         player = GameObject.FindWithTag("Player");
@@ -592,22 +584,12 @@ public class GameManager : MonoBehaviour
         DontDestroyOnLoad(this.gameObject);
 
         player = GameObject.FindWithTag("Player");
-        playerRenderer = player.GetComponent<SpriteRenderer>();
+        
 
-        Screen.fullScreen = true;
+        Screen.fullScreen = false;
     }
 
-    //private void Update()
-    //{
-    //    
-    //    if (Input.GetKeyDown(KeyCode.Escape))
-    //        Screen.fullScreen = !Screen.fullScreen;
-    //    if (Input.GetButtonDown("z"))
-    //    {
-    //        StartGame();
-    //    }
-       
-    //}
+    
 }
 
 public class GameContorl
