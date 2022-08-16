@@ -35,6 +35,9 @@ public class playerManager : MonoBehaviour
     [SerializeField] private GameObject Bullet3;
     [SerializeField] private GameObject AttackBox;
     [SerializeField] private GameObject Qbox;
+    [SerializeField] private SkillCoolTime Skill_1slot;
+    [SerializeField] private SkillCoolTime Skill_2slot;
+    [SerializeField] private SkillCoolTime Skill_3slot;
     public static bool isStart = false;
     public static bool flipx;
     GameManager GM;
@@ -187,6 +190,8 @@ public class playerManager : MonoBehaviour
                         GameManager.Instance.DecreaseMP(10);
                         animator.SetBool("isSkill1", true);
                         coolTime1_start = Time.time;
+                        Skill_1slot.CoolTime = coolTime1_skill;
+                        Skill_1slot.UseSkill();
                     }
 
                     //스킬2
@@ -196,6 +201,8 @@ public class playerManager : MonoBehaviour
                         GameManager.Instance.DecreaseMP(20);
                         animator.SetBool("isSkill2", true);
                         coolTime2_start = Time.time;
+                        Skill_2slot.CoolTime = coolTime2_skill;
+                        Skill_2slot.UseSkill();
                     }
 
                     //스킬3
@@ -207,6 +214,8 @@ public class playerManager : MonoBehaviour
                         animator.SetBool("isSkill3On", true);
                         animator.SetBool("isSkill3", true);
                         coolTime3_start = Time.time;
+                        Skill_3slot.CoolTime = coolTime3_skill;
+                        Skill_3slot.UseSkill();
                     }
                 }
                 //isGrounded
