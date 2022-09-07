@@ -24,7 +24,7 @@ public class thornManager : MonoBehaviour
     
     private void thornSpawn()
     {
-        Instantiate(thorn, new Vector2(pos.transform.position.x, pos.transform.position.y), Quaternion.identity);
+        Instantiate(thorn, new Vector2(pos.transform.position.x, pos.transform.position.y + 0.5f), Quaternion.identity);
         Destroy(gameObject);
     }
     private void thornDestroy()

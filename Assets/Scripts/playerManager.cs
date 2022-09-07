@@ -127,7 +127,7 @@ public class playerManager : MonoBehaviour
                     //점프
                     float J_input = Input.GetAxisRaw("Jump");
 
-                    if (J_input == 1 && !animator.GetBool("isAttack") && !animator.GetBool("isSkill3On"))
+                    if (J_input == 1 && !animator.GetBool("isAttack") && !animator.GetBool("isSkill3On") && !animator.GetBool("isJump"))
                     {
                         if (rigidBody.velocity.y < maxJumpSpeed)
                         {
@@ -277,7 +277,7 @@ public class playerManager : MonoBehaviour
             }
         }
         //바닥 체크
-        if (Physics2D.OverlapBox(new Vector2(transform.position.x, transform.position.y - 0.8333f), new Vector2(0.7f, 0.1f), 0, LayerMask.GetMask("Floor")))
+        if (Physics2D.OverlapBox(new Vector2(transform.position.x, transform.position.y - 0.8134f), new Vector2(0.6f, 0.1f), 0, LayerMask.GetMask("Floor")))
         {
             isGrounded = true;
 
