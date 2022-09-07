@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class MainMenu : MonoBehaviour
 {
@@ -10,14 +11,15 @@ public class MainMenu : MonoBehaviour
 
     public void GameLogin()
     {
-        
+
         mainFade.FadeOutIn();
-        Invoke("HideMainMenu", 1.2f); ;
+        Invoke("HideMainMenu", 1.2f);
+        Invoke("LoginSceneChange", 1.2f);
     }
 
     public void LoadGame()
     {
-       // 불러오기 기능구현 해야함.
+        // 불러오기 기능구현 해야함.
     }
 
     public void ExitGame()
@@ -31,6 +33,11 @@ public class MainMenu : MonoBehaviour
     public void HideMainMenu()
     {
         MainMenuPanel.SetActive(false);
+    }
+
+    public void LoginSceneChange()
+    {
+        SceneManager.LoadScene("Main Scene");
     }
 
 
