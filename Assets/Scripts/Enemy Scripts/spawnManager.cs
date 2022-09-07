@@ -11,7 +11,4 @@ public class spawnManager : MonoBehaviour
     {
         Instantiate(enemy[enemy_code], new Vector2(pos.x, pos.y), Quaternion.identity);
     }
-
-
-
 }
