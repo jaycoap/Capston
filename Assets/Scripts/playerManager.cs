@@ -4,8 +4,9 @@ using UnityEngine;
 
 public class playerManager : MonoBehaviour
 {
-    private float movementSpeed;
-    private float jumpSpeed;
+    [SerializeField] private float movementSpeed;
+    [SerializeField] private float jumpSpeed;
+    [SerializeField]private float maxJumpSpeed;
     private float skill2_movement = 15;
     //쿨타임 변수
     private float coolTime1_start = 0;
@@ -50,8 +51,6 @@ public class playerManager : MonoBehaviour
 
         isDead = false;
         isGrounded = false;
-        movementSpeed = 0.1f;
-        jumpSpeed = 9f;
         attackRange = new Vector2(0.9166667f, 1.666667f);
         Physics.IgnoreLayerCollision(8, 8, true);
     }
@@ -130,7 +129,7 @@ public class playerManager : MonoBehaviour
 
                     if (J_input == 1 && !animator.GetBool("isAttack") && !animator.GetBool("isSkill3On"))
                     {
-                        if (rigidBody.velocity.y < 9)
+                        if (rigidBody.velocity.y < maxJumpSpeed)
                         {
                             rigidBody.AddForce(Vector2.up * J_input * jumpSpeed, ForceMode2D.Impulse);
                             animator.SetBool("isJump", true);
@@ -282,8 +281,8 @@ public class playerManager : MonoBehaviour
         {
             isGrounded = true;
 
-            rigidBody.drag = 3;
-            rigidBody.gravityScale = 3;
+            rigidBody.drag = 2;
+            rigidBody.gravityScale = 5;
         }
         else
         {
