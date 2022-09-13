@@ -69,12 +69,12 @@ public class GameManager : MonoBehaviour
     public InputField Pwfield;
     public Button EnterButton;
 
-   
-    
-    
-    
+
+
+
+
     void Start()
-    { 
+    {
         backendnickname = GetComponent<BackEndNickname>();
         spawnmanager = GetComponent<spawnManager>();
         Idfield.Select();
@@ -82,7 +82,7 @@ public class GameManager : MonoBehaviour
 
     void Update() //test 세팅
     {
-        
+
         if (Idfield.isFocused == true) //로그인시 tab키 입력하면 Pw필드로 이동
         {
             if (Input.GetKeyDown(KeyCode.Tab))
@@ -98,8 +98,8 @@ public class GameManager : MonoBehaviour
                 EnterButton.onClick.Invoke();
             }
         }
-        
-       
+
+
         if (currentGameState == GameState.inGame) // 게임이 시작되었을때 사용됨.
         {
             setPlayerHP(HP);
