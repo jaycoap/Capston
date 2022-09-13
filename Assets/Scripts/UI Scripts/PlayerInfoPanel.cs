@@ -84,6 +84,20 @@ public class PlayerInfoPanel : MonoBehaviour
         }
 
         Button.SetActive(ActiveButton);
+    }
 
+    public void GmUpSTR()
+    {
+        GameManager.Instance.UpSTR();
+    }
+
+    public void GmUpFIT()
+    {
+        GameManager.Instance.UpFIT();
+    }
+
+    public void GmUpINT()
+    {
+        GameManager.Instance.UpINT();
     }
 }

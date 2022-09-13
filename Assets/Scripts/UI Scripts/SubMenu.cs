@@ -26,4 +26,9 @@ public class SubMenu : MonoBehaviour
             Subfade.SetActive(ActiveSubMenu);
         }
     }
+
+    public void Save()
+    {
+        BackEndGameInfo.instance.OnClickGameInfoUpdate();
+    }
 }
