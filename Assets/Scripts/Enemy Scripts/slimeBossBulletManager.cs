@@ -93,7 +93,7 @@ public class slimeBossBulletManager : MonoBehaviour
             case "poisonBall":
                 if (other.gameObject.layer == 6)
                 {
-                    Instantiate(poisonFloor, new Vector2(transform.position.x, -6f), Quaternion.identity);
+                    Instantiate(poisonFloor, new Vector2(transform.position.x, transform.position.y - 0.1f), Quaternion.identity);
                     Destroy(gameObject);
                 }
                 break;
