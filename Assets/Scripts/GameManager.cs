@@ -19,10 +19,11 @@ public class GameManager : MonoBehaviour
 {
     public static GameManager Instance { get { return _instance; } }
     public bool isPause = false;
-    public GameState currentGameState = GameState.menu; // 게임상태 설정
+    public GameState currentGameState = GameState.start; // 게임상태 설정
     private static GameManager _instance;
     private GameObject player;
     public Rigidbody2D playerRigid;
+    
     
     public BackEndNickname backendnickname;
     
@@ -45,20 +46,24 @@ public class GameManager : MonoBehaviour
     private int INT = 0; //  주문력(스킬 공격력)
     private int FIT = 0; // 캐릭터 체력 마나 스텟
     private int EXP = 0;  //현재경험치
-    private int APPoint = 0;
-    private int AD1 = 0;
-    private int AD2 = 0;
-    private int AD3 = 0;
-    private int MaxAD = 0;
-    private int MinAD = 0;
-    private int MaxAP = 0;
-    private int MinAP = 0;
-    private int RushAP = 0;
-    private int SlashAP = 0;
-    private int SwordAP = 0;
-    int attackCount = 0;
+    private int APPoint = 0; // 스텟 포인트
+    private int AD1 = 0; // 공격 1타
+    private int AD2 = 0; // 공격 2타
+    private int AD3 = 0; // 공격 3타
+    private int MaxAD = 0; //최대 공격 데미지
+    private int MinAD = 0; // 최소 공격 데미지
+    private int MaxAP = 0; // 최대 스킬 데미지
+    private int MinAP = 0; // 최소 스킬 데미지
+    private int RushAP = 0; //Q스킬 데미지
+    private int SlashAP = 0; //W스킬 데미지
+    private int SwordAP = 0; //E스킬 데미지
+    int attackCount = 0; // 공격 타수 카운트
+    private int Time_HP = 0; //자동 HP회복량
+    private int Time_MP = 0; // 자동 MP회복량
+    private float Time_delay = 7f; // 자동회복 쿨타임
+    private bool isDelay;
 
-    
+
 
     //게임 상태 변수
     public bool menu = false;
@@ -78,6 +83,9 @@ public class GameManager : MonoBehaviour
         backendnickname = GetComponent<BackEndNickname>();
         spawnmanager = GetComponent<spawnManager>();
         Idfield.Select();
+        Time_HP = 5;
+        Time_MP = 10;
+
     }
 
     void Update() //test 세팅
@@ -102,6 +110,14 @@ public class GameManager : MonoBehaviour
 
         if (currentGameState == GameState.inGame) // 게임이 시작되었을때 사용됨.
         {
+            
+            if ((isDelay == false && HP <maxHp) || (isDelay == false && MP < maxMp))
+            {
+                isDelay = true;
+                setPlayerHP(HP + Time_HP);
+                setPlayerMP(MP + Time_MP);
+                StartCoroutine(HealTime());
+            }   
             setPlayerHP(HP);
             ADAttackFirst();
             ADAttackSecond();
@@ -364,7 +380,18 @@ public class GameManager : MonoBehaviour
         HP = setHP;
         return HP;
     }
+    public int setPlayerMP(int setMP)
+    {
+        MP = setMP;
+        return MP;
+    }
 
+    IEnumerator HealTime()
+    {
+        yield return new WaitForSeconds(7.0f);
+        isDelay = false;
+
+    }
 
     //포션사용시 HP,MP 따로 증가하게 설정
     public int usePotionHealHP(int PotionHeal)//사용시 HP 증가
