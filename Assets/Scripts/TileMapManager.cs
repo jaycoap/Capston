@@ -20,6 +20,13 @@ public class Platform
     public int Platform5;
     public int Platform4;
 }
+[Serializable]
+public class Enemy
+{
+    public GameObject Slime;
+    public int Slime_Amount;
+    public GameObject SlimeBoss;
+}
 public class TileMapManager : MonoBehaviour
 {
 
@@ -30,6 +37,7 @@ public class TileMapManager : MonoBehaviour
     [SerializeField] private int Floordepth;
     public TB tb;
     public Platform platform;
+    public Enemy enemy;
 
     private void Start()
     {
@@ -48,8 +56,24 @@ public class TileMapManager : MonoBehaviour
                 Tilemap.SetTile(new Vector3Int(i, -2 - e, 0), tb.FloorTile);
             }
         }
+        //왼쪽 벽설치
+        for(int e = Floordepth; e > -Floordepth -15; e--)
+        {
+            for (int i = -Mathf.FloorToInt(halfWidth); i > -Mathf.FloorToInt(halfWidth) -6; i--)
+            {
+                Tilemap.SetTile(new Vector3Int(i - 1, -1 - e, 0), tb.FloorTile);
+            }
+        }
+        //오른쪽 벽설치
+        for (int e = Floordepth; e > -Floordepth - 15; e--)
+        {
+            for(int i = Mathf.RoundToInt(halfWidth); i < Mathf.RoundToInt(halfWidth) + 6; i++)
+            {
+                Tilemap.SetTile(new Vector3Int(i, -1 - e, 0), tb.FloorTile);
+            }
+        }
     }
-
+    //플렛폼 설치
     private void MakePlatform()
     {
         float halfWidth = FloorWidth / 2;
@@ -78,6 +102,9 @@ public class TileMapManager : MonoBehaviour
         }
         //시행회수가 너무 많을때 탈출하기 위한 변수
         int escape = 0;
+        //슬라임을 소환할때 사용하는 카운터
+        int slimeCount = 0;
+
         //크기가 5인 플렛폼 생성
         for (int i = 0; i < platform.Platform5; i++)
         {
@@ -235,7 +262,7 @@ public class TileMapManager : MonoBehaviour
                         }
                     }
                 }
-
+                
                 Tilemap.SetTile(new Vector3Int(R_X - Mathf.FloorToInt(halfWidth), R_Y, 0), tb.FloorTile);
                 Tilemap.SetTile(new Vector3Int(R_X - Mathf.FloorToInt(halfWidth) - 1, R_Y, 0), tb.FloorTile);
                 Tilemap.SetTile(new Vector3Int(R_X - Mathf.FloorToInt(halfWidth) - 2, R_Y, 0), tb.FloorTile);
@@ -250,13 +277,35 @@ public class TileMapManager : MonoBehaviour
                 Debug.Log(i);
                 Debug.Log("위치");
                 Debug.Log(R_X - Mathf.FloorToInt(halfWidth));
-
-                
+                if(slimeCount < enemy.Slime_Amount)
+                {
+                    Vector3 spawnPos = Tilemap.CellToWorld(new Vector3Int(R_X - Mathf.FloorToInt(halfWidth), R_Y + 1, 0));
+                    Instantiate(enemy.Slime, new Vector3(spawnPos.x + (float)0.5, spawnPos.y, spawnPos.z), Quaternion.identity);
+                    slimeCount++;
+                }
             }
             //시행회수가 너무 많을경우 탈출
             if (escape > 100)
             {
                 break;
+            } 
+        }
+        //플렛폼을 다 설치하고도 slimeCount가 다 안채워지면 바닥에 슬라임 설치
+        if (slimeCount < enemy.Slime_Amount)
+        {
+            for(int i = slimeCount; i < enemy.Slime_Amount; i++)
+            {
+                int R_X = Random.Range(4, (int)FloorWidth - 4);
+                if(!(platformX[R_X] == 1))
+                {
+                    Vector3 spawnPos = Tilemap.CellToWorld(new Vector3Int(R_X - Mathf.FloorToInt(halfWidth), -2 + 1, 0));
+                    Instantiate(enemy.Slime, new Vector3(spawnPos.x + (float)0.5, spawnPos.y, spawnPos.z), Quaternion.identity);
+                    slimeCount++;
+                }
+                else
+                {
+                    i--;
+                }
             }
         }
     }

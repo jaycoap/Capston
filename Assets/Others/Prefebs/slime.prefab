@@ -313,6 +313,7 @@ GameObject:
   - component: {fileID: 9221004634922994865}
   - component: {fileID: 337492028}
   - component: {fileID: 1987731306}
+  - component: {fileID: 727406064}
   m_Layer: 8
   m_Name: slime
   m_TagString: Enemy
@@ -415,7 +416,7 @@ BoxCollider2D:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5290438719731959125}
-  m_Enabled: 1
+  m_Enabled: 0
   m_Density: 1
   m_Material: {fileID: 0}
   m_IsTrigger: 0
@@ -492,6 +493,39 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!60 &727406064
+PolygonCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5290438719731959125}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5084746, y: 0.1666667}
+    oldSize: {x: 2.4583333, y: 2}
+    newSize: {x: 1, y: 1}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  m_Points:
+    m_Paths:
+    - - {x: -0.20382446, y: 0.3776773}
+      - {x: -0.57704896, y: 0.0008737296}
+      - {x: -0.57928914, y: -0.20385239}
+      - {x: -0.45472598, y: -0.33109292}
+      - {x: 0.42068285, y: -0.33333334}
+      - {x: 0.5421033, y: -0.20743155}
+      - {x: 0.54210377, y: -0.0040721297}
+      - {x: 0.16486311, y: 0.3776773}
 --- !u!1 &5348171156264774849
 GameObject:
   m_ObjectHideFlags: 0
