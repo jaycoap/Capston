@@ -174,7 +174,7 @@ public class GameManager : MonoBehaviour
         playerManager.isStart = true;
 
         spawnmanager.SponEnemy(0, new Vector2(50, 0));
-        
+
         spawnmanager.SponEnemy(1, new Vector2(80, 0));
         LoadGameState();
 

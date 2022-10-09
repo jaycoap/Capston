@@ -306,3 +306,7 @@ MonoBehaviour:
     Platform_Y_MAX: 3
     Platform5: 7
     Platform4: 0
+  enemy:
+    Slime: {fileID: 0}
+    Slime_Amount: 0
+    SlimeBoss: {fileID: 0}

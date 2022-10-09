@@ -37,7 +37,7 @@ public class MainMenu : MonoBehaviour
 
     public void LoginSceneChange()
     {
-        SceneManager.LoadScene("Main Scene");
+        SceneManager.LoadScene("Village Scene");
     }
 
 
