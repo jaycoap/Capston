@@ -41,7 +41,7 @@ public class BackEndGameInfo : MonoBehaviour
     }
     
 
-    // 개인 프라이빗 테이블 정보 가져오기     
+    // 개인 프라이빗 테이블 정보 입력     
     public void OnClickInsertData()
     {
         int charLevel = GameManager.Instance.getLevel();
@@ -121,7 +121,7 @@ public class BackEndGameInfo : MonoBehaviour
         }
     }
 
-    
+    // private 정보 가져오기
     public void OnClickGetPrivateContents()
     {
         BackendReturnObject BRO = Backend.GameData.GetMyData("character", new Where());
