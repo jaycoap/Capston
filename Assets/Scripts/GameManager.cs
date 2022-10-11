@@ -23,7 +23,7 @@ public class GameManager : MonoBehaviour
     private static GameManager _instance;
     private GameObject player;
     public Rigidbody2D playerRigid;
-    
+    [SerializeField] public int EnemyHP_X;
     
     public BackEndNickname backendnickname;
     
