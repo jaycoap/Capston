@@ -42,7 +42,12 @@ public class SlimeBossStat
     public Transform backShotPos;
     public Transform birthPos;
 }
-
+[Serializable]
+public class HP_Seting
+{
+    public int slimeHP = 100;
+    public int slimeBossHP = 1000;
+}
 public class enemyManager : MonoBehaviour
 {
     Rigidbody2D rigidBody;
@@ -66,7 +71,8 @@ public class enemyManager : MonoBehaviour
     public EnemyStat enemyStat;
     public SlimeBossStat slimeBossStat;
     public SlimeStat slimeStat;
-
+    public HP_Seting hp_Seting;
+    GameManager gm;
     private void Awake()
     {
         if (_instance != null && _instance != this)
@@ -77,6 +83,17 @@ public class enemyManager : MonoBehaviour
 
     void Start()
     {
+        //종류별로 HP설정
+        switch (enemyAI)
+        {
+            case "slime":
+                enemyHp = hp_Seting.slimeHP + (hp_Seting.slimeHP * gm.getLevel() * gm.EnemyHP_X);
+                break;
+            case "slimeBoss":
+                enemyHp = hp_Seting.slimeBossHP + (hp_Seting.slimeBossHP * gm.getLevel() * gm.EnemyHP_X);
+                break;
+        }
+        Debug.Log(enemyHp);
         maxHp = enemyHp;
         rigidBody = GetComponent<Rigidbody2D>();
         spriteRenderer = GetComponent<SpriteRenderer>();

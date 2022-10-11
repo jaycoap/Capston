@@ -273,10 +273,7 @@ public class TileMapManager : MonoBehaviour
                     platformX[R_X + e - 2] = 1;
                     platformY[R_X + e - 2] = R_Y;
                 }
-                Debug.Log("순번");
-                Debug.Log(i);
-                Debug.Log("위치");
-                Debug.Log(R_X - Mathf.FloorToInt(halfWidth));
+
                 if(slimeCount < enemy.Slime_Amount)
                 {
                     Vector3 spawnPos = Tilemap.CellToWorld(new Vector3Int(R_X - Mathf.FloorToInt(halfWidth), R_Y + 1, 0));
