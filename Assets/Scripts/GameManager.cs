@@ -91,21 +91,21 @@ public class GameManager : MonoBehaviour
     void Update() //test 세팅
     {
 
-        if (Idfield.isFocused == true) //로그인시 tab키 입력하면 Pw필드로 이동
-        {
-            if (Input.GetKeyDown(KeyCode.Tab))
-            {
-                Pwfield.Select();
-            }
-        }
+        //if (Idfield.isFocused == true) //로그인시 tab키 입력하면 Pw필드로 이동
+        //{
+        //    if (Input.GetKeyDown(KeyCode.Tab))
+        //    {
+        //        Pwfield.Select();
+        //    }
+        //}
 
-        if (Idfield.text != null && Pwfield.text != null) //아이디, 비밀번호 입력후 Enter키를 입력하면 자동으로 로그인
-        {
-            if (Input.GetKeyDown(KeyCode.Return))
-            {
-                EnterButton.onClick.Invoke();
-            }
-        }
+        //if (Idfield.text != null && Pwfield.text != null) //아이디, 비밀번호 입력후 Enter키를 입력하면 자동으로 로그인
+        //{
+        //    if (Input.GetKeyDown(KeyCode.Return))
+        //    {
+        //        EnterButton.onClick.Invoke();
+        //    }
+        //}
 
 
         if (currentGameState == GameState.inGame) // 게임이 시작되었을때 사용됨.

@@ -42,12 +42,4 @@ public class InventoryTester : MonoBehaviour
         _AddPortionB2add50.onClick.AddListener(() => _inventory.Add(_itemDataArray[3], 50));
     }
 
-    //private void Update()
-    //{
-    //    if (Input.GetKey(KeyCode.G))
-    //    {
-    //        GameManager.Instance.getexp(100);
-    //    }
-    //    GameManager.Instance.setLevel();
-    //}
 }
