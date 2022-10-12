@@ -86,6 +86,7 @@ GameObject:
   - component: {fileID: 2079265388}
   - component: {fileID: 2079265385}
   - component: {fileID: 2079265384}
+  - component: {fileID: 8533178262784557249}
   m_Layer: 7
   m_Name: Player
   m_TagString: Player
@@ -179,7 +180,7 @@ Rigidbody2D:
   m_GravityScale: 5
   m_Material: {fileID: 6200000, guid: bb2683e31ff4cbd4ebe305aa35d69caa, type: 2}
   m_Interpolate: 0
-  m_SleepingMode: 1
+  m_SleepingMode: 0
   m_CollisionDetection: 1
   m_Constraints: 4
 --- !u!61 &2079265388
@@ -251,6 +252,19 @@ MonoBehaviour:
   Skill_1slot: {fileID: 0}
   Skill_2slot: {fileID: 0}
   Skill_3slot: {fileID: 0}
+--- !u!114 &8533178262784557249
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1686731076479105878}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 750262d307926e348a20c8371b959802, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  IngameSceneChange: {fileID: 0}
 --- !u!1 &2483057103409792653
 GameObject:
   m_ObjectHideFlags: 0

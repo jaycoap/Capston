@@ -2867,7 +2867,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 2080765900}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: MainMenu, Assembly-CSharp
         m_MethodName: ExitGame
         m_Mode: 1
@@ -2926,8 +2926,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2080765895}
-  - component: {fileID: 2080765899}
   - component: {fileID: 2080765900}
+  - component: {fileID: 2080765896}
+  - component: {fileID: 2080765894}
   m_Layer: 0
   m_Name: UI Manager
   m_TagString: Untagged
@@ -2935,6 +2936,19 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!114 &2080765894
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2080765893}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7ce4d55ef6a527a40859aea2a353fcf4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  FadePanel: {fileID: 1571517329}
 --- !u!4 &2080765895
 Transform:
   m_ObjectHideFlags: 0
@@ -2949,7 +2963,7 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &2080765899
+--- !u!114 &2080765896
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -2958,10 +2972,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 2080765893}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7ce4d55ef6a527a40859aea2a353fcf4, type: 3}
+  m_Script: {fileID: 11500000, guid: 55b04d3e26f923a43b5fc4cf29e47adb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  FadePanel: {fileID: 1571517329}
+  mainFade: {fileID: 2080765894}
 --- !u!114 &2080765900
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2975,4 +2989,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   MainMenuPanel: {fileID: 1352331134}
-  mainFade: {fileID: 2080765899}
+  MainMenuChanage: {fileID: 2080765896}

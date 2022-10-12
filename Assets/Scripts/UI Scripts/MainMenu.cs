@@ -7,14 +7,12 @@ using UnityEngine.SceneManagement;
 public class MainMenu : MonoBehaviour
 {
     [SerializeField] private GameObject MainMenuPanel;
-    [SerializeField] private Fade mainFade;
+    [SerializeField] private SceneChange MainMenuChanage;
 
     public void GameLogin()
     {
-
-        mainFade.FadeOutIn();
         Invoke("HideMainMenu", 1.2f);
-        Invoke("LoginSceneChange", 1.2f);
+        MainMenuChanage.CurrentSceneChange();
     }
 
     public void LoadGame()
@@ -34,11 +32,4 @@ public class MainMenu : MonoBehaviour
     {
         MainMenuPanel.SetActive(false);
     }
-
-    public void LoginSceneChange()
-    {
-        SceneManager.LoadScene("Village Scene");
-    }
-
-
 }
