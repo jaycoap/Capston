@@ -83,22 +83,25 @@ public class enemyManager : MonoBehaviour
 
     void Start()
     {
-        //종류별로 HP설정
-        switch (enemyAI)
-        {
-            case "slime":
-                enemyHp = hp_Seting.slimeHP + (hp_Seting.slimeHP * gm.getLevel() * gm.EnemyHP_X);
-                break;
-            case "slimeBoss":
-                enemyHp = hp_Seting.slimeBossHP + (hp_Seting.slimeBossHP * gm.getLevel() * gm.EnemyHP_X);
-                break;
-        }
-        Debug.Log(enemyHp);
+        
+       
         maxHp = enemyHp;
+        gm = GetComponent<GameManager>();
         rigidBody = GetComponent<Rigidbody2D>();
         spriteRenderer = GetComponent<SpriteRenderer>();
         animator = GetComponent<Animator>();
         enemyAI_Control();
+        //종류별로 HP설정
+        switch (enemyAI)
+        {
+            case "slime":
+                enemyHp = GameManager.Instance.EnemyHPSet();
+                
+                break;
+            case "slimeBoss":
+                enemyHp = GameManager.Instance.EnemyBossHPSet();
+                break;
+        }
     }
 
     private void Update()

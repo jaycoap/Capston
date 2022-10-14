@@ -6,6 +6,7 @@ using UnityEngine.UI;
 using BackEnd;
 using Random = UnityEngine.Random;
 using LitJson;
+using UnityEngine.SceneManagement;
 
 
 public enum GameState
@@ -24,6 +25,8 @@ public class GameManager : MonoBehaviour
     private GameObject player;
     public Rigidbody2D playerRigid;
     [SerializeField] public int EnemyHP_X;
+    private int enemyHP = 100;
+    private int bossHP = 1000;
     
     public BackEndNickname backendnickname;
     
@@ -90,22 +93,24 @@ public class GameManager : MonoBehaviour
 
     void Update() //test 세팅
     {
+        if (SceneManager.GetActiveScene().name == "Main Menu")
+        {
+            if (Idfield.isFocused == true) //로그인시 tab키 입력하면 Pw필드로 이동
+            {
+                if (Input.GetKeyDown(KeyCode.Tab))
+                {
+                    Pwfield.Select();
+                }
+            }
 
-        //if (Idfield.isFocused == true) //로그인시 tab키 입력하면 Pw필드로 이동
-        //{
-        //    if (Input.GetKeyDown(KeyCode.Tab))
-        //    {
-        //        Pwfield.Select();
-        //    }
-        //}
-
-        //if (Idfield.text != null && Pwfield.text != null) //아이디, 비밀번호 입력후 Enter키를 입력하면 자동으로 로그인
-        //{
-        //    if (Input.GetKeyDown(KeyCode.Return))
-        //    {
-        //        EnterButton.onClick.Invoke();
-        //    }
-        //}
+            if (Idfield.text != null && Pwfield.text != null) //아이디, 비밀번호 입력후 Enter키를 입력하면 자동으로 로그인
+            {
+                if (Input.GetKeyDown(KeyCode.Return))
+                {
+                    EnterButton.onClick.Invoke();
+                }
+            }
+        }
 
 
         if (currentGameState == GameState.inGame) // 게임이 시작되었을때 사용됨.
@@ -144,6 +149,7 @@ public class GameManager : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.A))
         {
             attackCount = attackCount + 1;
+            Debug.Log(getLevel());
 
             if (attackCount == 1)
             {
@@ -589,6 +595,20 @@ public class GameManager : MonoBehaviour
         return FIT;
     }
 
+    public int EnemyHPSet()
+    {
+        enemyHP += enemyHP + (enemyHP * getLevel());
+        return enemyHP;
+    }
+
+    public int EnemyBossHPSet()
+    {
+        bossHP += bossHP + (enemyHP * getLevel());
+        return bossHP;
+    }
+
+
+
     public void Dead() // 캐릭터 사망시 사용될 함수.
     {
         setPlayerHP(HP);
@@ -596,7 +616,6 @@ public class GameManager : MonoBehaviour
         player.GetComponent<Animator>().SetBool("isDie", true);
         
     }
-
 
     private void Awake()
     {
