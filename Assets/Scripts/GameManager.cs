@@ -124,9 +124,28 @@ public class GameManager : MonoBehaviour
                 StartCoroutine(HealTime());
             }   
             setPlayerHP(HP);
-            ADAttackFirst();
-            ADAttackSecond();
-            ADAttackThird();
+            if (Input.GetKeyDown(KeyCode.A))
+            {
+                attackCount = attackCount + 1;
+
+
+                if (attackCount == 1)
+                {
+                    ADAttackFirst();
+                }
+
+                else if (attackCount == 2)
+                {
+                    ADAttackSecond();
+                }
+
+                else if (attackCount == 3)
+                {
+                    ADAttackThird();
+                    attackCount = 1;
+                }
+
+            }
             Energy_rush();
             Energy_slash();
             Energy_sword();
@@ -146,28 +165,7 @@ public class GameManager : MonoBehaviour
         {
             EXP += 200;
         }
-        if (Input.GetKeyDown(KeyCode.A))
-        {
-            attackCount = attackCount + 1;
-            
-
-            if (attackCount == 1)
-            {
-                ADAttackFirst();
-            }
-
-            else if (attackCount == 2) 
-            {
-                ADAttackSecond();
-            } 
-
-            else if (attackCount == 3)
-            {
-                ADAttackThird();
-                attackCount = 1;
-            }
-            
-        }
+        
         
         
 

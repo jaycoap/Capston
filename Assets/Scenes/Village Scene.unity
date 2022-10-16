@@ -1793,7 +1793,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: "\uC2A4\uD0AC \uC774\uB984"
+  m_Text: "\uC5D0\uB108\uC9C0 \uB7EC\uC26C"
 --- !u!222 &189317904
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -3039,7 +3039,7 @@ MonoBehaviour:
       m_Calls: []
   m_FontData:
     m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
-    m_FontSize: 12
+    m_FontSize: 13
     m_FontStyle: 0
     m_BestFit: 0
     m_MinSize: 0
@@ -3050,7 +3050,8 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: "\uC2A4\uD0AC \uC124\uBA85 "
+  m_Text: "\uAC80\uC5D0 \uB9C8\uB825\uC744 \uBD80\uC5EC\uD574 \uC804\uBC29\uC73C\uB85C\n\uD718\uB458\uB7EC
+    \uAC15\uB825\uD55C \uB370\uBBF8\uC9C0\uB97C\uC900\uB2E4."
 --- !u!222 &353363224
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -3197,7 +3198,7 @@ MonoBehaviour:
       m_Calls: []
   m_FontData:
     m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
-    m_FontSize: 12
+    m_FontSize: 13
     m_FontStyle: 0
     m_BestFit: 0
     m_MinSize: 0
@@ -3208,7 +3209,8 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: "\uC2A4\uD0AC \uC124\uBA85 "
+  m_Text: "\uAC80\uC5D0 \uAC15\uB825\uD55C \uB9C8\uB825\uC744 \uC8FC\uC785\uD574\n\uACF5\uACA9\uB9C8\uB2E4
+    \uC804\uBC29\uC5D0 \uB9C8\uB825\uC774 \uC0AC\uCD9C\uB41C\uB2E4."
 --- !u!222 &392380342
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -3276,7 +3278,7 @@ MonoBehaviour:
       m_Calls: []
   m_FontData:
     m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
-    m_FontSize: 12
+    m_FontSize: 13
     m_FontStyle: 0
     m_BestFit: 0
     m_MinSize: 0
@@ -3287,7 +3289,8 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: "\uC2A4\uD0AC \uC124\uBA85 "
+  m_Text: "\uAC80\uACFC \uBAB8\uC5D0 \uB9C8\uB825\uC744 \uBD80\uC5EC\uD574 \n\uC21C\uAC04\uC801\uC73C\uB85C
+    \uC804\uBC29\uC73C\uB85C \uB3CC\uC9C4\uD55C\uB2E4."
 --- !u!222 &398395070
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -7158,7 +7161,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: "\uC2A4\uD0AC \uC774\uB984"
+  m_Text: "\uC5D0\uB108\uC9C0 \uC2AC\uB798\uC26C"
 --- !u!222 &806485811
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -10750,7 +10753,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &1250123005
 RectTransform:
   m_ObjectHideFlags: 0
@@ -16477,7 +16480,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: "\uC2A4\uD0AC \uC774\uB984"
+  m_Text: "\uC5D0\uB108\uC9C0 \uC18C\uB4DC"
 --- !u!222 &1770384742
 CanvasRenderer:
   m_ObjectHideFlags: 0
