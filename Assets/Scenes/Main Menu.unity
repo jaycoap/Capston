@@ -881,6 +881,8 @@ MonoBehaviour:
   Idfield: {fileID: 1634794568}
   Pwfield: {fileID: 518703838}
   EnterButton: {fileID: 8419398}
+  EnemyCountNum: 0
+  StageClear: 0
 --- !u!4 &312096313
 Transform:
   m_ObjectHideFlags: 0

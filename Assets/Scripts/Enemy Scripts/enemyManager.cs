@@ -73,12 +73,23 @@ public class enemyManager : MonoBehaviour
     public SlimeStat slimeStat;
     public HP_Seting hp_Seting;
     GameManager gm;
+  
     private void Awake()
     {
         if (_instance != null && _instance != this)
             return;
 
         _instance = this;
+        switch (enemyAI)
+        {
+            case "slime":
+                enemyHp = GameManager.Instance.EnemyHPSet();
+
+                break;
+            case "slimeBoss":
+                enemyHp = GameManager.Instance.EnemyBossHPSet();
+                break;
+        }
     }
 
     void Start()
@@ -92,16 +103,7 @@ public class enemyManager : MonoBehaviour
         animator = GetComponent<Animator>();
         enemyAI_Control();
         //종류별로 HP설정
-        switch (enemyAI)
-        {
-            case "slime":
-                enemyHp = GameManager.Instance.EnemyHPSet();
-                
-                break;
-            case "slimeBoss":
-                enemyHp = GameManager.Instance.EnemyBossHPSet();
-                break;
-        }
+        
     }
 
     private void Update()
@@ -534,9 +536,13 @@ public class enemyManager : MonoBehaviour
 
     private void destroy()
     {
+        
         Destroy(gameObject);
+        
+        
     }
     
+   
     private void backShot()
     {
         for(int i = 0; i < 4; i++)

@@ -21,8 +21,11 @@ public class SceneChange : MonoBehaviour
             TargetSceneName = "Village Scene";
         else if (SceneManager.GetActiveScene().name == "Village Scene")
             TargetSceneName = "Dungeon Scene";
-        else if (SceneManager.GetActiveScene().name == "Dungeon Scene")
+        else if (SceneManager.GetActiveScene().name == "Dungeon Scene" )
             TargetSceneName = "Village Scene";
+        
+        
+           
         SceneManager.LoadScene(TargetSceneName);
     }
 }

@@ -77,7 +77,12 @@ public class GameManager : MonoBehaviour
     public InputField Pwfield;
     public Button EnterButton;
 
-
+    //적 마리수 체크
+    GameObject[] EnemyCount;
+    public int EnemyCountNum = 0;
+    public bool StageClear = false;
+    bool checkCount = false;
+    int saveCount = 0;
 
 
 
@@ -85,34 +90,29 @@ public class GameManager : MonoBehaviour
     {
         backendnickname = GetComponent<BackEndNickname>();
         spawnmanager = GetComponent<spawnManager>();
+        
         Idfield.Select();
         Time_HP = 5;
         Time_MP = 10;
+
+        
+
 
     }
 
     void Update() //test 세팅
     {
+        
+        if(SceneManager.GetActiveScene().name == "Dungeon Scene")
+        {
+
+             StartCoroutine(EnemyCountCheck());
+            
+        }
         if (SceneManager.GetActiveScene().name == "Main Menu")
         {
-            if (Idfield.isFocused == true) //로그인시 tab키 입력하면 Pw필드로 이동
-            {
-                if (Input.GetKeyDown(KeyCode.Tab))
-                {
-                    Pwfield.Select();
-                }
-            }
-
-            if (Idfield.text != null && Pwfield.text != null) //아이디, 비밀번호 입력후 Enter키를 입력하면 자동으로 로그인
-            {
-                if (Input.GetKeyDown(KeyCode.Return))
-                {
-                    EnterButton.onClick.Invoke();
-                }
-            }
+            StartCoroutine(IdSelect());
         }
-
-
         if (currentGameState == GameState.inGame) // 게임이 시작되었을때 사용됨.
         {
             
@@ -149,7 +149,7 @@ public class GameManager : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.A))
         {
             attackCount = attackCount + 1;
-            Debug.Log(getLevel());
+            
 
             if (attackCount == 1)
             {
@@ -171,6 +171,50 @@ public class GameManager : MonoBehaviour
         
         
 
+    }
+    
+    IEnumerator IdSelect()
+    {
+        
+            if (Idfield.isFocused == true) //로그인시 tab키 입력하면 Pw필드로 이동
+            {
+                if (Input.GetKeyDown(KeyCode.Tab))
+                {
+                    Pwfield.Select();
+                }
+            }
+
+            if (Idfield.text != null && Pwfield.text != null) //아이디, 비밀번호 입력후 Enter키를 입력하면 자동으로 로그인
+            {
+                if (Input.GetKeyDown(KeyCode.Return))
+                {
+                    EnterButton.onClick.Invoke();
+                }
+            }
+        
+        yield break;
+    }
+
+    public IEnumerator EnemyCountCheck()
+    {
+        EnemyCount = GameObject.FindGameObjectsWithTag("Enemy");
+        EnemyCountNum = Int32.Parse(EnemyCount.Length.ToString());
+        if (EnemyCountNum == 0)
+        {
+            StageClear = true;      
+        }
+        else
+        {
+            EnemyCountNum = Int32.Parse(EnemyCount.Length.ToString());
+            saveCount = EnemyCountNum;
+        }
+    
+        yield break;
+    }
+    
+    void Cleardungeon()
+    {
+        SceneManager.LoadScene("Village Scene");
     }
     
     public void Ingame() // 게임 시작시 설정값 입력 
