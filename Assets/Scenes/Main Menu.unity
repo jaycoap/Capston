@@ -839,6 +839,7 @@ GameObject:
   - component: {fileID: 312096313}
   - component: {fileID: 312096312}
   - component: {fileID: 312096314}
+  - component: {fileID: 312096316}
   m_Layer: 0
   m_Name: Game Manager
   m_TagString: Untagged
@@ -900,6 +901,25 @@ MonoBehaviour:
   enemy:
   - {fileID: 5290438719731959125, guid: 3a4ae3f43b37a2e4da637253d13c20b3, type: 3}
   - {fileID: 8466940026092785851, guid: b909157ebe0d711489ba677e33e605d7, type: 3}
+--- !u!114 &312096316
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 312096311}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9fb03788b85bf19459a62d4ef8454eb0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  MusicList:
+  - SceneType: MainScene
+    audio: {fileID: 8300000, guid: e6184fc358e6f4142b9c9641167da765, type: 3}
+  - SceneType: VillageScene
+    audio: {fileID: 8300000, guid: b4e03b819912ca746b68c6610bd537b3, type: 3}
+  - SceneType: DungeonScene
+    audio: {fileID: 8300000, guid: 9669960e415ea604d81fb0784634df79, type: 3}
 --- !u!1 &378507057
 GameObject:
   m_ObjectHideFlags: 0
@@ -1751,7 +1771,7 @@ AudioListener:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1298643947}
-  m_Enabled: 0
+  m_Enabled: 1
 --- !u!20 &1298643950
 Camera:
   m_ObjectHideFlags: 0

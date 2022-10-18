@@ -7,6 +7,7 @@ TagManager:
   - Enemy
   - Potal
   - Store
+  - Music
   layers:
   - Default
   - TransparentFX
