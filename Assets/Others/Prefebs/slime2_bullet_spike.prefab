@@ -12,8 +12,9 @@ GameObject:
   - component: {fileID: 5644142447434485976}
   - component: {fileID: 3757859602451071042}
   - component: {fileID: 3757859602451071041}
+  - component: {fileID: 7553608722066583782}
   m_Layer: 10
-  m_Name: slimeBoss_bullet_spike
+  m_Name: slime2_bullet_spike
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -96,9 +97,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 77ab51d9b0478384ba6e44faed4fc204, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  slimeBoss: {fileID: 8466940026092785851, guid: b909157ebe0d711489ba677e33e605d7, type: 3}
-  bulletType: 
+  bulletType: spike
   bulletPower: 1
+  spikeBallDestroyTime: 0
+  poisonFloor: {fileID: 0}
+  poison: {fileID: 0}
+  poisonFloorTime: 0
+  poisonFloorDestroyTime: 0
+  poisonDamage: 0
+  minAngle: 0
+  maxAngle: 0
+  spikeDestroyTime: 0.5
+  spikeSpeed: 0.01
 --- !u!50 &3757859602451071041
 Rigidbody2D:
   serializedVersion: 4
@@ -111,7 +121,7 @@ Rigidbody2D:
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
-  m_Mass: 1
+  m_Mass: 0.0001
   m_LinearDrag: 0
   m_AngularDrag: 0.05
   m_GravityScale: 1
@@ -119,4 +129,30 @@ Rigidbody2D:
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
-  m_Constraints: 0
+  m_Constraints: 6
+--- !u!61 &7553608722066583782
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4716690024573052546}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 1.4166666, y: 0.125}
+    newSize: {x: 0.34, y: 0.03}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 1.4166666, y: 0.125}
+  m_EdgeRadius: 0

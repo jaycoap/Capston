@@ -24,9 +24,12 @@ public class GameManager : MonoBehaviour
     private static GameManager _instance;
     private GameObject player;
     public Rigidbody2D playerRigid;
+    //적 레벨당 올라가는 체력 비율
     [SerializeField] public int EnemyHP_X;
-    private int enemyHP = 100;
-    private int bossHP = 1000;
+    //각 몬스터의 기본체력
+    private int slimeHP = 100;
+    private int slime2HP = 150;
+    private int slimeBossHP = 1000;
     
     public BackEndNickname backendnickname;
     
@@ -637,16 +640,20 @@ public class GameManager : MonoBehaviour
         return FIT;
     }
 
-    public int EnemyHPSet()
+    public int SlimeHPSet()
     {
-        enemyHP += enemyHP + (enemyHP * getLevel());
+        int enemyHP = slimeHP + (EnemyHP_X * slimeHP * getLevel());
         return enemyHP;
     }
-
-    public int EnemyBossHPSet()
+    public int Slime2HPSet()
     {
-        bossHP += bossHP + (enemyHP * getLevel());
-        return bossHP;
+        int enemyHP = slime2HP + (EnemyHP_X * slime2HP * getLevel());
+        return enemyHP;
+    }
+    public int SlimeBossHPSet()
+    {
+        int enemyHP = slimeBossHP + (EnemyHP_X * slimeBossHP * getLevel());
+        return enemyHP;
     }
 
 

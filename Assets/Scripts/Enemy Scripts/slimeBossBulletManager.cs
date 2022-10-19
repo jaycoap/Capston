@@ -27,7 +27,12 @@ public class slimeBossBulletManager : MonoBehaviour
     [SerializeField] int minAngle;
     [SerializeField] int maxAngle;
 
+    //slime2 ≈ıªÁ√º 
+    [SerializeField] float spikeDestroyTime;
+    [SerializeField] float spikeSpeed;
+
     bool isFlip;
+
     void Start()
     {
         rigidBody = GetComponent<Rigidbody2D>();
@@ -52,13 +57,27 @@ public class slimeBossBulletManager : MonoBehaviour
                 StartCoroutine("PoisonFloor", poisonFloorTime);
                 Invoke("Destroy", poisonFloorDestroyTime);
                 break;
+
+            case "spike":
+                Invoke("Destroy", spikeDestroyTime);
+                break;
         }
     }
 
 
     void Update()
     {
-        
+        if (!(slimeBoss == null))
+            isFlip = slimeBoss.GetComponent<SpriteRenderer>().flipX;
+        int dic = isFlip ? 1 : -1;
+
+        switch (bulletType)
+        {
+            case "spike":
+                transform.position = new Vector2(transform.position.x + dic * spikeSpeed, transform.position.y);
+                break;
+        }
+
     }
 
     void backShotBullet()
@@ -95,6 +114,13 @@ public class slimeBossBulletManager : MonoBehaviour
                 {
                     Instantiate(poisonFloor, new Vector2(transform.position.x, transform.position.y - 0.1f), Quaternion.identity);
                     Destroy(gameObject);
+                }
+                break;
+            case "spike":
+                if (other.gameObject.tag == "Player" && other.gameObject.layer == 7)
+                {
+                    other.gameObject.GetComponent<playerManager>().onDamaged(transform.position.x, 10);
+                    Destroy();
                 }
                 break;
         }
