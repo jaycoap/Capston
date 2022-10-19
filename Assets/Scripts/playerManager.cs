@@ -231,7 +231,7 @@ public class playerManager : MonoBehaviour
                     if (H_input == 1)
                     {
                         //벽이 있는지 체크
-                        if (Physics2D.OverlapBox(new Vector2(transform.position.x + 0.229166675f, transform.position.y), new Vector2(0.45833335f, 1.4f), 0, LayerMask.GetMask("Floor")))
+                        if (Physics2D.OverlapBox(new Vector2(transform.position.x + 0.229166675f, transform.position.y - 0.4f), new Vector2(0.45833335f, 0.6f), 0, LayerMask.GetMask("Floor")))
                         {
 
                         }
@@ -243,7 +243,7 @@ public class playerManager : MonoBehaviour
                     //왼쪽
                     if (H_input == -1)
                     {
-                        if (Physics2D.OverlapBox(new Vector2(transform.position.x - 0.229166675f, transform.position.y), new Vector2(0.45833335f, 1.4f), 0, LayerMask.GetMask("Floor")))
+                        if (Physics2D.OverlapBox(new Vector2(transform.position.x - 0.229166675f, transform.position.y - 0.4f), new Vector2(0.45833335f, 0.6f), 0, LayerMask.GetMask("Floor")))
                         {
 
                         }
@@ -396,7 +396,7 @@ public class playerManager : MonoBehaviour
         gameObject.layer = 9;
         //무적색상 변경
         spriteRenderer.color = new Color(1, 1, 1, 0.4f);
-        rigidBody.AddForce(new Vector2(dirc * 7, 5), ForceMode2D.Impulse);
+        rigidBody.AddForce(new Vector2(dirc * 7 , 5), ForceMode2D.Impulse);
         //무적시간
         Invoke("OffDamaged", 1);
 

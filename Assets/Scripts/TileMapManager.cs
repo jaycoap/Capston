@@ -18,13 +18,14 @@ public class Platform
     //플렛폼 Y좌표의 최대(2칸 단위로 ex : 3 이면 0 2 4 6 까지)
     public int Platform_Y_MAX;
     public int Platform5;
-    public int Platform4;
 }
 [Serializable]
 public class Enemy
 {
     public GameObject Slime;
     public int Slime_Amount;
+    public GameObject Slime2;
+    public int Slime2_Amount;
     public GameObject SlimeBoss;
 }
 public class TileMapManager : MonoBehaviour
@@ -43,6 +44,7 @@ public class TileMapManager : MonoBehaviour
     {
         Tilemap.ClearAllTiles();
         MakeFloor();
+        //여기에 스테이지 생성 관련변수 스테이지 별로 집어넣기
         MakePlatform();
     }
     //바닥을 만드는 함수
@@ -104,6 +106,7 @@ public class TileMapManager : MonoBehaviour
         int escape = 0;
         //슬라임을 소환할때 사용하는 카운터
         int slimeCount = 0;
+        int slime2Count = 0;
 
         //크기가 5인 플렛폼 생성
         for (int i = 0; i < platform.Platform5; i++)
@@ -279,6 +282,10 @@ public class TileMapManager : MonoBehaviour
                     Vector3 spawnPos = Tilemap.CellToWorld(new Vector3Int(R_X - Mathf.FloorToInt(halfWidth), R_Y + 1, 0));
                     Instantiate(enemy.Slime, new Vector3(spawnPos.x + (float)0.5, spawnPos.y, spawnPos.z), Quaternion.identity);
                     slimeCount++;
+                }else if(slime2Count < enemy.Slime2_Amount){
+                    Vector3 spawnPos = Tilemap.CellToWorld(new Vector3Int(R_X - Mathf.FloorToInt(halfWidth), R_Y + 1, 0));
+                    Instantiate(enemy.Slime2, new Vector3(spawnPos.x + (float)0.5, spawnPos.y, spawnPos.z), Quaternion.identity);
+                    slime2Count++;
                 }
             }
             //시행회수가 너무 많을경우 탈출
@@ -304,6 +311,27 @@ public class TileMapManager : MonoBehaviour
                     i--;
                 }
             }
+        }else if(slime2Count < enemy.Slime2_Amount)
+        {
+            for (int i = slime2Count; i < enemy.Slime2_Amount; i++)
+            {
+                int R_X = Random.Range(4, (int)FloorWidth - 4);
+                if (!(platformX[R_X] == 1))
+                {
+                    Vector3 spawnPos = Tilemap.CellToWorld(new Vector3Int(R_X - Mathf.FloorToInt(halfWidth), -2 + 1, 0));
+                    Instantiate(enemy.Slime2, new Vector3(spawnPos.x + (float)0.5, spawnPos.y, spawnPos.z), Quaternion.identity);
+                    slime2Count++;
+                }
+                else
+                {
+                    i--;
+                }
+            }
         }
+    }
+
+    void SpawnEnemy()
+    {
+        
     }
 }
