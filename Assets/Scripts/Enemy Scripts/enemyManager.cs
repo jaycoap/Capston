@@ -28,6 +28,7 @@ public class SlimeStat
     public bool isBackShot;
     public GameObject slime2Spike;
     public Transform slime2ShotPos;
+    public int slime3MoveTime;
 }
 
 [Serializable]
@@ -46,13 +47,7 @@ public class SlimeBossStat
     public Transform backShotPos;
     public Transform birthPos;
 }
-[Serializable]
-public class HP_Seting
-{
-    public int slimeHP = 100;
-    public int slime2HP = 150;
-    public int slimeBossHP = 1000;
-}
+
 public class enemyManager : MonoBehaviour
 {
     Rigidbody2D rigidBody;
@@ -76,7 +71,7 @@ public class enemyManager : MonoBehaviour
     public EnemyStat enemyStat;
     public SlimeBossStat slimeBossStat;
     public SlimeStat slimeStat;
-    public HP_Seting hp_Seting;
+
     GameManager gm;
   
     private void Awake()
@@ -93,6 +88,9 @@ public class enemyManager : MonoBehaviour
                 break;
             case "slime2":
                 enemyHp = GameManager.Instance.Slime2HPSet();
+                break;
+            case "slime3":
+                enemyHp = GameManager.Instance.Slime3HPSet();
                 break;
             case "slimeBoss":
                 enemyHp = GameManager.Instance.SlimeBossHPSet();
@@ -155,12 +153,9 @@ public class enemyManager : MonoBehaviour
                 //이동
                 if (!animator.GetBool("isAttack"))
                 {
-                    if (Physics2D.OverlapBox(new Vector2(transform.position.x, transform.position.y)
-                         , playerDetectRange, 0, LayerMask.GetMask("Player")))
+                    if (Physics2D.OverlapBox(transform.position, playerDetectRange, 0, LayerMask.GetMask("Player")))
                     {
-                        Collider2D player
-                            = Physics2D.OverlapBox(new Vector2(transform.position.x, transform.position.y)
-                             , playerDetectRange, 0, LayerMask.GetMask("Player"));
+                        Collider2D player = Physics2D.OverlapBox(transform.position, playerDetectRange, 0, LayerMask.GetMask("Player"));
 
                         int dirc = transform.position.x - player.transform.position.x > 0 ? -1 : 1;
 
@@ -171,7 +166,25 @@ public class enemyManager : MonoBehaviour
                         spriteRenderer.flipX = (dirc == 1) ? true : false;
                     }
                 }
+                break;
 
+            // 슬라임3일 경우
+            case "slime3":
+                //이동
+                if (animator.GetBool("isAttack"))
+                {
+                    if (Physics2D.OverlapBox(transform.position, playerDetectRange, 0, LayerMask.GetMask("Player")))
+                    {
+                        Collider2D player = Physics2D.OverlapBox(transform.position, playerDetectRange, 0, LayerMask.GetMask("Player"));
+
+                        int dirc = transform.position.x - player.transform.position.x > 0 ? -1 : 1;
+
+                        transform.position = new Vector2(transform.position.x + (enemyStat.movementSpeed * dirc), transform.position.y);
+                        Debug.Log(transform.position);
+                        //방향전환시 스프라이트 뒤집기
+                        spriteRenderer.flipX = (dirc == 1) ? true : false;
+                    }    
+                }
                 break;
 
             // 슬라임 보스일 경우
@@ -249,6 +262,9 @@ public class enemyManager : MonoBehaviour
                 case "slime2":
                     animator.SetBool("isDie", true);
                     break;
+                case "slime3":
+                    animator.SetBool("isDie", true);
+                    break;
                 case "slimeBoss":
                     animator.SetBool("isDie", true);
                     break;
@@ -266,7 +282,10 @@ public class enemyManager : MonoBehaviour
                 GameObject player1 = GameObject.FindWithTag("Player");
                 rigidBody.AddForce(new Vector2(enemyStat.knockbackDis * (transform.position.x - player1.transform.position.x) / Mathf.Abs(transform.position.x - player1.transform.position.x), 0));
                 break;
-
+            case "slime3":
+                GameObject player2 = GameObject.FindWithTag("Player");
+                rigidBody.AddForce(new Vector2(enemyStat.knockbackDis * (transform.position.x - player2.transform.position.x) / Mathf.Abs(transform.position.x - player2.transform.position.x), 0));
+                break;
             case "slimeBoss":
                 break;
         }
@@ -296,6 +315,9 @@ public class enemyManager : MonoBehaviour
                 break;
             case "slime2":
                 StartCoroutine("slime2AI", 2);
+                break;
+            case "slime3":
+                StartCoroutine("slime3AI", 2);
                 break;
             case "slimeBoss":
                 StartCoroutine("slimeBossAI", 2);
@@ -377,8 +399,25 @@ public class enemyManager : MonoBehaviour
 
         StartCoroutine("slime2AI", enemyStat.patternTime);
     }
-        // 슬라임 보스 AI 코루틴
-        IEnumerator slimeBossAI()
+    //슬라임3 AI 코루틴
+    IEnumerator slime3AI()
+    {
+        yield return new WaitForSeconds(enemyStat.patternTime);
+        Debug.Log("slime3");
+        if (!animator.GetBool("isAttack"))
+        {
+            if (Physics2D.OverlapBox(transform.position, playerDetectRange, 0, LayerMask.GetMask("Player")))
+            {
+                animator.SetBool("isAttack", true);
+                Invoke("slime3MoveStop", slimeStat.slime3MoveTime);
+                StopAllCoroutines();
+            }
+        }
+
+        StartCoroutine("slime2AI", enemyStat.patternTime);
+    }
+    // 슬라임 보스 AI 코루틴
+    IEnumerator slimeBossAI()
     {
         yield return new WaitForSeconds(enemyStat.patternTime);
 
@@ -624,6 +663,12 @@ public class enemyManager : MonoBehaviour
     private void slime2ShotOff()
     {
         animator.SetBool("isAttack", false);
+    }
+
+    private void slime3MoveStop()
+    {
+        animator.SetBool("isAttack", false);
+        StartCoroutine("slime3AI", 2);
     }
     private void OnDrawGizmos()
     {

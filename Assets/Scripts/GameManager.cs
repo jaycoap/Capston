@@ -16,6 +16,18 @@ public enum GameState
     start,
     gameover
 }
+
+[Serializable]
+public class HPsetting
+{
+    //적 레벨당 올라가는 체력 비율
+    public int EnemyHP_X;
+    //각 몬스터의 기본체력
+    public int slimeHP = 100;
+    public int slime2HP = 150;
+    public int slime3HP = 200;
+    public int slimeBossHP = 1000;
+}
 public class GameManager : MonoBehaviour
 {
     public static GameManager Instance { get { return _instance; } }
@@ -24,15 +36,9 @@ public class GameManager : MonoBehaviour
     private static GameManager _instance;
     private GameObject player;
     public Rigidbody2D playerRigid;
-    //적 레벨당 올라가는 체력 비율
-    [SerializeField] public int EnemyHP_X;
-    //각 몬스터의 기본체력
-    private int slimeHP = 100;
-    private int slime2HP = 150;
-    private int slimeBossHP = 1000;
     
     public BackEndNickname backendnickname;
-    
+    HPsetting hpSetting;
     spawnManager spawnmanager;
     
     public Text idText;
@@ -642,17 +648,24 @@ public class GameManager : MonoBehaviour
 
     public int SlimeHPSet()
     {
-        int enemyHP = slimeHP + (EnemyHP_X * slimeHP * getLevel());
+        int enemyHP = hpSetting.slimeHP + (hpSetting.EnemyHP_X * hpSetting.slimeHP * getLevel());
         return enemyHP;
     }
     public int Slime2HPSet()
     {
-        int enemyHP = slime2HP + (EnemyHP_X * slime2HP * getLevel());
+        int enemyHP = hpSetting.slime2HP + (hpSetting.EnemyHP_X * hpSetting.slime2HP * getLevel());
         return enemyHP;
     }
+
+    public int Slime3HPSet()
+    {
+        int enemyHP = hpSetting.slime3HP + (hpSetting.EnemyHP_X * hpSetting.slime3HP * getLevel());
+        return enemyHP;
+    }
+
     public int SlimeBossHPSet()
     {
-        int enemyHP = slimeBossHP + (EnemyHP_X * slimeBossHP * getLevel());
+        int enemyHP = hpSetting.slimeBossHP + (hpSetting.EnemyHP_X * hpSetting.slimeBossHP * getLevel());
         return enemyHP;
     }
 

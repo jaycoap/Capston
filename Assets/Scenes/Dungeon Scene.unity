@@ -2306,18 +2306,6 @@ PrefabInstance:
       propertyPath: Skill_3slot
       value: 
       objectReference: {fileID: 1650395962}
-    - target: {fileID: 2079265388, guid: d3866f61265bc784ea8f4b7a9ad7d1a9, type: 3}
-      propertyPath: m_Size.y
-      value: 1.0058863
-      objectReference: {fileID: 0}
-    - target: {fileID: 2079265388, guid: d3866f61265bc784ea8f4b7a9ad7d1a9, type: 3}
-      propertyPath: m_Offset.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2079265388, guid: d3866f61265bc784ea8f4b7a9ad7d1a9, type: 3}
-      propertyPath: m_Offset.y
-      value: -0.33037686
-      objectReference: {fileID: 0}
     - target: {fileID: 1686731076479105878, guid: d3866f61265bc784ea8f4b7a9ad7d1a9, type: 3}
       propertyPath: m_Name
       value: Player (1)
@@ -2370,8 +2358,7 @@ PrefabInstance:
       propertyPath: IngameSceneChange
       value: 
       objectReference: {fileID: 86713342}
-    m_RemovedComponents:
-    - {fileID: 848437434632162537, guid: d3866f61265bc784ea8f4b7a9ad7d1a9, type: 3}
+    m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d3866f61265bc784ea8f4b7a9ad7d1a9, type: 3}
 --- !u!1 &271791407
 GameObject:
@@ -3345,6 +3332,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 7354172916441228659, guid: 0346487911fac214f9563bc242143874, type: 3}
     - target: {fileID: 1085959505609622831, guid: 20df38514d9d9584fbf173cfdbd4135f, type: 3}
+      propertyPath: enemy.Slime3
+      value: 
+      objectReference: {fileID: 6115194384173976220, guid: e02c1f890b5789f4f9b2fcb04212dc18, type: 3}
+    - target: {fileID: 1085959505609622831, guid: 20df38514d9d9584fbf173cfdbd4135f, type: 3}
       propertyPath: enemy.SlimeBoss
       value: 
       objectReference: {fileID: 8466940026092785851, guid: b909157ebe0d711489ba677e33e605d7, type: 3}
@@ -3359,6 +3350,10 @@ PrefabInstance:
     - target: {fileID: 1085959505609622831, guid: 20df38514d9d9584fbf173cfdbd4135f, type: 3}
       propertyPath: enemy.Slime2_Amount
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1085959505609622831, guid: 20df38514d9d9584fbf173cfdbd4135f, type: 3}
+      propertyPath: enemy.Slime3_Amount
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 1085959506864912041, guid: 20df38514d9d9584fbf173cfdbd4135f, type: 3}
       propertyPath: m_ChunkCullingBounds.x
@@ -15587,68 +15582,3 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2143434890}
   m_CullTransparentMesh: 1
---- !u!1001 &447854729349203045
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    m_TransformParent: {fileID: 0}
-    m_Modifications:
-    - target: {fileID: 56593012242344598, guid: 0346487911fac214f9563bc242143874, type: 3}
-      propertyPath: m_RootOrder
-      value: 6
-      objectReference: {fileID: 0}
-    - target: {fileID: 56593012242344598, guid: 0346487911fac214f9563bc242143874, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 8.41
-      objectReference: {fileID: 0}
-    - target: {fileID: 56593012242344598, guid: 0346487911fac214f9563bc242143874, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 0.53
-      objectReference: {fileID: 0}
-    - target: {fileID: 56593012242344598, guid: 0346487911fac214f9563bc242143874, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 56593012242344598, guid: 0346487911fac214f9563bc242143874, type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 56593012242344598, guid: 0346487911fac214f9563bc242143874, type: 3}
-      propertyPath: m_LocalRotation.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 56593012242344598, guid: 0346487911fac214f9563bc242143874, type: 3}
-      propertyPath: m_LocalRotation.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 56593012242344598, guid: 0346487911fac214f9563bc242143874, type: 3}
-      propertyPath: m_LocalRotation.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 56593012242344598, guid: 0346487911fac214f9563bc242143874, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 56593012242344598, guid: 0346487911fac214f9563bc242143874, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 56593012242344598, guid: 0346487911fac214f9563bc242143874, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3414903560113100826, guid: 0346487911fac214f9563bc242143874, type: 3}
-      propertyPath: slimeStat.slime2Spike
-      value: 
-      objectReference: {fileID: 4716690024573052546, guid: 2c38a76e2a06a2f4ca8f4609bc517c39, type: 3}
-    - target: {fileID: 3414903560113100826, guid: 0346487911fac214f9563bc242143874, type: 3}
-      propertyPath: enemyStat.movementSpeed
-      value: 0.02
-      objectReference: {fileID: 0}
-    - target: {fileID: 7354172916441228659, guid: 0346487911fac214f9563bc242143874, type: 3}
-      propertyPath: m_Name
-      value: slime2
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: 0346487911fac214f9563bc242143874, type: 3}

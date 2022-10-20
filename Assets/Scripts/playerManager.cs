@@ -1,9 +1,19 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System;
+
+[Serializable]
+public class Sound
+{
+    public string SoundType;
+    public AudioClip sound;
+}
 
 public class playerManager : MonoBehaviour
 {
+    
+
     [SerializeField] private float movementSpeed;
     [SerializeField] private float jumpSpeed;
     [SerializeField]private float maxJumpSpeed;
@@ -42,6 +52,9 @@ public class playerManager : MonoBehaviour
     public static bool isStart = false;
     public static bool flipx;
     GameManager GM;
+    AudioSource audioSource;
+    public Sound[] sound;
+
     void Start()
     {
         rigidBody = GetComponent<Rigidbody2D>();
@@ -53,6 +66,7 @@ public class playerManager : MonoBehaviour
         isGrounded = false;
         attackRange = new Vector2(0.9166667f, 1.666667f);
         Physics.IgnoreLayerCollision(8, 8, true);
+        audioSource = this.gameObject.GetComponent<AudioSource>();
     }
 
     void Update()
@@ -295,8 +309,8 @@ public class playerManager : MonoBehaviour
     {
         if (animator.GetCurrentAnimatorStateInfo(0).IsName(animation) && animator.GetCurrentAnimatorStateInfo(0).normalizedTime < 1.0f && animator.GetCurrentAnimatorStateInfo(0).normalizedTime >= 0.5f)
         {
-                animator.SetBool("isAttack", true);
-                animator.SetInteger("attackCount", next);
+            animator.SetBool("isAttack", true);
+            animator.SetInteger("attackCount", next);
         }
     }
 
@@ -515,7 +529,35 @@ public class playerManager : MonoBehaviour
             }
         }
     }
-
+    public void PlaySound(string soundKind)
+    {
+        if (!(audioSource.isPlaying))
+        {
+            switch (soundKind)
+            {
+                case "Falling":
+                    audioSource.clip = sound[0].sound;
+                    audioSource.Play();
+                    break;
+                case "Attack":
+                    audioSource.clip = sound[1].sound;
+                    audioSource.Play();
+                    break;
+                case "Jump":
+                    audioSource.clip = sound[2].sound;
+                    audioSource.Play();
+                    break;
+                case "Run1":
+                    audioSource.clip = sound[3].sound;
+                    audioSource.Play();
+                    break;
+                case "Run2":
+                    audioSource.clip = sound[4].sound;
+                    audioSource.Play();
+                    break;
+            }
+        } 
+    }
     void ting()
     {
         Application.Quit();
