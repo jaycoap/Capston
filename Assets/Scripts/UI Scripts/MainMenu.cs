@@ -8,18 +8,27 @@ public class MainMenu : MonoBehaviour
 {
     [SerializeField] private GameObject MainMenuPanel;
     [SerializeField] private SceneChange MainMenuChanage;
+    [SerializeField] private GameObject StoryUI;
+    [SerializeField] private GameObject SkipText;
+    [SerializeField] private Fade StoryFade;
+
+    private float StoryDownSpeed = 0f;
+
+
+    RectTransform StoryUIRectTransform;
+
+    private void Start()
+    {
+        MainMenuPanel.SetActive(false);
+        StoryUIRectTransform = StoryUI.GetComponent<RectTransform>();
+        StartCoroutine(RunMoveStoryUI());
+    }
 
     public void GameLogin()
     {
         Invoke("HideMainMenu", 1.2f);
         MainMenuChanage.CurrentSceneChange();
     }
-
-    public void LoadGame()
-    {
-        // 불러오기 기능구현 해야함.
-    }
-
     public void ExitGame()
     {
 #if UNITY_EDITOR
@@ -32,4 +41,37 @@ public class MainMenu : MonoBehaviour
     {
         MainMenuPanel.SetActive(false);
     }
+
+    public void HideStoryUI()
+    {
+        StoryUI.SetActive(false);
+        SkipText.SetActive(false);
+    }
+
+    IEnumerator RunMoveStoryUI()
+    {
+        while(StoryUIRectTransform.anchoredPosition.y < 2117f)
+        {
+            if (Input.GetKey(KeyCode.G))
+            {
+               break;
+            }
+            else if (Input.anyKey)
+            {
+                StoryDownSpeed = 5f;
+            }
+            else
+            {
+                StoryDownSpeed = 0f;
+            }
+            yield return new WaitForSeconds(0.02f);
+            StoryUIRectTransform.anchoredPosition
+                = new Vector2(StoryUIRectTransform.anchoredPosition.x
+                , StoryUIRectTransform.anchoredPosition.y + 1f + StoryDownSpeed);
+        }
+        Invoke("HideStoryUI", 1.2f);
+        StoryFade.FadeOutIn();
+        MainMenuPanel.SetActive(true);
+    }
+
 }
