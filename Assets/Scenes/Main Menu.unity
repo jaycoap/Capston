@@ -242,6 +242,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 312096315}
+        m_TargetAssemblyTypeName: StageManager, Assembly-CSharp
+        m_MethodName: OnClickGetPrivateContents
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &8419399
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -414,6 +426,18 @@ MonoBehaviour:
       - m_Target: {fileID: 1670697570}
         m_TargetAssemblyTypeName: StageManager, Assembly-CSharp
         m_MethodName: OnClickInsertData
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 312096315}
+        m_TargetAssemblyTypeName: StageManager, Assembly-CSharp
+        m_MethodName: OnClickStageInsertData
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -840,6 +864,7 @@ GameObject:
   - component: {fileID: 312096312}
   - component: {fileID: 312096314}
   - component: {fileID: 312096316}
+  - component: {fileID: 312096315}
   m_Layer: 0
   m_Name: Game Manager
   m_TagString: Untagged
@@ -877,6 +902,8 @@ MonoBehaviour:
   EnterButton: {fileID: 8419398}
   EnemyCountNum: 0
   StageClear: 0
+  StageClearNum: 0
+  endStage: 8
 --- !u!4 &312096313
 Transform:
   m_ObjectHideFlags: 0
@@ -906,6 +933,22 @@ MonoBehaviour:
   enemy:
   - {fileID: 5290438719731959125, guid: 3a4ae3f43b37a2e4da637253d13c20b3, type: 3}
   - {fileID: 8466940026092785851, guid: b909157ebe0d711489ba677e33e605d7, type: 3}
+--- !u!114 &312096315
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 312096311}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4dfcfe7c52f61fd4e96432bdfe59d0e1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  startStage: 0
+  clearStage: 0
+  DBStage: 0
+  getIndate: 
 --- !u!114 &312096316
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2702,7 +2745,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   startStage: 0
   clearStage: 0
-  endStage: 8
+  DBStage: 0
   getIndate: 
 --- !u!1 &1757668758
 GameObject:
@@ -3009,7 +3052,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2080765893}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 116.91157, y: 57.234173, z: -1737.3239}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}

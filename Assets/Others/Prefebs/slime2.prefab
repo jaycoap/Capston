@@ -509,11 +509,9 @@ MonoBehaviour:
     birthPos: {fileID: 0}
   slimeStat:
     isBackShot: 0
+    slime2Spike: {fileID: 4716690024573052546, guid: 2c38a76e2a06a2f4ca8f4609bc517c39, type: 3}
     slime2ShotPos: {fileID: 7216612716112466665}
-  hp_Seting:
-    slimeHP: 100
-    slime2HP: 150
-    slimeBossHP: 1000
+    slime3MoveTime: 0
 --- !u!60 &3414903559756772822
 PolygonCollider2D:
   m_ObjectHideFlags: 0
