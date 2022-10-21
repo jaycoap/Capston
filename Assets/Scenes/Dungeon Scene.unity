@@ -3319,50 +3319,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 1085959505609622831, guid: 20df38514d9d9584fbf173cfdbd4135f, type: 3}
-      propertyPath: FloorWidth
-      value: 100
-      objectReference: {fileID: 0}
-    - target: {fileID: 1085959505609622831, guid: 20df38514d9d9584fbf173cfdbd4135f, type: 3}
-      propertyPath: enemy.Slime
-      value: 
-      objectReference: {fileID: 5290438719731959125, guid: 3a4ae3f43b37a2e4da637253d13c20b3, type: 3}
-    - target: {fileID: 1085959505609622831, guid: 20df38514d9d9584fbf173cfdbd4135f, type: 3}
-      propertyPath: enemy.Slime2
-      value: 
-      objectReference: {fileID: 7354172916441228659, guid: 0346487911fac214f9563bc242143874, type: 3}
-    - target: {fileID: 1085959505609622831, guid: 20df38514d9d9584fbf173cfdbd4135f, type: 3}
-      propertyPath: enemy.Slime3
-      value: 
-      objectReference: {fileID: 6115194384173976220, guid: e02c1f890b5789f4f9b2fcb04212dc18, type: 3}
-    - target: {fileID: 1085959505609622831, guid: 20df38514d9d9584fbf173cfdbd4135f, type: 3}
-      propertyPath: enemy.SlimeBoss
-      value: 
-      objectReference: {fileID: 8466940026092785851, guid: b909157ebe0d711489ba677e33e605d7, type: 3}
-    - target: {fileID: 1085959505609622831, guid: 20df38514d9d9584fbf173cfdbd4135f, type: 3}
-      propertyPath: enemy.Slime_Amount
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1085959505609622831, guid: 20df38514d9d9584fbf173cfdbd4135f, type: 3}
-      propertyPath: platform.Platform5
-      value: 5
-      objectReference: {fileID: 0}
-    - target: {fileID: 1085959505609622831, guid: 20df38514d9d9584fbf173cfdbd4135f, type: 3}
-      propertyPath: enemy.Slime2_Amount
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1085959505609622831, guid: 20df38514d9d9584fbf173cfdbd4135f, type: 3}
-      propertyPath: enemy.Slime3_Amount
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: 1085959506864912041, guid: 20df38514d9d9584fbf173cfdbd4135f, type: 3}
-      propertyPath: m_ChunkCullingBounds.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1085959506864912041, guid: 20df38514d9d9584fbf173cfdbd4135f, type: 3}
-      propertyPath: m_ChunkCullingBounds.y
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 1085959506864912042, guid: 20df38514d9d9584fbf173cfdbd4135f, type: 3}
       propertyPath: m_Tiles.Array.size
       value: 0
@@ -3602,10 +3558,6 @@ PrefabInstance:
     - target: {fileID: 1085959506864912042, guid: 20df38514d9d9584fbf173cfdbd4135f, type: 3}
       propertyPath: m_Tiles.Array.data[4].second.m_TileObjectToInstantiateIndex
       value: 65535
-      objectReference: {fileID: 0}
-    - target: {fileID: 1085959506864912046, guid: 20df38514d9d9584fbf173cfdbd4135f, type: 3}
-      propertyPath: m_GeometryType
-      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 8256341963095567795, guid: 20df38514d9d9584fbf173cfdbd4135f, type: 3}

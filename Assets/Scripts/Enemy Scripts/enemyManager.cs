@@ -73,7 +73,8 @@ public class enemyManager : MonoBehaviour
     public SlimeStat slimeStat;
 
     GameManager gm;
-  
+
+    float forceGravity = 10f;
     private void Awake()
     {
         if (_instance != null && _instance != this)
@@ -241,7 +242,7 @@ public class enemyManager : MonoBehaviour
             isGrounded = true;
 
             rigidBody.drag = 3;
-            rigidBody.gravityScale = 1;
+            rigidBody.gravityScale = forceGravity;
         }
         else
         {

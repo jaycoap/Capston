@@ -304,9 +304,12 @@ MonoBehaviour:
     FloorTile: {fileID: 11400000, guid: c6f9fde8d3d408a4f9f82f47120ef0aa, type: 2}
   platform:
     Platform_Y_MAX: 3
-    Platform5: 7
-    Platform4: 0
+    Platform5: 5
   enemy:
-    Slime: {fileID: 0}
-    Slime_Amount: 0
-    SlimeBoss: {fileID: 0}
+    Slime: {fileID: 5290438719731959125, guid: 3a4ae3f43b37a2e4da637253d13c20b3, type: 3}
+    Slime_Amount: 2
+    Slime2: {fileID: 7354172916441228659, guid: 0346487911fac214f9563bc242143874, type: 3}
+    Slime2_Amount: 2
+    Slime3: {fileID: 6115194384173976220, guid: e02c1f890b5789f4f9b2fcb04212dc18, type: 3}
+    Slime3_Amount: 1
+    SlimeBoss: {fileID: 8466940026092785851, guid: b909157ebe0d711489ba677e33e605d7, type: 3}
