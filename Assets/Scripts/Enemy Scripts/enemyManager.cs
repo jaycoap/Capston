@@ -80,6 +80,10 @@ public class enemyManager : MonoBehaviour
             return;
 
         _instance = this;
+    }
+
+    void Start()
+    {
         //종류별로 HP설정
         switch (enemyAI)
         {
@@ -96,12 +100,7 @@ public class enemyManager : MonoBehaviour
                 enemyHp = GameManager.Instance.SlimeBossHPSet();
                 break;
         }
-    }
 
-    void Start()
-    {
-        
-       
         maxHp = enemyHp;
         gm = GetComponent<GameManager>();
         rigidBody = GetComponent<Rigidbody2D>();
@@ -180,7 +179,7 @@ public class enemyManager : MonoBehaviour
                         int dirc = transform.position.x - player.transform.position.x > 0 ? -1 : 1;
 
                         transform.position = new Vector2(transform.position.x + (enemyStat.movementSpeed * dirc), transform.position.y);
-                        Debug.Log(transform.position);
+
                         //방향전환시 스프라이트 뒤집기
                         spriteRenderer.flipX = (dirc == 1) ? true : false;
                     }    
@@ -414,7 +413,7 @@ public class enemyManager : MonoBehaviour
             }
         }
 
-        StartCoroutine("slime2AI", enemyStat.patternTime);
+        StartCoroutine("slime3AI", enemyStat.patternTime);
     }
     // 슬라임 보스 AI 코루틴
     IEnumerator slimeBossAI()

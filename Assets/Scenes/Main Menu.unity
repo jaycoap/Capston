@@ -862,8 +862,13 @@ MonoBehaviour:
   isPause: 0
   currentGameState: 0
   playerRigid: {fileID: 0}
-  EnemyHP_X: 0
   backendnickname: {fileID: 0}
+  hpSetting:
+    EnemyHP_X: 0
+    slimeHP: 100
+    slime2HP: 150
+    slime3HP: 200
+    slimeBossHP: 1000
   idText: {fileID: 378507059}
   menu: 1
   firstcheck: 1

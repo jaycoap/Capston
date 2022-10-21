@@ -38,7 +38,7 @@ public class GameManager : MonoBehaviour
     public Rigidbody2D playerRigid;
     
     public BackEndNickname backendnickname;
-    HPsetting hpSetting;
+    public HPsetting hpSetting;
     spawnManager spawnmanager;
     
     public Text idText;
