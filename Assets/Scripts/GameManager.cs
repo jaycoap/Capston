@@ -89,9 +89,12 @@ public class GameManager : MonoBehaviour
     //적 마리수 체크
     GameObject[] EnemyCount;
     public int EnemyCountNum = 0;
+    
+    //스테이지 관리
+    public int endStage = 8;
     public bool StageClear = false;
-    bool checkCount = false;
-    int saveCount = 0;
+    public int StageClearNum = 0;
+
 
 
 
@@ -109,13 +112,14 @@ public class GameManager : MonoBehaviour
 
     }
 
-    void Update() //test 세팅
+    void Update()
     {
         
-        if(SceneManager.GetActiveScene().name == "Dungeon Scene")
+        if(SceneManager.GetActiveScene().name == "Dungeon Scene") //던전클리어시 나와야하는 이벤트 입력
         {
 
              StartCoroutine(EnemyCountCheck());
+             
             
         }
         if (SceneManager.GetActiveScene().name == "Main Menu")
@@ -208,22 +212,41 @@ public class GameManager : MonoBehaviour
         EnemyCountNum = Int32.Parse(EnemyCount.Length.ToString());
         if (EnemyCountNum == 0)
         {
-            StageClear = true;      
+            StageClear = true;
+            if (StageClear == true)
+            {
+                Cleardungeon();
+
+                StageClear = false;
+            }
         }
         else
         {
             EnemyCountNum = Int32.Parse(EnemyCount.Length.ToString());
-            saveCount = EnemyCountNum;
+            
         }
     
         yield break;
     }
     
-    void Cleardungeon()
+    void Cleardungeon() // 던전 클리어시 씬 변경
     {
+        ClearStageCal();
         SceneManager.LoadScene("Village Scene");
     }
     
+    int ClearStageCal()
+    {   
+        
+        StageClearNum = StageClearNum + 1;
+        
+        return StageClearNum;
+    }
+    public int GetClearStage()
+    {
+        Debug.Log(StageClearNum);
+        return StageClearNum;
+    }
     public void Ingame() // 게임 시작시 설정값 입력 
     {
         currentGameState = GameState.inGame;
@@ -303,6 +326,7 @@ public class GameManager : MonoBehaviour
             FIT = BackEndGameInfo.instance.GetFIT(); // 초기 체력 마나 스텟 설정
             EXP = BackEndGameInfo.instance.GetEXP(); // 초기 경험치 세팅
             APPoint = BackEndGameInfo.instance.GetAPPoint();
+            StageClearNum = StageManager.instance.GetDBStage(); 
 
             firstcheck = false;
         }
@@ -356,8 +380,8 @@ public class GameManager : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Q))
         {
 
-            MinAP = (INT * FIT) / 2 * Random.Range(1, 4);
-            MaxAP = (INT * FIT) / 2 * Random.Range(1, 6);
+            MinAP = (INT * FIT) / 2 * Random.Range(1, 2);
+            MaxAP = (INT * FIT) / 2 * Random.Range(1, 3);
             SlashAP = Random.Range(MinAP, MaxAP);
             Debug.Log(MinAP);
         }
@@ -395,7 +419,7 @@ public class GameManager : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.E))
         {
             MinAP = (INT * FIT) / 2 * 1;
-            MaxAP = (INT * FIT) / 2 * Random.Range(1, 2);
+            MaxAP = (INT * FIT) / 2 * Random.Range(1, 3);
             SwordAP = Random.Range(MinAP, MaxAP);
         }
         else
@@ -445,7 +469,7 @@ public class GameManager : MonoBehaviour
 
     IEnumerator HealTime()
     {
-        yield return new WaitForSeconds(7.0f);
+        yield return new WaitForSeconds(10.0f);
         isDelay = false;
 
     }
