@@ -4,6 +4,7 @@ using UnityEngine;
 using BackEnd;
 using LitJson;
 using System;
+using UnityEngine.SceneManagement;
 
 
 public class StageManager : MonoBehaviour
@@ -26,7 +27,9 @@ public class StageManager : MonoBehaviour
 
     void Update()
     {
-        GameManager.Instance.GetClearStage();
+        
+         GameManager.Instance.GetClearStage();
+        
         
     }
     public void OnClickStageInsertData()
@@ -142,7 +145,8 @@ public class StageManager : MonoBehaviour
 
         param.Add("ClearStage", GameManager.Instance.GetClearStage());
         Debug.Log(param);
-        BackendReturnObject BRO = Backend.GameData.Update("stage", stagegetIndate, param);
+        BackendReturnObject BRO1 = Backend.GameData.GetMyData("stage", new Where());
+        BackendReturnObject BRO = Backend.GameData.Update("stage", BRO1.GetInDate(), param);
 
         if (BRO.IsSuccess())
         {

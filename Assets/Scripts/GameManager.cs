@@ -70,8 +70,8 @@ public class GameManager : MonoBehaviour
     private int SlashAP = 0; //W스킬 데미지
     private int SwordAP = 0; //E스킬 데미지
     int attackCount = 0; // 공격 타수 카운트
-    private int Time_HP = 0; //자동 HP회복량
-    private int Time_MP = 0; // 자동 MP회복량
+    private int Time_HP = 5; //자동 HP회복량
+    private int Time_MP = 10; // 자동 MP회복량
     private float Time_delay = 7f; // 자동회복 쿨타임
     private bool isDelay;
 
@@ -93,7 +93,7 @@ public class GameManager : MonoBehaviour
     //스테이지 관리
     public int endStage = 8;
     public bool StageClear = false;
-    public int StageClearNum = 0;
+    public int StageClearNum;
 
 
 
@@ -104,8 +104,7 @@ public class GameManager : MonoBehaviour
         spawnmanager = GetComponent<spawnManager>();
         
         Idfield.Select();
-        Time_HP = 5;
-        Time_MP = 10;
+        
 
         
 
@@ -120,7 +119,8 @@ public class GameManager : MonoBehaviour
 
              StartCoroutine(EnemyCountCheck());
              
-            
+
+
         }
         if (SceneManager.GetActiveScene().name == "Main Menu")
         {
@@ -231,21 +231,32 @@ public class GameManager : MonoBehaviour
     
     void Cleardungeon() // 던전 클리어시 씬 변경
     {
-        ClearStageCal();
+        ClearStageCal(1);
         SceneManager.LoadScene("Village Scene");
     }
     
-    int ClearStageCal()
+    int ClearStageCal(int plus)
     {   
         
-        StageClearNum = StageClearNum + 1;
+        StageClearNum = StageClearNum + plus;
+        Debug.Log(StageClearNum);
+        // UI에서 여기에 스테이지 값뿌려주면 됨.
+        return StageClearNum; 
         
-        return StageClearNum;
     }
     public int GetClearStage()
     {
-        Debug.Log(StageClearNum);
+        
         return StageClearNum;
+    }
+    public int GetDBStage()
+    {
+        StageClearNum = StageManager.instance.GetDBStage();
+        return StageClearNum;
+    }
+    public void stageButtonEvent()
+    {
+        GetDBStage();
     }
     public void Ingame() // 게임 시작시 설정값 입력 
     {
@@ -343,8 +354,8 @@ public class GameManager : MonoBehaviour
     //플레이어 공격 분리
     public void ADAttackFirst() // 1타
     {
-        MinAD = (STR * FIT) / 2 * Random.Range(1, 2);
-        MaxAD = (STR * FIT) / 2 * Random.Range(1, 3);
+        MinAD = ((STR / 2) + FIT) * Random.Range(1, 2);
+        MaxAD = (STR + (FIT/2)) * Random.Range(1, 3);
         AD1 = Random.Range(MinAD, MaxAD);
     }
     public int Return1AD()
@@ -353,8 +364,8 @@ public class GameManager : MonoBehaviour
     }
     public void ADAttackSecond() // 2타
     {
-        MinAD = (STR * FIT) / 2 * Random.Range(1, 4);
-        MaxAD = (STR * FIT) / 2 * Random.Range(1, 5);
+        MinAD = ((STR / 2) + FIT) * Random.Range(1, 2);
+        MaxAD = (STR + (FIT / 2)) * Random.Range(1, 3);
         AD2 = Random.Range(MinAD, MaxAD);
     }
     public int Return2AD()
@@ -363,8 +374,8 @@ public class GameManager : MonoBehaviour
     }
     public void ADAttackThird() // 3타
     {
-        MinAD = (STR * FIT) / 2 * Random.Range(1, 5);
-        MaxAD = (STR * FIT) / 2 * Random.Range(1, 6);
+        MinAD = ((STR / 2) + FIT) * Random.Range(1, 2);
+        MaxAD = (STR + FIT) * Random.Range(1, 3);
         AD3 = Random.Range(MinAD, MaxAD);
     }
     public int Return3AD()
@@ -380,8 +391,8 @@ public class GameManager : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Q))
         {
 
-            MinAP = (INT * FIT) / 2 * Random.Range(1, 2);
-            MaxAP = (INT * FIT) / 2 * Random.Range(1, 3);
+            MinAP = ((INT / 2) + (FIT / 2)) * 1;
+            MaxAP = ((INT / 2) + FIT ) * Random.Range(1, 3);
             SlashAP = Random.Range(MinAP, MaxAP);
             Debug.Log(MinAP);
         }
@@ -400,8 +411,8 @@ public class GameManager : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.W))
         {
-            MinAP = (INT * FIT) / 2 * Random.Range(1, 2);
-            MaxAP = (INT * FIT) / 2 * Random.Range(1, 4);
+            MinAP = ((INT / 2) + (FIT / 2)) * 1;
+            MaxAP = ((INT / 2) + FIT) * Random.Range(1, 4);
             RushAP = Random.Range(MinAP, MaxAP);
         }
         else
@@ -418,8 +429,8 @@ public class GameManager : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.E))
         {
-            MinAP = (INT * FIT) / 2 * 1;
-            MaxAP = (INT * FIT) / 2 * Random.Range(1, 3);
+            MinAP = ((INT / 2) + (FIT / 2)) * Random.Range(1,2);
+            MaxAP = ((INT / 2) + FIT) * Random.Range(1, 3);
             SwordAP = Random.Range(MinAP, MaxAP);
         }
         else

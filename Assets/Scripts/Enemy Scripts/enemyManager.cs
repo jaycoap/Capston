@@ -258,15 +258,19 @@ public class enemyManager : MonoBehaviour
             {
                 case "slime":
                     animator.SetBool("isDie", true);
+                    GameManager.Instance.getexp(20);
                     break;
                 case "slime2":
                     animator.SetBool("isDie", true);
+                    GameManager.Instance.getexp(28);
                     break;
                 case "slime3":
                     animator.SetBool("isDie", true);
+                    GameManager.Instance.getexp(30);
                     break;
                 case "slimeBoss":
                     animator.SetBool("isDie", true);
+                    GameManager.Instance.getexp(100);
                     break;
             }
         }

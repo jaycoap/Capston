@@ -254,6 +254,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 312096312}
+        m_TargetAssemblyTypeName: GameManager, Assembly-CSharp
+        m_MethodName: stageButtonEvent
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &8419399
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -901,7 +913,9 @@ MonoBehaviour:
   Pwfield: {fileID: 518703838}
   EnterButton: {fileID: 8419398}
   EnemyCountNum: 0
+  endStage: 8
   StageClear: 0
+  StageClearNum: 0
 --- !u!4 &312096313
 Transform:
   m_ObjectHideFlags: 0
@@ -945,8 +959,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   startStage: 0
   clearStage: 0
-  endStage: 8
-  getIndate: 
+  DBStage: 0
+  stagegetIndate: 
 --- !u!114 &312096316
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3395,7 +3409,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0.08379991, y: -2119.3}
+  m_AnchoredPosition: {x: -0.000001356, y: -2046}
   m_SizeDelta: {x: 1280, y: 4938.781}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1641748733
@@ -3553,8 +3567,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   startStage: 0
   clearStage: 0
-  endStage: 8
-  getIndate: 
+  DBStage: 0
+  stagegetIndate: 
 --- !u!1 &1757668758
 GameObject:
   m_ObjectHideFlags: 0
