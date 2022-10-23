@@ -59,6 +59,7 @@ public class GameManager : MonoBehaviour
     private int FIT = 0; // 캐릭터 체력 마나 스텟
     private int EXP = 0;  //현재경험치
     private int APPoint = 0; // 스텟 포인트
+    private int Gold = 0;
     private int AD1 = 0; // 공격 1타
     private int AD2 = 0; // 공격 2타
     private int AD3 = 0; // 공격 3타
@@ -72,7 +73,7 @@ public class GameManager : MonoBehaviour
     int attackCount = 0; // 공격 타수 카운트
     private int Time_HP = 5; //자동 HP회복량
     private int Time_MP = 10; // 자동 MP회복량
-    private float Time_delay = 7f; // 자동회복 쿨타임
+    private float Time_delay = 10f; // 자동회복 쿨타임
     private bool isDelay;
 
 
@@ -307,7 +308,7 @@ public class GameManager : MonoBehaviour
            myname = idText.text; // 닉네임 설정
            maxHp += 70; // 최대 체력 설정.
            maxMp += 200; // 최대마나
-           maxExp += 300; // 1랩때 최대 경험치 
+           maxExp += 150; // 1랩때 최대 경험치 
            HP += maxHp; // 초기 체력 설정
            MP += maxMp; // 초기 마나 설정
            STR += 7; // 초기 공격력 설정
@@ -315,6 +316,7 @@ public class GameManager : MonoBehaviour
            FIT += 3; // 초기 체력 마나 스텟 설정
            EXP += 0; // 초기 경험치 세팅
            APPoint = 0;
+           Gold = 0;
                 
                 
         
@@ -329,15 +331,16 @@ public class GameManager : MonoBehaviour
             myname = idText.text; // 닉네임 설정
             maxHp = BackEndGameInfo.instance.GetMaxHP(); // 최대 체력 설정.
             maxMp = BackEndGameInfo.instance.GetMaxMP(); // 최대마나
-            maxExp = BackEndGameInfo.instance.GetMaxEXP(); // 1랩때 최대 경험치 
-            HP = BackEndGameInfo.instance.GetMaxHP(); // 초기 체력 설정
-            MP = BackEndGameInfo.instance.GetMaxMP(); // 초기 마나 설정
-            STR = BackEndGameInfo.instance.GetSTR(); // 초기 공격력 설정
-            INT = BackEndGameInfo.instance.GetINT(); // 초기 주문력 설정
-            FIT = BackEndGameInfo.instance.GetFIT(); // 초기 체력 마나 스텟 설정
-            EXP = BackEndGameInfo.instance.GetEXP(); // 초기 경험치 세팅
-            APPoint = BackEndGameInfo.instance.GetAPPoint();
-            StageClearNum = StageManager.instance.GetDBStage(); 
+            maxExp = BackEndGameInfo.instance.GetMaxEXP(); // 최대 경험치 
+            HP = BackEndGameInfo.instance.GetMaxHP(); //  체력 설정
+            MP = BackEndGameInfo.instance.GetMaxMP(); //  마나 설정
+            STR = BackEndGameInfo.instance.GetSTR(); // 공격력 설정
+            INT = BackEndGameInfo.instance.GetINT(); // 주문력 설정
+            FIT = BackEndGameInfo.instance.GetFIT(); //  체력 마나 스텟 설정
+            EXP = BackEndGameInfo.instance.GetEXP(); //  경험치 세팅
+            APPoint = BackEndGameInfo.instance.GetAPPoint(); // APPoint 설정
+            StageClearNum = StageManager.instance.GetDBStage(); // Stage 정보
+            Gold = BackEndGameInfo.instance.GetGold(); // Gold설정
 
             firstcheck = false;
         }
@@ -354,8 +357,8 @@ public class GameManager : MonoBehaviour
     //플레이어 공격 분리
     public void ADAttackFirst() // 1타
     {
-        MinAD = ((STR / 2) + FIT) * Random.Range(1, 2);
-        MaxAD = (STR + (FIT/2)) * Random.Range(1, 3);
+        MinAD = (STR  + (FIT / 2)) * Random.Range(1, 2);
+        MaxAD = (STR + FIT) * Random.Range(1, 3);
         AD1 = Random.Range(MinAD, MaxAD);
     }
     public int Return1AD()
@@ -364,8 +367,8 @@ public class GameManager : MonoBehaviour
     }
     public void ADAttackSecond() // 2타
     {
-        MinAD = ((STR / 2) + FIT) * Random.Range(1, 2);
-        MaxAD = (STR + (FIT / 2)) * Random.Range(1, 3);
+        MinAD = (STR + (FIT / 2)) * Random.Range(1, 2);
+        MaxAD = (STR + FIT) * Random.Range(1, 3);
         AD2 = Random.Range(MinAD, MaxAD);
     }
     public int Return2AD()
@@ -374,7 +377,7 @@ public class GameManager : MonoBehaviour
     }
     public void ADAttackThird() // 3타
     {
-        MinAD = ((STR / 2) + FIT) * Random.Range(1, 2);
+        MinAD = (STR + (FIT / 2)) * Random.Range(1, 2);
         MaxAD = (STR + FIT) * Random.Range(1, 3);
         AD3 = Random.Range(MinAD, MaxAD);
     }
@@ -391,8 +394,8 @@ public class GameManager : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Q))
         {
 
-            MinAP = ((INT / 2) + (FIT / 2)) * 1;
-            MaxAP = ((INT / 2) + FIT ) * Random.Range(1, 3);
+            MinAP = (INT + (FIT / 2)) * 1;
+            MaxAP = (INT + FIT ) * Random.Range(1, 3);
             SlashAP = Random.Range(MinAP, MaxAP);
             Debug.Log(MinAP);
         }
@@ -411,8 +414,8 @@ public class GameManager : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.W))
         {
-            MinAP = ((INT / 2) + (FIT / 2)) * 1;
-            MaxAP = ((INT / 2) + FIT) * Random.Range(1, 4);
+            MinAP = (INT + (FIT / 2)) * 1;
+            MaxAP = (INT + FIT) * Random.Range(1, 4);
             RushAP = Random.Range(MinAP, MaxAP);
         }
         else
@@ -429,8 +432,8 @@ public class GameManager : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.E))
         {
-            MinAP = ((INT / 2) + (FIT / 2)) * Random.Range(1,2);
-            MaxAP = ((INT / 2) + FIT) * Random.Range(1, 3);
+            MinAP = (INT + (FIT / 2)) * Random.Range(1,3);
+            MaxAP = (INT + FIT) * Random.Range(1, 3);
             SwordAP = Random.Range(MinAP, MaxAP);
         }
         else
@@ -480,7 +483,7 @@ public class GameManager : MonoBehaviour
 
     IEnumerator HealTime()
     {
-        yield return new WaitForSeconds(10.0f);
+        yield return new WaitForSeconds(Time_delay);
         isDelay = false;
 
     }
@@ -572,9 +575,9 @@ public class GameManager : MonoBehaviour
                 {
                     EXP = 0;
                 }
-                if (activelevel % 10 <= 0) // 10렙당 경험치 1.5배
+                if (activelevel % 10 <= 0) // 10렙당 경험치 1.2배
                 {
-                    maxCheck = maxExp * 1.5;
+                    maxCheck = maxExp * 1.25;
                 }
                 else// 아니면 1.2배
                 {
@@ -679,6 +682,29 @@ public class GameManager : MonoBehaviour
     {
         FIT += newFIT;
         return FIT;
+    }
+
+    public int getGold() //골드 불러오기
+    {
+        return Gold;
+    }
+
+    public int setGold(int newGold) // 골드 증가
+    {
+        Gold += newGold;
+        return Gold;
+    }
+
+    public void payGold(int pay) // 골드 사용
+    {
+        if (Gold <= 0)
+        {
+            return;
+        }
+        else
+        {
+            Gold -= pay;
+        }
     }
 
     public int SlimeHPSet()

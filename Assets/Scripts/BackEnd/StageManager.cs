@@ -140,10 +140,19 @@ public class StageManager : MonoBehaviour
 
     public void OnClickStageGameInfoUpdate()
     {
-
         Param param = new Param();
+        int UpdateStage = GameManager.Instance.GetClearStage();
+        
 
-        param.Add("ClearStage", GameManager.Instance.GetClearStage());
+        param.Add("ClearStage", UpdateStage);
+
+        Dictionary<string, int> stage = new Dictionary<string, int>
+        {
+            {"ClearStage",UpdateStage }
+        };
+        
+
+        param.Add("stage", stage);
         Debug.Log(param);
         BackendReturnObject BRO1 = Backend.GameData.GetMyData("stage", new Where());
         BackendReturnObject BRO = Backend.GameData.Update("stage", BRO1.GetInDate(), param);

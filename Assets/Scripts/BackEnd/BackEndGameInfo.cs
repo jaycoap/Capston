@@ -27,6 +27,7 @@ public class BackEndGameInfo : MonoBehaviour
     public int INT;
     public int FIT;
     public int APPoint;
+    public int Gold;
     public string getIndate;
     public string getowner;
     
@@ -55,6 +56,7 @@ public class BackEndGameInfo : MonoBehaviour
         int charINT = GameManager.Instance.getINT();
         int charFIT = GameManager.Instance.getFIT();
         int charAPPoint = GameManager.Instance.getAPPoint();
+        int charGold = GameManager.Instance.getGold();
 
         
 
@@ -71,6 +73,7 @@ public class BackEndGameInfo : MonoBehaviour
         param.Add("INT", charINT);
         param.Add("FIT", charFIT);
         param.Add("APPoint", charAPPoint);
+        param.Add("Gold",charGold);
 
         Dictionary<string, int> character = new Dictionary<string, int>
         {
@@ -84,7 +87,8 @@ public class BackEndGameInfo : MonoBehaviour
             { "STR",charSTR },
             { "INT",charINT },
             { "FIT",charFIT },
-            { "APPoint", charAPPoint }
+            { "APPoint", charAPPoint },
+            { "Gold", charGold }
         };
 
 
@@ -188,6 +192,7 @@ public class BackEndGameInfo : MonoBehaviour
         INT = Int32.Parse(data["INT"][0].ToString());
         FIT = Int32.Parse(data["FIT"][0].ToString());
         APPoint = Int32.Parse(data["APPoint"][0].ToString());
+        Gold = Int32.Parse(data["Gold"][0].ToString());
 
         SetDBLevel(Level);
     }
@@ -195,18 +200,50 @@ public class BackEndGameInfo : MonoBehaviour
     public void OnClickGameInfoUpdate()
     {
         Param param = new Param();
-        param.Add("Level", GameManager.Instance.getLevel());
-        param.Add("HP", GameManager.Instance.getHp());
-        param.Add("MaxHP", GameManager.Instance.getmaxHp());
-        param.Add("MP", GameManager.Instance.getMp());
-        param.Add("EXP", GameManager.Instance.getExp());
-        param.Add("MaxEXP", GameManager.Instance.getmaxExp());
-        param.Add("STR", GameManager.Instance.getSTR());
-        param.Add("INT", GameManager.Instance.getINT());
-        param.Add("FIT", GameManager.Instance.getFIT());
-        param.Add("APPoint", GameManager.Instance.getAPPoint());
+        int charLevel = GameManager.Instance.getLevel();
+        int charEXP = GameManager.Instance.getExp();
+        int charMaxEXP = GameManager.Instance.getmaxExp();
+        int charHP = GameManager.Instance.getHp();
+        int charMaxHP = GameManager.Instance.getmaxHp();
+        int charMP = GameManager.Instance.getMp();
+        int charMaxMp = GameManager.Instance.getmaxMp();
+        int charSTR = GameManager.Instance.getSTR();
+        int charINT = GameManager.Instance.getINT();
+        int charFIT = GameManager.Instance.getFIT();
+        int charAPPoint = GameManager.Instance.getAPPoint();
+        int charGold = GameManager.Instance.getGold();
 
+        param.Add("Level", charLevel);
+        param.Add("EXP", charEXP);
+        param.Add("MaxEXP", charMaxEXP);
+        param.Add("HP", charHP);
+        param.Add("MaxHP", charMaxHP);
+        param.Add("MP", charMP);
+        param.Add("MaxMP", charMaxMp);
+        param.Add("STR", charSTR);
+        param.Add("INT", charINT);
+        param.Add("FIT", charFIT);
+        param.Add("APPoint", charAPPoint);
+        param.Add("Gold", charGold);
+
+        Dictionary<string, int> character = new Dictionary<string, int>
+        {
+            { "Level",charLevel },
+            { "EXP", charEXP },
+            { "MaxEXP", charMaxEXP },
+            { "HP", charHP },
+            { "MaxHP", charMaxHP },
+            { "MP", charMP },
+            { "MaxMP", charMaxMp },
+            { "STR",charSTR },
+            { "INT",charINT },
+            { "FIT",charFIT },
+            { "APPoint", charAPPoint },
+            { "Gold", charGold }
+        };
+        param.Add("character", character);
         BackendReturnObject BRO = Backend.GameData.Update("character", getIndate, param);
+        
 
         if (BRO.IsSuccess())
         {
@@ -328,6 +365,11 @@ public class BackEndGameInfo : MonoBehaviour
     public int GetAPPoint()
     {
         return APPoint;
+    }
+
+    public int GetGold()
+    {
+        return Gold;
     }
 
     public int SetDBLevel(int DBLevel)
