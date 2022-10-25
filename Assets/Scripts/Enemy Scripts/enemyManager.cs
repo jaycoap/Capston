@@ -20,6 +20,7 @@ public class EnemyStat
     public int patternTime;
     //³Ë¹é °Å¸®
     public int knockbackDis;
+    public int coinPrice;
 }
 
 [Serializable]
@@ -66,7 +67,7 @@ public class enemyManager : MonoBehaviour
     [SerializeField] private Transform pos;
     [SerializeField] private Vector2 AttackRange;
     [SerializeField] private Vector2 playerDetectRange;
-
+    [SerializeField] GameObject coin;
     public EnemyUI enemyUI;
     public EnemyStat enemyStat;
     public SlimeBossStat slimeBossStat;
@@ -379,7 +380,7 @@ public class enemyManager : MonoBehaviour
                         int dirc = transform.position.x - Player.transform.position.x > 0 ? -1 : 1;
 
                         spriteRenderer.flipX = (dirc == 1) ? true : false;
-                        rigidBody.AddForce(new Vector2(dirc * 6f, 7), ForceMode2D.Impulse);
+                        rigidBody.AddForce(new Vector2(dirc * 8f, 7), ForceMode2D.Impulse);
                         animator.SetBool("isJump", true);
                     }
                 }
@@ -407,7 +408,6 @@ public class enemyManager : MonoBehaviour
     IEnumerator slime3AI()
     {
         yield return new WaitForSeconds(enemyStat.patternTime);
-        Debug.Log("slime3");
         if (!animator.GetBool("isAttack"))
         {
             if (Physics2D.OverlapBox(transform.position, playerDetectRange, 0, LayerMask.GetMask("Player")))
@@ -641,7 +641,11 @@ public class enemyManager : MonoBehaviour
     }
 
     private void destroy()
-    {   
+    {
+        Instantiate(coin, transform.position, Quaternion.identity);
+        Collider2D Coin = Physics2D.OverlapBox(transform.position, new Vector2(1,1), 0, LayerMask.GetMask("Coin"));
+        Coin.GetComponent<CoinManager>().SetPrice(enemyStat.coinPrice);
+
         Destroy(gameObject);
     }
 

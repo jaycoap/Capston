@@ -3551,6 +3551,7 @@ MonoBehaviour:
   INT: 0
   FIT: 0
   APPoint: 0
+  Gold: 0
   getIndate: 
   getowner: 2022-07-25T05:47:22.446Z
 --- !u!114 &1670697570

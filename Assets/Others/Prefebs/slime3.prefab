@@ -424,6 +424,7 @@ MonoBehaviour:
   pos: {fileID: 0}
   AttackRange: {x: 0.5632785, y: 0.7097316}
   playerDetectRange: {x: 20, y: 20}
+  coin: {fileID: 7668707638882391475, guid: 18928db5d9f8b9e428664be74f86a7f4, type: 3}
   enemyUI:
     hudDamageText: {fileID: 3040949605863473835, guid: d2bde22206f16a44ebcc635f08423623, type: 3}
     hudPos: {fileID: 3610693528702223737}
@@ -432,6 +433,7 @@ MonoBehaviour:
     movementSpeed: 0.05
     patternTime: 2
     knockbackDis: 100
+    coinPrice: 300
   slimeBossStat:
     diveCool: 0
     backShotCool: 0
