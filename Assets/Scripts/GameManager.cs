@@ -158,11 +158,12 @@ public class GameManager : MonoBehaviour
                     ADAttackThird();
                     attackCount = 1;
                 }
+                Energy_sword();
 
             }
             Energy_rush();
             Energy_slash();
-            Energy_sword();
+            
         }
         else
         {
@@ -415,7 +416,7 @@ public class GameManager : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.W))
         {
             MinAP = (INT + (FIT / 2)) * 1;
-            MaxAP = (INT + FIT) * Random.Range(1, 4);
+            MaxAP = (INT + FIT) * Random.Range(1, 5);
             RushAP = Random.Range(MinAP, MaxAP);
         }
         else
@@ -430,17 +431,14 @@ public class GameManager : MonoBehaviour
     public void Energy_sword()//E스킬
     {
 
-        if (Input.GetKeyDown(KeyCode.E))
-        {
-            MinAP = (INT + (FIT / 2)) * Random.Range(1,3);
-            MaxAP = (INT + FIT) * Random.Range(1, 3);
-            SwordAP = Random.Range(MinAP, MaxAP);
-        }
-        else
-        {
-            return;
-        }
+        MinAP = (INT + (FIT / 2)) * 1;
+        MaxAP = (INT + FIT) * Random.Range(1, 3);
+        SwordAP = Random.Range(MinAP, MaxAP);
+
+
+        
     }
+    
     public int ReturnSword()
     {
         return SwordAP;
