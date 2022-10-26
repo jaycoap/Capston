@@ -935,8 +935,7 @@ PrefabInstance:
       propertyPath: m_Name
       value: UI Manager (1)
       objectReference: {fileID: 0}
-    m_RemovedComponents:
-    - {fileID: 4722489337222411398, guid: 2c8d2aaab02ec7142a8801bdf38e1472, type: 3}
+    m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2c8d2aaab02ec7142a8801bdf38e1472, type: 3}
 --- !u!114 &86713342 stripped
 MonoBehaviour:
@@ -3326,19 +3325,19 @@ PrefabInstance:
       objectReference: {fileID: 5291190967515782307, guid: e094fb131fec8944bb66befe54ae5e40, type: 3}
     - target: {fileID: 1085959505609622831, guid: 20df38514d9d9584fbf173cfdbd4135f, type: 3}
       propertyPath: enemy.Slime_Amount
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1085959505609622831, guid: 20df38514d9d9584fbf173cfdbd4135f, type: 3}
       propertyPath: enemy.Slime2_Amount
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1085959505609622831, guid: 20df38514d9d9584fbf173cfdbd4135f, type: 3}
       propertyPath: enemy.Slime3_Amount
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1085959505609622831, guid: 20df38514d9d9584fbf173cfdbd4135f, type: 3}
       propertyPath: enemy.Slime4_Amount
-      value: 3
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1085959506864912042, guid: 20df38514d9d9584fbf173cfdbd4135f, type: 3}
       propertyPath: m_Tiles.Array.size
