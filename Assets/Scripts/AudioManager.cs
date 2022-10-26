@@ -52,6 +52,7 @@ public class AudioManager : MonoBehaviour
             {
                 MusicType.clip = MusicList[i].audio;
                 MusicType.Play();
+                MusicType.volume = 0.3f;
                 NowMusic = name;
             }
         }
