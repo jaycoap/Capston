@@ -30,6 +30,9 @@ public class SlimeStat
     public GameObject slime2Spike;
     public Transform slime2ShotPos;
     public int slime3MoveTime;
+    public GameObject slime;
+    public int slime4SlimeAmount;
+    public int slime4PoisonAmount;
 }
 
 [Serializable]
@@ -98,6 +101,9 @@ public class enemyManager : MonoBehaviour
             case "slime3":
                 enemyHp = GameManager.Instance.Slime3HPSet();
                 break;
+            case "slime4":
+                enemyHp = GameManager.Instance.Slime4HPSet();
+                break;
             case "slimeBoss":
                 enemyHp = GameManager.Instance.SlimeBossHPSet();
                 break;
@@ -136,6 +142,8 @@ public class enemyManager : MonoBehaviour
                 slimeBossStat.birthPos.position = new Vector2(transform.position.x + flip * 2f, slimeBossStat.birthPos.position.y);
 
                 gameObject.GetComponent<BoxCollider2D>().offset = new Vector2(-flip * 0.2f, 0.5f);
+                break;
+            default:
                 break;
         }
     }
@@ -185,6 +193,22 @@ public class enemyManager : MonoBehaviour
                         //방향전환시 스프라이트 뒤집기
                         spriteRenderer.flipX = (dirc == 1) ? true : false;
                     }    
+                }
+                break;
+
+            // 슬라임4일 경우
+            case "slime4":
+                //이동
+                if (Physics2D.OverlapBox(transform.position, playerDetectRange, 0, LayerMask.GetMask("Player")))
+                {
+                    Collider2D player = Physics2D.OverlapBox(transform.position, playerDetectRange, 0, LayerMask.GetMask("Player"));
+
+                    int dirc = transform.position.x - player.transform.position.x > 0 ? -1 : 1;
+
+                    transform.position = new Vector2(transform.position.x + (enemyStat.movementSpeed * dirc), transform.position.y);
+
+                    //방향전환시 스프라이트 뒤집기
+                    spriteRenderer.flipX = (dirc == 1) ? true : false;
                 }
                 break;
 
@@ -269,9 +293,15 @@ public class enemyManager : MonoBehaviour
                     animator.SetBool("isDie", true);
                     GameManager.Instance.getexp(30);
                     break;
+                case "slime4":
+                    animator.SetBool("isDie", true);
+                    GameManager.Instance.getexp(40);
+                    break;
                 case "slimeBoss":
                     animator.SetBool("isDie", true);
                     GameManager.Instance.getexp(100);
+                    break;
+                default:
                     break;
             }
         }
@@ -291,8 +321,15 @@ public class enemyManager : MonoBehaviour
                 GameObject player2 = GameObject.FindWithTag("Player");
                 rigidBody.AddForce(new Vector2(enemyStat.knockbackDis * (transform.position.x - player2.transform.position.x) / Mathf.Abs(transform.position.x - player2.transform.position.x), 0));
                 break;
+            case "slime4":
+                GameObject player3 = GameObject.FindWithTag("Player");
+                rigidBody.AddForce(new Vector2(enemyStat.knockbackDis * (transform.position.x - player3.transform.position.x) / Mathf.Abs(transform.position.x - player3.transform.position.x), 0));
+                break;
             case "slimeBoss":
                 break;
+            default:
+                break;
+
         }
         TakeDamage(damage);
         enemyHpBar();
@@ -641,11 +678,24 @@ public class enemyManager : MonoBehaviour
     }
 
     private void destroy()
-    {
-        Instantiate(coin, transform.position, Quaternion.identity);
-        Collider2D Coin = Physics2D.OverlapBox(transform.position, new Vector2(1,1), 0, LayerMask.GetMask("Coin"));
-        Coin.GetComponent<CoinManager>().SetPrice(enemyStat.coinPrice);
-
+    { 
+        if(enemyAI == "slime4")
+        {
+            for(int i = 0; i < slimeStat.slime4SlimeAmount; i++)
+            {
+                Instantiate(slimeStat.slime, new Vector2(transform.position.x + Random.Range(-2, 2), transform.position.y + Random.Range(0,2)), Quaternion.identity);
+            }
+            for (int i = 0; i < slimeStat.slime4PoisonAmount; i++)
+            {
+                Instantiate(slimeBossStat.ballShot[0], new Vector2(transform.position.x, transform.position.y + 2), Quaternion.identity);
+            }
+        }
+        else
+        {
+            Instantiate(coin, transform.position, Quaternion.identity);
+            Collider2D Coin = Physics2D.OverlapBox(transform.position, new Vector2(1, 1), 0, LayerMask.GetMask("Coin"));
+            Coin.GetComponent<CoinManager>().SetPrice(enemyStat.coinPrice);
+        }
         Destroy(gameObject);
     }
 
@@ -658,9 +708,13 @@ public class enemyManager : MonoBehaviour
     {
         for(int i = 0; i < 4; i++)
         {
-            Instantiate(slimeBossStat.ballShot[Random.Range(0, 2)], new Vector2(slimeBossStat.backShotPos.position.x
-                    , slimeBossStat.backShotPos.position.y), Quaternion.identity);
+            Instantiate(slimeBossStat.ballShot[Random.Range(0, 2)], new Vector2(slimeBossStat.backShotPos.position.x, slimeBossStat.backShotPos.position.y), Quaternion.identity);
         }
+    }
+
+    public string getEnemyAI()
+    {
+        return enemyAI;
     }
 
     private void slime2Shot()
@@ -697,6 +751,10 @@ public class enemyManager : MonoBehaviour
 
                     Gizmos.DrawWireCube(slimeBossStat.birthPos.position, new Vector2(1, 1));
                     break;
+
+                default:
+                    break;
+
             }
     }
 }

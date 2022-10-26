@@ -13,9 +13,9 @@ GameObject:
   - component: {fileID: 4824466258459145692}
   - component: {fileID: 4824466258459145691}
   - component: {fileID: 8637841533598768097}
-  m_Layer: 10
+  m_Layer: 14
   m_Name: slimeBoss_poison
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -107,6 +107,8 @@ MonoBehaviour:
   poisonDamage: 0
   minAngle: 20
   maxAngle: 80
+  spikeDestroyTime: 0
+  spikeSpeed: 0
 --- !u!50 &4824466258459145691
 Rigidbody2D:
   serializedVersion: 4
