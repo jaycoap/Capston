@@ -94,7 +94,20 @@ public class slimeBossBulletManager : MonoBehaviour
         float angle = (Mathf.PI) * Random.Range(minAngle, maxAngle + 1) / 180;
         rigidBody.AddForce(new Vector2(dirc * Mathf.Cos(angle) * bulletPower, Mathf.Sin(angle) * bulletPower), ForceMode2D.Impulse);
     }
-
+    void RandomShotBullet()
+    {
+        int dirc;
+        if(Random.Range(0,2) == 0)
+        {
+            dirc = 1;
+        }
+        else
+        {
+            dirc = -1;
+        }
+        float angle = (Mathf.PI) * Random.Range(minAngle, maxAngle + 1) / 180;
+        rigidBody.AddForce(new Vector2(dirc * Mathf.Cos(angle) * bulletPower, Mathf.Sin(angle) * bulletPower), ForceMode2D.Impulse);
+    }
     void OnCollisionEnter2D(Collision2D other)
     {
         switch (bulletType)

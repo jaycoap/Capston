@@ -26,6 +26,7 @@ public class HPsetting
     public int slimeHP = 100;
     public int slime2HP = 150;
     public int slime3HP = 200;
+    public int slime4HP = 300;
     public int slimeBossHP = 1000;
 }
 public class GameManager : MonoBehaviour
@@ -719,6 +720,12 @@ public class GameManager : MonoBehaviour
     public int Slime3HPSet()
     {
         int enemyHP = hpSetting.slime3HP + (hpSetting.EnemyHP_X * hpSetting.slime3HP * getLevel());
+        return enemyHP;
+    }
+
+    public int Slime4HPSet()
+    {
+        int enemyHP = hpSetting.slime4HP + (hpSetting.EnemyHP_X * hpSetting.slime4HP * getLevel());
         return enemyHP;
     }
 

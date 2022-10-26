@@ -905,6 +905,7 @@ MonoBehaviour:
     slimeHP: 100
     slime2HP: 150
     slime3HP: 200
+    slime4HP: 300
     slimeBossHP: 1000
   idText: {fileID: 378507059}
   menu: 1
