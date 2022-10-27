@@ -5,6 +5,8 @@ using UnityEngine.UI;
 
 public class PlayerInfoPanel : MonoBehaviour
 {
+    public static PlayerInfoPanel instance;
+
     [SerializeField] private GameObject StatsPanel;
     [SerializeField] private GameObject Button;
     [SerializeField] private Text NameText;
@@ -22,25 +24,17 @@ public class PlayerInfoPanel : MonoBehaviour
 
     private void Start()
     {
+        if (instance == null)
+        {
+            DontDestroyOnLoad(this.gameObject);
+            instance = this;
+        }
+        else
+        {
+            Destroy(this.gameObject);
+        }
     }
-    //public void SetRectPosition(RectTransform InfoPanel)
-    //{
-    //    // 캔버스 스케일러에 따른 해상도 대응
-    //    float wRatio = Screen.width / _canvasScaler.referenceResolution.x;
-    //    float hRatio = Screen.height / _canvasScaler.referenceResolution.y;
-    //    float ratio =
-    //        wRatio * (1f - _canvasScaler.matchWidthOrHeight) +
-    //        hRatio * (_canvasScaler.matchWidthOrHeight);
 
-    //    float panelWidth = InfoPanel.rect.width * ratio;
-    //    float panelHeight = InfoPanel.rect.height * ratio;
-
-    //    _rt.position = InfoPanel.position + new Vector3(panelWidth, -panelHeight);
-    //    Vector2 pos = _rt.position;
-
-    //    float width = _rt.rect.width * ratio;
-    //    float height = _rt.rect.height * ratio;
-    //}
 
         void Update()
     {

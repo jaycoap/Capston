@@ -68,6 +68,7 @@ public class InventoryUI : MonoBehaviour
     [SerializeField] private GameObject _slotUiPrefab;     // 슬롯의 원본 프리팹
     [SerializeField] private ItemTooltipUI _itemTooltip;   // 아이템 정보를 보여줄 툴팁 UI
     [SerializeField] private InventoryPopupUI _popup;      // 팝업 UI 관리 객체
+    [SerializeField] private Text _gold;
 
     [Header("Buttons")]
     //[SerializeField] private Button _trimButton;
@@ -123,13 +124,14 @@ public class InventoryUI : MonoBehaviour
         Init();
         InitSlots();
         InitButtonEvents();
+        
         //InitToggleEvents();
     }
 
     private void Update()
     {
         _ped.position = Input.mousePosition;
-
+        _gold.text = GetThousandCommaText(GameManager.Instance.getGold()).ToString();
         OnPointerEnterAndExit();
         if (_showTooltip) ShowOrHideItemTooltip();
         OnPointerDown();
@@ -142,6 +144,10 @@ public class InventoryUI : MonoBehaviour
     *                               Init Methods
     ***********************************************************************/
     #region .
+    public string GetThousandCommaText(int data) 
+    { 
+        return string.Format("{0:#,###}", data); 
+    }
     private void Init()
     {
         TryGetComponent(out _gr);

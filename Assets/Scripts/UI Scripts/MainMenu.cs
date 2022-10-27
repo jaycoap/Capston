@@ -50,7 +50,7 @@ public class MainMenu : MonoBehaviour
 
     IEnumerator RunMoveStoryUI()
     {
-        while(StoryUIRectTransform.anchoredPosition.y < 2117f)
+        while(StoryUIRectTransform.anchoredPosition.y < 2108f)
         {
             if (Input.GetKey(KeyCode.G))
             {

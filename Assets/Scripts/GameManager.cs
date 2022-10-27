@@ -88,13 +88,7 @@ public class GameManager : MonoBehaviour
     public InputField Pwfield;
     public Button EnterButton;
 
-    //적 마리수 체크
-    GameObject[] EnemyCount;
-    public int EnemyCountNum = 0;
-    
     //스테이지 관리
-    public int endStage = 8;
-    public bool StageClear = false;
     public int StageClearNum;
 
 
@@ -115,15 +109,7 @@ public class GameManager : MonoBehaviour
 
     void Update()
     {
-        
-        if(SceneManager.GetActiveScene().name == "Dungeon Scene") //던전클리어시 나와야하는 이벤트 입력
-        {
-
-             StartCoroutine(EnemyCountCheck());
-             
-
-
-        }
+       
         if (SceneManager.GetActiveScene().name == "Main Menu")
         {
             StartCoroutine(IdSelect());
@@ -170,7 +156,7 @@ public class GameManager : MonoBehaviour
         {
             return;
         }
-        if (Input.GetKeyDown(KeyCode.Escape)) // 게임 일시정지 
+        if (Input.GetKeyDown(KeyCode.O)) // 게임 일시정지 
         {   
             
             BackToMenu();
@@ -209,47 +195,14 @@ public class GameManager : MonoBehaviour
         yield break;
     }
 
-    public IEnumerator EnemyCountCheck()
-    {
-        EnemyCount = GameObject.FindGameObjectsWithTag("Enemy");
-        EnemyCountNum = Int32.Parse(EnemyCount.Length.ToString());
-        if (EnemyCountNum == 0)
-        {
-            StageClear = true;
-            if (StageClear == true)
-            {
-                Cleardungeon();
-
-                StageClear = false;
-            }
-        }
-        else
-        {
-            EnemyCountNum = Int32.Parse(EnemyCount.Length.ToString());
-            
-        }
-    
-        yield break;
-    }
-    
-    void Cleardungeon() // 던전 클리어시 씬 변경
-    {
-        ClearStageCal(1);
-        SceneManager.LoadScene("Village Scene");
-    }
-    
-    int ClearStageCal(int plus)
-    {   
-        
-        StageClearNum = StageClearNum + plus;
-        Debug.Log(StageClearNum);
-        // UI에서 여기에 스테이지 값뿌려주면 됨.
-        return StageClearNum; 
-        
-    }
+   
     public int GetClearStage()
     {
-        
+        return StageClearNum;
+    }
+    public int SetClearStage(int CurrentStage)
+    {
+        StageClearNum = CurrentStage;
         return StageClearNum;
     }
     public int GetDBStage()

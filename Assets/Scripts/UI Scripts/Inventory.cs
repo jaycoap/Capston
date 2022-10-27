@@ -84,6 +84,8 @@ using UnityEngine;
         private GameObject inventoryPanel; // 연결된 인벤토리 오브젝트
 
 
+
+
     /// <summary> 아이템 목록 </summary>
     [SerializeField]
         private Item[] _items;

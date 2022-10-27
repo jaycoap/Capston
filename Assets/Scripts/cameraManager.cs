@@ -9,10 +9,21 @@ public class cameraManager : MonoBehaviour
     public GameObject player;
     public Vector2 minPos, maxPos;
     public bool bound;
-    
+
+    public static cameraManager instance;
+
     void Start()
     {
         player = GameObject.FindGameObjectWithTag("Player");
+        if (instance == null)
+        {
+            DontDestroyOnLoad(this.gameObject);
+            instance = this;
+        }
+        else
+        {
+            Destroy(this.gameObject);
+        }
     }
 
     private void FixedUpdate()

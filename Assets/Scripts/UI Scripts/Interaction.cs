@@ -4,12 +4,21 @@ using UnityEngine;
 
 public class Interaction : MonoBehaviour
 {
+    public static Interaction instance;
     private Rigidbody2D rigid;
-    [SerializeField] private SceneChange IngameSceneChange;
 
     void Awake()
     {
         rigid = GetComponent<Rigidbody2D>();
+        if (instance == null)
+        {
+            DontDestroyOnLoad(this.gameObject);
+            instance = this;
+        }
+        else
+        {
+            Destroy(this.gameObject);
+        }
     }
 
     void OnTriggerStay2D(Collider2D other)
@@ -18,7 +27,7 @@ public class Interaction : MonoBehaviour
         {
             if (Input.GetKey(KeyCode.G))
             {
-                IngameSceneChange.CurrentSceneChange();
+                GameObject.Find("Dynamic UI").transform.Find("Stage Panel").gameObject.SetActive(true);
             }
         }
 
@@ -27,8 +36,8 @@ public class Interaction : MonoBehaviour
             Debug.Log("ªÛ¡° ¡¢√À");
             if (Input.GetKey(KeyCode.G))
             {
-                GameObject.Find("Main Canvas").transform.Find("Store Panel").gameObject.SetActive(true);
-                GameObject.Find("Main Canvas").transform.Find("Inventory Panel").gameObject.SetActive(true);
+                GameObject.Find("Dynamic UI").transform.Find("Store Panel").gameObject.SetActive(true);
+                GameObject.Find("Dynamic UI").transform.Find("Inventory Panel").gameObject.SetActive(true);
             }
         }
     }
@@ -37,19 +46,8 @@ public class Interaction : MonoBehaviour
     {
         if (other.gameObject.tag == "Store")
         {
-            GameObject.Find("Main Canvas").transform.Find("Store Panel").gameObject.SetActive(false);
-            GameObject.Find("Main Canvas").transform.Find("Inventory Panel").gameObject.SetActive(false);
+            GameObject.Find("Dynamic UI").transform.Find("Store Panel").gameObject.SetActive(false);
+            GameObject.Find("Dynamic UI").transform.Find("Inventory Panel").gameObject.SetActive(false);
         }
     }
-
-    private void Update()
-    {
-        if (Input.GetKeyDown(KeyCode.B))
-        {
-            IngameSceneChange.CurrentSceneChange();
-        }
-    }
-
-
-
 }
