@@ -953,7 +953,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 69051327}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 606315355}
+        m_TargetAssemblyTypeName: StoreManager, Assembly-CSharp
+        m_MethodName: BuyPotion2
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &69051327
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1461,7 +1473,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 110306894}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 606315355}
+        m_TargetAssemblyTypeName: StoreManager, Assembly-CSharp
+        m_MethodName: BuyPotion3
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &110306894
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5290,6 +5314,38 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 811045775207422405, guid: 2c8d2aaab02ec7142a8801bdf38e1472, type: 3}
+      propertyPath: _Stage1
+      value: 
+      objectReference: {fileID: 909322633}
+    - target: {fileID: 811045775207422405, guid: 2c8d2aaab02ec7142a8801bdf38e1472, type: 3}
+      propertyPath: _Stage2
+      value: 
+      objectReference: {fileID: 545999044}
+    - target: {fileID: 811045775207422405, guid: 2c8d2aaab02ec7142a8801bdf38e1472, type: 3}
+      propertyPath: _Stage3
+      value: 
+      objectReference: {fileID: 1545186889}
+    - target: {fileID: 811045775207422405, guid: 2c8d2aaab02ec7142a8801bdf38e1472, type: 3}
+      propertyPath: _Stage4
+      value: 
+      objectReference: {fileID: 702323097}
+    - target: {fileID: 811045775207422405, guid: 2c8d2aaab02ec7142a8801bdf38e1472, type: 3}
+      propertyPath: _Stage5
+      value: 
+      objectReference: {fileID: 374910341}
+    - target: {fileID: 811045775207422405, guid: 2c8d2aaab02ec7142a8801bdf38e1472, type: 3}
+      propertyPath: _Stage6
+      value: 
+      objectReference: {fileID: 340529467}
+    - target: {fileID: 811045775207422405, guid: 2c8d2aaab02ec7142a8801bdf38e1472, type: 3}
+      propertyPath: _Stage7
+      value: 
+      objectReference: {fileID: 50862680}
+    - target: {fileID: 811045775207422405, guid: 2c8d2aaab02ec7142a8801bdf38e1472, type: 3}
+      propertyPath: _Stage8
+      value: 
+      objectReference: {fileID: 1243923035}
     - target: {fileID: 4722489337222411392, guid: 2c8d2aaab02ec7142a8801bdf38e1472, type: 3}
       propertyPath: APText
       value: 
@@ -5451,7 +5507,7 @@ MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 4722489337222411394, guid: 2c8d2aaab02ec7142a8801bdf38e1472, type: 3}
   m_PrefabInstance: {fileID: 489426173}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 489426178}
+  m_GameObject: {fileID: 606315354}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: cd347083a75615f448ffa248fb2c97d4, type: 3}
@@ -5462,7 +5518,7 @@ MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 4722489337222411392, guid: 2c8d2aaab02ec7142a8801bdf38e1472, type: 3}
   m_PrefabInstance: {fileID: 489426173}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 489426178}
+  m_GameObject: {fileID: 606315354}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: a3c2d7f5a74fb6444bd95165478dee52, type: 3}
@@ -5473,7 +5529,7 @@ MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 4722489337222411399, guid: 2c8d2aaab02ec7142a8801bdf38e1472, type: 3}
   m_PrefabInstance: {fileID: 489426173}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 489426178}
+  m_GameObject: {fileID: 606315354}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: b059fee64fc74b543a0ae1ed9d2933ee, type: 3}
@@ -5484,37 +5540,12 @@ MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 4763677705581674023, guid: 2c8d2aaab02ec7142a8801bdf38e1472, type: 3}
   m_PrefabInstance: {fileID: 489426173}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 489426178}
+  m_GameObject: {fileID: 606315354}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 55b04d3e26f923a43b5fc4cf29e47adb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!1 &489426178 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 4722489337222411407, guid: 2c8d2aaab02ec7142a8801bdf38e1472, type: 3}
-  m_PrefabInstance: {fileID: 489426173}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &489426179
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 489426178}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0c54169d73e0e1a46a1735b27cb80681, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _Stage1: {fileID: 909322633}
-  _Stage2: {fileID: 545999044}
-  _Stage3: {fileID: 1545186889}
-  _Stage4: {fileID: 702323097}
-  _Stage5: {fileID: 374910341}
-  _Stage6: {fileID: 340529467}
-  _Stage7: {fileID: 50862680}
-  _Stage8: {fileID: 1243923035}
 --- !u!1 &495774412
 GameObject:
   m_ObjectHideFlags: 0
@@ -6791,6 +6822,27 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 594653761}
   m_CullTransparentMesh: 1
+--- !u!1 &606315354 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4722489337222411407, guid: 2c8d2aaab02ec7142a8801bdf38e1472, type: 3}
+  m_PrefabInstance: {fileID: 489426173}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &606315355
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 606315354}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ef0b39afd4028b34c9e283af8a16392c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  StorePotion1: {fileID: 0}
+  StorePotion2: {fileID: 0}
+  StorePotion3: {fileID: 0}
+  StoreItem: {fileID: 0}
 --- !u!1 &614966665
 GameObject:
   m_ObjectHideFlags: 0
@@ -7064,10 +7116,10 @@ MonoBehaviour:
       m_Calls: []
   m_FontData:
     m_Font: {fileID: 12800000, guid: 4c5ba6e183f914349b4ec6040d51bcf4, type: 3}
-    m_FontSize: 14
+    m_FontSize: 20
     m_FontStyle: 0
     m_BestFit: 0
-    m_MinSize: 10
+    m_MinSize: 1
     m_MaxSize: 40
     m_Alignment: 8
     m_AlignByGeometry: 0
@@ -7100,8 +7152,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 93.59604, y: -205}
-  m_SizeDelta: {x: 67.006, y: 15.829}
+  m_AnchoredPosition: {x: 103.78, y: -204.457}
+  m_SizeDelta: {x: 87.371, y: 24.8794}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &652744609
 GameObject:
@@ -9319,7 +9371,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 135.4, y: -205}
+  m_AnchoredPosition: {x: 45.8, y: -205}
   m_SizeDelta: {x: 16.609, y: 15.824}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &907763449
@@ -18143,7 +18195,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &1746246135
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -20585,7 +20637,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1936771084}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 606315355}
+        m_TargetAssemblyTypeName: StoreManager, Assembly-CSharp
+        m_MethodName: BuyItem
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1936771084
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -21207,7 +21271,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1973628589}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 606315355}
+        m_TargetAssemblyTypeName: StoreManager, Assembly-CSharp
+        m_MethodName: BuyPotion1
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1973628589
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -23504,7 +23580,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2112508353}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -731.6398, y: -360.64667, z: 0}
+  m_LocalPosition: {x: -690, y: -359, z: 0}
   m_LocalScale: {x: 1.4780601, y: 1.4780601, z: 1.4780601}
   m_Children: []
   m_Father: {fileID: 1795069373}

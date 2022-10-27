@@ -16,6 +16,7 @@ GameObject:
   - component: {fileID: 4722489337222411393}
   - component: {fileID: 4722489337222411399}
   - component: {fileID: 4763677705581674023}
+  - component: {fileID: 811045775207422405}
   m_Layer: 0
   m_Name: UI Manager
   m_TagString: Untagged
@@ -146,3 +147,26 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 55b04d3e26f923a43b5fc4cf29e47adb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  TargetSceneName: 
+  DungeonSt: {fileID: 0}
+  VillageSt: {fileID: 0}
+--- !u!114 &811045775207422405
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4722489337222411407}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0c54169d73e0e1a46a1735b27cb80681, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _Stage1: {fileID: 0}
+  _Stage2: {fileID: 0}
+  _Stage3: {fileID: 0}
+  _Stage4: {fileID: 0}
+  _Stage5: {fileID: 0}
+  _Stage6: {fileID: 0}
+  _Stage7: {fileID: 0}
+  _Stage8: {fileID: 0}

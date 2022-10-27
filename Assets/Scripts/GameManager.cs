@@ -649,7 +649,7 @@ public class GameManager : MonoBehaviour
 
     public void payGold(int pay) // 골드 사용
     {
-        if (Gold <= 0)
+        if (Gold-pay <= 0)
         {
             return;
         }

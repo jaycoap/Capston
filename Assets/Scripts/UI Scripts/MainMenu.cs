@@ -58,11 +58,11 @@ public class MainMenu : MonoBehaviour
             }
             else if (Input.anyKey)
             {
-                StoryDownSpeed = 5f;
+                StoryDownSpeed = 15f;
             }
             else
             {
-                StoryDownSpeed = 0f;
+                StoryDownSpeed = 1.25f;
             }
             yield return new WaitForSeconds(0.02f);
             StoryUIRectTransform.anchoredPosition
