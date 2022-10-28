@@ -133,6 +133,7 @@ public class enemyManager : MonoBehaviour
 
             case "slime2":
                 pos.position = new Vector2(transform.position.x + flip * 5.08f, pos.position.y);
+                slimeStat.slime2ShotPos.position = new Vector2(transform.position.x + flip * 1.15f, slimeStat.slime2ShotPos.position.y);
                 break;
 
             // 슬라임 보스 일 경우

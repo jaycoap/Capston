@@ -108,7 +108,7 @@ MonoBehaviour:
   minAngle: 0
   maxAngle: 0
   spikeDestroyTime: 0.5
-  spikeSpeed: 0.01
+  spikeSpeed: 0.02
 --- !u!50 &3757859602451071041
 Rigidbody2D:
   serializedVersion: 4

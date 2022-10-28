@@ -179,6 +179,10 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1085959505609622831, guid: 20df38514d9d9584fbf173cfdbd4135f, type: 3}
+      propertyPath: Floordepth
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 1085959505609622831, guid: 20df38514d9d9584fbf173cfdbd4135f, type: 3}
       propertyPath: enemy.Slime4
       value: 
       objectReference: {fileID: 5291190967515782307, guid: e094fb131fec8944bb66befe54ae5e40, type: 3}

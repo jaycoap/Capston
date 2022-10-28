@@ -37,8 +37,8 @@ public class SceneChange : MonoBehaviour
         else if (SceneManager.GetActiveScene().name == "Village Scene")
         {
             TargetSceneName = "Dungeon Scene";
-            Player.transform.position = DungeonSt.transform.position;
-            Camera.transform.position = new Vector3(DungeonSt.transform.position.x, DungeonSt.transform.position.y, Camera.transform.position.z);
+            //Player.transform.position = DungeonSt.transform.position;
+            //Camera.transform.position = new Vector3(DungeonSt.transform.position.x, DungeonSt.transform.position.y, Camera.transform.position.z);
         }
             
         else if (SceneManager.GetActiveScene().name == "Dungeon Scene")

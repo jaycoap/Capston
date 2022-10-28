@@ -23,8 +23,8 @@ public class StageUI : MonoBehaviour
     public Button _Stage6;
     public Button _Stage7;
     public Button _Stage8;
-
-    private int CurrentStage;
+    [SerializeField]
+    public int CurrentStage;
 
     private void Start()
     {

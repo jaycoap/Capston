@@ -47,8 +47,17 @@ public class TileMapManager : MonoBehaviour
     private void Start()
     {
         Tilemap.ClearAllTiles();
+        //스테이지 설정
+        StageSetting();
+        //바닥 생성
         MakeFloor();
-        //여기에 스테이지 생성 관련변수 스테이지 별로 집어넣기
+        //플레이어 위치 설정
+        GameObject player = GameObject.FindGameObjectWithTag("Player");
+
+        float halfWidth = FloorWidth / 2;
+        Vector3 playerSpawn = Tilemap.CellToWorld(new Vector3Int(-Mathf.FloorToInt(halfWidth) - 4, 0, 0));
+        player.transform.position = new Vector2(playerSpawn.x, 0);
+        //발판 생성
         MakePlatform();
     }
     //바닥을 만드는 함수
@@ -61,11 +70,16 @@ public class TileMapManager : MonoBehaviour
             {
                 Tilemap.SetTile(new Vector3Int(i, -2 - e, 0), tb.FloorTile);
             }
+            //스폰지역
+            for (int i = -Mathf.FloorToInt(halfWidth) - 6; i < -Mathf.FloorToInt(halfWidth); i++)
+            {
+                Tilemap.SetTile(new Vector3Int(i, -2 - e, 0), tb.FloorTile);
+            }
         }
         //왼쪽 벽설치
         for(int e = Floordepth; e > -Floordepth -15; e--)
         {
-            for (int i = -Mathf.FloorToInt(halfWidth); i > -Mathf.FloorToInt(halfWidth) -6; i--)
+            for (int i = -Mathf.FloorToInt(halfWidth) -6; i > -Mathf.FloorToInt(halfWidth) -16; i--)
             {
                 Tilemap.SetTile(new Vector3Int(i - 1, -1 - e, 0), tb.FloorTile);
             }
@@ -73,7 +87,7 @@ public class TileMapManager : MonoBehaviour
         //오른쪽 벽설치
         for (int e = Floordepth; e > -Floordepth - 15; e--)
         {
-            for(int i = Mathf.RoundToInt(halfWidth); i < Mathf.RoundToInt(halfWidth) + 6; i++)
+            for(int i = Mathf.RoundToInt(halfWidth); i < Mathf.RoundToInt(halfWidth) + 10; i++)
             {
                 Tilemap.SetTile(new Vector3Int(i, -1 - e, 0), tb.FloorTile);
             }
@@ -95,14 +109,14 @@ public class TileMapManager : MonoBehaviour
         {
 
             // -2 ~ 0 좌표는 플레이어 스폰 지역이기 때문에 제외
-            if (i >= -2 + halfWidth && i <= 1 + halfWidth)
-            {
-                platformX[i] = 1;
-            }
-            else
-            {
-                platformX[i] = 0;
-            }
+            //if (i >= -2 + halfWidth && i <= 1 + halfWidth)
+            //{
+            //    platformX[i] = 1;
+            //}
+            //else
+            //{
+            //    platformX[i] = 0;
+            //}
             //기본 바닥 좌표로 초기화
             platformY[i] = -2;
         }
@@ -380,8 +394,80 @@ public class TileMapManager : MonoBehaviour
         }
     }
 
-    void SpawnEnemy()
+    void StageSetting()
     {
-        
+        GameObject UI = GameObject.Find("UI Manager");
+        int nowStage = UI.GetComponent<StageUI>().CurrentStage;
+        switch (nowStage)
+        {
+            case 1:
+                enemy.Slime_Amount = 5;
+                enemy.Slime2_Amount = 0;
+                enemy.Slime3_Amount = 0;
+                enemy.Slime4_Amount = 0;
+                platform.Platform5 = 3;
+                FloorWidth = 50;
+                break;
+            case 2:
+                enemy.Slime_Amount = 4;
+                enemy.Slime2_Amount = 2;
+                enemy.Slime3_Amount = 0;
+                enemy.Slime4_Amount = 0;
+                platform.Platform5 = 4;
+                FloorWidth = 70;
+                break;
+            case 3:
+                enemy.Slime_Amount = 4;
+                enemy.Slime2_Amount = 2;
+                enemy.Slime3_Amount = 1;
+                enemy.Slime4_Amount = 0;
+                platform.Platform5 = 5;
+                FloorWidth = 100;
+                break;
+            case 4:
+                enemy.Slime_Amount = 3;
+                enemy.Slime2_Amount = 3;
+                enemy.Slime3_Amount = 3;
+                enemy.Slime4_Amount = 0;
+                platform.Platform5 = 6;
+                FloorWidth = 110;
+                break;
+            case 5:
+                enemy.Slime_Amount = 3;
+                enemy.Slime2_Amount = 4;
+                enemy.Slime3_Amount = 3;
+                enemy.Slime4_Amount = 1;
+                platform.Platform5 = 8;
+                FloorWidth = 130;
+                break;
+            case 6:
+                enemy.Slime_Amount = 2;
+                enemy.Slime2_Amount = 3;
+                enemy.Slime3_Amount = 2;
+                enemy.Slime4_Amount = 2;
+                platform.Platform5 = 8;
+                FloorWidth = 130;
+                break;
+            case 7:
+                enemy.Slime_Amount = 0;
+                enemy.Slime2_Amount = 3;
+                enemy.Slime3_Amount = 2;
+                enemy.Slime4_Amount = 4;
+                platform.Platform5 = 6;
+                FloorWidth = 110;
+                break;
+            case 8:
+                enemy.Slime_Amount = 2;
+                enemy.Slime2_Amount = 0;
+                enemy.Slime3_Amount = 0;
+                enemy.Slime4_Amount = 0;
+                platform.Platform5 = 0;
+                FloorWidth = 80;
+                Vector3 bossSpawnPos = Tilemap.CellToWorld(new Vector3Int(0 , -2 + 1, 0));
+                Instantiate(enemy.Slime4, new Vector3(bossSpawnPos.x + (float)0.5, bossSpawnPos.y, bossSpawnPos.z), Quaternion.identity);
+                break;
+            default:
+                break;
+        }
     }
 }

@@ -3904,6 +3904,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 55b04d3e26f923a43b5fc4cf29e47adb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  TargetSceneName: 
+  DungeonSt: {fileID: 0}
+  VillageSt: {fileID: 0}
 --- !u!114 &2080765900
 MonoBehaviour:
   m_ObjectHideFlags: 0
