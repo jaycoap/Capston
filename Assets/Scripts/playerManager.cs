@@ -34,7 +34,7 @@ public class playerManager : MonoBehaviour
     private float coolTime3_skill = 10;
     private bool isCoolTime3;
 
-    private bool isDead;
+    public bool isDead;
     private bool isGrounded;
     [SerializeField] private Transform pos;
     private Vector2 attackRange;
@@ -71,7 +71,11 @@ public class playerManager : MonoBehaviour
 
     void Update()
     {
-        if (isStart)
+        if(animator.GetBool("isDie"))
+        {
+            isDead = true;
+        }
+        if (isStart && !isDead)
         {
             //방향전환시 스프라이트 뒤집기
             if (Input.GetButton("Horizontal") && !animator.GetBool("isAttack")
@@ -553,6 +557,18 @@ public class playerManager : MonoBehaviour
                     break;
                 case "Run2":
                     audioSource.clip = sound[4].sound;
+                    audioSource.Play();
+                    break;
+                case "Q":
+                    audioSource.clip = sound[5].sound;
+                    audioSource.Play();
+                    break;
+                case "W":
+                    audioSource.clip = sound[6].sound;
+                    audioSource.Play();
+                    break;
+                case "E":
+                    audioSource.clip = sound[7].sound;
                     audioSource.Play();
                     break;
             }

@@ -14,7 +14,7 @@ public class cameraManager : MonoBehaviour
 
     void Start()
     {
-        player = GameObject.FindGameObjectWithTag("Player");
+        player = GameObject.FindWithTag("Player");
         if (instance == null)
         {
             DontDestroyOnLoad(this.gameObject);
