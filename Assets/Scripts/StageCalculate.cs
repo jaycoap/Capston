@@ -37,6 +37,7 @@ public class StageCalculate : MonoBehaviour
         {
             currentStage = DBsave;
         }
+        Debug.Log(currentStage);
         return currentStage;
     }
 

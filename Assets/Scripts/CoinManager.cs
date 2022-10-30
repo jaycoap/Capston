@@ -11,6 +11,8 @@ public class CoinManager : MonoBehaviour
     void Start()
     {
         gm = FindObjectOfType<GameManager>().GetComponent<GameManager>();
+        rigidbody = GetComponent<Rigidbody2D>();
+        rigidbody.freezeRotation = true;
     }
 
     // Update is called once per frame

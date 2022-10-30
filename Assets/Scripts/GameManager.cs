@@ -91,14 +91,14 @@ public class GameManager : MonoBehaviour
     //스테이지 관리
     public int StageClearNum;
 
-
+    StageManager stageManager;
 
 
     void Start()
     {
         backendnickname = GetComponent<BackEndNickname>();
         spawnmanager = GetComponent<spawnManager>();
-        
+        stageManager = GetComponent<StageManager>();
         Idfield.Select();
         
 
@@ -166,6 +166,8 @@ public class GameManager : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Z))
         {
             EXP += 200;
+            
+            
         }
         
         
@@ -207,13 +209,15 @@ public class GameManager : MonoBehaviour
     }
     public int GetDBStage()
     {
-        StageClearNum = StageManager.instance.GetDBStage();
+        StageClearNum = stageManager.GetDBStage();
+        
         return StageClearNum;
     }
-    public void stageButtonEvent()
+    public void GetDBButton()
     {
         GetDBStage();
     }
+   
     public void Ingame() // 게임 시작시 설정값 입력 
     {
         currentGameState = GameState.inGame;
@@ -352,7 +356,7 @@ public class GameManager : MonoBehaviour
             MinAP = (INT + (FIT / 2)) * 1;
             MaxAP = (INT + FIT ) * Random.Range(1, 3);
             SlashAP = Random.Range(MinAP, MaxAP);
-            Debug.Log(MinAP);
+            
         }
         else
         {

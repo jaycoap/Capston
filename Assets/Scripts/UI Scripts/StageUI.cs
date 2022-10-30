@@ -63,6 +63,7 @@ public class StageUI : MonoBehaviour
     }
     void Cleardungeon() // 던전 클리어시 씬 변경
     {
+
         GameManager.Instance.SetClearStage(CurrentStage);
         IngameSceneChange.CurrentScene();
         Debug.Log(GameManager.Instance.GetClearStage());

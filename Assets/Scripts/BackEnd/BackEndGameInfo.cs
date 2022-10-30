@@ -98,7 +98,7 @@ public class BackEndGameInfo : MonoBehaviour
 
         if (BRO.IsSuccess())
         {
-            Debug.Log("indate:" + BRO.GetInDate());
+            
             getIndate = BRO.GetInDate();
             
         }
@@ -133,7 +133,7 @@ public class BackEndGameInfo : MonoBehaviour
         if (BRO.IsSuccess())
         {
             GetGameInfo(BRO.GetReturnValuetoJSON());
-            Debug.Log("indate:" + BRO.GetInDate());
+            
             getIndate = BRO.GetInDate();
             
 
@@ -153,7 +153,7 @@ public class BackEndGameInfo : MonoBehaviour
 
             if (returnData.Keys.Contains("rows"))
             {
-                Debug.Log("Pass");
+                
                 JsonData rows = returnData["rows"];
                 for (int i = 0; i < rows.Count; i++)
                 {
@@ -166,7 +166,7 @@ public class BackEndGameInfo : MonoBehaviour
             else if (returnData.Keys.Contains("rows"))
             {
                 JsonData row = returnData["row"];
-                Debug.Log("Check");
+                
                 GetData(row[0]);
             }
         }

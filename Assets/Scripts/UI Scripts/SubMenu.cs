@@ -31,6 +31,7 @@ public class SubMenu : MonoBehaviour
 
     public void Save()
     {
+        
         BackEndGameInfo.instance.OnClickGameInfoUpdate();
         StageManager.instance.OnClickStageGameInfoUpdate();
     }

@@ -14,21 +14,28 @@ public class StageManager : MonoBehaviour
     private void Awake(){ instance = this; }
 
     // 스테이지 설정 변수
-    public int startStage = 0;
+    public int startStage;
 
-    public int clearStage = 0;
+    public int clearStage=0;
 
-    public int DBStage = 0;
+    public int DBStage;
 
-    
+    public int testDB;
+
+    StageCalculate stagecul;
 
     public string stagegetIndate;
 
+    private void Start()
+    {
+        stagecul = GetComponent<StageCalculate>();
+    }
 
     void Update()
     {
         
-         GameManager.Instance.GetClearStage();
+        GameManager.Instance.GetClearStage();
+        
         
         
     }
@@ -133,8 +140,9 @@ public class StageManager : MonoBehaviour
     {
 
         DBStage = Int32.Parse(data["ClearStage"][0].ToString());
-        Debug.Log(DBStage);
+        
         SetDBStage(DBStage);
+        
        
     }
 
@@ -142,7 +150,7 @@ public class StageManager : MonoBehaviour
     {
         Param param = new Param();
         int UpdateStage = GameManager.Instance.GetClearStage();
-        
+
 
         param.Add("ClearStage", UpdateStage);
 
@@ -153,7 +161,7 @@ public class StageManager : MonoBehaviour
         
 
         param.Add("stage", stage);
-        Debug.Log(param);
+        
         BackendReturnObject BRO1 = Backend.GameData.GetMyData("stage", new Where());
         BackendReturnObject BRO = Backend.GameData.Update("stage", BRO1.GetInDate(), param);
 
@@ -192,16 +200,24 @@ public class StageManager : MonoBehaviour
 
     }
 
+    public void checkDB()
+    {
+        GetDBStage();
+        Debug.Log(DBStage);
+        Debug.Log(GetDBStage());
+    }
+    
+    public int SetDBStage(int stage)
+    {
+        DBStage = stage;
+        
+        return DBStage;
+    }
     public int GetDBStage()
     {
         return DBStage;
     }
-    public int SetDBStage(int stage)
-    {
-        DBStage = stage;
-        return DBStage;
-    }
-
+    
     void CheckError(BackendReturnObject BRO)
     {
         switch (BRO.GetStatusCode())
