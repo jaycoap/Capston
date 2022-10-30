@@ -244,6 +244,7 @@ MonoBehaviour:
   movementSpeed: 0.2
   jumpSpeed: 11
   maxJumpSpeed: 13
+  isDead: 0
   pos: {fileID: 6383038854105650999}
   Bullet1: {fileID: 8906656035751744187, guid: a000ba256cd36f84db21632d4ef5543b, type: 3}
   Bullet2: {fileID: 4903134286554453919, guid: 8ae73608c32c6844b95cb11fc0d4749d, type: 3}
@@ -264,6 +265,12 @@ MonoBehaviour:
     sound: {fileID: 8300000, guid: 31be579b280d0bc459635877e8c45aee, type: 3}
   - SoundType: Run2
     sound: {fileID: 8300000, guid: c3f3efc1106f84643a38bd21f6826aaf, type: 3}
+  - SoundType: Q
+    sound: {fileID: 8300000, guid: 03024823307ceb242823577f3abf9038, type: 3}
+  - SoundType: W
+    sound: {fileID: 8300000, guid: f78bfa543f6513041ab90461d8e306d9, type: 3}
+  - SoundType: E
+    sound: {fileID: 8300000, guid: 12020fc0ae2d2254e907118a4a2144c8, type: 3}
 --- !u!114 &8533178262784557249
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -276,7 +283,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 750262d307926e348a20c8371b959802, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  IngameSceneChange: {fileID: 0}
 --- !u!82 &513461278
 AudioSource:
   m_ObjectHideFlags: 0

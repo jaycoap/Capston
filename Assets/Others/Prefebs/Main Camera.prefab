@@ -513,6 +513,7 @@ MonoBehaviour:
   minPos: {x: 0, y: 0}
   maxPos: {x: 0, y: 0}
   bound: 0
+  grayShader: {fileID: 4800000, guid: 07456ec8a53ccb14daffe70ce7a9a5ac, type: 3}
 --- !u!114 &1370838701492144599
 MonoBehaviour:
   m_ObjectHideFlags: 0
