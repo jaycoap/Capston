@@ -9,10 +9,14 @@ using UnityEngine.SceneManagement;
 public class StageUI : MonoBehaviour
 {
     private SceneChange IngameSceneChange;
-
     GameObject[] EnemyCount;
+    [SerializeField]
+    private GameObject ClearPanel;
+    [SerializeField]
+    private GameObject Subfade;
     private int EnemyCountNum = 0;
     private bool StageClear = false;
+    
 
     [Space(8)]
     public Button _Stage1;
@@ -23,6 +27,7 @@ public class StageUI : MonoBehaviour
     public Button _Stage6;
     public Button _Stage7;
     public Button _Stage8;
+    public Button GotoTown;
     [SerializeField]
     public int CurrentStage;
 
@@ -37,6 +42,7 @@ public class StageUI : MonoBehaviour
         _Stage6.onClick.AddListener(() => StageChange(6));
         _Stage7.onClick.AddListener(() => StageChange(7));
         _Stage8.onClick.AddListener(() => StageChange(8));
+        GotoTown.onClick.AddListener(() => Cleardungeon());
     }
     public void StageChange(int CrtStage)
     {
@@ -56,16 +62,19 @@ public class StageUI : MonoBehaviour
             StartCoroutine(EnemyCountCheck());
         }
 
-        if (Input.GetKeyDown(KeyCode.B))
-        {
-            IngameSceneChange.CurrentScene();
-        }
+        //if(GameManager.Instance.getHp() <= 0)
+        //{
+        //    Subfade.SetActive(true);
+        //    GameManager.Instance.setPlayerHP(GameManager.Instance.getmaxHp());
+        //    Invoke("Dead", 3.0f);
+        //}
     }
     void Cleardungeon() // 던전 클리어시 씬 변경
     {
 
         GameManager.Instance.SetClearStage(CurrentStage);
-        IngameSceneChange.CurrentScene();
+        ClearPanel.SetActive(false);
+        IngameSceneChange.CurrentSceneChange();
         Debug.Log(GameManager.Instance.GetClearStage());
     }
 
@@ -78,7 +87,7 @@ public class StageUI : MonoBehaviour
             StageClear = true;
             if (StageClear == true)
             {
-                Cleardungeon();
+                ClearPanel.SetActive(true);
 
                 StageClear = false;
             }
@@ -90,4 +99,10 @@ public class StageUI : MonoBehaviour
 
         yield break;
     }
+
+    //private void Dead()
+    //{
+    //    Subfade.SetActive(false);
+    //    IngameSceneChange.CurrentSceneChange();
+    //}
 }

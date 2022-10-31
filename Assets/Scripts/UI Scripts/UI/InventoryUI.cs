@@ -90,6 +90,8 @@ public class InventoryUI : MonoBehaviour
 
     /// <summary> 연결된 인벤토리 </summary>
     private Inventory _inventory;
+    [SerializeField]
+    private GameObject QulickSlot;
 
     private List<ItemSlotUI> _slotUIList = new List<ItemSlotUI>();
     private GraphicRaycaster _gr;
@@ -212,6 +214,7 @@ public class InventoryUI : MonoBehaviour
             curPos.x = beginPos.x;
             curPos.y -= (_slotMargin + _slotSize);
         }
+
 
         // 슬롯 프리팹 - 프리팹이 아닌 경우 파괴
         if (_slotUiPrefab.scene.rootCount != 0)
