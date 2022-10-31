@@ -18,10 +18,19 @@ public class StorePanel : MonoBehaviour
 
     private void Start()
     {
-        _AddPortionA1.onClick.AddListener(() => _inventory.Add(_itemDataArray[0]));
-        _AddPortionB1.onClick.AddListener(() => _inventory.Add(_itemDataArray[1]));
-        _AddPortionA2.onClick.AddListener(() => _inventory.Add(_itemDataArray[2]));
-        _AddPortionB2.onClick.AddListener(() => _inventory.Add(_itemDataArray[3]));
+        _AddPortionA1.onClick.AddListener(() => BuyItem(0, 100));
+        _AddPortionB1.onClick.AddListener(() => BuyItem(1, 80));
+        _AddPortionA2.onClick.AddListener(() => BuyItem(2, 1100));
+        _AddPortionB2.onClick.AddListener(() => BuyItem(3, 880));
+    }
+
+    public void BuyItem(int num, int price)
+    {
+        if(GameManager.Instance.getGold() >= price)
+        {
+            _inventory.Add(_itemDataArray[num]);
+            GameManager.Instance.payGold(price);
+        }
     }
 
 }

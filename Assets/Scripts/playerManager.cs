@@ -569,6 +569,4 @@ public class playerManager : MonoBehaviour
         Gizmos.DrawWireCube(AttackBox.transform.position, new Vector2(AttackBox.transform.localScale.x, AttackBox.transform.localScale.y));
         Gizmos.DrawWireCube(Qbox.transform.position, new Vector2(Qbox.transform.localScale.x, Qbox.transform.localScale.y));
     }
-
-
 }
