@@ -464,7 +464,7 @@ public class TileMapManager : MonoBehaviour
                 platform.Platform5 = 0;
                 FloorWidth = 80;
                 Vector3 bossSpawnPos = Tilemap.CellToWorld(new Vector3Int(0 , -2 + 1, 0));
-                Instantiate(enemy.Slime4, new Vector3(bossSpawnPos.x + (float)0.5, bossSpawnPos.y, bossSpawnPos.z), Quaternion.identity);
+                Instantiate(enemy.SlimeBoss, new Vector3(bossSpawnPos.x + (float)0.5, bossSpawnPos.y, bossSpawnPos.z), Quaternion.identity);
                 break;
             default:
                 break;
