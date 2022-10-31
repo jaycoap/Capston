@@ -33,6 +33,7 @@ public class StageUI : MonoBehaviour
 
     private void Start()
     {
+        ClearPanel.SetActive(false);
         IngameSceneChange = this.gameObject.GetComponent<SceneChange>();
         _Stage1.onClick.AddListener(() => StageChange(1));
         _Stage2.onClick.AddListener(() => StageChange(2));
@@ -71,9 +72,8 @@ public class StageUI : MonoBehaviour
     }
     void Cleardungeon() // 던전 클리어시 씬 변경
     {
-
-        GameManager.Instance.SetClearStage(CurrentStage);
         ClearPanel.SetActive(false);
+        GameManager.Instance.SetClearStage(CurrentStage);
         IngameSceneChange.CurrentSceneChange();
         Debug.Log(GameManager.Instance.GetClearStage());
     }
