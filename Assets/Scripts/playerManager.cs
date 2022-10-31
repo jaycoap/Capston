@@ -574,9 +574,11 @@ public class playerManager : MonoBehaviour
             }
         } 
     }
-    void ting()
+    
+    public void SetIsDead(bool TorF)
     {
-        Application.Quit();
+        isDead = TorF;
+        animator.SetBool("isDie",TorF);
     }
     //기즈모
     private void OnDrawGizmos()
