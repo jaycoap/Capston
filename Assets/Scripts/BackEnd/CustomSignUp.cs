@@ -13,7 +13,7 @@ public class CustomSignUp : MonoBehaviour
 
     public void OnclickSignUp() //회원가입 버튼에 사용
     {
-        BackendReturnObject backendReturnObject = Backend.BMember.CustomSignUp(idInput.text, passInput.text, "test1");
+        BackendReturnObject backendReturnObject = Backend.BMember.CustomSignUp(idInput.text, passInput.text);
 
         if(backendReturnObject.IsSuccess() == true)
         {

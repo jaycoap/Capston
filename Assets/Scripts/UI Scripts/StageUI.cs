@@ -63,6 +63,10 @@ public class StageUI : MonoBehaviour
             StartCoroutine(EnemyCountCheck());
         }
 
+        if (SceneManager.GetActiveScene().name == "Village Scene")
+        {
+            ClearPanel.SetActive(false);
+        }
         //if(GameManager.Instance.getHp() <= 0)
         //{
         //    Subfade.SetActive(true);

@@ -286,9 +286,9 @@ public class GameManager : MonoBehaviour
         if (firstcheck == true) // 게임이 시작되면 밑 같이 설정
         {
             
-            activelevel = BackEndGameInfo.instance.GetLevel();
+            activelevel = BackEndGameInfo.instance.GetLevel(); // 레벨 설정
             myname = idText.text; // 닉네임 설정
-            maxHp = BackEndGameInfo.instance.GetMaxHP(); // 최대 체력 설정.
+            maxHp = BackEndGameInfo.instance.GetMaxHP(); // 최대 체력 설정
             maxMp = BackEndGameInfo.instance.GetMaxMP(); // 최대마나
             maxExp = BackEndGameInfo.instance.GetMaxEXP(); // 최대 경험치 
             HP = BackEndGameInfo.instance.GetMaxHP(); //  체력 설정
