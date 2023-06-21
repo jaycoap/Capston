@@ -31,3 +31,6 @@ GameManager, Server: Jaycoap
 미 구현 기능
 
 인벤토리 저장
+
+플레이 주소
+https://drive.google.com/file/d/1sDRWYc0XV7aEETS7DWueJsXevRi68XvV/view?usp=sharing
